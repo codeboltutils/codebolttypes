@@ -1,3 +1,6 @@
+
+
+
 export interface ChatMessage {
     type: string;
     message: Message | string;

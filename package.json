@@ -1,6 +1,6 @@
 {
   "name": "@codebolt/types",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "",
   "main": "index.d.ts",
   "scripts": {
