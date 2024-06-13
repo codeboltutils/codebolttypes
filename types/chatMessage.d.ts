@@ -33,3 +33,30 @@ export interface ChatMessage {
     total_tokens: number;
   }
 
+interface Selection {
+    selectedText: string;
+    selectionLineStartNo: number;
+    selectionCharacterStart: number;
+    selectionLineStopNo: number;
+    selectionCharacterStop: number;
+}
+
+
+
+export interface UserMessage{
+  type:string,
+  message:UserRequest
+}
+
+export interface UserRequest {
+    uid?: string;
+    userMessage: string;
+    currentFile?: string;
+    selection?: Selection;
+    mentionedFiles?: string[];
+    mentionedFolders?: string[];
+}
+
+
+
+
