@@ -31,7 +31,14 @@ export {
 
 // appServiceSchemas
 export {
-  type GetAppStateResponse
+  type GetAppStateResponse,
+  type AppMcpToolConfirmation,
+  type AppMcpToolExecuting,
+  type AppMcpToolSuccess,
+  type AppMcpToolError,
+  type AppMcpToolRejected,
+  type AppErrorResponse,
+  type AppServiceMessage
 } from './wstypes/app-to-ui-ws/appServiceSchemas';
 
 // browserServiceSchemas
@@ -301,6 +308,7 @@ export {
   type MemoryMcpToolSuccess,
   type MemoryMcpToolError,
   type MemoryMcpToolRejected,
+  type MemoryErrorResponse,
   type MemoryService
 } from './wstypes/app-to-ui-ws/memoryServiceSchemas';
 
@@ -373,6 +381,33 @@ export {
   type ProjectMcpToolRejected,
   type ProjectServiceMessage
 } from './wstypes/app-to-ui-ws/projectServiceSchemas';
+
+// responseMessageSchemas
+export {
+  type AiRequestStateEnum,
+  type BaseResponseMessage,
+  type SuccessResponse,
+  type ErrorResponse,
+  type CreateFileResponse,
+  type ReadFileResponse,
+  type UpdateFileResponse,
+  type DeleteFileResponse,
+  type FileListResponse,
+  type GitInitResponse,
+  type GitCommitResponse,
+  type GitPushResponse,
+  type GitStatusResponse,
+  type GitLogsResponse,
+  type GitDiffResponse,
+  type GetEnabledToolBoxesResponse,
+  type GetAvailableToolBoxesResponse,
+  type GetLocalToolBoxesResponse,
+  type ExecuteToolResponse,
+  type AddTaskResponse,
+  type GetAppStateResponse,
+  type CrawlerResponse,
+  type ResponseMessage
+} from './wstypes/app-to-ui-ws/responseMessageSchemas';
 
 // stateMessageSchemas
 export {

@@ -201,20 +201,21 @@ export const fsServiceMessageSchema = z.union([
 
 // TypeScript types
 export type CreateFileResponse = z.infer<typeof createFileResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type CreateFolderResponse = z.infer<typeof createFolderResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type ReadFileResponse = z.infer<typeof readFileResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type UpdateFileResponse = z.infer<typeof updateFileResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type DeleteFileResponse = z.infer<typeof deleteFileResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type DeleteFolderResponse = z.infer<typeof deleteFolderResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type FileListResponse = z.infer<typeof fileListResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type ListCodeDefinitionNamesResponse = z.infer<typeof listCodeDefinitionNamesResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type SearchFilesResponse = z.infer<typeof searchFilesResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type GrepSearchResponse = z.infer<typeof grepSearchResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type FileSearchResponse = z.infer<typeof fileSearchResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type EditFileAndApplyDiffResponse = z.infer<typeof editFileAndApplyDiffResponseSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type FsMcpToolConfirmation = z.infer<typeof fsMcpToolConfirmationSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type FsMcpToolExecuting = z.infer<typeof fsMcpToolExecutingSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type FsMcpToolSuccess = z.infer<typeof fsMcpToolSuccessSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type FsMcpToolError = z.infer<typeof fsMcpToolErrorSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type FsMcpToolRejected = z.infer<typeof fsMcpToolRejectedSchema>;
-export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;export type FsServiceMessage = z.infer<typeof fsServiceMessageSchema>; 
+export type FsErrorResponse = z.infer<typeof fsErrorResponseSchema>;
+export type CreateFolderResponse = z.infer<typeof createFolderResponseSchema>;
+export type ReadFileResponse = z.infer<typeof readFileResponseSchema>;
+export type UpdateFileResponse = z.infer<typeof updateFileResponseSchema>;
+export type DeleteFileResponse = z.infer<typeof deleteFileResponseSchema>;
+export type DeleteFolderResponse = z.infer<typeof deleteFolderResponseSchema>;
+export type FileListResponse = z.infer<typeof fileListResponseSchema>;
+export type ListCodeDefinitionNamesResponse = z.infer<typeof listCodeDefinitionNamesResponseSchema>;
+export type SearchFilesResponse = z.infer<typeof searchFilesResponseSchema>;
+export type GrepSearchResponse = z.infer<typeof grepSearchResponseSchema>;
+export type FileSearchResponse = z.infer<typeof fileSearchResponseSchema>;
+export type EditFileAndApplyDiffResponse = z.infer<typeof editFileAndApplyDiffResponseSchema>;
+export type FsMcpToolConfirmation = z.infer<typeof fsMcpToolConfirmationSchema>;
+export type FsMcpToolExecuting = z.infer<typeof fsMcpToolExecutingSchema>;
+export type FsMcpToolSuccess = z.infer<typeof fsMcpToolSuccessSchema>;
+export type FsMcpToolError = z.infer<typeof fsMcpToolErrorSchema>;
+export type FsMcpToolRejected = z.infer<typeof fsMcpToolRejectedSchema>;
+export type FsServiceMessage = z.infer<typeof fsServiceMessageSchema>; 

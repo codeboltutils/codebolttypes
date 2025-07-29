@@ -99,4 +99,5 @@ export type MemoryMcpToolExecuting = z.infer<typeof memoryMcpToolExecutingSchema
 export type MemoryMcpToolSuccess = z.infer<typeof memoryMcpToolSuccessSchema>;
 export type MemoryMcpToolError = z.infer<typeof memoryMcpToolErrorSchema>;
 export type MemoryMcpToolRejected = z.infer<typeof memoryMcpToolRejectedSchema>;
+export type MemoryErrorResponse = z.infer<typeof memoryErrorResponseSchema>;
 export type MemoryService = z.infer<typeof memoryServiceSchema>; 

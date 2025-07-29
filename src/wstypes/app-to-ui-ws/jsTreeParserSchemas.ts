@@ -98,9 +98,10 @@ export const jsTreeParserServiceMessageSchema = z.union([
 
 // TypeScript types
 export type GetTreeResponse = z.infer<typeof getTreeResponseSchema>;
-export type JsTreeParserErrorResponse = z.infer<typeof jsTreeParserErrorResponseSchema>;export type JsTreeParserMcpToolConfirmation = z.infer<typeof jsTreeParserMcpToolConfirmationSchema>;
-export type JsTreeParserErrorResponse = z.infer<typeof jsTreeParserErrorResponseSchema>;export type JsTreeParserMcpToolExecuting = z.infer<typeof jsTreeParserMcpToolExecutingSchema>;
-export type JsTreeParserErrorResponse = z.infer<typeof jsTreeParserErrorResponseSchema>;export type JsTreeParserMcpToolSuccess = z.infer<typeof jsTreeParserMcpToolSuccessSchema>;
-export type JsTreeParserErrorResponse = z.infer<typeof jsTreeParserErrorResponseSchema>;export type JsTreeParserMcpToolError = z.infer<typeof jsTreeParserMcpToolErrorSchema>;
-export type JsTreeParserErrorResponse = z.infer<typeof jsTreeParserErrorResponseSchema>;export type JsTreeParserMcpToolRejected = z.infer<typeof jsTreeParserMcpToolRejectedSchema>;
-export type JsTreeParserErrorResponse = z.infer<typeof jsTreeParserErrorResponseSchema>;export type JsTreeParserServiceMessage = z.infer<typeof jsTreeParserServiceMessageSchema>; 
+export type JsTreeParserErrorResponse = z.infer<typeof jsTreeParserErrorResponseSchema>;
+export type JsTreeParserMcpToolConfirmation = z.infer<typeof jsTreeParserMcpToolConfirmationSchema>;
+export type JsTreeParserMcpToolExecuting = z.infer<typeof jsTreeParserMcpToolExecutingSchema>;
+export type JsTreeParserMcpToolSuccess = z.infer<typeof jsTreeParserMcpToolSuccessSchema>;
+export type JsTreeParserMcpToolError = z.infer<typeof jsTreeParserMcpToolErrorSchema>;
+export type JsTreeParserMcpToolRejected = z.infer<typeof jsTreeParserMcpToolRejectedSchema>;
+export type JsTreeParserServiceMessage = z.infer<typeof jsTreeParserServiceMessageSchema>; 

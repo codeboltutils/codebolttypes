@@ -110,11 +110,12 @@ export const codeUtilsServiceMessageSchema = z.union([
 
 // TypeScript types
 export type GetAllFilesMarkdownResponse = z.infer<typeof getAllFilesMarkdownResponseSchema>;
-export type CodeUtilsErrorResponse = z.infer<typeof codeUtilsErrorResponseSchema>;export type GetMatcherListTreeResponse = z.infer<typeof getMatcherListTreeResponseSchema>;
-export type CodeUtilsErrorResponse = z.infer<typeof codeUtilsErrorResponseSchema>;export type GetMatchDetailResponse = z.infer<typeof getMatchDetailResponseSchema>;
-export type CodeUtilsErrorResponse = z.infer<typeof codeUtilsErrorResponseSchema>;export type CodeUtilsMcpToolConfirmation = z.infer<typeof codeUtilsMcpToolConfirmationSchema>;
-export type CodeUtilsErrorResponse = z.infer<typeof codeUtilsErrorResponseSchema>;export type CodeUtilsMcpToolExecuting = z.infer<typeof codeUtilsMcpToolExecutingSchema>;
-export type CodeUtilsErrorResponse = z.infer<typeof codeUtilsErrorResponseSchema>;export type CodeUtilsMcpToolSuccess = z.infer<typeof codeUtilsMcpToolSuccessSchema>;
-export type CodeUtilsErrorResponse = z.infer<typeof codeUtilsErrorResponseSchema>;export type CodeUtilsMcpToolError = z.infer<typeof codeUtilsMcpToolErrorSchema>;
-export type CodeUtilsErrorResponse = z.infer<typeof codeUtilsErrorResponseSchema>;export type CodeUtilsMcpToolRejected = z.infer<typeof codeUtilsMcpToolRejectedSchema>;
-export type CodeUtilsErrorResponse = z.infer<typeof codeUtilsErrorResponseSchema>;export type CodeUtilsServiceMessage = z.infer<typeof codeUtilsServiceMessageSchema>; 
+export type CodeUtilsErrorResponse = z.infer<typeof codeUtilsErrorResponseSchema>;
+export type GetMatcherListTreeResponse = z.infer<typeof getMatcherListTreeResponseSchema>;
+export type GetMatchDetailResponse = z.infer<typeof getMatchDetailResponseSchema>;
+export type CodeUtilsMcpToolConfirmation = z.infer<typeof codeUtilsMcpToolConfirmationSchema>;
+export type CodeUtilsMcpToolExecuting = z.infer<typeof codeUtilsMcpToolExecutingSchema>;
+export type CodeUtilsMcpToolSuccess = z.infer<typeof codeUtilsMcpToolSuccessSchema>;
+export type CodeUtilsMcpToolError = z.infer<typeof codeUtilsMcpToolErrorSchema>;
+export type CodeUtilsMcpToolRejected = z.infer<typeof codeUtilsMcpToolRejectedSchema>;
+export type CodeUtilsServiceMessage = z.infer<typeof codeUtilsServiceMessageSchema>; 

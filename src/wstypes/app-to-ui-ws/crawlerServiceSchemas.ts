@@ -98,9 +98,10 @@ export const crawlerServiceMessageSchema = z.union([
 
 // TypeScript types
 export type CrawlerResponse = z.infer<typeof crawlerResponseSchema>;
-export type CrawlerErrorResponse = z.infer<typeof crawlerErrorResponseSchema>;export type CrawlerMcpToolConfirmation = z.infer<typeof crawlerMcpToolConfirmationSchema>;
-export type CrawlerErrorResponse = z.infer<typeof crawlerErrorResponseSchema>;export type CrawlerMcpToolExecuting = z.infer<typeof crawlerMcpToolExecutingSchema>;
-export type CrawlerErrorResponse = z.infer<typeof crawlerErrorResponseSchema>;export type CrawlerMcpToolSuccess = z.infer<typeof crawlerMcpToolSuccessSchema>;
-export type CrawlerErrorResponse = z.infer<typeof crawlerErrorResponseSchema>;export type CrawlerMcpToolError = z.infer<typeof crawlerMcpToolErrorSchema>;
-export type CrawlerErrorResponse = z.infer<typeof crawlerErrorResponseSchema>;export type CrawlerMcpToolRejected = z.infer<typeof crawlerMcpToolRejectedSchema>;
-export type CrawlerErrorResponse = z.infer<typeof crawlerErrorResponseSchema>;export type CrawlerServiceMessage = z.infer<typeof crawlerServiceMessageSchema>; 
+export type CrawlerErrorResponse = z.infer<typeof crawlerErrorResponseSchema>;
+export type CrawlerMcpToolConfirmation = z.infer<typeof crawlerMcpToolConfirmationSchema>;
+export type CrawlerMcpToolExecuting = z.infer<typeof crawlerMcpToolExecutingSchema>;
+export type CrawlerMcpToolSuccess = z.infer<typeof crawlerMcpToolSuccessSchema>;
+export type CrawlerMcpToolError = z.infer<typeof crawlerMcpToolErrorSchema>;
+export type CrawlerMcpToolRejected = z.infer<typeof crawlerMcpToolRejectedSchema>;
+export type CrawlerServiceMessage = z.infer<typeof crawlerServiceMessageSchema>; 
