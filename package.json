@@ -2,7 +2,7 @@
   "name": "@codebolt/types",
   "version": "1.0.10",
   "description": "",
-  "main": "index.d.ts",
+  "main": "dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
