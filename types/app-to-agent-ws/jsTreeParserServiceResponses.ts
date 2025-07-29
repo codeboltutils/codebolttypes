@@ -5,15 +5,18 @@ import { z } from 'zod';
  * Messages sent from JS tree parser CLI service back to agents
  */
 
-// Get tree response
-export const getTreeResponseSchema = z.object({
-  type: z.literal('getTreeResponse'),
-  payload: z.any(),
+// Get tree response schema
+export const GetTreeResponseSchema = z.object({
+    type: z.literal('getTreeResponse'),
+    payload: z.array(z.string()).nullable() // Array of serialized tree strings, or null on error
 });
 
-// Union of all JS tree parser service responses
-export const jsTreeParserServiceResponseSchema = getTreeResponseSchema;
+// Union of all JS tree parser service response schemas
+export const JSTreeParserServiceResponseSchema = GetTreeResponseSchema;
 
-// TypeScript types
-export type GetTreeResponse = z.infer<typeof getTreeResponseSchema>;
-export type JsTreeParserServiceResponse = z.infer<typeof jsTreeParserServiceResponseSchema>; 
+// Export with the expected name for the index file
+export const jsTreeParserServiceResponseSchema = JSTreeParserServiceResponseSchema;
+
+// Type exports
+export type GetTreeResponse = z.infer<typeof GetTreeResponseSchema>;
+export type JSTreeParserServiceResponse = z.infer<typeof JSTreeParserServiceResponseSchema>; 

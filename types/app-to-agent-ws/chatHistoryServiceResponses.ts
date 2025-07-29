@@ -5,33 +5,37 @@ import { z } from 'zod';
  * Messages sent from chat history CLI service back to agents
  */
 
-// Get summarize all response
-export const getSummarizeAllResponseSchema = z.object({
-  type: z.literal('getSummarizeAllResponse'),
-  payload: z.any(),
+// Message schema (from llmmessage.ts interface)
+const MessageSchema = z.object({
+    role: z.string(),
+    content: z.string()
 });
 
-// Get summarize response
-export const getSummarizeResponseSchema = z.object({
-  type: z.literal('getSummarizeResponse'),
-  payload: z.any(),
+// Get summarize all response schema
+// Returns summary from summarize_all() which returns Message[] | null
+export const GetSummarizeAllResponseSchema = z.object({
+    type: z.literal('getSummarizeAllResponse'),
+    payload: z.array(MessageSchema).nullable()
 });
 
-// Get chat history response (from index.ts)
-export const getChatHistoryResponseSchema = z.object({
-  type: z.literal('getChatHistoryResponse'),
-  chats: z.any(),
+// Get summarize response schema  
+// Returns summary from summarize() which returns Message[]
+export const GetSummarizeResponseSchema = z.object({
+    type: z.literal('getSummarizeResponse'),
+    payload: z.array(MessageSchema)
 });
 
-// Union of all chat history service responses
-export const chatHistoryServiceResponseSchema = z.union([
-  getSummarizeAllResponseSchema,
-  getSummarizeResponseSchema,
-  getChatHistoryResponseSchema,
+// Union of all chat history service response schemas
+export const ChatHistoryServiceResponseSchema = z.union([
+    GetSummarizeAllResponseSchema,
+    GetSummarizeResponseSchema
 ]);
 
-// TypeScript types
-export type GetSummarizeAllResponse = z.infer<typeof getSummarizeAllResponseSchema>;
-export type GetSummarizeResponse = z.infer<typeof getSummarizeResponseSchema>;
-export type GetChatHistoryResponse = z.infer<typeof getChatHistoryResponseSchema>;
-export type ChatHistoryServiceResponse = z.infer<typeof chatHistoryServiceResponseSchema>; 
+// Export with the expected name for the index file
+export const chatHistoryServiceResponseSchema = ChatHistoryServiceResponseSchema;
+
+// Type exports
+export type Message = z.infer<typeof MessageSchema>;
+export type GetSummarizeAllResponse = z.infer<typeof GetSummarizeAllResponseSchema>;
+export type GetSummarizeResponse = z.infer<typeof GetSummarizeResponseSchema>;
+export type ChatHistoryServiceResponse = z.infer<typeof ChatHistoryServiceResponseSchema>;

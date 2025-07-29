@@ -5,49 +5,56 @@ import { z } from 'zod';
  * Messages sent from vector DB CLI service back to agents
  */
 
-// Vector add response
-export const addVectorItemResponseSchema = z.object({
-  type: z.literal('addVectorItemResponse'),
-  message: z.literal('success'),
+// Add vector item response schema
+export const AddVectorItemResponseSchema = z.object({
+    type: z.literal('addVectorItemResponse'),
+    message: z.literal('success')
 });
 
-// Vector get response  
-export const getVectorResponseSchema = z.object({
-  type: z.literal('getVectorResponse'),
-  vector: z.any(),
+// Vector embedding response structure (from embedding API)
+const VectorResponseSchema = z.object({
+    data: z.array(z.object({
+        embedding: z.array(z.number())
+    })).optional()
+}).passthrough(); // Allow additional properties from different embedding providers
+
+// Vector query result item structure
+const VectorQueryResultSchema = z.object({
+    score: z.number(),
+    item: z.object({
+        metadata: z.object({
+            text: z.string()
+        }).passthrough() // Allow additional metadata
+    }).passthrough() // Allow additional item properties
+}).passthrough();
+
+// Get vector response schema
+export const GetVectorResponseSchema = z.object({
+    type: z.literal('getVectorResponse'),
+    vector: VectorResponseSchema
 });
 
-// Vector query single item response
-export const queryVectorItemResponseSchema = z.object({
-  type: z.literal('queryVectorItemResponse'),
-  item: z.any(),
+// Query vector item response schema
+export const QueryVectorItemResponseSchema = z.object({
+    type: z.literal('queryVectorItemResponse'),
+    item: z.union([
+        z.array(VectorQueryResultSchema), // Array of query results
+        z.null() // null when no results or error
+    ])
 });
 
-// Vector query multiple items response
-export const queryVectorItemsResponseSchema = z.object({
-  type: z.literal('queryVectorItemsResponse'),
-  items: z.any(),
-});
-
-// Vector error response
-export const vectorErrorResponseSchema = z.object({
-  type: z.literal('error'),
-  message: z.literal('Failed to process task event'),
-});
-
-// Union of all vector DB service responses
-export const vectordbServiceResponseSchema = z.union([
-  addVectorItemResponseSchema,
-  getVectorResponseSchema,
-  queryVectorItemResponseSchema,
-  queryVectorItemsResponseSchema,
-  vectorErrorResponseSchema,
+// Union of all vector DB service response schemas
+export const VectordbServiceResponseSchema = z.union([
+    AddVectorItemResponseSchema,
+    GetVectorResponseSchema,
+    QueryVectorItemResponseSchema
 ]);
 
-// TypeScript types
-export type AddVectorItemResponse = z.infer<typeof addVectorItemResponseSchema>;
-export type GetVectorResponse = z.infer<typeof getVectorResponseSchema>;
-export type QueryVectorItemResponse = z.infer<typeof queryVectorItemResponseSchema>;
-export type QueryVectorItemsResponse = z.infer<typeof queryVectorItemsResponseSchema>;
-export type VectorErrorResponse = z.infer<typeof vectorErrorResponseSchema>;
-export type VectordbServiceResponse = z.infer<typeof vectordbServiceResponseSchema>; 
+// Export with the expected name for the index file
+export const vectordbServiceResponseSchema = VectordbServiceResponseSchema;
+
+// Type exports
+export type AddVectorItemResponse = z.infer<typeof AddVectorItemResponseSchema>;
+export type GetVectorResponse = z.infer<typeof GetVectorResponseSchema>;
+export type QueryVectorItemResponse = z.infer<typeof QueryVectorItemResponseSchema>;
+export type VectordbServiceResponse = z.infer<typeof VectordbServiceResponseSchema>; 

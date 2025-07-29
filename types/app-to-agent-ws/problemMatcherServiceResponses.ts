@@ -5,15 +5,28 @@ import { z } from 'zod';
  * Messages sent from problem matcher CLI service back to agents
  */
 
-// Match problem response
-export const matchProblemResponseSchema = z.object({
-  type: z.literal('matchProblemResponse'),
-  payload: z.any(),
+// Problem match result structure
+const ProblemMatchResultSchema = z.object({
+    file: z.string().optional(),
+    line: z.number().optional(),
+    column: z.number().optional(),
+    message: z.string().optional(),
+    severity: z.string().optional(),
+    code: z.string().optional()
+}).passthrough(); // Allow additional problem properties
+
+// Match problem response schema
+export const MatchProblemResponseSchema = z.object({
+    type: z.literal('matchProblemResponse'),
+    payload: z.array(ProblemMatchResultSchema)
 });
 
-// Union of all problem matcher service responses
-export const problemMatcherServiceResponseSchema = matchProblemResponseSchema;
+// Union of all problem matcher service response schemas
+export const ProblemMatcherServiceResponseSchema = MatchProblemResponseSchema;
 
-// TypeScript types
-export type MatchProblemResponse = z.infer<typeof matchProblemResponseSchema>;
-export type ProblemMatcherServiceResponse = z.infer<typeof problemMatcherServiceResponseSchema>; 
+// Export with the expected name for the index file
+export const problemMatcherServiceResponseSchema = ProblemMatcherServiceResponseSchema;
+
+// Type exports
+export type MatchProblemResponse = z.infer<typeof MatchProblemResponseSchema>;
+export type ProblemMatcherServiceResponse = z.infer<typeof ProblemMatcherServiceResponseSchema>; 

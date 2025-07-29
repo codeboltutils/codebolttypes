@@ -5,30 +5,37 @@ import { z } from 'zod';
  * Messages sent from state CLI service back to agents
  */
 
-// State operation success response
-export const stateOperationSuccessResponseSchema = z.object({
-  type: z.string(),
-  success: z.boolean(),
-  data: z.any().optional(),
-  agentId: z.string().optional(),
+// Agent state structure (based on agentState store)
+const AgentStateSchema = z.object({
+    userName: z.string(),
+    defaultLLM: z.string(),
+    agentLogger: z.object({}).passthrough() // Logger object structure
+}).passthrough(); // Allow additional dynamic properties
+
+// Get agent state response schema
+export const GetAgentStateResponseSchema = z.object({
+    type: z.literal('getAgentStateResponse'),
+    payload: AgentStateSchema
 });
 
-// State operation error response
-export const stateOperationErrorResponseSchema = z.object({
-  type: z.literal('error'),
-  message: z.string(),
-  error: z.string().optional(),
-  success: z.literal(false),
-  agentId: z.string().optional(),
+// Add to agent state response schema
+export const AddToAgentStateResponseSchema = z.object({
+    type: z.literal('addToAgentStateResponse'),
+    payload: z.object({
+        sucess: z.literal(true) // Note: keeping the typo as it exists in the source code
+    })
 });
 
-// Union of all state service responses
-export const stateServiceResponseSchema = z.union([
-  stateOperationSuccessResponseSchema,
-  stateOperationErrorResponseSchema,
+// Union of all state service response schemas
+export const StateServiceResponseSchema = z.union([
+    GetAgentStateResponseSchema,
+    AddToAgentStateResponseSchema
 ]);
 
-// TypeScript types
-export type StateOperationSuccessResponse = z.infer<typeof stateOperationSuccessResponseSchema>;
-export type StateOperationErrorResponse = z.infer<typeof stateOperationErrorResponseSchema>;
-export type StateServiceResponse = z.infer<typeof stateServiceResponseSchema>; 
+// Export with the expected name for the index file
+export const stateServiceResponseSchema = StateServiceResponseSchema;
+
+// Type exports
+export type GetAgentStateResponse = z.infer<typeof GetAgentStateResponseSchema>;
+export type AddToAgentStateResponse = z.infer<typeof AddToAgentStateResponseSchema>;
+export type StateServiceResponse = z.infer<typeof StateServiceResponseSchema>; 
