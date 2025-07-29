@@ -98,9 +98,10 @@ export const problemMatcherServiceMessageSchema = z.union([
 
 // TypeScript types
 export type MatchProblemResponse = z.infer<typeof matchProblemResponseSchema>;
-export type ProblemMatcherErrorResponse = z.infer<typeof problemMatcherErrorResponseSchema>;export type ProblemMatcherMcpToolConfirmation = z.infer<typeof problemMatcherMcpToolConfirmationSchema>;
-export type ProblemMatcherErrorResponse = z.infer<typeof problemMatcherErrorResponseSchema>;export type ProblemMatcherMcpToolExecuting = z.infer<typeof problemMatcherMcpToolExecutingSchema>;
-export type ProblemMatcherErrorResponse = z.infer<typeof problemMatcherErrorResponseSchema>;export type ProblemMatcherMcpToolSuccess = z.infer<typeof problemMatcherMcpToolSuccessSchema>;
-export type ProblemMatcherErrorResponse = z.infer<typeof problemMatcherErrorResponseSchema>;export type ProblemMatcherMcpToolError = z.infer<typeof problemMatcherMcpToolErrorSchema>;
-export type ProblemMatcherErrorResponse = z.infer<typeof problemMatcherErrorResponseSchema>;export type ProblemMatcherMcpToolRejected = z.infer<typeof problemMatcherMcpToolRejectedSchema>;
-export type ProblemMatcherErrorResponse = z.infer<typeof problemMatcherErrorResponseSchema>;export type ProblemMatcherServiceMessage = z.infer<typeof problemMatcherServiceMessageSchema>; 
+export type ProblemMatcherErrorResponse = z.infer<typeof problemMatcherErrorResponseSchema>;
+export type ProblemMatcherMcpToolConfirmation = z.infer<typeof problemMatcherMcpToolConfirmationSchema>;
+export type ProblemMatcherMcpToolExecuting = z.infer<typeof problemMatcherMcpToolExecutingSchema>;
+export type ProblemMatcherMcpToolSuccess = z.infer<typeof problemMatcherMcpToolSuccessSchema>;
+export type ProblemMatcherMcpToolError = z.infer<typeof problemMatcherMcpToolErrorSchema>;
+export type ProblemMatcherMcpToolRejected = z.infer<typeof problemMatcherMcpToolRejectedSchema>;
+export type ProblemMatcherServiceMessage = z.infer<typeof problemMatcherServiceMessageSchema>; 

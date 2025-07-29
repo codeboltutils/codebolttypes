@@ -68,19 +68,12 @@ export {
   type GetAllFilesMarkdownResponse,
   type CodeUtilsErrorResponse,
   type GetMatcherListTreeResponse,
-  type CodeUtilsErrorResponse,
   type GetMatchDetailResponse,
-  type CodeUtilsErrorResponse,
   type CodeUtilsMcpToolConfirmation,
-  type CodeUtilsErrorResponse,
   type CodeUtilsMcpToolExecuting,
-  type CodeUtilsErrorResponse,
   type CodeUtilsMcpToolSuccess,
-  type CodeUtilsErrorResponse,
   type CodeUtilsMcpToolError,
-  type CodeUtilsErrorResponse,
   type CodeUtilsMcpToolRejected,
-  type CodeUtilsErrorResponse,
   type CodeUtilsServiceMessage
 } from './wstypes/app-to-ui-ws/codeUtilsSchemas';
 
@@ -128,15 +121,10 @@ export {
   type CrawlerResponse,
   type CrawlerErrorResponse,
   type CrawlerMcpToolConfirmation,
-  type CrawlerErrorResponse,
   type CrawlerMcpToolExecuting,
-  type CrawlerErrorResponse,
   type CrawlerMcpToolSuccess,
-  type CrawlerErrorResponse,
   type CrawlerMcpToolError,
-  type CrawlerErrorResponse,
   type CrawlerMcpToolRejected,
-  type CrawlerErrorResponse,
   type CrawlerServiceMessage
 } from './wstypes/app-to-ui-ws/crawlerServiceSchemas';
 
@@ -201,37 +189,21 @@ export {
   type CreateFileResponse,
   type FsErrorResponse,
   type CreateFolderResponse,
-  type FsErrorResponse,
   type ReadFileResponse,
-  type FsErrorResponse,
   type UpdateFileResponse,
-  type FsErrorResponse,
   type DeleteFileResponse,
-  type FsErrorResponse,
   type DeleteFolderResponse,
-  type FsErrorResponse,
   type FileListResponse,
-  type FsErrorResponse,
   type ListCodeDefinitionNamesResponse,
-  type FsErrorResponse,
   type SearchFilesResponse,
-  type FsErrorResponse,
   type GrepSearchResponse,
-  type FsErrorResponse,
   type FileSearchResponse,
-  type FsErrorResponse,
   type EditFileAndApplyDiffResponse,
-  type FsErrorResponse,
   type FsMcpToolConfirmation,
-  type FsErrorResponse,
   type FsMcpToolExecuting,
-  type FsErrorResponse,
   type FsMcpToolSuccess,
-  type FsErrorResponse,
   type FsMcpToolError,
-  type FsErrorResponse,
   type FsMcpToolRejected,
-  type FsErrorResponse,
   type FsServiceMessage
 } from './wstypes/app-to-ui-ws/fsServiceSchemas';
 
@@ -262,15 +234,10 @@ export {
   type GetTreeResponse,
   type JsTreeParserErrorResponse,
   type JsTreeParserMcpToolConfirmation,
-  type JsTreeParserErrorResponse,
   type JsTreeParserMcpToolExecuting,
-  type JsTreeParserErrorResponse,
   type JsTreeParserMcpToolSuccess,
-  type JsTreeParserErrorResponse,
   type JsTreeParserMcpToolError,
-  type JsTreeParserErrorResponse,
   type JsTreeParserMcpToolRejected,
-  type JsTreeParserErrorResponse,
   type JsTreeParserServiceMessage
 } from './wstypes/app-to-ui-ws/jsTreeParserSchemas';
 
@@ -386,15 +353,10 @@ export {
   type MatchProblemResponse,
   type ProblemMatcherErrorResponse,
   type ProblemMatcherMcpToolConfirmation,
-  type ProblemMatcherErrorResponse,
   type ProblemMatcherMcpToolExecuting,
-  type ProblemMatcherErrorResponse,
   type ProblemMatcherMcpToolSuccess,
-  type ProblemMatcherErrorResponse,
   type ProblemMatcherMcpToolError,
-  type ProblemMatcherErrorResponse,
   type ProblemMatcherMcpToolRejected,
-  type ProblemMatcherErrorResponse,
   type ProblemMatcherServiceMessage
 } from './wstypes/app-to-ui-ws/problemMatcherSchemas';
 
@@ -403,48 +365,14 @@ export {
   type GetProjectPathResponse,
   type ProjectErrorResponse,
   type GetProjectSettingsResponse,
-  type ProjectErrorResponse,
   type GetRepoMapResponse,
-  type ProjectErrorResponse,
   type ProjectMcpToolConfirmation,
-  type ProjectErrorResponse,
   type ProjectMcpToolExecuting,
-  type ProjectErrorResponse,
   type ProjectMcpToolSuccess,
-  type ProjectErrorResponse,
   type ProjectMcpToolError,
-  type ProjectErrorResponse,
   type ProjectMcpToolRejected,
-  type ProjectErrorResponse,
   type ProjectServiceMessage
 } from './wstypes/app-to-ui-ws/projectServiceSchemas';
-
-// responseMessageSchemas
-export {
-  type AiRequestStateEnum,
-  type BaseResponseMessage,
-  type SuccessResponse,
-  type ErrorResponse,
-  type CreateFileResponse,
-  type ReadFileResponse,
-  type UpdateFileResponse,
-  type DeleteFileResponse,
-  type FileListResponse,
-  type GitInitResponse,
-  type GitCommitResponse,
-  type GitPushResponse,
-  type GitStatusResponse,
-  type GitLogsResponse,
-  type GitDiffResponse,
-  type GetEnabledToolBoxesResponse,
-  type GetAvailableToolBoxesResponse,
-  type GetLocalToolBoxesResponse,
-  type ExecuteToolResponse,
-  type AddTaskResponse,
-  type GetAppStateResponse,
-  type CrawlerResponse,
-  type ResponseMessage
-} from './wstypes/app-to-ui-ws/responseMessageSchemas';
 
 // stateMessageSchemas
 export {
@@ -466,7 +394,6 @@ export {
   type GetAgentStateResponse,
   type StateErrorResponse,
   type AddToAgentStateResponse,
-  type StateErrorResponse,
   type StateServiceMessage
 } from './wstypes/app-to-ui-ws/stateServiceSchemas';
 
@@ -522,17 +449,11 @@ export {
   type AddTokenResponse,
   type TokenizerErrorResponse,
   type GetTokenResponse,
-  type TokenizerErrorResponse,
   type TokenizerMcpToolConfirmation,
-  type TokenizerErrorResponse,
   type TokenizerMcpToolExecuting,
-  type TokenizerErrorResponse,
   type TokenizerMcpToolSuccess,
-  type TokenizerErrorResponse,
   type TokenizerMcpToolError,
-  type TokenizerErrorResponse,
   type TokenizerMcpToolRejected,
-  type TokenizerErrorResponse,
   type TokenizerServiceMessage
 } from './wstypes/app-to-ui-ws/tokenizerServiceSchemas';
 

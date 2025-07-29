@@ -211,4 +211,12 @@ export {
   QueryVectorItemResponseSchema,
   VectordbServiceResponseSchema,
   vectordbServiceResponseSchema
-} from './wstypes/app-to-agent-ws/vectordbServiceResponses'; 
+} from './wstypes/app-to-agent-ws/vectordbServiceResponses';
+
+// indexResponses
+export {
+  GetChatHistoryResponseSchema,
+  ErrorResponseSchema,
+  IndexServiceResponseSchema,
+  indexServiceResponseSchema
+} from './wstypes/app-to-agent-ws/indexResponses'; 

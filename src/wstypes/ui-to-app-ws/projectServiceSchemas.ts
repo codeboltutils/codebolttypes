@@ -116,11 +116,12 @@ export const projectServiceMessageSchema = z.union([
 
 // TypeScript types
 export type GetProjectPathResponse = z.infer<typeof getProjectPathResponseSchema>;
-export type ProjectErrorResponse = z.infer<typeof projectErrorResponseSchema>;export type GetProjectSettingsResponse = z.infer<typeof getProjectSettingsResponseSchema>;
-export type ProjectErrorResponse = z.infer<typeof projectErrorResponseSchema>;export type GetRepoMapResponse = z.infer<typeof getRepoMapResponseSchema>;
-export type ProjectErrorResponse = z.infer<typeof projectErrorResponseSchema>;export type ProjectMcpToolConfirmation = z.infer<typeof projectMcpToolConfirmationSchema>;
-export type ProjectErrorResponse = z.infer<typeof projectErrorResponseSchema>;export type ProjectMcpToolExecuting = z.infer<typeof projectMcpToolExecutingSchema>;
-export type ProjectErrorResponse = z.infer<typeof projectErrorResponseSchema>;export type ProjectMcpToolSuccess = z.infer<typeof projectMcpToolSuccessSchema>;
-export type ProjectErrorResponse = z.infer<typeof projectErrorResponseSchema>;export type ProjectMcpToolError = z.infer<typeof projectMcpToolErrorSchema>;
-export type ProjectErrorResponse = z.infer<typeof projectErrorResponseSchema>;export type ProjectMcpToolRejected = z.infer<typeof projectMcpToolRejectedSchema>;
-export type ProjectErrorResponse = z.infer<typeof projectErrorResponseSchema>;export type ProjectServiceMessage = z.infer<typeof projectServiceMessageSchema>; 
+export type ProjectErrorResponse = z.infer<typeof projectErrorResponseSchema>;
+export type GetProjectSettingsResponse = z.infer<typeof getProjectSettingsResponseSchema>;
+export type GetRepoMapResponse = z.infer<typeof getRepoMapResponseSchema>;
+export type ProjectMcpToolConfirmation = z.infer<typeof projectMcpToolConfirmationSchema>;
+export type ProjectMcpToolExecuting = z.infer<typeof projectMcpToolExecutingSchema>;
+export type ProjectMcpToolSuccess = z.infer<typeof projectMcpToolSuccessSchema>;
+export type ProjectMcpToolError = z.infer<typeof projectMcpToolErrorSchema>;
+export type ProjectMcpToolRejected = z.infer<typeof projectMcpToolRejectedSchema>;
+export type ProjectServiceMessage = z.infer<typeof projectServiceMessageSchema>; 

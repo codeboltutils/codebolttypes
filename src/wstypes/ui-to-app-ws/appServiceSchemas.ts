@@ -98,9 +98,10 @@ export const appServiceMessageSchema = z.union([
 
 // TypeScript types
 export type GetAppStateResponse = z.infer<typeof getAppStateResponseSchema>;
-export type AppErrorResponse = z.infer<typeof appErrorResponseSchema>;export type AppMcpToolConfirmation = z.infer<typeof appMcpToolConfirmationSchema>;
-export type AppErrorResponse = z.infer<typeof appErrorResponseSchema>;export type AppMcpToolExecuting = z.infer<typeof appMcpToolExecutingSchema>;
-export type AppErrorResponse = z.infer<typeof appErrorResponseSchema>;export type AppMcpToolSuccess = z.infer<typeof appMcpToolSuccessSchema>;
-export type AppErrorResponse = z.infer<typeof appErrorResponseSchema>;export type AppMcpToolError = z.infer<typeof appMcpToolErrorSchema>;
-export type AppErrorResponse = z.infer<typeof appErrorResponseSchema>;export type AppMcpToolRejected = z.infer<typeof appMcpToolRejectedSchema>;
-export type AppErrorResponse = z.infer<typeof appErrorResponseSchema>;export type AppServiceMessage = z.infer<typeof appServiceMessageSchema>; 
+export type AppErrorResponse = z.infer<typeof appErrorResponseSchema>;
+export type AppMcpToolConfirmation = z.infer<typeof appMcpToolConfirmationSchema>;
+export type AppMcpToolExecuting = z.infer<typeof appMcpToolExecutingSchema>;
+export type AppMcpToolSuccess = z.infer<typeof appMcpToolSuccessSchema>;
+export type AppMcpToolError = z.infer<typeof appMcpToolErrorSchema>;
+export type AppMcpToolRejected = z.infer<typeof appMcpToolRejectedSchema>;
+export type AppServiceMessage = z.infer<typeof appServiceMessageSchema>; 

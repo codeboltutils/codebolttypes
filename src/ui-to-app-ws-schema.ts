@@ -26,12 +26,12 @@ export {
   listAgentsResponseSchema,
   agentsDetailResponseSchema,
   agentErrorResponseSchema,
-  agentMessageSchema as agentUIMessageSchema
+  agentMessageSchema,
 } from './wstypes/ui-to-app-ws/agentMessageSchemas';
 
 // appServiceSchemas
 export {
-  getAppStateResponseSchema as getAppStateUIResponseSchema,
+  getAppStateResponseSchema,
   appMcpToolConfirmationSchema,
   appMcpToolExecutingSchema,
   appMcpToolSuccessSchema,
@@ -43,7 +43,7 @@ export {
 
 // browserServiceSchemas
 export {
-  newPageResponseSchema as newPageUIResponseSchema,
+  newPageResponseSchema,
   browserErrorResponseSchema,
   browserActionResponseSchema,
   browserMcpToolConfirmationSchema,
@@ -58,9 +58,9 @@ export {
 
 // chatHistorySchemas
 export {
-  getSummarizeAllResponseSchema as getSummarizeAllUIResponseSchema,
-  getSummarizeResponseSchema as getSummarizeUIResponseSchema,
-  getChatHistoryResponseSchema as getChatHistoryUIResponseSchema,
+  getSummarizeAllResponseSchema,
+  getSummarizeResponseSchema,
+  getChatHistoryResponseSchema,
   chatHistoryMcpToolConfirmationSchema,
   chatHistoryMcpToolExecutingSchema,
   chatHistoryMcpToolSuccessSchema,
@@ -72,8 +72,8 @@ export {
 
 // codeUtilsSchemas
 export {
-  getAllFilesMarkdownResponseSchema as getAllFilesMarkdownUIResponseSchema,
-  getMatcherListTreeResponseSchema as getMatcherListTreeUIResponseSchema,
+  getAllFilesMarkdownResponseSchema,
+  getMatcherListTreeResponseSchema,
   getMatchDetailResponseSchema,
   codeUtilsMcpToolConfirmationSchema,
   codeUtilsMcpToolExecutingSchema,
@@ -125,7 +125,7 @@ export {
 
 // crawlerServiceSchemas
 export {
-  crawlerResponseSchema as crawlerUIResponseSchema,
+  crawlerResponseSchema,
   crawlerMcpToolConfirmationSchema,
   crawlerMcpToolExecutingSchema,
   crawlerMcpToolSuccessSchema,
@@ -137,7 +137,7 @@ export {
 
 // debugServiceSchemas
 export {
-  debugAddLogResponseSchema as debugAddLogUIResponseSchema,
+  debugAddLogResponseSchema,
   openDebugBrowserResponseSchema,
   debugMcpToolConfirmationSchema,
   debugMcpToolExecutingSchema,
@@ -181,11 +181,11 @@ export {
   searchRejectedSchema,
   mcpToolPayloadSchema,
   baseMcpToolMessageSchema,
-  mcpToolConfirmationSchema as fileUIToolConfirmationSchema,
-  mcpToolExecutingSchema as fileUIToolExecutingSchema,
-  mcpToolSuccessSchema as fileUIToolSuccessSchema,
-  mcpToolErrorSchema as fileUIToolErrorSchema,
-  mcpToolRejectedSchema as fileUIToolRejectedSchema,
+  mcpToolConfirmationSchema,
+  mcpToolExecutingSchema,
+  mcpToolSuccessSchema,
+  mcpToolErrorSchema,
+  mcpToolRejectedSchema,
   editFilePayloadSchema,
   editFileMessageSchema,
   fileMessageSchema
@@ -238,7 +238,7 @@ export {
 
 // jsTreeParserSchemas
 export {
-  getTreeResponseSchema as getTreeUIResponseSchema,
+  getTreeResponseSchema,
   jsTreeParserMcpToolConfirmationSchema,
   jsTreeParserMcpToolExecutingSchema,
   jsTreeParserMcpToolSuccessSchema,
@@ -250,11 +250,11 @@ export {
 
 // mcpServiceSchemas
 export {
-  mcpToolConfirmationSchema as mcpUIToolConfirmationSchema,
-  mcpToolExecutingSchema as mcpUIToolExecutingSchema,
-  mcpToolSuccessSchema as mcpUIToolSuccessSchema,
-  mcpToolErrorSchema as mcpUIToolErrorSchema,
-  mcpToolRejectedSchema as mcpUIToolRejectedSchema,
+  mcpToolConfirmationSchema,
+  mcpToolExecutingSchema,
+  mcpToolSuccessSchema,
+  mcpToolErrorSchema,
+  mcpToolRejectedSchema,
   getEnabledToolBoxesResponseSchema,
   getAvailableToolBoxesResponseSchema,
   getLocalToolBoxesResponseSchema,
@@ -272,13 +272,13 @@ export {
 // mcpToolMessageSchemas
 export {
   mcpToolStateEnumSchema,
-  mcpToolPayloadSchema as mcpUIToolPayloadSchema,
-  baseMcpToolMessageSchema as baseMcpUIToolMessageSchema,
-  mcpToolConfirmationSchema as mcpToolUIConfirmationSchema,
-  mcpToolExecutingSchema as mcpToolUIExecutingSchema,
+  mcpToolPayloadSchema,
+  baseMcpToolMessageSchema,
+  mcpToolConfirmationSchema,
+  mcpToolExecutingSchema,
   mcpToolExecutedSchema,
-  mcpToolRejectedSchema as mcpToolUIRejectedSchema,
-  mcpToolErrorSchema as mcpToolUIErrorSchema,
+  mcpToolRejectedSchema,
+  mcpToolErrorSchema,
   mcpStartupErrorSchema,
   fsToolMessageSchema,
   terminalToolMessageSchema,
@@ -319,7 +319,7 @@ export {
   messageMcpToolSuccessSchema,
   messageMcpToolErrorSchema,
   messageMcpToolRejectedSchema,
-  agentMessageSchema as messageUIAgentMessageSchema,
+  agentMessageSchema,
   infoWithLinkMessageSchema,
   codeViewInEditorMessageSchema,
   codeConfirmationMessageSchema,
@@ -347,7 +347,7 @@ export {
   progressNotificationSchema,
   toastNotificationSchema,
   systemStatusNotificationSchema,
-  agentNotificationSchema as notificationUIAgentNotificationSchema,
+  agentNotificationSchema,
   fileOperationNotificationSchema,
   buildNotificationSchema,
   connectionNotificationSchema,
@@ -383,66 +383,12 @@ export {
   projectServiceMessageSchema
 } from './wstypes/ui-to-app-ws/projectServiceSchemas';
 
-// responseMessageSchemas
-export {
-  aiRequestStateEnumSchema,
-  baseResponseMessageSchema,
-  successResponseSchema,
-  errorResponseSchema,
-  createFileResponseSchema as createFileUIResponseSchema,
-  readFileResponseSchema as readFileUIResponseSchema,
-  updateFileResponseSchema as updateFileUIResponseSchema,
-  deleteFileResponseSchema as deleteFileUIResponseSchema,
-  fileListResponseSchema as fileListUIResponseSchema,
-  gitInitResponseSchema as gitInitUIResponseSchema,
-  gitCommitResponseSchema as gitCommitUIResponseSchema,
-  gitPushResponseSchema as gitPushUIResponseSchema,
-  gitStatusResponseSchema as gitStatusUIResponseSchema,
-  gitLogsResponseSchema as gitLogsUIResponseSchema,
-  gitDiffResponseSchema as gitDiffUIResponseSchema,
-  getEnabledToolBoxesResponseSchema as getEnabledToolBoxesUIResponseSchema,
-  getAvailableToolBoxesResponseSchema as getAvailableToolBoxesUIResponseSchema,
-  getLocalToolBoxesResponseSchema as getLocalToolBoxesUIResponseSchema,
-  executeToolResponseSchema as executeToolUIResponseSchema,
-  addTaskResponseSchema,
-  updateTasksResponseSchema,
-  deleteTaskResponseSchema,
-  createTasksFromMarkdownResponseSchema,
-  getAppStateResponseSchema as getAppStateResponseUISchema,
-  getAgentStateResponseSchema,
-  addToAgentStateResponseSchema,
-  getProjectPathResponseSchema as getProjectPathUIResponseSchema,
-  getProjectSettingsResponseSchema as getProjectSettingsUIResponseSchema,
-  getRepoMapResponseSchema as getRepoMapUIResponseSchema,
-  addVectorItemResponseSchema,
-  getVectorResponseSchema,
-  queryVectorItemResponseSchema,
-  addTokenResponseSchema,
-  getTokenResponseSchema,
-  getSummarizeAllResponseSchema as getSummarizeAllResponseUISchema,
-  getSummarizeResponseSchema as getSummarizeResponseUISchema,
-  getChatHistoryResponseSchema as getChatHistoryResponseUISchema,
-  getAllFilesMarkdownResponseSchema as getAllFilesMarkdownResponseUISchema,
-  matchProblemResponseSchema as matchProblemUIResponseSchema,
-  getMatcherListTreeResponseSchema as getMatcherListTreeResponseUISchema,
-  debugAddLogResponseSchema as debugAddLogResponseUISchema,
-  openDebugBrowserResponseSchema as openDebugBrowserUIResponseSchema,
-  newPageResponseSchema as newPageResponseUISchema,
-  crawlerResponseSchema as crawlerResponseUISchema,
-  getTreeResponseSchema as getTreeResponseUISchema,
-  searchFilesResponseSchema as searchFilesUIResponseSchema,
-  grepSearchResponseSchema as grepSearchUIResponseSchema,
-  fileSearchResponseSchema as fileSearchUIResponseSchema,
-  editFileAndApplyDiffResponseSchema as editFileAndApplyDiffUIResponseSchema,
-  responseMessageSchema
-} from './wstypes/ui-to-app-ws/responseMessageSchemas';
-
 // stateMessageSchemas
 export {
   stateUpdateTypeSchema,
   baseStateMessageSchema,
   projectStateUpdateSchema,
-  agentStateUpdateSchema as agentUIStateUpdateSchema,
+  agentStateUpdateSchema,
   applicationStateUpdateSchema,
   uiStateUpdateSchema,
   connectionStateUpdateSchema,
@@ -454,8 +400,8 @@ export {
 
 // stateServiceSchemas
 export {
-  getAgentStateResponseSchema as getAgentStateUIResponseSchema,
-  addToAgentStateResponseSchema as addToAgentStateUIResponseSchema,
+  getAgentStateResponseSchema,
+  addToAgentStateResponseSchema,
   stateErrorResponseSchema,
   stateServiceMessageSchema
 } from './wstypes/ui-to-app-ws/stateServiceSchemas';
@@ -467,12 +413,12 @@ export {
   taskMcpToolSuccessSchema,
   taskMcpToolErrorSchema,
   taskMcpToolRejectedSchema,
-  addTaskResponseSchema as addTaskUIResponseSchema,
-  updateTasksResponseSchema as updateTasksUIResponseSchema,
+  addTaskResponseSchema,
+  updateTasksResponseSchema,
   addSubTaskResponseSchema,
   updateSubTaskResponseSchema,
-  deleteTaskResponseSchema as deleteTaskUIResponseSchema,
-  createTasksFromMarkdownResponseSchema as createTasksFromMarkdownUIResponseSchema,
+  deleteTaskResponseSchema,
+  createTasksFromMarkdownResponseSchema,
   getTasksResponseSchema,
   getTasksByAgentResponseSchema,
   getTasksByCategoryResponseSchema,
@@ -509,8 +455,8 @@ export {
 
 // tokenizerServiceSchemas
 export {
-  addTokenResponseSchema as addTokenUIResponseSchema,
-  getTokenResponseSchema as getTokenUIResponseSchema,
+  addTokenResponseSchema,
+  getTokenResponseSchema,
   tokenizerMcpToolConfirmationSchema,
   tokenizerMcpToolExecutingSchema,
   tokenizerMcpToolSuccessSchema,
@@ -527,9 +473,9 @@ export {
   vectordbMcpToolSuccessSchema,
   vectordbMcpToolErrorSchema,
   vectordbMcpToolRejectedSchema,
-  addVectorItemResponseSchema as addVectorItemUIResponseSchema,
-  getVectorResponseSchema as getVectorUIResponseSchema,
-  queryVectorItemResponseSchema as queryVectorItemUIResponseSchema,
+  addVectorItemResponseSchema,
+  getVectorResponseSchema,
+  queryVectorItemResponseSchema,
   deleteVectorItemResponseSchema,
   updateVectorItemResponseSchema,
   listVectorItemsResponseSchema,
@@ -537,4 +483,58 @@ export {
   getVectorStatsResponseSchema,
   clearVectorDatabaseResponseSchema,
   vectordbServiceSchema
-} from './wstypes/ui-to-app-ws/vectordbServiceSchemas'; 
+} from './wstypes/ui-to-app-ws/vectordbServiceSchemas';
+
+// responseMessageSchemas
+export {
+  aiRequestStateEnumSchema,
+  baseResponseMessageSchema,
+  successResponseSchema,
+  errorResponseSchema,
+  createFileResponseSchema,
+  readFileResponseSchema,
+  updateFileResponseSchema,
+  deleteFileResponseSchema,
+  fileListResponseSchema,
+  gitInitResponseSchema,
+  gitCommitResponseSchema,
+  gitPushResponseSchema,
+  gitStatusResponseSchema,
+  gitLogsResponseSchema,
+  gitDiffResponseSchema,
+  getEnabledToolBoxesResponseSchema,
+  getAvailableToolBoxesResponseSchema,
+  getLocalToolBoxesResponseSchema,
+  executeToolResponseSchema,
+  addTaskResponseSchema,
+  updateTasksResponseSchema,
+  deleteTaskResponseSchema,
+  createTasksFromMarkdownResponseSchema,
+  getAppStateResponseSchema,
+  getAgentStateResponseSchema,
+  addToAgentStateResponseSchema,
+  getProjectPathResponseSchema,
+  getProjectSettingsResponseSchema,
+  getRepoMapResponseSchema,
+  addVectorItemResponseSchema,
+  getVectorResponseSchema,
+  queryVectorItemResponseSchema,
+  addTokenResponseSchema,
+  getTokenResponseSchema,
+  getSummarizeAllResponseSchema,
+  getSummarizeResponseSchema,
+  getChatHistoryResponseSchema,
+  getAllFilesMarkdownResponseSchema,
+  matchProblemResponseSchema,
+  getMatcherListTreeResponseSchema,
+  debugAddLogResponseSchema,
+  openDebugBrowserResponseSchema,
+  newPageResponseSchema,
+  crawlerResponseSchema,
+  getTreeResponseSchema,
+  searchFilesResponseSchema,
+  grepSearchResponseSchema,
+  fileSearchResponseSchema,
+  editFileAndApplyDiffResponseSchema,
+  responseMessageSchema
+} from './wstypes/ui-to-app-ws/responseMessageSchemas'; 
