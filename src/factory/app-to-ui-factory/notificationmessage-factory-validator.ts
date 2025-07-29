@@ -41,8 +41,7 @@ import {
     aiRequestNotificationSchema,
     notificationErrorResponseSchema,
     notificationMessageSchema
-} from "../../../messagesSchemas/app-to-ui/notificationMessageSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/notificationMessageSchemas";
 
 /**
  * Comprehensive Factory Validators for Notification Service Operations
@@ -55,7 +54,7 @@ import logger from "../../utils/logger";
 export const createNotificationMcpToolConfirmationFactory = (message: NotificationMcpToolConfirmation): NotificationMcpToolConfirmation => {
     const isValidMessage = notificationMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid NotificationMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid NotificationMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -64,7 +63,7 @@ export const createNotificationMcpToolConfirmationFactory = (message: Notificati
 export const createNotificationMcpToolExecutingFactory = (message: NotificationMcpToolExecuting): NotificationMcpToolExecuting => {
     const isValidMessage = notificationMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid NotificationMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid NotificationMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -73,7 +72,7 @@ export const createNotificationMcpToolExecutingFactory = (message: NotificationM
 export const createNotificationMcpToolSuccessFactory = (message: NotificationMcpToolSuccess): NotificationMcpToolSuccess => {
     const isValidMessage = notificationMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid NotificationMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid NotificationMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -82,7 +81,7 @@ export const createNotificationMcpToolSuccessFactory = (message: NotificationMcp
 export const createNotificationMcpToolErrorFactory = (message: NotificationMcpToolError): NotificationMcpToolError => {
     const isValidMessage = notificationMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid NotificationMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid NotificationMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -91,7 +90,7 @@ export const createNotificationMcpToolErrorFactory = (message: NotificationMcpTo
 export const createNotificationMcpToolRejectedFactory = (message: NotificationMcpToolRejected): NotificationMcpToolRejected => {
     const isValidMessage = notificationMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid NotificationMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid NotificationMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -103,7 +102,7 @@ export const createNotificationMcpToolRejectedFactory = (message: NotificationMc
 export const createNotificationTypeFactory = (message: NotificationType): NotificationType => {
     const isValidMessage = notificationTypeSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid NotificationType format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid NotificationType format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -115,7 +114,7 @@ export const createNotificationTypeFactory = (message: NotificationType): Notifi
 export const createNotificationPriorityFactory = (message: NotificationPriority): NotificationPriority => {
     const isValidMessage = notificationPrioritySchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid NotificationPriority format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid NotificationPriority format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -127,7 +126,7 @@ export const createNotificationPriorityFactory = (message: NotificationPriority)
 export const createBaseNotificationMessageFactory = (message: BaseNotificationMessage): BaseNotificationMessage => {
     const isValidMessage = baseNotificationMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BaseNotificationMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BaseNotificationMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -139,7 +138,7 @@ export const createBaseNotificationMessageFactory = (message: BaseNotificationMe
 export const createSimpleNotificationFactory = (message: SimpleNotification): SimpleNotification => {
     const isValidMessage = simpleNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid SimpleNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid SimpleNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -151,7 +150,7 @@ export const createSimpleNotificationFactory = (message: SimpleNotification): Si
 export const createRichNotificationFactory = (message: RichNotification): RichNotification => {
     const isValidMessage = richNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid RichNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid RichNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -163,7 +162,7 @@ export const createRichNotificationFactory = (message: RichNotification): RichNo
 export const createProgressNotificationFactory = (message: ProgressNotification): ProgressNotification => {
     const isValidMessage = progressNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProgressNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProgressNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -175,7 +174,7 @@ export const createProgressNotificationFactory = (message: ProgressNotification)
 export const createToastNotificationFactory = (message: ToastNotification): ToastNotification => {
     const isValidMessage = toastNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ToastNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ToastNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -187,7 +186,7 @@ export const createToastNotificationFactory = (message: ToastNotification): Toas
 export const createSystemStatusNotificationFactory = (message: SystemStatusNotification): SystemStatusNotification => {
     const isValidMessage = systemStatusNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid SystemStatusNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid SystemStatusNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -199,7 +198,7 @@ export const createSystemStatusNotificationFactory = (message: SystemStatusNotif
 export const createAgentNotificationFactory = (message: AgentNotification): AgentNotification => {
     const isValidMessage = agentNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -211,7 +210,7 @@ export const createAgentNotificationFactory = (message: AgentNotification): Agen
 export const createFileOperationNotificationFactory = (message: FileOperationNotification): FileOperationNotification => {
     const isValidMessage = fileOperationNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid FileOperationNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid FileOperationNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -223,7 +222,7 @@ export const createFileOperationNotificationFactory = (message: FileOperationNot
 export const createBuildNotificationFactory = (message: BuildNotification): BuildNotification => {
     const isValidMessage = buildNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BuildNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BuildNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -235,7 +234,7 @@ export const createBuildNotificationFactory = (message: BuildNotification): Buil
 export const createConnectionNotificationFactory = (message: ConnectionNotification): ConnectionNotification => {
     const isValidMessage = connectionNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ConnectionNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ConnectionNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -247,7 +246,7 @@ export const createConnectionNotificationFactory = (message: ConnectionNotificat
 export const createUpdateNotificationFactory = (message: UpdateNotification): UpdateNotification => {
     const isValidMessage = updateNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid UpdateNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid UpdateNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -259,7 +258,7 @@ export const createUpdateNotificationFactory = (message: UpdateNotification): Up
 export const createAiRequestNotificationFactory = (message: AiRequestNotification): AiRequestNotification => {
     const isValidMessage = aiRequestNotificationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AiRequestNotification format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AiRequestNotification format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -271,7 +270,7 @@ export const createAiRequestNotificationFactory = (message: AiRequestNotificatio
 export const createNotificationMessageFactory = (message: NotificationMessage): NotificationMessage => {
     const isValidMessage = notificationMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid NotificationMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid NotificationMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -320,6 +319,6 @@ export const createNotificationFactory = (message: any): NotificationMessage => 
         }
     }
 
-    logger.error(`No suitable notification validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable notification validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

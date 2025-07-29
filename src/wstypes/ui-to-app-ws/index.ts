@@ -59,14 +59,14 @@ import { stateMessageSchema } from './stateMessageSchemas';
 import { responseMessageSchema } from './responseMessageSchemas';
 
 // Import individual service schemas
-import { terminalServiceMessageSchema } from './terminalServiceSchemas';
-import { vectordbServiceMessageSchema } from './vectordbServiceSchemas';
+import { terminalServiceSchema } from './terminalServiceSchemas';
+import { vectordbServiceSchema } from './vectordbServiceSchemas';
 import { taskServiceMessageSchema } from './taskServiceSchemas';
-import { messageServiceMessageSchema } from './messageServiceSchemas';
-import { memoryServiceMessageSchema } from './memoryServiceSchemas';
+import { messageServiceSchema } from './messageServiceSchemas';
+import { memoryServiceSchema } from './memoryServiceSchemas';
 import { fsServiceMessageSchema } from './fsServiceSchemas';
 import { browserServiceMessageSchema } from './browserServiceSchemas';
-import { debugServiceMessageSchema } from './debugServiceSchemas';
+import { debugServiceSchema } from './debugServiceSchemas';
 import { gitServiceMessageSchema } from './gitServiceSchemas';
 import { tokenizerServiceMessageSchema } from './tokenizerServiceSchemas';
 import { codebaseSearchServiceMessageSchema } from './codebaseSearchSchemas';
@@ -78,7 +78,7 @@ import { codeUtilsServiceMessageSchema } from './codeUtilsSchemas';
 import { jsTreeParserServiceMessageSchema } from './jsTreeParserSchemas';
 import { appServiceMessageSchema } from './appServiceSchemas';
 import { stateServiceMessageSchema } from './stateServiceSchemas';
-import { mcpServiceMessageSchema } from './mcpServiceSchemas';
+import { mcpServiceSchema } from './mcpServiceSchemas';
 
 // Master union of all App-to-UI messages
 export const appToUiMessageSchema = z.union([
@@ -90,14 +90,14 @@ export const appToUiMessageSchema = z.union([
   stateMessageSchema,
   responseMessageSchema,
   // Individual CLI service messages
-  terminalServiceMessageSchema,
-  vectordbServiceMessageSchema,
+  terminalServiceSchema,
+  vectordbServiceSchema,
   taskServiceMessageSchema,
-  messageServiceMessageSchema,
-  memoryServiceMessageSchema,
+  messageServiceSchema,
+  memoryServiceSchema,
   fsServiceMessageSchema,
   browserServiceMessageSchema,
-  debugServiceMessageSchema,
+  debugServiceSchema,
   gitServiceMessageSchema,
   tokenizerServiceMessageSchema,
   codebaseSearchServiceMessageSchema,
@@ -109,7 +109,7 @@ export const appToUiMessageSchema = z.union([
   jsTreeParserServiceMessageSchema,
   appServiceMessageSchema,
   stateServiceMessageSchema,
-  mcpServiceMessageSchema,
+  mcpServiceSchema,
 ]);
 
 // Inferred type for all App-to-UI messages

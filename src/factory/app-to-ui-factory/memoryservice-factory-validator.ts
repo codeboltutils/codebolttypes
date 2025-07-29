@@ -4,14 +4,12 @@ import {
     MemoryMcpToolSuccess,
     MemoryMcpToolError,
     MemoryMcpToolRejected,
- 
     memoryMcpToolRejectedSchema,
     memoryMcpToolErrorSchema,
     memoryMcpToolSuccessSchema,
     memoryMcpToolExecutingSchema,
     memoryMcpToolConfirmationSchema
-} from "../../../messagesSchemas/app-to-ui/memoryServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/memoryServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for MemoryService Service Operations
@@ -24,7 +22,7 @@ import logger from "../../utils/logger";
 export const createMemoryMcpToolConfirmationFactory = (message: MemoryMcpToolConfirmation): MemoryMcpToolConfirmation => {
     const isValidMessage = memoryMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MemoryMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MemoryMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -36,7 +34,7 @@ export const createMemoryMcpToolConfirmationFactory = (message: MemoryMcpToolCon
 export const createMemoryMcpToolExecutingFactory = (message: MemoryMcpToolExecuting): MemoryMcpToolExecuting => {
     const isValidMessage = memoryMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MemoryMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MemoryMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -48,7 +46,7 @@ export const createMemoryMcpToolExecutingFactory = (message: MemoryMcpToolExecut
 export const createMemoryMcpToolSuccessFactory = (message: MemoryMcpToolSuccess): MemoryMcpToolSuccess => {
     const isValidMessage = memoryMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MemoryMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MemoryMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -60,7 +58,7 @@ export const createMemoryMcpToolSuccessFactory = (message: MemoryMcpToolSuccess)
 export const createMemoryMcpToolErrorFactory = (message: MemoryMcpToolError): MemoryMcpToolError => {
     const isValidMessage = memoryMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MemoryMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MemoryMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -72,7 +70,7 @@ export const createMemoryMcpToolErrorFactory = (message: MemoryMcpToolError): Me
 export const createMemoryMcpToolRejectedFactory = (message: MemoryMcpToolRejected): MemoryMcpToolRejected => {
     const isValidMessage = memoryMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MemoryMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MemoryMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;

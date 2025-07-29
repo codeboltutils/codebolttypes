@@ -45,8 +45,7 @@ import {
     getAppStateResponseSchema,
     crawlerResponseSchema,
     responseMessageSchema
-} from "../../../messagesSchemas/app-to-ui/responseMessageSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/responseMessageSchemas";
 
 /**
  * Comprehensive Factory Validators for ResponseMessage Service Operations
@@ -59,7 +58,7 @@ import logger from "../../utils/logger";
 export const createAiRequestStateEnumFactory = (message: AiRequestStateEnum): AiRequestStateEnum => {
     const isValidMessage = aiRequestStateEnumSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AiRequestStateEnum format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AiRequestStateEnum format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -71,7 +70,7 @@ export const createAiRequestStateEnumFactory = (message: AiRequestStateEnum): Ai
 export const createBaseResponseMessageFactory = (message: BaseResponseMessage): BaseResponseMessage => {
     const isValidMessage = baseResponseMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BaseResponseMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BaseResponseMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -83,7 +82,7 @@ export const createBaseResponseMessageFactory = (message: BaseResponseMessage): 
 export const createSuccessResponseFactory = (message: SuccessResponse): SuccessResponse => {
     const isValidMessage = successResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid SuccessResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid SuccessResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -95,7 +94,7 @@ export const createSuccessResponseFactory = (message: SuccessResponse): SuccessR
 export const createErrorResponseFactory = (message: ErrorResponse): ErrorResponse => {
     const isValidMessage = errorResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -107,7 +106,7 @@ export const createErrorResponseFactory = (message: ErrorResponse): ErrorRespons
 export const createCreateFileResponseFactory = (message: CreateFileResponse): CreateFileResponse => {
     const isValidMessage = createFileResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CreateFileResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CreateFileResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -119,7 +118,7 @@ export const createCreateFileResponseFactory = (message: CreateFileResponse): Cr
 export const createReadFileResponseFactory = (message: ReadFileResponse): ReadFileResponse => {
     const isValidMessage = readFileResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ReadFileResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ReadFileResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -131,7 +130,7 @@ export const createReadFileResponseFactory = (message: ReadFileResponse): ReadFi
 export const createUpdateFileResponseFactory = (message: UpdateFileResponse): UpdateFileResponse => {
     const isValidMessage = updateFileResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid UpdateFileResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid UpdateFileResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -143,7 +142,7 @@ export const createUpdateFileResponseFactory = (message: UpdateFileResponse): Up
 export const createDeleteFileResponseFactory = (message: DeleteFileResponse): DeleteFileResponse => {
     const isValidMessage = deleteFileResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid DeleteFileResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid DeleteFileResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -155,7 +154,7 @@ export const createDeleteFileResponseFactory = (message: DeleteFileResponse): De
 export const createFileListResponseFactory = (message: FileListResponse): FileListResponse => {
     const isValidMessage = fileListResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid FileListResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid FileListResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -167,7 +166,7 @@ export const createFileListResponseFactory = (message: FileListResponse): FileLi
 export const createGitInitResponseFactory = (message: GitInitResponse): GitInitResponse => {
     const isValidMessage = gitInitResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitInitResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitInitResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -179,7 +178,7 @@ export const createGitInitResponseFactory = (message: GitInitResponse): GitInitR
 export const createGitCommitResponseFactory = (message: GitCommitResponse): GitCommitResponse => {
     const isValidMessage = gitCommitResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitCommitResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitCommitResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -191,7 +190,7 @@ export const createGitCommitResponseFactory = (message: GitCommitResponse): GitC
 export const createGitPushResponseFactory = (message: GitPushResponse): GitPushResponse => {
     const isValidMessage = gitPushResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitPushResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitPushResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -203,7 +202,7 @@ export const createGitPushResponseFactory = (message: GitPushResponse): GitPushR
 export const createGitStatusResponseFactory = (message: GitStatusResponse): GitStatusResponse => {
     const isValidMessage = gitStatusResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitStatusResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitStatusResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -215,7 +214,7 @@ export const createGitStatusResponseFactory = (message: GitStatusResponse): GitS
 export const createGitLogsResponseFactory = (message: GitLogsResponse): GitLogsResponse => {
     const isValidMessage = gitLogsResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitLogsResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitLogsResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -227,7 +226,7 @@ export const createGitLogsResponseFactory = (message: GitLogsResponse): GitLogsR
 export const createGitDiffResponseFactory = (message: GitDiffResponse): GitDiffResponse => {
     const isValidMessage = gitDiffResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitDiffResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitDiffResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -239,7 +238,7 @@ export const createGitDiffResponseFactory = (message: GitDiffResponse): GitDiffR
 export const createGetEnabledToolBoxesResponseFactory = (message: GetEnabledToolBoxesResponse): GetEnabledToolBoxesResponse => {
     const isValidMessage = getEnabledToolBoxesResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetEnabledToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetEnabledToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -251,7 +250,7 @@ export const createGetEnabledToolBoxesResponseFactory = (message: GetEnabledTool
 export const createGetAvailableToolBoxesResponseFactory = (message: GetAvailableToolBoxesResponse): GetAvailableToolBoxesResponse => {
     const isValidMessage = getAvailableToolBoxesResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetAvailableToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetAvailableToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -263,7 +262,7 @@ export const createGetAvailableToolBoxesResponseFactory = (message: GetAvailable
 export const createGetLocalToolBoxesResponseFactory = (message: GetLocalToolBoxesResponse): GetLocalToolBoxesResponse => {
     const isValidMessage = getLocalToolBoxesResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetLocalToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetLocalToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -275,7 +274,7 @@ export const createGetLocalToolBoxesResponseFactory = (message: GetLocalToolBoxe
 export const createExecuteToolResponseFactory = (message: ExecuteToolResponse): ExecuteToolResponse => {
     const isValidMessage = executeToolResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ExecuteToolResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ExecuteToolResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -287,7 +286,7 @@ export const createExecuteToolResponseFactory = (message: ExecuteToolResponse): 
 export const createAddTaskResponseFactory = (message: AddTaskResponse): AddTaskResponse => {
     const isValidMessage = addTaskResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AddTaskResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AddTaskResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -299,7 +298,7 @@ export const createAddTaskResponseFactory = (message: AddTaskResponse): AddTaskR
 export const createGetAppStateResponseFactory = (message: GetAppStateResponse): GetAppStateResponse => {
     const isValidMessage = getAppStateResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetAppStateResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetAppStateResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -311,7 +310,7 @@ export const createGetAppStateResponseFactory = (message: GetAppStateResponse): 
 export const createCrawlerResponseFactory = (message: CrawlerResponse): CrawlerResponse => {
     const isValidMessage = crawlerResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CrawlerResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CrawlerResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -323,7 +322,7 @@ export const createCrawlerResponseFactory = (message: CrawlerResponse): CrawlerR
 export const createResponseMessageFactory = (message: ResponseMessage): ResponseMessage => {
     const isValidMessage = responseMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ResponseMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ResponseMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -375,7 +374,7 @@ export const createResponseFactory = (message: any): ResponseMessage => {
             }
         }
 
-        logger.error(`No suitable responseMessage validator found for message: ${JSON.stringify(message)}`);
+        console.log(`No suitable responseMessage validator found for message: ${JSON.stringify(message)}`);
         return message as ResponseMessage;
     }
 };

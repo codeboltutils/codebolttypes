@@ -31,8 +31,7 @@ import {
     confirmationRequestEventSchema,
     waitForReplyEventSchema,
     messageServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/messageServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/messageServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for Message Service Operations
@@ -45,7 +44,7 @@ import logger from "../../utils/logger";
 export const createMessageMcpToolConfirmationFactory = (message: MessageMcpToolConfirmation): MessageMcpToolConfirmation => {
     const isValidMessage = messageMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MessageMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MessageMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -54,7 +53,7 @@ export const createMessageMcpToolConfirmationFactory = (message: MessageMcpToolC
 export const createMessageMcpToolExecutingFactory = (message: MessageMcpToolExecuting): MessageMcpToolExecuting => {
     const isValidMessage = messageMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MessageMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MessageMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -63,7 +62,7 @@ export const createMessageMcpToolExecutingFactory = (message: MessageMcpToolExec
 export const createMessageMcpToolSuccessFactory = (message: MessageMcpToolSuccess): MessageMcpToolSuccess => {
     const isValidMessage = messageMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MessageMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MessageMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -72,7 +71,7 @@ export const createMessageMcpToolSuccessFactory = (message: MessageMcpToolSucces
 export const createMessageMcpToolErrorFactory = (message: MessageMcpToolError): MessageMcpToolError => {
     const isValidMessage = messageMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MessageMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MessageMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -81,7 +80,7 @@ export const createMessageMcpToolErrorFactory = (message: MessageMcpToolError): 
 export const createMessageMcpToolRejectedFactory = (message: MessageMcpToolRejected): MessageMcpToolRejected => {
     const isValidMessage = messageMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MessageMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MessageMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -93,7 +92,7 @@ export const createMessageMcpToolRejectedFactory = (message: MessageMcpToolRejec
 export const createAgentMessageFactory = (message: AgentMessage): AgentMessage => {
     const isValidMessage = agentMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -102,7 +101,7 @@ export const createAgentMessageFactory = (message: AgentMessage): AgentMessage =
 export const createInfoWithLinkMessageFactory = (message: InfoWithLinkMessage): InfoWithLinkMessage => {
     const isValidMessage = infoWithLinkMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid InfoWithLinkMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid InfoWithLinkMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -111,7 +110,7 @@ export const createInfoWithLinkMessageFactory = (message: InfoWithLinkMessage): 
 export const createConfirmationChatMessageFactory = (message: ConfirmationChatMessage): ConfirmationChatMessage => {
     const isValidMessage = confirmationChatMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ConfirmationChatMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ConfirmationChatMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -120,7 +119,7 @@ export const createConfirmationChatMessageFactory = (message: ConfirmationChatMe
 export const createCodeViewInEditorMessageFactory = (message: CodeViewInEditorMessage): CodeViewInEditorMessage => {
     const isValidMessage = codeViewInEditorMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeViewInEditorMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeViewInEditorMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -129,7 +128,7 @@ export const createCodeViewInEditorMessageFactory = (message: CodeViewInEditorMe
 export const createCodeConfirmationMessageFactory = (message: CodeConfirmationMessage): CodeConfirmationMessage => {
     const isValidMessage = codeConfirmationMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeConfirmationMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeConfirmationMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -141,7 +140,7 @@ export const createCodeConfirmationMessageFactory = (message: CodeConfirmationMe
 export const createSendMessageEventFactory = (message: SendMessageEvent): SendMessageEvent => {
     const isValidMessage = sendMessageEventSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid SendMessageEvent format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid SendMessageEvent format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -150,7 +149,7 @@ export const createSendMessageEventFactory = (message: SendMessageEvent): SendMe
 export const createProcessStartedEventFactory = (message: ProcessStartedEvent): ProcessStartedEvent => {
     const isValidMessage = processStartedEventSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProcessStartedEvent format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProcessStartedEvent format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -159,7 +158,7 @@ export const createProcessStartedEventFactory = (message: ProcessStartedEvent): 
 export const createProcessStoppedEventFactory = (message: ProcessStoppedEvent): ProcessStoppedEvent => {
     const isValidMessage = processStoppedEventSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProcessStoppedEvent format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProcessStoppedEvent format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -168,7 +167,7 @@ export const createProcessStoppedEventFactory = (message: ProcessStoppedEvent): 
 export const createConfirmationRequestEventFactory = (message: ConfirmationRequestEvent): ConfirmationRequestEvent => {
     const isValidMessage = confirmationRequestEventSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ConfirmationRequestEvent format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ConfirmationRequestEvent format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -177,7 +176,7 @@ export const createConfirmationRequestEventFactory = (message: ConfirmationReque
 export const createWaitForReplyEventFactory = (message: WaitForReplyEvent): WaitForReplyEvent => {
     const isValidMessage = waitForReplyEventSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid WaitForReplyEvent format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid WaitForReplyEvent format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -189,7 +188,7 @@ export const createWaitForReplyEventFactory = (message: WaitForReplyEvent): Wait
 export const createMessageServiceMessageFactory = (message: MessageServiceMessage): MessageServiceMessage => {
     const isValidMessage = messageServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MessageServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MessageServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;

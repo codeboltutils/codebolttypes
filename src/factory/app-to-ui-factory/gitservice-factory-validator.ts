@@ -33,8 +33,7 @@ import {
     gitMcpToolErrorSchema,
     gitMcpToolRejectedSchema,
     gitServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/gitServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/gitServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for GitService Service Operations
@@ -47,7 +46,7 @@ import logger from "../../utils/logger";
 export const createGitInitResponseFactory = (message: GitInitResponse): GitInitResponse => {
     const isValidMessage = gitInitResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitInitResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitInitResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -59,7 +58,7 @@ export const createGitInitResponseFactory = (message: GitInitResponse): GitInitR
 export const createAddResponseFactory = (message: AddResponse): AddResponse => {
     const isValidMessage = addResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AddResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AddResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -71,7 +70,7 @@ export const createAddResponseFactory = (message: AddResponse): AddResponse => {
 export const createGitCommitResponseFactory = (message: GitCommitResponse): GitCommitResponse => {
     const isValidMessage = gitCommitResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitCommitResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitCommitResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -83,7 +82,7 @@ export const createGitCommitResponseFactory = (message: GitCommitResponse): GitC
 export const createGitPushResponseFactory = (message: GitPushResponse): GitPushResponse => {
     const isValidMessage = gitPushResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitPushResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitPushResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -95,7 +94,7 @@ export const createGitPushResponseFactory = (message: GitPushResponse): GitPushR
 export const createGitPullResponseFactory = (message: GitPullResponse): GitPullResponse => {
     const isValidMessage = gitPullResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitPullResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitPullResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -107,7 +106,7 @@ export const createGitPullResponseFactory = (message: GitPullResponse): GitPullR
 export const createGitCheckoutResponseFactory = (message: GitCheckoutResponse): GitCheckoutResponse => {
     const isValidMessage = gitCheckoutResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitCheckoutResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitCheckoutResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -119,7 +118,7 @@ export const createGitCheckoutResponseFactory = (message: GitCheckoutResponse): 
 export const createGitBranchResponseFactory = (message: GitBranchResponse): GitBranchResponse => {
     const isValidMessage = gitBranchResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitBranchResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitBranchResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -131,7 +130,7 @@ export const createGitBranchResponseFactory = (message: GitBranchResponse): GitB
 export const createGitLogsResponseFactory = (message: GitLogsResponse): GitLogsResponse => {
     const isValidMessage = gitLogsResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitLogsResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitLogsResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -143,7 +142,7 @@ export const createGitLogsResponseFactory = (message: GitLogsResponse): GitLogsR
 export const createGitDiffResponseFactory = (message: GitDiffResponse): GitDiffResponse => {
     const isValidMessage = gitDiffResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitDiffResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitDiffResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -155,7 +154,7 @@ export const createGitDiffResponseFactory = (message: GitDiffResponse): GitDiffR
 export const createGitStatusResponseFactory = (message: GitStatusResponse): GitStatusResponse => {
     const isValidMessage = gitStatusResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitStatusResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitStatusResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -167,7 +166,7 @@ export const createGitStatusResponseFactory = (message: GitStatusResponse): GitS
 export const createGitCloneResponseFactory = (message: GitCloneResponse): GitCloneResponse => {
     const isValidMessage = gitCloneResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitCloneResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitCloneResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -179,7 +178,7 @@ export const createGitCloneResponseFactory = (message: GitCloneResponse): GitClo
 export const createGitMcpToolConfirmationFactory = (message: GitMcpToolConfirmation): GitMcpToolConfirmation => {
     const isValidMessage = gitMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -191,7 +190,7 @@ export const createGitMcpToolConfirmationFactory = (message: GitMcpToolConfirmat
 export const createGitMcpToolExecutingFactory = (message: GitMcpToolExecuting): GitMcpToolExecuting => {
     const isValidMessage = gitMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -203,7 +202,7 @@ export const createGitMcpToolExecutingFactory = (message: GitMcpToolExecuting): 
 export const createGitMcpToolSuccessFactory = (message: GitMcpToolSuccess): GitMcpToolSuccess => {
     const isValidMessage = gitMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -215,7 +214,7 @@ export const createGitMcpToolSuccessFactory = (message: GitMcpToolSuccess): GitM
 export const createGitMcpToolErrorFactory = (message: GitMcpToolError): GitMcpToolError => {
     const isValidMessage = gitMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -227,7 +226,7 @@ export const createGitMcpToolErrorFactory = (message: GitMcpToolError): GitMcpTo
 export const createGitMcpToolRejectedFactory = (message: GitMcpToolRejected): GitMcpToolRejected => {
     const isValidMessage = gitMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -239,7 +238,7 @@ export const createGitMcpToolRejectedFactory = (message: GitMcpToolRejected): Gi
 export const createGitServiceMessageFactory = (message: GitServiceMessage): GitServiceMessage => {
     const isValidMessage = gitServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GitServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GitServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -288,6 +287,6 @@ export const createGitServiceFactory = (message: any): GitServiceMessage => {
         }
     }
 
-    logger.error(`No suitable gitService validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable gitService validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

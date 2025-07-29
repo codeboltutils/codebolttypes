@@ -41,8 +41,7 @@ import {
     mcpErrorResponseSchema,
     mcpStartupErrorMessageSchema,
     mcpServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/mcpServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/mcpServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for McpService Service Operations
@@ -55,7 +54,7 @@ import logger from "../../utils/logger";
 export const createMcpToolConfirmationFactory = (message: McpToolConfirmation): McpToolConfirmation => {
     const isValidMessage = mcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid McpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid McpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -64,7 +63,7 @@ export const createMcpToolConfirmationFactory = (message: McpToolConfirmation): 
 export const createMcpToolExecutingFactory = (message: McpToolExecuting): McpToolExecuting => {
     const isValidMessage = mcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid McpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid McpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -73,7 +72,7 @@ export const createMcpToolExecutingFactory = (message: McpToolExecuting): McpToo
 export const createMcpToolSuccessFactory = (message: McpToolSuccess): McpToolSuccess => {
     const isValidMessage = mcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid McpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid McpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -82,7 +81,7 @@ export const createMcpToolSuccessFactory = (message: McpToolSuccess): McpToolSuc
 export const createMcpToolErrorFactory = (message: McpToolError): McpToolError => {
     const isValidMessage = mcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid McpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid McpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -91,7 +90,7 @@ export const createMcpToolErrorFactory = (message: McpToolError): McpToolError =
 export const createMcpToolRejectedFactory = (message: McpToolRejected): McpToolRejected => {
     const isValidMessage = mcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid McpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid McpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -103,7 +102,7 @@ export const createMcpToolRejectedFactory = (message: McpToolRejected): McpToolR
 export const createGetEnabledToolBoxesResponseFactory = (message: GetEnabledToolBoxesResponse): GetEnabledToolBoxesResponse => {
     const isValidMessage = getEnabledToolBoxesResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetEnabledToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetEnabledToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -115,7 +114,7 @@ export const createGetEnabledToolBoxesResponseFactory = (message: GetEnabledTool
 export const createGetAvailableToolBoxesResponseFactory = (message: GetAvailableToolBoxesResponse): GetAvailableToolBoxesResponse => {
     const isValidMessage = getAvailableToolBoxesResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetAvailableToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetAvailableToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -127,7 +126,7 @@ export const createGetAvailableToolBoxesResponseFactory = (message: GetAvailable
 export const createGetLocalToolBoxesResponseFactory = (message: GetLocalToolBoxesResponse): GetLocalToolBoxesResponse => {
     const isValidMessage = getLocalToolBoxesResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetLocalToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetLocalToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -139,7 +138,7 @@ export const createGetLocalToolBoxesResponseFactory = (message: GetLocalToolBoxe
 export const createSearchAvailableToolBoxesResponseFactory = (message: SearchAvailableToolBoxesResponse): SearchAvailableToolBoxesResponse => {
     const isValidMessage = searchAvailableToolBoxesResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid SearchAvailableToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid SearchAvailableToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -151,7 +150,7 @@ export const createSearchAvailableToolBoxesResponseFactory = (message: SearchAva
 export const createListToolsFromToolBoxesResponseFactory = (message: ListToolsFromToolBoxesResponse): ListToolsFromToolBoxesResponse => {
     const isValidMessage = listToolsFromToolBoxesResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ListToolsFromToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ListToolsFromToolBoxesResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -163,7 +162,7 @@ export const createListToolsFromToolBoxesResponseFactory = (message: ListToolsFr
 export const createConfigureToolBoxResponseFactory = (message: ConfigureToolBoxResponse): ConfigureToolBoxResponse => {
     const isValidMessage = configureToolBoxResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ConfigureToolBoxResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ConfigureToolBoxResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -175,7 +174,7 @@ export const createConfigureToolBoxResponseFactory = (message: ConfigureToolBoxR
 export const createGetToolsResponseFactory = (message: GetToolsResponse): GetToolsResponse => {
     const isValidMessage = getToolsResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetToolsResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetToolsResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -187,7 +186,7 @@ export const createGetToolsResponseFactory = (message: GetToolsResponse): GetToo
 export const createExecuteToolResponseFactory = (message: ExecuteToolResponse): ExecuteToolResponse => {
     const isValidMessage = executeToolResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ExecuteToolResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ExecuteToolResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -199,7 +198,7 @@ export const createExecuteToolResponseFactory = (message: ExecuteToolResponse): 
 export const createGetMcpToolsResponseFactory = (message: GetMcpToolsResponse): GetMcpToolsResponse => {
     const isValidMessage = getMcpToolsResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetMcpToolsResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetMcpToolsResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -211,7 +210,7 @@ export const createGetMcpToolsResponseFactory = (message: GetMcpToolsResponse): 
 export const createGetMcpListResponseFactory = (message: GetMcpListResponse): GetMcpListResponse => {
     const isValidMessage = getMcpListResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetMcpListResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetMcpListResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -223,7 +222,7 @@ export const createGetMcpListResponseFactory = (message: GetMcpListResponse): Ge
 export const createGetAllMCPToolsResponseFactory = (message: GetAllMCPToolsResponse): GetAllMCPToolsResponse => {
     const isValidMessage = getAllMCPToolsResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetAllMCPToolsResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetAllMCPToolsResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -235,7 +234,7 @@ export const createGetAllMCPToolsResponseFactory = (message: GetAllMCPToolsRespo
 export const createGetEnabledMCPSResponseFactory = (message: GetEnabledMCPSResponse): GetEnabledMCPSResponse => {
     const isValidMessage = getEnabledMCPSResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetEnabledMCPSResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetEnabledMCPSResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -247,7 +246,7 @@ export const createGetEnabledMCPSResponseFactory = (message: GetEnabledMCPSRespo
 export const createConfigureMCPToolResponseFactory = (message: ConfigureMCPToolResponse): ConfigureMCPToolResponse => {
     const isValidMessage = configureMCPToolResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ConfigureMCPToolResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ConfigureMCPToolResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -259,7 +258,7 @@ export const createConfigureMCPToolResponseFactory = (message: ConfigureMCPToolR
 export const createMcpErrorResponseFactory = (message: McpErrorResponse): McpErrorResponse => {
     const isValidMessage = mcpErrorResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid McpErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid McpErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -271,7 +270,7 @@ export const createMcpErrorResponseFactory = (message: McpErrorResponse): McpErr
 export const createMcpStartupErrorMessageFactory = (message: McpStartupErrorMessage): McpStartupErrorMessage => {
     const isValidMessage = mcpStartupErrorMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid McpStartupErrorMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid McpStartupErrorMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -283,7 +282,7 @@ export const createMcpStartupErrorMessageFactory = (message: McpStartupErrorMess
 export const createMcpServiceMessageFactory = (message: McpServiceMessage): McpServiceMessage => {
     const isValidMessage = mcpServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid McpServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid McpServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -335,6 +334,6 @@ export const createMcpServiceFactory = (message: any): McpServiceMessage => {
         }
     }
 
-    logger.error(`No suitable mcpService validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable mcpService validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

@@ -21,8 +21,7 @@ import {
     configurationStateUpdateSchema,
     fileStateUpdateSchema,
     stateMessageSchema
-} from "../../../messagesSchemas/app-to-ui/stateMessageSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/stateMessageSchemas";
 
 /**
  * Comprehensive Factory Validators for StateMessage Service Operations
@@ -35,7 +34,7 @@ import logger from "../../utils/logger";
 export const createStateUpdateTypeFactory = (message: StateUpdateType): StateUpdateType => {
     const isValidMessage = stateUpdateTypeSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid StateUpdateType format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid StateUpdateType format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -47,7 +46,7 @@ export const createStateUpdateTypeFactory = (message: StateUpdateType): StateUpd
 export const createBaseStateMessageFactory = (message: BaseStateMessage): BaseStateMessage => {
     const isValidMessage = baseStateMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BaseStateMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BaseStateMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -59,7 +58,7 @@ export const createBaseStateMessageFactory = (message: BaseStateMessage): BaseSt
 export const createProjectStateUpdateFactory = (message: ProjectStateUpdate): ProjectStateUpdate => {
     const isValidMessage = projectStateUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProjectStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProjectStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -71,7 +70,7 @@ export const createProjectStateUpdateFactory = (message: ProjectStateUpdate): Pr
 export const createAgentStateUpdateFactory = (message: AgentStateUpdate): AgentStateUpdate => {
     const isValidMessage = agentStateUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -83,7 +82,7 @@ export const createAgentStateUpdateFactory = (message: AgentStateUpdate): AgentS
 export const createApplicationStateUpdateFactory = (message: ApplicationStateUpdate): ApplicationStateUpdate => {
     const isValidMessage = applicationStateUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ApplicationStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ApplicationStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -95,7 +94,7 @@ export const createApplicationStateUpdateFactory = (message: ApplicationStateUpd
 export const createUiStateUpdateFactory = (message: UiStateUpdate): UiStateUpdate => {
     const isValidMessage = uiStateUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid UiStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid UiStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -107,7 +106,7 @@ export const createUiStateUpdateFactory = (message: UiStateUpdate): UiStateUpdat
 export const createConnectionStateUpdateFactory = (message: ConnectionStateUpdate): ConnectionStateUpdate => {
     const isValidMessage = connectionStateUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ConnectionStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ConnectionStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -119,7 +118,7 @@ export const createConnectionStateUpdateFactory = (message: ConnectionStateUpdat
 export const createPermissionStateUpdateFactory = (message: PermissionStateUpdate): PermissionStateUpdate => {
     const isValidMessage = permissionStateUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid PermissionStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid PermissionStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -131,7 +130,7 @@ export const createPermissionStateUpdateFactory = (message: PermissionStateUpdat
 export const createConfigurationStateUpdateFactory = (message: ConfigurationStateUpdate): ConfigurationStateUpdate => {
     const isValidMessage = configurationStateUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ConfigurationStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ConfigurationStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -143,7 +142,7 @@ export const createConfigurationStateUpdateFactory = (message: ConfigurationStat
 export const createFileStateUpdateFactory = (message: FileStateUpdate): FileStateUpdate => {
     const isValidMessage = fileStateUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid FileStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid FileStateUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -155,7 +154,7 @@ export const createFileStateUpdateFactory = (message: FileStateUpdate): FileStat
 export const createStateMessageValidatorFactory = (message: StateMessage): StateMessage => {
     const isValidMessage = stateMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid StateMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid StateMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -167,7 +166,7 @@ export const createStateMessageValidatorFactory = (message: StateMessage): State
 export const createStateMessageUnionFactory = (message: StateMessage): StateMessage => {
     const isValidMessage = stateMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid StateMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid StateMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -210,7 +209,7 @@ export const createStateMessageFactory = (message: any): StateMessage => {
             }
         }
 
-        logger.error(`No suitable stateMessage validator found for message: ${JSON.stringify(message)}`);
+        console.log(`No suitable stateMessage validator found for message: ${JSON.stringify(message)}`);
         return message as StateMessage;
     }
 };

@@ -1,8 +1,7 @@
 import { 
     McpToolMessage,
     mcpToolMessageSchema
-} from "../../../messagesSchemas/app-to-ui/mcpToolMessageSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/mcpToolMessageSchemas";
 
 /**
  * Comprehensive Factory Validators for MCP Tool Message Operations
@@ -15,7 +14,7 @@ import logger from "../../utils/logger";
 export const createMcpToolMessageFactory = (message: McpToolMessage): PLACEHOLDER => {
     const isValidMessage = mcpToolMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid McpToolMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid McpToolMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -32,7 +31,7 @@ export const createMcpToolMessageFactoryValidator = (message: any): PLACEHOLDER 
         return result;
     }
 
-    logger.error(`No suitable MCP tool message validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable MCP tool message validator found for message: ${JSON.stringify(message)}`);
     return message;
 };
 

@@ -8,8 +8,7 @@ import {
     JsTreeParserServiceMessage,
     getTreeResponseSchema,
     jsTreeParserServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/jsTreeParserSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/jsTreeParserSchemas";
 
 /**
  * Comprehensive Factory Validators for JsTreeParser Service Operations
@@ -22,7 +21,7 @@ import logger from "../../utils/logger";
 export const createGetTreeResponseFactory = (message: GetTreeResponse): PLACEHOLDER => {
     const isValidMessage = getTreeResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetTreeResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetTreeResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -34,7 +33,7 @@ export const createGetTreeResponseFactory = (message: GetTreeResponse): PLACEHOL
 export const createJsTreeParserMcpToolConfirmationFactory = (message: JsTreeParserMcpToolConfirmation): PLACEHOLDER => {
     const isValidMessage = jsTreeParserMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid JsTreeParserMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid JsTreeParserMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -46,7 +45,7 @@ export const createJsTreeParserMcpToolConfirmationFactory = (message: JsTreePars
 export const createJsTreeParserMcpToolExecutingFactory = (message: JsTreeParserMcpToolExecuting): PLACEHOLDER => {
     const isValidMessage = jsTreeParserMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid JsTreeParserMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid JsTreeParserMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -58,7 +57,7 @@ export const createJsTreeParserMcpToolExecutingFactory = (message: JsTreeParserM
 export const createJsTreeParserMcpToolSuccessFactory = (message: JsTreeParserMcpToolSuccess): PLACEHOLDER => {
     const isValidMessage = jsTreeParserMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid JsTreeParserMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid JsTreeParserMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -70,7 +69,7 @@ export const createJsTreeParserMcpToolSuccessFactory = (message: JsTreeParserMcp
 export const createJsTreeParserMcpToolErrorFactory = (message: JsTreeParserMcpToolError): PLACEHOLDER => {
     const isValidMessage = jsTreeParserMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid JsTreeParserMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid JsTreeParserMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -82,7 +81,7 @@ export const createJsTreeParserMcpToolErrorFactory = (message: JsTreeParserMcpTo
 export const createJsTreeParserMcpToolRejectedFactory = (message: JsTreeParserMcpToolRejected): PLACEHOLDER => {
     const isValidMessage = jsTreeParserMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid JsTreeParserMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid JsTreeParserMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -94,7 +93,7 @@ export const createJsTreeParserMcpToolRejectedFactory = (message: JsTreeParserMc
 export const createJsTreeParserServiceMessageFactory = (message: JsTreeParserServiceMessage): PLACEHOLDER => {
     const isValidMessage = jsTreeParserServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid JsTreeParserServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid JsTreeParserServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -106,7 +105,7 @@ export const createJsTreeParserServiceMessageFactory = (message: JsTreeParserSer
 export const createJsTreeParserMessageFactory = (message: JsTreeParserServiceMessage): PLACEHOLDER => {
     const isValidMessage = jsTreeParserServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid JsTreeParserServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid JsTreeParserServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -146,6 +145,6 @@ export const createJsTreeParserFactory = (message: any): PLACEHOLDER => {
         }
     }
 
-    logger.error(`No suitable jsTreeParser validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable jsTreeParser validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

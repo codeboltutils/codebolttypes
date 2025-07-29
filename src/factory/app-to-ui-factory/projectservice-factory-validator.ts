@@ -17,8 +17,7 @@ import {
     projectMcpToolErrorSchema,
     projectMcpToolRejectedSchema,
     projectServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/projectServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/projectServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for ProjectService Service Operations
@@ -31,7 +30,7 @@ import logger from "../../utils/logger";
 export const createGetProjectPathResponseFactory = (message: GetProjectPathResponse): GetProjectPathResponse => {
     const isValidMessage = getProjectPathResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetProjectPathResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetProjectPathResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -43,7 +42,7 @@ export const createGetProjectPathResponseFactory = (message: GetProjectPathRespo
 export const createGetProjectSettingsResponseFactory = (message: GetProjectSettingsResponse): GetProjectSettingsResponse => {
     const isValidMessage = getProjectSettingsResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetProjectSettingsResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetProjectSettingsResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -55,7 +54,7 @@ export const createGetProjectSettingsResponseFactory = (message: GetProjectSetti
 export const createGetRepoMapResponseFactory = (message: GetRepoMapResponse): GetRepoMapResponse => {
     const isValidMessage = getRepoMapResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetRepoMapResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetRepoMapResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -67,7 +66,7 @@ export const createGetRepoMapResponseFactory = (message: GetRepoMapResponse): Ge
 export const createProjectMcpToolConfirmationFactory = (message: ProjectMcpToolConfirmation): ProjectMcpToolConfirmation => {
     const isValidMessage = projectMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProjectMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProjectMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -79,7 +78,7 @@ export const createProjectMcpToolConfirmationFactory = (message: ProjectMcpToolC
 export const createProjectMcpToolExecutingFactory = (message: ProjectMcpToolExecuting): ProjectMcpToolExecuting => {
     const isValidMessage = projectMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProjectMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProjectMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -91,7 +90,7 @@ export const createProjectMcpToolExecutingFactory = (message: ProjectMcpToolExec
 export const createProjectMcpToolSuccessFactory = (message: ProjectMcpToolSuccess): ProjectMcpToolSuccess => {
     const isValidMessage = projectMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProjectMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProjectMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -103,7 +102,7 @@ export const createProjectMcpToolSuccessFactory = (message: ProjectMcpToolSucces
 export const createProjectMcpToolErrorFactory = (message: ProjectMcpToolError): ProjectMcpToolError => {
     const isValidMessage = projectMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProjectMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProjectMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -115,7 +114,7 @@ export const createProjectMcpToolErrorFactory = (message: ProjectMcpToolError): 
 export const createProjectMcpToolRejectedFactory = (message: ProjectMcpToolRejected): ProjectMcpToolRejected => {
     const isValidMessage = projectMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProjectMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProjectMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -127,7 +126,7 @@ export const createProjectMcpToolRejectedFactory = (message: ProjectMcpToolRejec
 export const createProjectServiceMessageFactory = (message: ProjectServiceMessage): ProjectServiceMessage => {
     const isValidMessage = projectServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProjectServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProjectServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -165,7 +164,7 @@ export const createProjectServiceFactory = (message: any): ProjectServiceMessage
             }
         }
 
-        logger.error(`No suitable projectService validator found for message: ${JSON.stringify(message)}`);
+        console.log(`No suitable projectService validator found for message: ${JSON.stringify(message)}`);
         return message as ProjectServiceMessage;
     }
 };

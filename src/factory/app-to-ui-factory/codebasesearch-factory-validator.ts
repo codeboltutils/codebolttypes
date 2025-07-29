@@ -23,8 +23,7 @@ import {
     codebaseSearchMcpToolErrorSchema,
     codebaseSearchMcpToolRejectedSchema,
     codebaseSearchServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/codebaseSearchSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/codebaseSearchSchemas";
 
 /**
  * Comprehensive Factory Validators for CodebaseSearch Service Operations
@@ -37,7 +36,7 @@ import logger from "../../utils/logger";
 export const createCodebaseSearchStateEnumFactory = (message: CodebaseSearchStateEnum): CodebaseSearchStateEnum => {
     const isValidMessage = codebaseSearchStateEnumSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchStateEnum format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchStateEnum format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -49,7 +48,7 @@ export const createCodebaseSearchStateEnumFactory = (message: CodebaseSearchStat
 export const createCodebaseSearchConfirmationFactory = (message: CodebaseSearchConfirmation): CodebaseSearchConfirmation => {
     const isValidMessage = codebaseSearchConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -61,7 +60,7 @@ export const createCodebaseSearchConfirmationFactory = (message: CodebaseSearchC
 export const createCodebaseSearchExecutingFactory = (message: CodebaseSearchExecuting): CodebaseSearchExecuting => {
     const isValidMessage = codebaseSearchExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -73,7 +72,7 @@ export const createCodebaseSearchExecutingFactory = (message: CodebaseSearchExec
 export const createCodebaseSearchSuccessFactory = (message: CodebaseSearchSuccess): CodebaseSearchSuccess => {
     const isValidMessage = codebaseSearchSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -85,7 +84,7 @@ export const createCodebaseSearchSuccessFactory = (message: CodebaseSearchSucces
 export const createCodebaseSearchErrorFactory = (message: CodebaseSearchError): CodebaseSearchError => {
     const isValidMessage = codebaseSearchErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -97,7 +96,7 @@ export const createCodebaseSearchErrorFactory = (message: CodebaseSearchError): 
 export const createCodebaseSearchRejectedFactory = (message: CodebaseSearchRejected): CodebaseSearchRejected => {
     const isValidMessage = codebaseSearchRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -109,7 +108,7 @@ export const createCodebaseSearchRejectedFactory = (message: CodebaseSearchRejec
 export const createCodebaseSearchMcpToolConfirmationFactory = (message: CodebaseSearchMcpToolConfirmation): CodebaseSearchMcpToolConfirmation => {
     const isValidMessage = codebaseSearchMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -121,7 +120,7 @@ export const createCodebaseSearchMcpToolConfirmationFactory = (message: Codebase
 export const createCodebaseSearchMcpToolExecutingFactory = (message: CodebaseSearchMcpToolExecuting): CodebaseSearchMcpToolExecuting => {
     const isValidMessage = codebaseSearchMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -133,7 +132,7 @@ export const createCodebaseSearchMcpToolExecutingFactory = (message: CodebaseSea
 export const createCodebaseSearchMcpToolSuccessFactory = (message: CodebaseSearchMcpToolSuccess): CodebaseSearchMcpToolSuccess => {
     const isValidMessage = codebaseSearchMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -145,7 +144,7 @@ export const createCodebaseSearchMcpToolSuccessFactory = (message: CodebaseSearc
 export const createCodebaseSearchMcpToolErrorFactory = (message: CodebaseSearchMcpToolError): CodebaseSearchMcpToolError => {
     const isValidMessage = codebaseSearchMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -157,7 +156,7 @@ export const createCodebaseSearchMcpToolErrorFactory = (message: CodebaseSearchM
 export const createCodebaseSearchMcpToolRejectedFactory = (message: CodebaseSearchMcpToolRejected): CodebaseSearchMcpToolRejected => {
     const isValidMessage = codebaseSearchMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -169,7 +168,7 @@ export const createCodebaseSearchMcpToolRejectedFactory = (message: CodebaseSear
 export const createCodebaseSearchServiceMessageFactory = (message: CodebaseSearchServiceMessage): CodebaseSearchServiceMessage => {
     const isValidMessage = codebaseSearchServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodebaseSearchServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodebaseSearchServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -210,7 +209,7 @@ export const createCodebaseSearchFactory = (message: any): CodebaseSearchService
             }
         }
 
-        logger.error(`No suitable codebaseSearch validator found for message: ${JSON.stringify(message)}`);
+        console.log(`No suitable codebaseSearch validator found for message: ${JSON.stringify(message)}`);
         return message as CodebaseSearchServiceMessage;
     }
 };

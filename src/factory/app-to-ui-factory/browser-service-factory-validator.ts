@@ -19,8 +19,7 @@ import {
     browserMcpToolRejectedSchema,
     browserActionMessageSchema,
     browserServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/browserServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/browserServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for Browser Service Operations
@@ -33,7 +32,7 @@ import logger from "../../utils/logger";
 export const createNewPageResponseFactory = (message: NewPageResponse): NewPageResponse => {
     const isValidMessage = newPageResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid NewPageResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid NewPageResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -42,7 +41,7 @@ export const createNewPageResponseFactory = (message: NewPageResponse): NewPageR
 export const createBrowserErrorResponseFactory = (message: BrowserErrorResponse): BrowserErrorResponse => {
     const isValidMessage = browserErrorResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BrowserErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BrowserErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -51,7 +50,7 @@ export const createBrowserErrorResponseFactory = (message: BrowserErrorResponse)
 export const createBrowserActionResponseFactory = (message: BrowserActionResponse): BrowserActionResponse => {
     const isValidMessage = browserActionResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BrowserActionResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BrowserActionResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -60,7 +59,7 @@ export const createBrowserActionResponseFactory = (message: BrowserActionRespons
 export const createBrowserActionMessageFactory = (message: BrowserActionMessage): BrowserActionMessage => {
     const isValidMessage = browserActionMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BrowserActionMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BrowserActionMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -73,7 +72,7 @@ export const createBrowserActionMessageFactory = (message: BrowserActionMessage)
 export const createBrowserMcpToolConfirmationFactory = (message: BrowserMcpToolConfirmation): BrowserMcpToolConfirmation => {
     const isValidMessage = browserMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BrowserMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BrowserMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -82,7 +81,7 @@ export const createBrowserMcpToolConfirmationFactory = (message: BrowserMcpToolC
 export const createBrowserMcpToolExecutingFactory = (message: BrowserMcpToolExecuting): BrowserMcpToolExecuting => {
     const isValidMessage = browserMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BrowserMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BrowserMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -91,7 +90,7 @@ export const createBrowserMcpToolExecutingFactory = (message: BrowserMcpToolExec
 export const createBrowserMcpToolSuccessFactory = (message: BrowserMcpToolSuccess): BrowserMcpToolSuccess => {
     const isValidMessage = browserMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BrowserMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BrowserMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -100,7 +99,7 @@ export const createBrowserMcpToolSuccessFactory = (message: BrowserMcpToolSucces
 export const createBrowserMcpToolErrorFactory = (message: BrowserMcpToolError): BrowserMcpToolError => {
     const isValidMessage = browserMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BrowserMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BrowserMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -109,7 +108,7 @@ export const createBrowserMcpToolErrorFactory = (message: BrowserMcpToolError): 
 export const createBrowserMcpToolRejectedFactory = (message: BrowserMcpToolRejected): BrowserMcpToolRejected => {
     const isValidMessage = browserMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BrowserMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BrowserMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -121,7 +120,7 @@ export const createBrowserMcpToolRejectedFactory = (message: BrowserMcpToolRejec
 export const createBrowserServiceMessageFactory = (message: BrowserServiceMessage): BrowserServiceMessage => {
     const isValidMessage = browserServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BrowserServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BrowserServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -163,6 +162,6 @@ export const createBrowserServiceFactory = (message: any): BrowserServiceMessage
         }
     }
 
-    logger.error(`No suitable browserService validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable browserService validator found for message: ${JSON.stringify(message)}`);
     return message;
 }; 
