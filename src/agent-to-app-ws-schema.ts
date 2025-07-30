@@ -22,15 +22,6 @@ export {
   updateAgentEventSchema,
   configureAgentEventSchema,
   agentEventSchema,
-  findAgentByTaskResponseSchema,
-  taskCompletionResponseSchema,
-  listAgentsResponseSchema,
-  agentsDetailResponseSchema,
-  installAgentResponseSchema,
-  uninstallAgentResponseSchema,
-  updateAgentResponseSchema,
-  configureAgentResponseSchema,
-  stopAgentResponseSchema
 } from './wstypes/agent-to-app-ws/actions/agentEventSchemas';
 
 // Notification Schemas
@@ -253,13 +244,7 @@ export {
   chatSummaryEventSchema,
   notificationEventSchema,
   chatEventSchema,
-  getChatHistoryResponseSchema,
-  processStoppedResponseSchema,
-  sendMessageResponseSchema,
-  chatSummaryResponseSchema,
-  notificationResponseSchema,
-  chatRequestHandlerSchema,
-  chatResponseFunctionSchema
+  chatRequestHandlerSchema
 } from './wstypes/agent-to-app-ws/actions/chatEventSchemas';
 
 export {
@@ -274,16 +259,6 @@ export {
   crawlerWaitEventSchema,
   crawlerExtractDataEventSchema,
   crawlerEventSchema,
-  crawlerResponseSchema,
-  crawlerStartResponseSchema,
-  crawlerScreenshotResponseSchema,
-  crawlerGoToPageResponseSchema,
-  crawlerScrollResponseSchema,
-  crawlerClickResponseSchema,
-  crawlerStopResponseSchema,
-  crawlerGetPageContentResponseSchema,
-  crawlerWaitResponseSchema,
-  crawlerExtractDataResponseSchema
 } from './wstypes/agent-to-app-ws/actions/crawlerEventSchemas';
 
 export {
@@ -295,13 +270,7 @@ export {
   clearDebugLogsEventSchema,
   setDebugLevelEventSchema,
   exportDebugLogsEventSchema,
-  debugEventSchema,
-  debugAddLogResponseSchema,
-  openDebugBrowserResponseSchema,
-  getDebugLogsResponseSchema,
-  clearDebugLogsResponseSchema,
-  setDebugLevelResponseSchema,
-  exportDebugLogsResponseSchema
+  debugEventSchema
 } from './wstypes/agent-to-app-ws/actions/debugEventSchemas';
 
 export {
@@ -346,24 +315,7 @@ export {
   gitMergeEventSchema,
   gitRebaseEventSchema,
   gitCloneEventSchema,
-  gitEventSchema,
-  gitInitResponseSchema,
-  gitPullResponseSchema,
-  gitPushResponseSchema,
-  gitStatusResponseSchema,
-  gitAddResponseSchema,
-  gitCommitResponseSchema,
-  gitCheckoutResponseSchema,
-  gitBranchResponseSchema,
-  gitLogsResponseSchema,
-  gitDiffResponseSchema,
-  gitResetResponseSchema,
-  gitStashResponseSchema,
-  gitTagResponseSchema,
-  gitRemoteResponseSchema,
-  gitMergeResponseSchema,
-  gitRebaseResponseSchema,
-  gitCloneResponseSchema
+  gitEventSchema
 } from './wstypes/agent-to-app-ws/actions/gitEventSchemas';
 
 export {
@@ -374,23 +326,14 @@ export {
   generateSummaryEventSchema,
   getSummaryEventSchema,
   clearSummaryEventSchema,
-  historyEventSchema,
-  getSummarizeAllResponseSchema,
-  getSummarizeResponseSchema,
-  generateSummaryResponseSchema,
-  getSummaryResponseSchema,
-  clearSummaryResponseSchema
+  historyEventSchema
 } from './wstypes/agent-to-app-ws/actions/historyEventSchemas';
 
 export {
   llmEventBaseSchema,
   inferenceEventSchema,
   legacyInferenceEventSchema,
-  llmEventSchema,
-  llmResponseSchema,
-  llmStreamResponseSchema,
-  llmErrorResponseSchema,
-  llmResponseUnionSchema
+  llmEventSchema
 } from './wstypes/agent-to-app-ws/actions/llmEventSchemas';
 
 export {
@@ -406,18 +349,7 @@ export {
   installToolBoxEventSchema,
   uninstallToolBoxEventSchema,
   updateToolBoxEventSchema,
-  mcpEventSchema,
-  getEnabledToolBoxesResponseSchema,
-  getLocalToolBoxesResponseSchema,
-  getAvailableToolBoxesResponseSchema,
-  searchAvailableToolBoxesResponseSchema,
-  listToolsFromToolBoxesResponseSchema,
-  configureToolBoxResponseSchema,
-  getToolsResponseSchema,
-  executeToolResponseSchema,
-  installToolBoxResponseSchema,
-  uninstallToolBoxResponseSchema,
-  updateToolBoxResponseSchema
+  mcpEventSchema
 } from './wstypes/agent-to-app-ws/actions/mcpEventSchemas';
 
 export {
@@ -431,16 +363,7 @@ export {
   memoryGetMultipleEventSchema,
   memorySetMultipleEventSchema,
   memorySearchEventSchema,
-  memoryEventSchema,
-  memorySetResponseSchema,
-  memoryGetResponseSchema,
-  memoryDeleteResponseSchema,
-  memoryListKeysResponseSchema,
-  memoryClearResponseSchema,
-  memoryExistsResponseSchema,
-  memoryGetMultipleResponseSchema,
-  memorySetMultipleResponseSchema,
-  memorySearchResponseSchema
+  memoryEventSchema
 } from './wstypes/agent-to-app-ws/actions/memoryEventSchemas';
 
 export {
@@ -453,15 +376,7 @@ export {
   setProjectSettingsEventSchema,
   createProjectEventSchema,
   deleteProjectEventSchema,
-  projectEventSchema,
-  getProjectSettingsResponseSchema,
-  getProjectPathResponseSchema,
-  getRepoMapResponseSchema,
-  runProjectResponseSchema,
-  getEditorFileStatusResponseSchema,
-  setProjectSettingsResponseSchema,
-  createProjectResponseSchema,
-  deleteProjectResponseSchema
+  projectEventSchema
 } from './wstypes/agent-to-app-ws/actions/projectEventSchemas';
 
 export {
@@ -474,15 +389,7 @@ export {
   clearAgentStateEventSchema,
   getProjectStateEventSchema,
   updateProjectStateEventSchema,
-  stateEventSchema,
-  getApplicationStateResponseSchema,
-  addToAgentStateResponseSchema,
-  getAgentStateResponseSchema,
-  updateAgentStateResponseSchema,
-  deleteAgentStateResponseSchema,
-  clearAgentStateResponseSchema,
-  getProjectStateResponseSchema,
-  updateProjectStateResponseSchema
+  stateEventSchema
 } from './wstypes/agent-to-app-ws/actions/stateEventSchemas';
 
 export {
@@ -502,17 +409,7 @@ export {
   getTaskDetailsEventSchema,
   importTasksFromMarkdownEventSchema,
   exportTasksToMarkdownEventSchema,
-  taskEventSchema,
-  taskResponseSchema,
-  addTaskResponseSchema,
-  getTasksResponseSchema,
-  getTasksByAgentResponseSchema,
-  updateTaskResponseSchema,
-  deleteTaskResponseSchema,
-  addSubTaskResponseSchema,
-  getTaskDetailsResponseSchema,
-  importTasksResponseSchema,
-  exportTasksResponseSchema
+  taskEventSchema
 } from './wstypes/agent-to-app-ws/actions/taskEventSchemas';
 
 export {
@@ -522,13 +419,7 @@ export {
   executeCommandRunUntilInterruptEventSchema,
   executeCommandWithStreamEventSchema,
   sendInterruptToTerminalEventSchema,
-  terminalEventSchema,
-  commandOutputResponseSchema,
-  commandErrorResponseSchema,
-  commandFinishResponseSchema,
-  terminalInterruptResponseSchema,
-  terminalStreamDataResponseSchema,
-  terminalResponseSchema
+  terminalEventSchema
 } from './wstypes/agent-to-app-ws/actions/terminalEventSchemas';
 
 export {
@@ -539,13 +430,7 @@ export {
   listTokensEventSchema,
   updateTokenEventSchema,
   clearTokensEventSchema,
-  tokenizerEventSchema,
-  addTokenResponseSchema,
-  getTokenResponseSchema,
-  deleteTokenResponseSchema,
-  listTokensResponseSchema,
-  updateTokenResponseSchema,
-  clearTokensResponseSchema
+  tokenizerEventSchema
 } from './wstypes/agent-to-app-ws/actions/tokenizerEventSchemas';
 
 export {
@@ -554,11 +439,7 @@ export {
   validateDiffEventSchema,
   generateDiffEventSchema,
   applyPatchEventSchema,
-  utilsEventSchema,
-  fsEditFileAndApplyDiffResponseSchema,
-  validateDiffResponseSchema,
-  generateDiffResponseSchema,
-  applyPatchResponseSchema
+  utilsEventSchema
 } from './wstypes/agent-to-app-ws/actions/utilsEventSchemas';
 
 export {
@@ -572,16 +453,7 @@ export {
   clearVectorDatabaseEventSchema,
   getVectorDatabaseInfoEventSchema,
   createVectorIndexEventSchema,
-  vectordbEventSchema,
-  getVectorResponseSchema,
-  addVectorItemResponseSchema,
-  queryVectorItemResponseSchema,
-  queryVectorItemsResponseSchema,
-  updateVectorItemResponseSchema,
-  deleteVectorItemResponseSchema,
-  clearVectorDatabaseResponseSchema,
-  getVectorDatabaseInfoResponseSchema,
-  createVectorIndexResponseSchema
+  vectordbEventSchema
 } from './wstypes/agent-to-app-ws/actions/vectordbEventSchemas';
 
 // Main Combined Schema

@@ -21,15 +21,6 @@ export {
   type AgentEvent,
   type Agent,
   type AgentExecutionResult,
-  type FindAgentByTaskResponse,
-  type TaskCompletionResponse,
-  type ListAgentsResponse,
-  type AgentsDetailResponse,
-  type InstallAgentResponse,
-  type UninstallAgentResponse,
-  type UpdateAgentResponse,
-  type ConfigureAgentResponse,
-  type StopAgentResponse
 } from './wstypes/agent-to-app-ws/actions/agentEventSchemas';
 
 // browserEventSchemas
@@ -72,11 +63,6 @@ export {
   type ChatSummary,
   type Notification,
   type ChatRequestHandler,
-  type GetChatHistoryResponse,
-  type ProcessStoppedResponse,
-  type SendMessageResponse,
-  type ChatSummaryResponse,
-  type NotificationResponse
 } from './wstypes/agent-to-app-ws/actions/chatEventSchemas';
 
 // crawlerEventSchemas
@@ -92,16 +78,6 @@ export {
   type CrawlerWaitEvent,
   type CrawlerExtractDataEvent,
   type CrawlerEvent,
-  type CrawlerResponse,
-  type CrawlerStartResponse,
-  type CrawlerScreenshotResponse,
-  type CrawlerGoToPageResponse,
-  type CrawlerScrollResponse,
-  type CrawlerClickResponse,
-  type CrawlerStopResponse,
-  type CrawlerGetPageContentResponse,
-  type CrawlerWaitResponse,
-  type CrawlerExtractDataResponse
 } from './wstypes/agent-to-app-ws/actions/crawlerEventSchemas';
 
 // debugEventSchemas
@@ -116,12 +92,6 @@ export {
   type ExportDebugLogsEvent,
   type DebugEvent,
   type DebugLogEntry,
-  type DebugAddLogResponse,
-  type OpenDebugBrowserResponse,
-  type GetDebugLogsResponse,
-  type ClearDebugLogsResponse,
-  type SetDebugLevelResponse,
-  type ExportDebugLogsResponse
 } from './wstypes/agent-to-app-ws/actions/debugEventSchemas';
 
 // fsEventSchemas
@@ -169,23 +139,6 @@ export {
   type GitRebaseEvent,
   type GitCloneEvent,
   type GitEvent,
-  type GitInitResponse,
-  type GitPullResponse,
-  type GitPushResponse,
-  type GitStatusResponse,
-  type GitAddResponse,
-  type GitCommitResponse,
-  type GitCheckoutResponse,
-  type GitBranchResponse,
-  type GitLogsResponse,
-  type GitDiffResponse,
-  type GitResetResponse,
-  type GitStashResponse,
-  type GitTagResponse,
-  type GitRemoteResponse,
-  type GitMergeResponse,
-  type GitRebaseResponse,
-  type GitCloneResponse
 } from './wstypes/agent-to-app-ws/actions/gitEventSchemas';
 
 // historyEventSchemas
@@ -200,11 +153,6 @@ export {
   type HistoryEvent,
   type Message,
   type Summary,
-  type GetSummarizeAllResponse,
-  type GetSummarizeResponse,
-  type GenerateSummaryResponse,
-  type GetSummaryResponse,
-  type ClearSummaryResponse
 } from './wstypes/agent-to-app-ws/actions/historyEventSchemas';
 
 // llmEventSchemas
@@ -216,10 +164,6 @@ export {
   type InferenceEvent,
   type LegacyInferenceEvent,
   type LLMEvent,
-  type LLMResponse,
-  type LLMStreamResponse,
-  type LLMErrorResponse,
-  type LLMResponseUnion
 } from './wstypes/agent-to-app-ws/actions/llmEventSchemas';
 
 // mcpEventSchemas
@@ -240,17 +184,6 @@ export {
   type ToolBox,
   type Tool,
   type ToolExecutionResult,
-  type GetEnabledToolBoxesResponse,
-  type GetLocalToolBoxesResponse,
-  type GetAvailableToolBoxesResponse,
-  type SearchAvailableToolBoxesResponse,
-  type ListToolsFromToolBoxesResponse,
-  type ConfigureToolBoxResponse,
-  type GetToolsResponse,
-  type ExecuteToolResponse,
-  type InstallToolBoxResponse,
-  type UninstallToolBoxResponse,
-  type UpdateToolBoxResponse
 } from './wstypes/agent-to-app-ws/actions/mcpEventSchemas';
 
 // memoryEventSchemas
@@ -266,15 +199,6 @@ export {
   type MemorySetMultipleEvent,
   type MemorySearchEvent,
   type MemoryEvent,
-  type MemorySetResponse,
-  type MemoryGetResponse,
-  type MemoryDeleteResponse,
-  type MemoryListKeysResponse,
-  type MemoryClearResponse,
-  type MemoryExistsResponse,
-  type MemoryGetMultipleResponse,
-  type MemorySetMultipleResponse,
-  type MemorySearchResponse
 } from './wstypes/agent-to-app-ws/actions/memoryEventSchemas';
 
 // projectEventSchemas
@@ -291,14 +215,6 @@ export {
   type ProjectEvent,
   type ProjectSettings,
   type FileStatus,
-  type GetProjectSettingsResponse,
-  type GetProjectPathResponse,
-  type GetRepoMapResponse,
-  type RunProjectResponse,
-  type GetEditorFileStatusResponse,
-  type SetProjectSettingsResponse,
-  type CreateProjectResponse,
-  type DeleteProjectResponse
 } from './wstypes/agent-to-app-ws/actions/projectEventSchemas';
 
 // stateEventSchemas
@@ -316,14 +232,6 @@ export {
   type ApplicationState,
   type AgentState,
   type ProjectState,
-  type GetApplicationStateResponse,
-  type AddToAgentStateResponse,
-  type GetAgentStateResponse,
-  type UpdateAgentStateResponse,
-  type DeleteAgentStateResponse,
-  type ClearAgentStateResponse,
-  type GetProjectStateResponse,
-  type UpdateProjectStateResponse
 } from './wstypes/agent-to-app-ws/actions/stateEventSchemas';
 
 // taskEventSchemas
@@ -352,16 +260,6 @@ export {
   type TaskEvent,
   type SubTask,
   type Task,
-  type TaskResponse,
-  type AddTaskResponse,
-  type GetTasksResponse,
-  type GetTasksByAgentResponse,
-  type UpdateTaskResponse,
-  type DeleteTaskResponse,
-  type AddSubTaskResponse,
-  type GetTaskDetailsResponse,
-  type ImportTasksResponse,
-  type ExportTasksResponse
 } from './wstypes/agent-to-app-ws/actions/taskEventSchemas';
 
 // terminalEventSchemas
@@ -373,12 +271,6 @@ export {
   type ExecuteCommandWithStreamEvent,
   type SendInterruptToTerminalEvent,
   type TerminalEvent,
-  type CommandOutputResponse,
-  type CommandErrorResponse,
-  type CommandFinishResponse,
-  type TerminalInterruptResponse,
-  type TerminalStreamDataResponse,
-  type TerminalResponse
 } from './wstypes/agent-to-app-ws/actions/terminalEventSchemas';
 
 // tokenizerEventSchemas
@@ -392,12 +284,6 @@ export {
   type ClearTokensEvent,
   type TokenizerEvent,
   type Token,
-  type AddTokenResponse,
-  type GetTokenResponse,
-  type DeleteTokenResponse,
-  type ListTokensResponse,
-  type UpdateTokenResponse,
-  type ClearTokensResponse
 } from './wstypes/agent-to-app-ws/actions/tokenizerEventSchemas';
 
 // utilsEventSchemas
@@ -410,10 +296,6 @@ export {
   type UtilsEvent,
   type DiffResult,
   type FileEditResult,
-  type FsEditFileAndApplyDiffResponse,
-  type ValidateDiffResponse,
-  type GenerateDiffResponse,
-  type ApplyPatchResponse
 } from './wstypes/agent-to-app-ws/actions/utilsEventSchemas';
 
 // vectordbEventSchemas
@@ -431,15 +313,6 @@ export {
   type VectordbEvent,
   type VectorItem,
   type VectorSearchResult,
-  type GetVectorResponse,
-  type AddVectorItemResponse,
-  type QueryVectorItemResponse,
-  type QueryVectorItemsResponse,
-  type UpdateVectorItemResponse,
-  type DeleteVectorItemResponse,
-  type ClearVectorDatabaseResponse,
-  type GetVectorDatabaseInfoResponse,
-  type CreateVectorIndexResponse
 } from './wstypes/agent-to-app-ws/actions/vectordbEventSchemas';
 
 // agentNotificationSchemas
