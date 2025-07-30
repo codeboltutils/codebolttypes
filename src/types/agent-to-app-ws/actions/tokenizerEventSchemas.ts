@@ -95,48 +95,6 @@ const tokenSchema = z.object({
   }).optional(),
 });
 
-// Response Schemas for tokenizer operations
-export const addTokenResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  token: tokenSchema,
-});
-
-export const getTokenResponseSchema = z.object({
-  success: z.boolean(),
-  token: tokenSchema.optional(),
-  exists: z.boolean(),
-  key: z.string(),
-});
-
-export const deleteTokenResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  key: z.string(),
-  deleted: z.boolean(),
-});
-
-export const listTokensResponseSchema = z.object({
-  success: z.boolean(),
-  tokens: z.array(tokenSchema),
-  totalCount: z.number(),
-  limit: z.number().optional(),
-  offset: z.number().optional(),
-  pattern: z.string().optional(),
-});
-
-export const updateTokenResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  token: tokenSchema,
-});
-
-export const clearTokensResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  clearedCount: z.number(),
-  pattern: z.string().optional(),
-});
 
 // Inferred TypeScript types for events
 export type TokenizerEventBase = z.infer<typeof tokenizerEventBaseSchema>;
@@ -151,10 +109,3 @@ export type TokenizerEvent = z.infer<typeof tokenizerEventSchema>;
 // Inferred TypeScript types for data structures
 export type Token = z.infer<typeof tokenSchema>;
 
-// Inferred TypeScript types for responses
-export type AddTokenResponse = z.infer<typeof addTokenResponseSchema>;
-export type GetTokenResponse = z.infer<typeof getTokenResponseSchema>;
-export type DeleteTokenResponse = z.infer<typeof deleteTokenResponseSchema>;
-export type ListTokensResponse = z.infer<typeof listTokensResponseSchema>;
-export type UpdateTokenResponse = z.infer<typeof updateTokenResponseSchema>;
-export type ClearTokensResponse = z.infer<typeof clearTokensResponseSchema>; 

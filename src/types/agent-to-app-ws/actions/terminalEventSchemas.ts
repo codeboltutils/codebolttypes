@@ -61,58 +61,6 @@ export const terminalEventSchema = z.union([
   sendInterruptToTerminalEventSchema,
 ]);
 
-// Response Schemas for terminal operations
-export const commandOutputResponseSchema = z.object({
-  type: z.literal('commandOutput'),
-  success: z.boolean(),
-  output: z.string(),
-  command: z.string().optional(),
-  exitCode: z.number().optional(),
-  processId: z.number().optional(),
-});
-
-export const commandErrorResponseSchema = z.object({
-  type: z.literal('commandError'),
-  success: z.boolean(),
-  error: z.string(),
-  command: z.string().optional(),
-  exitCode: z.number().optional(),
-  processId: z.number().optional(),
-});
-
-export const commandFinishResponseSchema = z.object({
-  type: z.literal('commandFinish'),
-  success: z.boolean(),
-  message: z.string(),
-  command: z.string().optional(),
-  exitCode: z.number().optional(),
-  output: z.string().optional(),
-  processId: z.number().optional(),
-});
-
-export const terminalInterruptResponseSchema = z.object({
-  type: z.literal('terminalInterrupted'),
-  success: z.boolean(),
-  message: z.string(),
-  processId: z.number().optional(),
-});
-
-export const terminalStreamDataResponseSchema = z.object({
-  type: z.literal('terminalStreamData'),
-  data: z.string(),
-  processId: z.number().optional(),
-  command: z.string().optional(),
-});
-
-// Union of all terminal response schemas
-export const terminalResponseSchema = z.union([
-  commandOutputResponseSchema,
-  commandErrorResponseSchema,
-  commandFinishResponseSchema,
-  terminalInterruptResponseSchema,
-  terminalStreamDataResponseSchema,
-]);
-
 // Inferred TypeScript types for events
 export type TerminalEventBase = z.infer<typeof terminalEventBaseSchema>;
 export type ExecuteCommandEvent = z.infer<typeof executeCommandEventSchema>;
@@ -121,11 +69,3 @@ export type ExecuteCommandRunUntilInterruptEvent = z.infer<typeof executeCommand
 export type ExecuteCommandWithStreamEvent = z.infer<typeof executeCommandWithStreamEventSchema>;
 export type SendInterruptToTerminalEvent = z.infer<typeof sendInterruptToTerminalEventSchema>;
 export type TerminalEvent = z.infer<typeof terminalEventSchema>;
-
-// Inferred TypeScript types for responses
-export type CommandOutputResponse = z.infer<typeof commandOutputResponseSchema>;
-export type CommandErrorResponse = z.infer<typeof commandErrorResponseSchema>;
-export type CommandFinishResponse = z.infer<typeof commandFinishResponseSchema>;
-export type TerminalInterruptResponse = z.infer<typeof terminalInterruptResponseSchema>;
-export type TerminalStreamDataResponse = z.infer<typeof terminalStreamDataResponseSchema>;
-export type TerminalResponse = z.infer<typeof terminalResponseSchema>; 

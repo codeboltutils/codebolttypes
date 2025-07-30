@@ -151,73 +151,6 @@ const agentExecutionResultSchema = z.object({
   })).optional(),
 });
 
-// Response Schemas for agent operations
-export const findAgentByTaskResponseSchema = z.object({
-  success: z.boolean(),
-  agents: z.array(agentSchema),
-  task: z.string(),
-  totalFound: z.number(),
-  searchCriteria: z.object({
-    maxResult: z.number(),
-    location: agentLocationSchema,
-    getFrom: filterUsingSchema,
-  }).optional(),
-});
-
-export const taskCompletionResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  agentId: z.string(),
-  task: z.string(),
-  result: agentExecutionResultSchema.optional(),
-});
-
-export const listAgentsResponseSchema = z.object({
-  success: z.boolean(),
-  agents: z.array(agentSchema),
-  totalCount: z.number(),
-  location: agentLocationSchema.optional(),
-  category: z.string().optional(),
-});
-
-export const agentsDetailResponseSchema = z.object({
-  success: z.boolean(),
-  agent: agentSchema,
-});
-
-export const installAgentResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  agent: agentSchema,
-  installPath: z.string().optional(),
-});
-
-export const uninstallAgentResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  agentId: z.string(),
-});
-
-export const updateAgentResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  agent: agentSchema,
-  previousVersion: z.string().optional(),
-  newVersion: z.string(),
-});
-
-export const configureAgentResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  agent: agentSchema,
-});
-
-export const stopAgentResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  agentId: z.string(),
-  finalResult: agentExecutionResultSchema.optional(),
-});
 
 // Inferred TypeScript types for enums
 export type AgentLocation = z.infer<typeof agentLocationSchema>;
@@ -241,13 +174,3 @@ export type AgentEvent = z.infer<typeof agentEventSchema>;
 export type Agent = z.infer<typeof agentSchema>;
 export type AgentExecutionResult = z.infer<typeof agentExecutionResultSchema>;
 
-// Inferred TypeScript types for responses
-export type FindAgentByTaskResponse = z.infer<typeof findAgentByTaskResponseSchema>;
-export type TaskCompletionResponse = z.infer<typeof taskCompletionResponseSchema>;
-export type ListAgentsResponse = z.infer<typeof listAgentsResponseSchema>;
-export type AgentsDetailResponse = z.infer<typeof agentsDetailResponseSchema>;
-export type InstallAgentResponse = z.infer<typeof installAgentResponseSchema>;
-export type UninstallAgentResponse = z.infer<typeof uninstallAgentResponseSchema>;
-export type UpdateAgentResponse = z.infer<typeof updateAgentResponseSchema>;
-export type ConfigureAgentResponse = z.infer<typeof configureAgentResponseSchema>;
-export type StopAgentResponse = z.infer<typeof stopAgentResponseSchema>; 

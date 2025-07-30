@@ -174,80 +174,6 @@ const toolExecutionResultSchema = z.object({
   parameters: z.record(z.any()),
 });
 
-// Response Schemas for MCP operations
-export const getEnabledToolBoxesResponseSchema = z.object({
-  success: z.boolean(),
-  toolBoxes: z.array(toolBoxSchema),
-  totalCount: z.number(),
-});
-
-export const getLocalToolBoxesResponseSchema = z.object({
-  success: z.boolean(),
-  toolBoxes: z.array(toolBoxSchema),
-  totalCount: z.number(),
-});
-
-export const getAvailableToolBoxesResponseSchema = z.object({
-  success: z.boolean(),
-  toolBoxes: z.array(toolBoxSchema),
-  totalCount: z.number(),
-  categories: z.array(z.string()).optional(),
-});
-
-export const searchAvailableToolBoxesResponseSchema = z.object({
-  success: z.boolean(),
-  toolBoxes: z.array(toolBoxSchema),
-  query: z.string(),
-  totalResults: z.number(),
-  suggestions: z.array(z.string()).optional(),
-});
-
-export const listToolsFromToolBoxesResponseSchema = z.object({
-  success: z.boolean(),
-  tools: z.array(toolSchema),
-  toolBoxIds: z.array(z.string()),
-  totalCount: z.number(),
-});
-
-export const configureToolBoxResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  toolBox: toolBoxSchema,
-});
-
-export const getToolsResponseSchema = z.object({
-  success: z.boolean(),
-  tools: z.array(toolSchema),
-  toolBoxId: z.string().optional(),
-  category: z.string().optional(),
-  totalCount: z.number(),
-});
-
-export const executeToolResponseSchema = z.object({
-  success: z.boolean(),
-  result: toolExecutionResultSchema,
-});
-
-export const installToolBoxResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  toolBox: toolBoxSchema,
-  installPath: z.string().optional(),
-});
-
-export const uninstallToolBoxResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  toolBoxId: z.string(),
-});
-
-export const updateToolBoxResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  toolBox: toolBoxSchema,
-  previousVersion: z.string().optional(),
-  newVersion: z.string(),
-});
 
 // Inferred TypeScript types for events
 export type McpEventBase = z.infer<typeof mcpEventBaseSchema>;
@@ -269,15 +195,3 @@ export type ToolBox = z.infer<typeof toolBoxSchema>;
 export type Tool = z.infer<typeof toolSchema>;
 export type ToolExecutionResult = z.infer<typeof toolExecutionResultSchema>;
 
-// Inferred TypeScript types for responses
-export type GetEnabledToolBoxesResponse = z.infer<typeof getEnabledToolBoxesResponseSchema>;
-export type GetLocalToolBoxesResponse = z.infer<typeof getLocalToolBoxesResponseSchema>;
-export type GetAvailableToolBoxesResponse = z.infer<typeof getAvailableToolBoxesResponseSchema>;
-export type SearchAvailableToolBoxesResponse = z.infer<typeof searchAvailableToolBoxesResponseSchema>;
-export type ListToolsFromToolBoxesResponse = z.infer<typeof listToolsFromToolBoxesResponseSchema>;
-export type ConfigureToolBoxResponse = z.infer<typeof configureToolBoxResponseSchema>;
-export type GetToolsResponse = z.infer<typeof getToolsResponseSchema>;
-export type ExecuteToolResponse = z.infer<typeof executeToolResponseSchema>;
-export type InstallToolBoxResponse = z.infer<typeof installToolBoxResponseSchema>;
-export type UninstallToolBoxResponse = z.infer<typeof uninstallToolBoxResponseSchema>;
-export type UpdateToolBoxResponse = z.infer<typeof updateToolBoxResponseSchema>; 

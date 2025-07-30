@@ -101,85 +101,6 @@ export const llmEventSchema = z.union([
   legacyInferenceEventSchema,
 ]);
 
-// Response Schemas for LLM operations
-export const llmResponseSchema = z.object({
-  success: z.boolean(),
-  completion: z.object({
-    id: z.string().optional(),
-    object: z.string().optional(),
-    created: z.number().optional(),
-    model: z.string().optional(),
-    choices: z.array(z.object({
-      index: z.number(),
-      message: z.object({
-        role: z.string(),
-        content: z.string().nullable(),
-        tool_calls: z.array(z.object({
-          id: z.string(),
-          type: z.string(),
-          function: z.object({
-            name: z.string(),
-            arguments: z.string(),
-          }),
-        })).optional(),
-      }),
-      finish_reason: z.string().nullable(),
-    })),
-    usage: z.object({
-      prompt_tokens: z.number(),
-      completion_tokens: z.number(),
-      total_tokens: z.number(),
-    }).optional(),
-  }),
-  error: z.string().optional(),
-  model: z.string().optional(),
-  provider: z.string().optional(),
-});
-
-// Streaming response schema for LLM operations
-export const llmStreamResponseSchema = z.object({
-  success: z.boolean(),
-  delta: z.object({
-    id: z.string().optional(),
-    object: z.literal('chat.completion.chunk'),
-    created: z.number().optional(),
-    model: z.string().optional(),
-    choices: z.array(z.object({
-      index: z.number(),
-      delta: z.object({
-        role: z.string().optional(),
-        content: z.string().optional(),
-        tool_calls: z.array(z.object({
-          index: z.number(),
-          id: z.string().optional(),
-          type: z.string().optional(),
-          function: z.object({
-            name: z.string().optional(),
-            arguments: z.string().optional(),
-          }).optional(),
-        })).optional(),
-      }),
-      finish_reason: z.string().nullable(),
-    })),
-  }),
-  done: z.boolean().optional(),
-});
-
-// Error response schema for LLM operations
-export const llmErrorResponseSchema = z.object({
-  success: z.literal(false),
-  error: z.string(),
-  code: z.string().optional(),
-  model: z.string().optional(),
-  provider: z.string().optional(),
-});
-
-// Union of all LLM response schemas
-export const llmResponseUnionSchema = z.union([
-  llmResponseSchema,
-  llmStreamResponseSchema,
-  llmErrorResponseSchema,
-]);
 
 // Inferred TypeScript types for LLM operations
 export type Message = z.infer<typeof messageSchema>;
@@ -192,8 +113,3 @@ export type InferenceEvent = z.infer<typeof inferenceEventSchema>;
 export type LegacyInferenceEvent = z.infer<typeof legacyInferenceEventSchema>;
 export type LLMEvent = z.infer<typeof llmEventSchema>;
 
-// Inferred TypeScript types for responses
-export type LLMResponse = z.infer<typeof llmResponseSchema>;
-export type LLMStreamResponse = z.infer<typeof llmStreamResponseSchema>;
-export type LLMErrorResponse = z.infer<typeof llmErrorResponseSchema>;
-export type LLMResponseUnion = z.infer<typeof llmResponseUnionSchema>; 

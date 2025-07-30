@@ -115,41 +115,6 @@ const notificationSchema = z.object({
   metadata: z.record(z.any()).optional(),
 });
 
-// Response Schemas for chat operations
-export const getChatHistoryResponseSchema = z.object({
-  success: z.boolean(),
-  messages: z.array(chatMessageSchema),
-  totalMessages: z.number(),
-  threadId: z.string().optional(),
-});
-
-export const processStoppedResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  processId: z.string().optional(),
-  timestamp: z.string(),
-});
-
-export const sendMessageResponseSchema = z.object({
-  success: z.boolean(),
-  message: chatMessageSchema,
-  delivered: z.boolean(),
-});
-
-export const chatSummaryResponseSchema = z.object({
-  success: z.boolean(),
-  summary: chatSummarySchema.optional(),
-  summaries: z.array(chatSummarySchema).optional(),
-  action: z.string(),
-});
-
-export const notificationResponseSchema = z.object({
-  success: z.boolean(),
-  notification: notificationSchema.optional(),
-  notifications: z.array(notificationSchema).optional(),
-  action: z.string(),
-  unreadCount: z.number().optional(),
-});
 
 // Request handler schema for chat module
 export const chatRequestHandlerSchema = z.object({
@@ -160,15 +125,7 @@ export const chatRequestHandlerSchema = z.object({
   timestamp: z.string(),
 });
 
-// Response function schema for chat module
-export const chatResponseFunctionSchema = z.function()
-  .args(z.object({
-    type: z.string(),
-    data: z.any(),
-    messageId: z.string().optional(),
-    threadId: z.string().optional(),
-  }))
-  .returns(z.void());
+
 
 // Inferred TypeScript types for events
 export type ChatEventBase = z.infer<typeof chatEventBaseSchema>;
@@ -184,10 +141,3 @@ export type ChatMessage = z.infer<typeof chatMessageSchema>;
 export type ChatSummary = z.infer<typeof chatSummarySchema>;
 export type Notification = z.infer<typeof notificationSchema>;
 export type ChatRequestHandler = z.infer<typeof chatRequestHandlerSchema>;
-
-// Inferred TypeScript types for responses
-export type GetChatHistoryResponse = z.infer<typeof getChatHistoryResponseSchema>;
-export type ProcessStoppedResponse = z.infer<typeof processStoppedResponseSchema>;
-export type SendMessageResponse = z.infer<typeof sendMessageResponseSchema>;
-export type ChatSummaryResponse = z.infer<typeof chatSummaryResponseSchema>;
-export type NotificationResponse = z.infer<typeof notificationResponseSchema>; 

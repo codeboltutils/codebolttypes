@@ -106,42 +106,6 @@ const summarySchema = z.object({
   }).optional(),
 });
 
-// Response Schemas for history operations
-export const getSummarizeAllResponseSchema = z.object({
-  success: z.boolean(),
-  messages: z.array(messageSchema),
-  summary: summarySchema.optional(),
-  totalMessages: z.number(),
-});
-
-export const getSummarizeResponseSchema = z.object({
-  success: z.boolean(),
-  messages: z.array(messageSchema),
-  summary: summarySchema.optional(),
-  depth: z.number(),
-  processedMessages: z.number(),
-});
-
-export const generateSummaryResponseSchema = z.object({
-  success: z.boolean(),
-  summary: summarySchema,
-  originalMessages: z.array(messageSchema).optional(),
-});
-
-export const getSummaryResponseSchema = z.object({
-  success: z.boolean(),
-  summary: summarySchema.optional(),
-  summaries: z.array(summarySchema).optional(),
-  found: z.boolean(),
-});
-
-export const clearSummaryResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  summaryId: z.string().optional(),
-  threadId: z.string().optional(),
-  cleared: z.boolean(),
-});
 
 // Inferred TypeScript types for enums
 export type LogType = z.infer<typeof logTypeSchema>;
@@ -159,9 +123,3 @@ export type HistoryEvent = z.infer<typeof historyEventSchema>;
 export type Message = z.infer<typeof messageSchema>;
 export type Summary = z.infer<typeof summarySchema>;
 
-// Inferred TypeScript types for responses
-export type GetSummarizeAllResponse = z.infer<typeof getSummarizeAllResponseSchema>;
-export type GetSummarizeResponse = z.infer<typeof getSummarizeResponseSchema>;
-export type GenerateSummaryResponse = z.infer<typeof generateSummaryResponseSchema>;
-export type GetSummaryResponse = z.infer<typeof getSummaryResponseSchema>;
-export type ClearSummaryResponse = z.infer<typeof clearSummaryResponseSchema>; 

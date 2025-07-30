@@ -230,73 +230,6 @@ const taskSchema = z.object({
   completedAt: z.string().optional(),
 });
 
-// Response Schemas for task operations
-export const taskResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string().optional(),
-  task: taskSchema.optional(),
-  tasks: z.array(taskSchema).optional(),
-  subTask: subTaskSchema.optional(),
-  markdown: z.string().optional(),
-  totalCount: z.number().optional(),
-});
-
-export const addTaskResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  task: taskSchema,
-});
-
-export const getTasksResponseSchema = z.object({
-  success: z.boolean(),
-  tasks: z.array(taskSchema),
-  totalCount: z.number(),
-  filters: taskFilterOptionsSchema.optional(),
-});
-
-export const getTasksByAgentResponseSchema = z.object({
-  success: z.boolean(),
-  tasks: z.array(taskSchema),
-  agentId: z.string(),
-  totalCount: z.number(),
-});
-
-export const updateTaskResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  task: taskSchema,
-});
-
-export const deleteTaskResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  taskId: z.string(),
-});
-
-export const addSubTaskResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  subTask: subTaskSchema,
-  taskId: z.string(),
-});
-
-export const getTaskDetailsResponseSchema = z.object({
-  success: z.boolean(),
-  task: taskSchema,
-});
-
-export const importTasksResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  importedTasks: z.array(taskSchema),
-  totalImported: z.number(),
-});
-
-export const exportTasksResponseSchema = z.object({
-  success: z.boolean(),
-  markdown: z.string(),
-  taskCount: z.number(),
-});
 
 // Inferred TypeScript types for events
 export type TaskEventBase = z.infer<typeof taskEventBaseSchema>;
@@ -327,14 +260,3 @@ export type TaskEvent = z.infer<typeof taskEventSchema>;
 export type SubTask = z.infer<typeof subTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
-// Inferred TypeScript types for responses
-export type TaskResponse = z.infer<typeof taskResponseSchema>;
-export type AddTaskResponse = z.infer<typeof addTaskResponseSchema>;
-export type GetTasksResponse = z.infer<typeof getTasksResponseSchema>;
-export type GetTasksByAgentResponse = z.infer<typeof getTasksByAgentResponseSchema>;
-export type UpdateTaskResponse = z.infer<typeof updateTaskResponseSchema>;
-export type DeleteTaskResponse = z.infer<typeof deleteTaskResponseSchema>;
-export type AddSubTaskResponse = z.infer<typeof addSubTaskResponseSchema>;
-export type GetTaskDetailsResponse = z.infer<typeof getTaskDetailsResponseSchema>;
-export type ImportTasksResponse = z.infer<typeof importTasksResponseSchema>;
-export type ExportTasksResponse = z.infer<typeof exportTasksResponseSchema>; 

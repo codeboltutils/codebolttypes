@@ -98,56 +98,6 @@ const debugLogEntrySchema = z.object({
   metadata: z.record(z.any()).optional(),
 });
 
-// Response Schemas for debug operations
-export const debugAddLogResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  logId: z.string().optional(),
-  timestamp: z.string().optional(),
-});
-
-export const openDebugBrowserResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  url: z.string(),
-  port: z.number(),
-  browserProcessId: z.number().optional(),
-});
-
-export const getDebugLogsResponseSchema = z.object({
-  success: z.boolean(),
-  logs: z.array(debugLogEntrySchema),
-  totalCount: z.number(),
-  filters: z.object({
-    type: logTypeSchema.optional(),
-    limit: z.number().optional(),
-    startTime: z.string().optional(),
-    endTime: z.string().optional(),
-  }).optional(),
-});
-
-export const clearDebugLogsResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  clearedCount: z.number(),
-  type: logTypeSchema.optional(),
-});
-
-export const setDebugLevelResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  level: z.string(),
-  previousLevel: z.string().optional(),
-});
-
-export const exportDebugLogsResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  exportPath: z.string().optional(),
-  exportData: z.string().optional(),
-  format: z.string(),
-  exportedCount: z.number(),
-});
 
 // Inferred TypeScript types for log type
 export type LogType = z.infer<typeof logTypeSchema>;
@@ -165,10 +115,3 @@ export type DebugEvent = z.infer<typeof debugEventSchema>;
 // Inferred TypeScript types for data structures
 export type DebugLogEntry = z.infer<typeof debugLogEntrySchema>;
 
-// Inferred TypeScript types for responses
-export type DebugAddLogResponse = z.infer<typeof debugAddLogResponseSchema>;
-export type OpenDebugBrowserResponse = z.infer<typeof openDebugBrowserResponseSchema>;
-export type GetDebugLogsResponse = z.infer<typeof getDebugLogsResponseSchema>;
-export type ClearDebugLogsResponse = z.infer<typeof clearDebugLogsResponseSchema>;
-export type SetDebugLevelResponse = z.infer<typeof setDebugLevelResponseSchema>;
-export type ExportDebugLogsResponse = z.infer<typeof exportDebugLogsResponseSchema>; 

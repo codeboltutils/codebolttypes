@@ -121,72 +121,6 @@ const fileStatusSchema = z.object({
   language: z.string().optional(),
 });
 
-// Response Schemas for project operations
-export const getProjectSettingsResponseSchema = z.object({
-  success: z.boolean(),
-  settings: projectSettingsSchema.optional(),
-  message: z.string().optional(),
-});
-
-export const getProjectPathResponseSchema = z.object({
-  success: z.boolean(),
-  path: z.string(),
-  absolutePath: z.string().optional(),
-  exists: z.boolean(),
-});
-
-export const getRepoMapResponseSchema = z.object({
-  success: z.boolean(),
-  repoMap: z.object({
-    structure: z.record(z.any()),
-    files: z.array(z.string()),
-    directories: z.array(z.string()),
-    totalFiles: z.number(),
-    totalDirectories: z.number(),
-    size: z.number().optional(),
-  }).optional(),
-  message: z.string().optional(),
-});
-
-export const runProjectResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  processId: z.number().optional(),
-  command: z.string().optional(),
-});
-
-export const getEditorFileStatusResponseSchema = z.object({
-  success: z.boolean(),
-  files: z.array(fileStatusSchema),
-  activeFile: z.string().optional(),
-  totalOpen: z.number(),
-});
-
-export const setProjectSettingsResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  settings: projectSettingsSchema.optional(),
-});
-
-export const createProjectResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  project: z.object({
-    id: z.string(),
-    name: z.string(),
-    path: z.string(),
-    template: z.string().optional(),
-    framework: z.string().optional(),
-    language: z.string().optional(),
-    createdAt: z.string(),
-  }).optional(),
-});
-
-export const deleteProjectResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  projectId: z.string(),
-});
 
 // Inferred TypeScript types for events
 export type ProjectEventBase = z.infer<typeof projectEventBaseSchema>;
@@ -204,12 +138,3 @@ export type ProjectEvent = z.infer<typeof projectEventSchema>;
 export type ProjectSettings = z.infer<typeof projectSettingsSchema>;
 export type FileStatus = z.infer<typeof fileStatusSchema>;
 
-// Inferred TypeScript types for responses
-export type GetProjectSettingsResponse = z.infer<typeof getProjectSettingsResponseSchema>;
-export type GetProjectPathResponse = z.infer<typeof getProjectPathResponseSchema>;
-export type GetRepoMapResponse = z.infer<typeof getRepoMapResponseSchema>;
-export type RunProjectResponse = z.infer<typeof runProjectResponseSchema>;
-export type GetEditorFileStatusResponse = z.infer<typeof getEditorFileStatusResponseSchema>;
-export type SetProjectSettingsResponse = z.infer<typeof setProjectSettingsResponseSchema>;
-export type CreateProjectResponse = z.infer<typeof createProjectResponseSchema>;
-export type DeleteProjectResponse = z.infer<typeof deleteProjectResponseSchema>; 

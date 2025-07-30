@@ -87,71 +87,6 @@ export const memoryEventSchema = z.union([
   memorySearchEventSchema,
 ]);
 
-// Response Schemas for memory operations
-export const memorySetResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  key: z.string(),
-  value: z.any().optional(),
-});
-
-export const memoryGetResponseSchema = z.object({
-  success: z.boolean(),
-  value: z.any().optional(),
-  key: z.string(),
-  exists: z.boolean(),
-});
-
-export const memoryDeleteResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  key: z.string(),
-  deleted: z.boolean(),
-});
-
-export const memoryListKeysResponseSchema = z.object({
-  success: z.boolean(),
-  keys: z.array(z.string()),
-  totalCount: z.number(),
-  pattern: z.string().optional(),
-});
-
-export const memoryClearResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  clearedCount: z.number(),
-});
-
-export const memoryExistsResponseSchema = z.object({
-  success: z.boolean(),
-  exists: z.boolean(),
-  key: z.string(),
-});
-
-export const memoryGetMultipleResponseSchema = z.object({
-  success: z.boolean(),
-  items: z.record(z.any()),
-  keys: z.array(z.string()),
-  foundCount: z.number(),
-});
-
-export const memorySetMultipleResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  setCount: z.number(),
-  items: z.record(z.any()),
-});
-
-export const memorySearchResponseSchema = z.object({
-  success: z.boolean(),
-  results: z.array(z.object({
-    key: z.string(),
-    value: z.any(),
-    score: z.number().optional(),
-  })),
-  query: z.string(),
-  totalResults: z.number(),
-});
 
 // Inferred TypeScript types for events
 export type MemoryEventBase = z.infer<typeof memoryEventBaseSchema>;
@@ -166,13 +101,3 @@ export type MemorySetMultipleEvent = z.infer<typeof memorySetMultipleEventSchema
 export type MemorySearchEvent = z.infer<typeof memorySearchEventSchema>;
 export type MemoryEvent = z.infer<typeof memoryEventSchema>;
 
-// Inferred TypeScript types for responses
-export type MemorySetResponse = z.infer<typeof memorySetResponseSchema>;
-export type MemoryGetResponse = z.infer<typeof memoryGetResponseSchema>;
-export type MemoryDeleteResponse = z.infer<typeof memoryDeleteResponseSchema>;
-export type MemoryListKeysResponse = z.infer<typeof memoryListKeysResponseSchema>;
-export type MemoryClearResponse = z.infer<typeof memoryClearResponseSchema>;
-export type MemoryExistsResponse = z.infer<typeof memoryExistsResponseSchema>;
-export type MemoryGetMultipleResponse = z.infer<typeof memoryGetMultipleResponseSchema>;
-export type MemorySetMultipleResponse = z.infer<typeof memorySetMultipleResponseSchema>;
-export type MemorySearchResponse = z.infer<typeof memorySearchResponseSchema>; 

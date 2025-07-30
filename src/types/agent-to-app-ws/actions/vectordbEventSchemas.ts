@@ -125,75 +125,6 @@ const vectorSearchResultSchema = z.object({
   vector: z.array(z.number()).optional(),
 });
 
-// Response Schemas for vector database operations
-export const getVectorResponseSchema = z.object({
-  success: z.boolean(),
-  vector: vectorItemSchema.optional(),
-  message: z.string().optional(),
-});
-
-export const addVectorItemResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  id: z.string().optional(),
-  vector: vectorItemSchema.optional(),
-});
-
-export const queryVectorItemResponseSchema = z.object({
-  success: z.boolean(),
-  results: z.array(vectorSearchResultSchema),
-  query: z.string().optional(),
-  totalResults: z.number().optional(),
-});
-
-export const queryVectorItemsResponseSchema = z.object({
-  success: z.boolean(),
-  results: z.array(vectorSearchResultSchema),
-  queries: z.array(z.any()).optional(),
-  totalResults: z.number().optional(),
-  dbPath: z.string().optional(),
-});
-
-export const updateVectorItemResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  id: z.string(),
-  vector: vectorItemSchema.optional(),
-});
-
-export const deleteVectorItemResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  id: z.string(),
-});
-
-export const clearVectorDatabaseResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  clearedItems: z.number().optional(),
-  dbPath: z.string().optional(),
-});
-
-export const getVectorDatabaseInfoResponseSchema = z.object({
-  success: z.boolean(),
-  info: z.object({
-    totalItems: z.number(),
-    dimension: z.number(),
-    dbPath: z.string(),
-    createdAt: z.string(),
-    lastUpdated: z.string(),
-    size: z.number(),
-    metric: z.string().optional(),
-  }).optional(),
-});
-
-export const createVectorIndexResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  dbPath: z.string(),
-  dimension: z.number(),
-  metric: z.string().optional(),
-});
 
 // Inferred TypeScript types for events
 export type VectordbEventBase = z.infer<typeof vectordbEventBaseSchema>;
@@ -212,13 +143,3 @@ export type VectordbEvent = z.infer<typeof vectordbEventSchema>;
 export type VectorItem = z.infer<typeof vectorItemSchema>;
 export type VectorSearchResult = z.infer<typeof vectorSearchResultSchema>;
 
-// Inferred TypeScript types for responses
-export type GetVectorResponse = z.infer<typeof getVectorResponseSchema>;
-export type AddVectorItemResponse = z.infer<typeof addVectorItemResponseSchema>;
-export type QueryVectorItemResponse = z.infer<typeof queryVectorItemResponseSchema>;
-export type QueryVectorItemsResponse = z.infer<typeof queryVectorItemsResponseSchema>;
-export type UpdateVectorItemResponse = z.infer<typeof updateVectorItemResponseSchema>;
-export type DeleteVectorItemResponse = z.infer<typeof deleteVectorItemResponseSchema>;
-export type ClearVectorDatabaseResponse = z.infer<typeof clearVectorDatabaseResponseSchema>;
-export type GetVectorDatabaseInfoResponse = z.infer<typeof getVectorDatabaseInfoResponseSchema>;
-export type CreateVectorIndexResponse = z.infer<typeof createVectorIndexResponseSchema>; 

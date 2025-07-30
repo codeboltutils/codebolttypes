@@ -130,60 +130,6 @@ const projectStateSchema = z.object({
   version: z.number(),
 });
 
-// Response Schemas for state operations
-export const getApplicationStateResponseSchema = z.object({
-  success: z.boolean(),
-  state: applicationStateSchema,
-  timestamp: z.string(),
-});
-
-export const addToAgentStateResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  key: z.string(),
-  value: z.string(),
-  agentId: z.string(),
-});
-
-export const getAgentStateResponseSchema = z.object({
-  success: z.boolean(),
-  state: agentStateSchema,
-});
-
-export const updateAgentStateResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  key: z.string(),
-  value: z.string(),
-  agentId: z.string(),
-});
-
-export const deleteAgentStateResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  key: z.string(),
-  agentId: z.string(),
-});
-
-export const clearAgentStateResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  agentId: z.string(),
-  clearedKeys: z.array(z.string()),
-});
-
-export const getProjectStateResponseSchema = z.object({
-  success: z.boolean(),
-  state: projectStateSchema,
-});
-
-export const updateProjectStateResponseSchema = z.object({
-  success: z.boolean(),
-  message: z.string(),
-  key: z.string(),
-  value: z.any(),
-  projectId: z.string(),
-});
 
 // Inferred TypeScript types for events
 export type StateEventBase = z.infer<typeof stateEventBaseSchema>;
@@ -202,12 +148,3 @@ export type ApplicationState = z.infer<typeof applicationStateSchema>;
 export type AgentState = z.infer<typeof agentStateSchema>;
 export type ProjectState = z.infer<typeof projectStateSchema>;
 
-// Inferred TypeScript types for responses
-export type GetApplicationStateResponse = z.infer<typeof getApplicationStateResponseSchema>;
-export type AddToAgentStateResponse = z.infer<typeof addToAgentStateResponseSchema>;
-export type GetAgentStateResponse = z.infer<typeof getAgentStateResponseSchema>;
-export type UpdateAgentStateResponse = z.infer<typeof updateAgentStateResponseSchema>;
-export type DeleteAgentStateResponse = z.infer<typeof deleteAgentStateResponseSchema>;
-export type ClearAgentStateResponse = z.infer<typeof clearAgentStateResponseSchema>;
-export type GetProjectStateResponse = z.infer<typeof getProjectStateResponseSchema>;
-export type UpdateProjectStateResponse = z.infer<typeof updateProjectStateResponseSchema>; 
