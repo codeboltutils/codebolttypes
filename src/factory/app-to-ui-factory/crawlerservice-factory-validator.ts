@@ -13,8 +13,7 @@ import {
     crawlerMcpToolSuccessSchema,
     crawlerMcpToolExecutingSchema,
     crawlerMcpToolConfirmationSchema
-} from "../../../messagesSchemas/app-to-ui/crawlerServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/crawlerServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for CrawlerService Service Operations
@@ -27,7 +26,7 @@ import logger from "../../utils/logger";
 export const createCrawlerResponseFactory = (message: CrawlerResponse): CrawlerResponse => {
     const isValidMessage = crawlerResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CrawlerResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CrawlerResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -39,7 +38,7 @@ export const createCrawlerResponseFactory = (message: CrawlerResponse): CrawlerR
 export const createCrawlerMcpToolConfirmationFactory = (message: CrawlerMcpToolConfirmation): CrawlerMcpToolConfirmation => {
     const isValidMessage = crawlerMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CrawlerMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CrawlerMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -51,7 +50,7 @@ export const createCrawlerMcpToolConfirmationFactory = (message: CrawlerMcpToolC
 export const createCrawlerMcpToolExecutingFactory = (message: CrawlerMcpToolExecuting): CrawlerMcpToolExecuting => {
     const isValidMessage = crawlerMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CrawlerMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CrawlerMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -63,7 +62,7 @@ export const createCrawlerMcpToolExecutingFactory = (message: CrawlerMcpToolExec
 export const createCrawlerMcpToolSuccessFactory = (message: CrawlerMcpToolSuccess): CrawlerMcpToolSuccess => {
     const isValidMessage = crawlerMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CrawlerMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CrawlerMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -75,7 +74,7 @@ export const createCrawlerMcpToolSuccessFactory = (message: CrawlerMcpToolSucces
 export const createCrawlerMcpToolErrorFactory = (message: CrawlerMcpToolError): CrawlerMcpToolError => {
     const isValidMessage = crawlerMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CrawlerMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CrawlerMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -87,7 +86,7 @@ export const createCrawlerMcpToolErrorFactory = (message: CrawlerMcpToolError): 
 export const createCrawlerMcpToolRejectedFactory = (message: CrawlerMcpToolRejected): CrawlerMcpToolRejected => {
     const isValidMessage = crawlerMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CrawlerMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CrawlerMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -99,7 +98,7 @@ export const createCrawlerMcpToolRejectedFactory = (message: CrawlerMcpToolRejec
 export const createCrawlerServiceMessageFactory = (message: CrawlerServiceMessage): CrawlerServiceMessage => {
     const isValidMessage = crawlerServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CrawlerServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CrawlerServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -141,6 +140,6 @@ export const createCrawlerServiceFactory = (message: any) => {
         }
     }
 
-    logger.error(`No suitable crawlerService validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable crawlerService validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

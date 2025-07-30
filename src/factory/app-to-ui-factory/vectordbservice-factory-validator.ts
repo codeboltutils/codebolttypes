@@ -21,8 +21,7 @@ import {
     vectordbMcpToolErrorSchema,
     vectordbMcpToolRejectedSchema,
     vectordbServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/vectordbServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/vectordbServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for VectordbService Service Operations
@@ -35,7 +34,7 @@ import logger from "../../utils/logger";
 export const createAddVectorItemResponseFactory = (message: AddVectorItemResponse): AddVectorItemResponse => {
     const isValidMessage = addVectorItemResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AddVectorItemResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AddVectorItemResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -47,7 +46,7 @@ export const createAddVectorItemResponseFactory = (message: AddVectorItemRespons
 export const createGetVectorResponseFactory = (message: GetVectorResponse): GetVectorResponse => {
     const isValidMessage = getVectorResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetVectorResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetVectorResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -59,7 +58,7 @@ export const createGetVectorResponseFactory = (message: GetVectorResponse): GetV
 export const createQueryVectorItemResponseFactory = (message: QueryVectorItemResponse): QueryVectorItemResponse => {
     const isValidMessage = queryVectorItemResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid QueryVectorItemResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid QueryVectorItemResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -71,7 +70,7 @@ export const createQueryVectorItemResponseFactory = (message: QueryVectorItemRes
 export const createQueryVectorItemsResponseFactory = (message: QueryVectorItemsResponse): QueryVectorItemsResponse => {
     const isValidMessage = queryVectorItemsResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid QueryVectorItemsResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid QueryVectorItemsResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -83,7 +82,7 @@ export const createQueryVectorItemsResponseFactory = (message: QueryVectorItemsR
 export const createVectordbErrorResponseFactory = (message: VectordbErrorResponse): VectordbErrorResponse => {
     const isValidMessage = vectordbErrorResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid VectordbErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid VectordbErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -95,7 +94,7 @@ export const createVectordbErrorResponseFactory = (message: VectordbErrorRespons
 export const createVectordbMcpToolConfirmationFactory = (message: VectordbMcpToolConfirmation): VectordbMcpToolConfirmation => {
     const isValidMessage = vectordbMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid VectordbMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid VectordbMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -107,7 +106,7 @@ export const createVectordbMcpToolConfirmationFactory = (message: VectordbMcpToo
 export const createVectordbMcpToolExecutingFactory = (message: VectordbMcpToolExecuting): VectordbMcpToolExecuting => {
     const isValidMessage = vectordbMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid VectordbMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid VectordbMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -119,7 +118,7 @@ export const createVectordbMcpToolExecutingFactory = (message: VectordbMcpToolEx
 export const createVectordbMcpToolSuccessFactory = (message: VectordbMcpToolSuccess): VectordbMcpToolSuccess => {
     const isValidMessage = vectordbMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid VectordbMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid VectordbMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -131,7 +130,7 @@ export const createVectordbMcpToolSuccessFactory = (message: VectordbMcpToolSucc
 export const createVectordbMcpToolErrorFactory = (message: VectordbMcpToolError): VectordbMcpToolError => {
     const isValidMessage = vectordbMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid VectordbMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid VectordbMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -143,7 +142,7 @@ export const createVectordbMcpToolErrorFactory = (message: VectordbMcpToolError)
 export const createVectordbMcpToolRejectedFactory = (message: VectordbMcpToolRejected): VectordbMcpToolRejected => {
     const isValidMessage = vectordbMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid VectordbMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid VectordbMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -155,7 +154,7 @@ export const createVectordbMcpToolRejectedFactory = (message: VectordbMcpToolRej
 export const createVectordbServiceMessageFactory = (message: VectordbServiceMessage): VectordbServiceMessage => {
     const isValidMessage = vectordbServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid VectordbServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid VectordbServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -198,6 +197,6 @@ export const createVectordbServiceFactory = (message: any): VectordbServiceMessa
         }
     }
 
-    logger.error(`No suitable vectordbService validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable vectordbService validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

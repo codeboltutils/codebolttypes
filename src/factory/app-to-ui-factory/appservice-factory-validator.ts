@@ -13,8 +13,7 @@ import {
     appMcpToolSuccessSchema,
     appMcpToolExecutingSchema,
     appMcpToolConfirmationSchema
-} from "../../../messagesSchemas/app-to-ui/appServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/appServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for AppService Service Operations
@@ -27,7 +26,7 @@ import logger from "../../utils/logger";
 export const createGetAppStateResponseFactory = (message: GetAppStateResponse): GetAppStateResponse => {
     const isValidMessage = getAppStateResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetAppStateResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetAppStateResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -39,7 +38,7 @@ export const createGetAppStateResponseFactory = (message: GetAppStateResponse): 
 export const createAppMcpToolConfirmationFactory = (message: AppMcpToolConfirmation): AppMcpToolConfirmation => {
     const isValidMessage = appMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AppMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AppMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -51,7 +50,7 @@ export const createAppMcpToolConfirmationFactory = (message: AppMcpToolConfirmat
 export const createAppMcpToolExecutingFactory = (message: AppMcpToolExecuting): AppMcpToolExecuting => {
     const isValidMessage = appMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AppMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AppMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -63,7 +62,7 @@ export const createAppMcpToolExecutingFactory = (message: AppMcpToolExecuting): 
 export const createAppMcpToolSuccessFactory = (message: AppMcpToolSuccess): AppMcpToolSuccess => {
     const isValidMessage = appMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AppMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AppMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -75,7 +74,7 @@ export const createAppMcpToolSuccessFactory = (message: AppMcpToolSuccess): AppM
 export const createAppMcpToolErrorFactory = (message: AppMcpToolError): AppMcpToolError => {
     const isValidMessage = appMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AppMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AppMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -87,7 +86,7 @@ export const createAppMcpToolErrorFactory = (message: AppMcpToolError): AppMcpTo
 export const createAppMcpToolRejectedFactory = (message: AppMcpToolRejected): AppMcpToolRejected => {
     const isValidMessage = appMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AppMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AppMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -100,7 +99,7 @@ export const createAppMcpToolRejectedFactory = (message: AppMcpToolRejected): Ap
 export const createAppServiceMessageFactory = (message: AppServiceMessage): AppServiceMessage => {
     const isValidMessage = appServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AppServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AppServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -140,6 +139,6 @@ export const createAppServiceFactory = (message: any) => {
         }
     }
 
-    logger.error(`No suitable appService validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable appService validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

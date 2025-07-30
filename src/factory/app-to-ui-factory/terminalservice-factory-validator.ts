@@ -29,8 +29,7 @@ import {
     terminalMcpToolErrorSchema,
     terminalMcpToolRejectedSchema,
     terminalServiceSchema
-} from "../../../messagesSchemas/app-to-ui/terminalServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/terminalServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for Terminal Service Operations
@@ -43,7 +42,7 @@ import logger from "../../utils/logger";
 export const createExecuteCommandResponseFactory = (message: ExecuteCommandResponse): ExecuteCommandResponse => {
     const isValidMessage = executeCommandResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ExecuteCommandResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ExecuteCommandResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -55,7 +54,7 @@ export const createExecuteCommandResponseFactory = (message: ExecuteCommandRespo
 export const createExecuteCommandRunUntilInterruptResponseFactory = (message: ExecuteCommandRunUntilInterruptResponse): ExecuteCommandRunUntilInterruptResponse => {
     const isValidMessage = executeCommandRunUntilInterruptResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ExecuteCommandRunUntilInterruptResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ExecuteCommandRunUntilInterruptResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -67,7 +66,7 @@ export const createExecuteCommandRunUntilInterruptResponseFactory = (message: Ex
 export const createExecuteCommandRunUntilErrorResponseFactory = (message: ExecuteCommandRunUntilErrorResponse): ExecuteCommandRunUntilErrorResponse => {
     const isValidMessage = executeCommandRunUntilErrorResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ExecuteCommandRunUntilErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ExecuteCommandRunUntilErrorResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -79,7 +78,7 @@ export const createExecuteCommandRunUntilErrorResponseFactory = (message: Execut
 export const createExecuteCommandWithStreamResponseFactory = (message: ExecuteCommandWithStreamResponse): ExecuteCommandWithStreamResponse => {
     const isValidMessage = executeCommandWithStreamResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ExecuteCommandWithStreamResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ExecuteCommandWithStreamResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -91,7 +90,7 @@ export const createExecuteCommandWithStreamResponseFactory = (message: ExecuteCo
 export const createSendInterruptToTerminalResponseFactory = (message: SendInterruptToTerminalResponse): SendInterruptToTerminalResponse => {
     const isValidMessage = sendInterruptToTerminalResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid SendInterruptToTerminalResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid SendInterruptToTerminalResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -103,7 +102,7 @@ export const createSendInterruptToTerminalResponseFactory = (message: SendInterr
 export const createGetTerminalStatusResponseFactory = (message: GetTerminalStatusResponse): GetTerminalStatusResponse => {
     const isValidMessage = getTerminalStatusResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetTerminalStatusResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetTerminalStatusResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -115,7 +114,7 @@ export const createGetTerminalStatusResponseFactory = (message: GetTerminalStatu
 export const createSetTerminalDirectoryResponseFactory = (message: SetTerminalDirectoryResponse): SetTerminalDirectoryResponse => {
     const isValidMessage = setTerminalDirectoryResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid SetTerminalDirectoryResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid SetTerminalDirectoryResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -127,7 +126,7 @@ export const createSetTerminalDirectoryResponseFactory = (message: SetTerminalDi
 export const createGetTerminalHistoryResponseFactory = (message: GetTerminalHistoryResponse): GetTerminalHistoryResponse => {
     const isValidMessage = getTerminalHistoryResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetTerminalHistoryResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetTerminalHistoryResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -139,7 +138,7 @@ export const createGetTerminalHistoryResponseFactory = (message: GetTerminalHist
 export const createClearTerminalResponseFactory = (message: ClearTerminalResponse): ClearTerminalResponse => {
     const isValidMessage = clearTerminalResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ClearTerminalResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ClearTerminalResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -151,7 +150,7 @@ export const createClearTerminalResponseFactory = (message: ClearTerminalRespons
 export const createTerminalMcpToolConfirmationFactory = (message: TerminalMcpToolConfirmation): TerminalMcpToolConfirmation => {
     const isValidMessage = terminalMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TerminalMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TerminalMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -163,7 +162,7 @@ export const createTerminalMcpToolConfirmationFactory = (message: TerminalMcpToo
 export const createTerminalMcpToolExecutingFactory = (message: TerminalMcpToolExecuting): TerminalMcpToolExecuting => {
     const isValidMessage = terminalMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TerminalMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TerminalMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -175,7 +174,7 @@ export const createTerminalMcpToolExecutingFactory = (message: TerminalMcpToolEx
 export const createTerminalMcpToolSuccessFactory = (message: TerminalMcpToolSuccess): TerminalMcpToolSuccess => {
     const isValidMessage = terminalMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TerminalMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TerminalMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -187,7 +186,7 @@ export const createTerminalMcpToolSuccessFactory = (message: TerminalMcpToolSucc
 export const createTerminalMcpToolErrorFactory = (message: TerminalMcpToolError): TerminalMcpToolError => {
     const isValidMessage = terminalMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TerminalMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TerminalMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -199,7 +198,7 @@ export const createTerminalMcpToolErrorFactory = (message: TerminalMcpToolError)
 export const createTerminalMcpToolRejectedFactory = (message: TerminalMcpToolRejected): TerminalMcpToolRejected => {
     const isValidMessage = terminalMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TerminalMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TerminalMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -211,7 +210,7 @@ export const createTerminalMcpToolRejectedFactory = (message: TerminalMcpToolRej
 export const createTerminalServiceMessageFactory = (message: TerminalService): TerminalService => {
     const isValidMessage = terminalServiceSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TerminalService format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TerminalService format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -255,7 +254,7 @@ export const createTerminalServiceFactory = (message: any): TerminalService => {
             }
         }
 
-        logger.error(`No suitable terminal service validator found for message: ${JSON.stringify(message)}`);
+        console.log(`No suitable terminal service validator found for message: ${JSON.stringify(message)}`);
         return message as TerminalService;
     }
 };

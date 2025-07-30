@@ -15,8 +15,7 @@ import {
     debugMcpToolExecutingSchema,
     debugMcpToolConfirmationSchema,
     debugMcpToolRejectedSchema
-} from "../../../messagesSchemas/app-to-ui/debugServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/debugServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for DebugService Service Operations
@@ -29,7 +28,7 @@ import logger from "../../utils/logger";
 export const createDebugAddLogResponseFactory = (message: DebugAddLogResponse): DebugAddLogResponse => {
     const isValidMessage = debugAddLogResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid DebugAddLogResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid DebugAddLogResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -41,7 +40,7 @@ export const createDebugAddLogResponseFactory = (message: DebugAddLogResponse): 
 export const createOpenDebugBrowserResponseFactory = (message: OpenDebugBrowserResponse): OpenDebugBrowserResponse => {
     const isValidMessage = openDebugBrowserResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid OpenDebugBrowserResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid OpenDebugBrowserResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -53,7 +52,7 @@ export const createOpenDebugBrowserResponseFactory = (message: OpenDebugBrowserR
 export const createDebugMcpToolConfirmationFactory = (message: DebugMcpToolConfirmation): DebugMcpToolConfirmation => {
     const isValidMessage = debugMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid DebugMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid DebugMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -65,7 +64,7 @@ export const createDebugMcpToolConfirmationFactory = (message: DebugMcpToolConfi
 export const createDebugMcpToolExecutingFactory = (message: DebugMcpToolExecuting): DebugMcpToolExecuting => {
     const isValidMessage = debugMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid DebugMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid DebugMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -77,7 +76,7 @@ export const createDebugMcpToolExecutingFactory = (message: DebugMcpToolExecutin
 export const createDebugMcpToolSuccessFactory = (message: DebugMcpToolSuccess): DebugMcpToolSuccess => {
     const isValidMessage = debugMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid DebugMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid DebugMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -89,7 +88,7 @@ export const createDebugMcpToolSuccessFactory = (message: DebugMcpToolSuccess): 
 export const createDebugMcpToolErrorFactory = (message: DebugMcpToolError): DebugMcpToolError => {
     const isValidMessage = debugMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid DebugMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid DebugMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -101,7 +100,7 @@ export const createDebugMcpToolErrorFactory = (message: DebugMcpToolError): Debu
 export const createDebugMcpToolRejectedFactory = (message: DebugMcpToolRejected): DebugMcpToolRejected => {
     const isValidMessage = debugMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid DebugMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid DebugMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -113,7 +112,7 @@ export const createDebugMcpToolRejectedFactory = (message: DebugMcpToolRejected)
 export const createDebugServiceMessageFactory = (message: DebugServiceMessage): DebugServiceMessage => {
     const isValidMessage = debugServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid DebugServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid DebugServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -150,7 +149,7 @@ export const createDebugServiceFactory = (message: any): DebugServiceMessage => 
             }
         }
 
-        logger.error(`No suitable debugService validator found for message: ${JSON.stringify(message)}`);
+        console.log(`No suitable debugService validator found for message: ${JSON.stringify(message)}`);
         return message as DebugServiceMessage;
     }
 };

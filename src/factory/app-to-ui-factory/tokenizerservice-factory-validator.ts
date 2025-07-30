@@ -15,8 +15,7 @@ import {
     tokenizerMcpToolSuccessSchema,
     tokenizerMcpToolExecutingSchema,
     tokenizerMcpToolConfirmationSchema
-} from "../../../messagesSchemas/app-to-ui/tokenizerServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/tokenizerServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for TokenizerService Service Operations
@@ -29,7 +28,7 @@ import logger from "../../utils/logger";
 export const createAddTokenResponseFactory = (message: AddTokenResponse): AddTokenResponse => {
     const isValidMessage = addTokenResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AddTokenResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AddTokenResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -41,7 +40,7 @@ export const createAddTokenResponseFactory = (message: AddTokenResponse): AddTok
 export const createGetTokenResponseFactory = (message: GetTokenResponse): GetTokenResponse => {
     const isValidMessage = getTokenResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetTokenResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetTokenResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -53,7 +52,7 @@ export const createGetTokenResponseFactory = (message: GetTokenResponse): GetTok
 export const createTokenizerMcpToolConfirmationFactory = (message: TokenizerMcpToolConfirmation): TokenizerMcpToolConfirmation => {
     const isValidMessage = tokenizerMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TokenizerMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TokenizerMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -65,7 +64,7 @@ export const createTokenizerMcpToolConfirmationFactory = (message: TokenizerMcpT
 export const createTokenizerMcpToolExecutingFactory = (message: TokenizerMcpToolExecuting): TokenizerMcpToolExecuting => {
     const isValidMessage = tokenizerMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TokenizerMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TokenizerMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -77,7 +76,7 @@ export const createTokenizerMcpToolExecutingFactory = (message: TokenizerMcpTool
 export const createTokenizerMcpToolSuccessFactory = (message: TokenizerMcpToolSuccess): TokenizerMcpToolSuccess => {
     const isValidMessage = tokenizerMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TokenizerMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TokenizerMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -89,7 +88,7 @@ export const createTokenizerMcpToolSuccessFactory = (message: TokenizerMcpToolSu
 export const createTokenizerMcpToolErrorFactory = (message: TokenizerMcpToolError): TokenizerMcpToolError => {
     const isValidMessage = tokenizerMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TokenizerMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TokenizerMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -101,7 +100,7 @@ export const createTokenizerMcpToolErrorFactory = (message: TokenizerMcpToolErro
 export const createTokenizerMcpToolRejectedFactory = (message: TokenizerMcpToolRejected): TokenizerMcpToolRejected => {
     const isValidMessage = tokenizerMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TokenizerMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TokenizerMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -115,7 +114,7 @@ export const createTokenizerMcpToolRejectedFactory = (message: TokenizerMcpToolR
 export const createTokenizerServiceMessageFactory = (message: TokenizerServiceMessage): TokenizerServiceMessage => {
     const isValidMessage = tokenizerServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid TokenizerServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid TokenizerServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -156,6 +155,6 @@ export const createTokenizerServiceFactory = (message: any) => {
         }
     }
 
-    logger.error(`No suitable tokenizerService validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable tokenizerService validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

@@ -27,8 +27,7 @@ import {
     codeViewInEditorSchema,
     codeConfirmationSchema,
     allCoreMessagesSchema
-} from "../../../messagesSchemas/app-to-ui/coreMessageSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/coreMessageSchemas";
 
 /**
  * Comprehensive Factory Validators for Core Message Operations
@@ -41,7 +40,7 @@ import logger from "../../utils/logger";
 export const createBaseMessageFactory = (message: BaseMessage): BaseMessage => {
     const isValidMessage = baseMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid BaseMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid BaseMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -50,7 +49,7 @@ export const createBaseMessageFactory = (message: BaseMessage): BaseMessage => {
 export const createButtonOptionFactory = (message: ButtonOption): ButtonOption => {
     const isValidMessage = buttonOptionSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ButtonOption format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ButtonOption format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -59,7 +58,7 @@ export const createButtonOptionFactory = (message: ButtonOption): ButtonOption =
 export const createMessagePayloadFactory = (message: MessagePayload): MessagePayload => {
     const isValidMessage = messagePayloadSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MessagePayload format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MessagePayload format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -68,7 +67,7 @@ export const createMessagePayloadFactory = (message: MessagePayload): MessagePay
 export const createMessageDataFactory = (message: MessageData): MessageData => {
     const isValidMessage = messageDataSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MessageData format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MessageData format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -80,7 +79,7 @@ export const createMessageDataFactory = (message: MessageData): MessageData => {
 export const createCoreMessageFactory = (message: CoreMessage): CoreMessage => {
     const isValidMessage = coreMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CoreMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CoreMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -89,7 +88,7 @@ export const createCoreMessageFactory = (message: CoreMessage): CoreMessage => {
 export const createSendMessageFactory = (message: SendMessage): SendMessage => {
     const isValidMessage = sendMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid SendMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid SendMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -98,7 +97,7 @@ export const createSendMessageFactory = (message: SendMessage): SendMessage => {
 export const createProcessStartedFactory = (message: ProcessStarted): ProcessStarted => {
     const isValidMessage = processStartedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProcessStarted format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProcessStarted format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -107,7 +106,7 @@ export const createProcessStartedFactory = (message: ProcessStarted): ProcessSta
 export const createProcessStoppedFactory = (message: ProcessStopped): ProcessStopped => {
     const isValidMessage = processStoppedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProcessStopped format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProcessStopped format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -116,7 +115,7 @@ export const createProcessStoppedFactory = (message: ProcessStopped): ProcessSto
 export const createWaitForReplyFactory = (message: WaitForReply): WaitForReply => {
     const isValidMessage = waitForReplySchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid WaitForReply format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid WaitForReply format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -125,7 +124,7 @@ export const createWaitForReplyFactory = (message: WaitForReply): WaitForReply =
 export const createConfirmationRequestFactory = (message: ConfirmationRequest): ConfirmationRequest => {
     const isValidMessage = confirmationRequestSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ConfirmationRequest format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ConfirmationRequest format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -134,7 +133,7 @@ export const createConfirmationRequestFactory = (message: ConfirmationRequest): 
 export const createInfoWithLinkFactory = (message: InfoWithLink): InfoWithLink => {
     const isValidMessage = infoWithLinkSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid InfoWithLink format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid InfoWithLink format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -143,7 +142,7 @@ export const createInfoWithLinkFactory = (message: InfoWithLink): InfoWithLink =
 export const createCodeViewInEditorFactory = (message: CodeViewInEditor): CodeViewInEditor => {
     const isValidMessage = codeViewInEditorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeViewInEditor format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeViewInEditor format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -152,7 +151,7 @@ export const createCodeViewInEditorFactory = (message: CodeViewInEditor): CodeVi
 export const createCodeConfirmationFactory = (message: CodeConfirmation): CodeConfirmation => {
     const isValidMessage = codeConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -164,7 +163,7 @@ export const createCodeConfirmationFactory = (message: CodeConfirmation): CodeCo
 export const createAllCoreMessagesFactory = (message: AllCoreMessages): AllCoreMessages => {
     const isValidMessage = allCoreMessagesSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AllCoreMessages format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AllCoreMessages format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -203,7 +202,7 @@ export const createCoreFactory = (message: any): AllCoreMessages => {
             }
         }
 
-        logger.error(`No suitable core message validator found for message: ${JSON.stringify(message)}`);
+        console.log(`No suitable core message validator found for message: ${JSON.stringify(message)}`);
         return message as AllCoreMessages;
     }
 }; 

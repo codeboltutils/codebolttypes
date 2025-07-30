@@ -5,8 +5,7 @@ import {
     getAgentStateResponseSchema,
     addToAgentStateResponseSchema,
     stateServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/stateServiceSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/stateServiceSchemas";
 
 /**
  * Comprehensive Factory Validators for StateService Service Operations
@@ -19,7 +18,7 @@ import logger from "../../utils/logger";
 export const createGetAgentStateResponseFactory = (message: GetAgentStateResponse): GetAgentStateResponse => {
     const isValidMessage = getAgentStateResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetAgentStateResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetAgentStateResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -31,7 +30,7 @@ export const createGetAgentStateResponseFactory = (message: GetAgentStateRespons
 export const createAddToAgentStateResponseFactory = (message: AddToAgentStateResponse): AddToAgentStateResponse => {
     const isValidMessage = addToAgentStateResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AddToAgentStateResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AddToAgentStateResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -43,7 +42,7 @@ export const createAddToAgentStateResponseFactory = (message: AddToAgentStateRes
 export const createStateServiceMessageFactory = (message: StateServiceMessage): StateServiceMessage => {
     const isValidMessage = stateServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid StateServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid StateServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -81,6 +80,6 @@ export const createStateServiceFactory = (message: any) => {
         }
     }
 
-    logger.error(`No suitable stateService validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable stateService validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

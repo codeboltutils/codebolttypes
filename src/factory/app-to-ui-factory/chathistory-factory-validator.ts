@@ -17,8 +17,7 @@ import {
     chatHistoryMcpToolErrorSchema,
     chatHistoryMcpToolRejectedSchema,
     chatHistoryServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/chatHistorySchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/chatHistorySchemas";
 
 /**
  * Comprehensive Factory Validators for ChatHistory Service Operations
@@ -31,7 +30,7 @@ import logger from "../../utils/logger";
 export const createGetSummarizeAllResponseFactory = (message: GetSummarizeAllResponse): GetSummarizeAllResponse => {
     const isValidMessage = getSummarizeAllResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetSummarizeAllResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetSummarizeAllResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -43,7 +42,7 @@ export const createGetSummarizeAllResponseFactory = (message: GetSummarizeAllRes
 export const createGetSummarizeResponseFactory = (message: GetSummarizeResponse): GetSummarizeResponse => {
     const isValidMessage = getSummarizeResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetSummarizeResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetSummarizeResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -55,7 +54,7 @@ export const createGetSummarizeResponseFactory = (message: GetSummarizeResponse)
 export const createGetChatHistoryResponseFactory = (message: GetChatHistoryResponse): GetChatHistoryResponse => {
     const isValidMessage = getChatHistoryResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetChatHistoryResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetChatHistoryResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -67,7 +66,7 @@ export const createGetChatHistoryResponseFactory = (message: GetChatHistoryRespo
 export const createChatHistoryMcpToolConfirmationFactory = (message: ChatHistoryMcpToolConfirmation): ChatHistoryMcpToolConfirmation => {
     const isValidMessage = chatHistoryMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ChatHistoryMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ChatHistoryMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -79,7 +78,7 @@ export const createChatHistoryMcpToolConfirmationFactory = (message: ChatHistory
 export const createChatHistoryMcpToolExecutingFactory = (message: ChatHistoryMcpToolExecuting): ChatHistoryMcpToolExecuting => {
     const isValidMessage = chatHistoryMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ChatHistoryMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ChatHistoryMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -91,7 +90,7 @@ export const createChatHistoryMcpToolExecutingFactory = (message: ChatHistoryMcp
 export const createChatHistoryMcpToolSuccessFactory = (message: ChatHistoryMcpToolSuccess): ChatHistoryMcpToolSuccess => {
     const isValidMessage = chatHistoryMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ChatHistoryMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ChatHistoryMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -103,7 +102,7 @@ export const createChatHistoryMcpToolSuccessFactory = (message: ChatHistoryMcpTo
 export const createChatHistoryMcpToolErrorFactory = (message: ChatHistoryMcpToolError): ChatHistoryMcpToolError => {
     const isValidMessage = chatHistoryMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ChatHistoryMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ChatHistoryMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -115,7 +114,7 @@ export const createChatHistoryMcpToolErrorFactory = (message: ChatHistoryMcpTool
 export const createChatHistoryMcpToolRejectedFactory = (message: ChatHistoryMcpToolRejected): ChatHistoryMcpToolRejected => {
     const isValidMessage = chatHistoryMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ChatHistoryMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ChatHistoryMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -127,7 +126,7 @@ export const createChatHistoryMcpToolRejectedFactory = (message: ChatHistoryMcpT
 export const createChatHistoryServiceMessageFactory = (message: ChatHistoryServiceMessage): ChatHistoryServiceMessage => {
     const isValidMessage = chatHistoryServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ChatHistoryServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ChatHistoryServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -165,7 +164,7 @@ export const createChatHistoryFactory = (message: any): ChatHistoryServiceMessag
             }
         }
 
-        logger.error(`No suitable chatHistory validator found for message: ${JSON.stringify(message)}`);
+        console.log(`No suitable chatHistory validator found for message: ${JSON.stringify(message)}`);
         return message as ChatHistoryServiceMessage;
     }
 };

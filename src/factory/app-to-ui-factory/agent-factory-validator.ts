@@ -29,8 +29,7 @@ import {
     agentHeartbeatSchema,
     agentLogSchema,
     agentMessageSchema
-} from "../../../messagesSchemas/app-to-ui/agentMessageSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/agentMessageSchemas";
 
 /**
  * Comprehensive Factory Validators for Agent Service Operations
@@ -43,7 +42,7 @@ import logger from "../../utils/logger";
 export const createAgentMcpToolConfirmationFactory = (message: AgentMcpToolConfirmation): AgentMcpToolConfirmation => {
     const isValidMessage = agentMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -52,7 +51,7 @@ export const createAgentMcpToolConfirmationFactory = (message: AgentMcpToolConfi
 export const createAgentMcpToolExecutingFactory = (message: AgentMcpToolExecuting): AgentMcpToolExecuting => {
     const isValidMessage = agentMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -61,7 +60,7 @@ export const createAgentMcpToolExecutingFactory = (message: AgentMcpToolExecutin
 export const createAgentMcpToolSuccessFactory = (message: AgentMcpToolSuccess): AgentMcpToolSuccess => {
     const isValidMessage = agentMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -70,7 +69,7 @@ export const createAgentMcpToolSuccessFactory = (message: AgentMcpToolSuccess): 
 export const createAgentMcpToolErrorFactory = (message: AgentMcpToolError): AgentMcpToolError => {
     const isValidMessage = agentMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -79,7 +78,7 @@ export const createAgentMcpToolErrorFactory = (message: AgentMcpToolError): Agen
 export const createAgentMcpToolRejectedFactory = (message: AgentMcpToolRejected): AgentMcpToolRejected => {
     const isValidMessage = agentMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -91,7 +90,7 @@ export const createAgentMcpToolRejectedFactory = (message: AgentMcpToolRejected)
 export const createAgentStatusUpdateFactory = (message: AgentStatusUpdate): AgentStatusUpdate => {
     const isValidMessage = agentStatusUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentStatusUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentStatusUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -103,7 +102,7 @@ export const createAgentStatusUpdateFactory = (message: AgentStatusUpdate): Agen
 export const createAgentTaskUpdateFactory = (message: AgentTaskUpdate): AgentTaskUpdate => {
     const isValidMessage = agentTaskUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentTaskUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentTaskUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -115,7 +114,7 @@ export const createAgentTaskUpdateFactory = (message: AgentTaskUpdate): AgentTas
 export const createAgentProgressUpdateFactory = (message: AgentProgressUpdate): AgentProgressUpdate => {
     const isValidMessage = agentProgressUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentProgressUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentProgressUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -127,7 +126,7 @@ export const createAgentProgressUpdateFactory = (message: AgentProgressUpdate): 
 export const createAgentErrorFactory = (message: AgentError): AgentError => {
     const isValidMessage = agentErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -139,7 +138,7 @@ export const createAgentErrorFactory = (message: AgentError): AgentError => {
 export const createAgentResourceUpdateFactory = (message: AgentResourceUpdate): AgentResourceUpdate => {
     const isValidMessage = agentResourceUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentResourceUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentResourceUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -151,7 +150,7 @@ export const createAgentResourceUpdateFactory = (message: AgentResourceUpdate): 
 export const createAgentCommunicationFactory = (message: AgentCommunication): AgentCommunication => {
     const isValidMessage = agentCommunicationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentCommunication format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentCommunication format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -163,7 +162,7 @@ export const createAgentCommunicationFactory = (message: AgentCommunication): Ag
 export const createAgentCapabilityUpdateFactory = (message: AgentCapabilityUpdate): AgentCapabilityUpdate => {
     const isValidMessage = agentCapabilityUpdateSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentCapabilityUpdate format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentCapabilityUpdate format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -175,7 +174,7 @@ export const createAgentCapabilityUpdateFactory = (message: AgentCapabilityUpdat
 export const createAgentHeartbeatFactory = (message: AgentHeartbeat): AgentHeartbeat => {
     const isValidMessage = agentHeartbeatSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentHeartbeat format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentHeartbeat format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -187,7 +186,7 @@ export const createAgentHeartbeatFactory = (message: AgentHeartbeat): AgentHeart
 export const createAgentLogFactory = (message: AgentLog): AgentLog => {
     const isValidMessage = agentLogSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentLog format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentLog format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -199,7 +198,7 @@ export const createAgentLogFactory = (message: AgentLog): AgentLog => {
 export const createAgentMessageFactory = (message: AgentMessage): AgentMessage => {
     const isValidMessage = agentMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid AgentMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid AgentMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -246,6 +245,6 @@ export const createAgentFactory = (message: any): AgentMessage => {
         }
     }
 
-    logger.error(`No suitable agent validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable agent validator found for message: ${JSON.stringify(message)}`);
     return message;
 }; 

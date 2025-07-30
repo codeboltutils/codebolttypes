@@ -3,6 +3,17 @@
   "version": "1.0.10",
   "description": "",
   "main": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.d.ts",
+    "./agent-to-app-ws-schema": "./dist/agent-to-app-ws-schema.d.ts",
+    "./agent-to-app-ws-types": "./dist/agent-to-app-ws-types.d.ts",
+    "./app-to-agent-ws-schema": "./dist/app-to-agent-ws-schema.d.ts",
+    "./app-to-agent-ws-types": "./dist/app-to-agent-ws-types.d.ts",
+    "./ui-to-app-ws-schema": "./dist/ui-to-app-ws-schema.d.ts",
+    "./ui-to-app-ws-types": "./dist/ui-to-app-ws-types.d.ts",
+    "./app-to-ui-ws-schema": "./dist/app-to-ui-ws-schema.d.ts",
+    "./app-to-ui-ws-types": "./dist/app-to-ui-ws-types.d.ts"
+  },
   "scripts": {
     "build": "tsc"
   },

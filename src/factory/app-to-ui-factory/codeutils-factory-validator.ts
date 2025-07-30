@@ -12,8 +12,7 @@ import {
     getMatcherListTreeResponseSchema,
     getMatchDetailResponseSchema,
     codeUtilsServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/codeUtilsSchemas";
-import logger from "../../utils/logger";
+} from "../../wstypes/app-to-ui-ws/codeUtilsSchemas";
 
 /**
  * Comprehensive Factory Validators for CodeUtils Service Operations
@@ -26,7 +25,7 @@ import logger from "../../utils/logger";
 export const createGetAllFilesMarkdownResponseFactory = (message: GetAllFilesMarkdownResponse): PLACEHOLDER => {
     const isValidMessage = getAllFilesMarkdownResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetAllFilesMarkdownResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetAllFilesMarkdownResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -38,7 +37,7 @@ export const createGetAllFilesMarkdownResponseFactory = (message: GetAllFilesMar
 export const createGetMatcherListTreeResponseFactory = (message: GetMatcherListTreeResponse): PLACEHOLDER => {
     const isValidMessage = getMatcherListTreeResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetMatcherListTreeResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetMatcherListTreeResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -50,7 +49,7 @@ export const createGetMatcherListTreeResponseFactory = (message: GetMatcherListT
 export const createGetMatchDetailResponseFactory = (message: GetMatchDetailResponse): PLACEHOLDER => {
     const isValidMessage = getMatchDetailResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid GetMatchDetailResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid GetMatchDetailResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -62,7 +61,7 @@ export const createGetMatchDetailResponseFactory = (message: GetMatchDetailRespo
 export const createCodeUtilsMcpToolConfirmationFactory = (message: CodeUtilsMcpToolConfirmation): PLACEHOLDER => {
     const isValidMessage = codeUtilsMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeUtilsMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeUtilsMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -74,7 +73,7 @@ export const createCodeUtilsMcpToolConfirmationFactory = (message: CodeUtilsMcpT
 export const createCodeUtilsMcpToolExecutingFactory = (message: CodeUtilsMcpToolExecuting): PLACEHOLDER => {
     const isValidMessage = codeUtilsMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeUtilsMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeUtilsMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -86,7 +85,7 @@ export const createCodeUtilsMcpToolExecutingFactory = (message: CodeUtilsMcpTool
 export const createCodeUtilsMcpToolSuccessFactory = (message: CodeUtilsMcpToolSuccess): PLACEHOLDER => {
     const isValidMessage = codeUtilsMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeUtilsMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeUtilsMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -98,7 +97,7 @@ export const createCodeUtilsMcpToolSuccessFactory = (message: CodeUtilsMcpToolSu
 export const createCodeUtilsMcpToolErrorFactory = (message: CodeUtilsMcpToolError): PLACEHOLDER => {
     const isValidMessage = codeUtilsMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeUtilsMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeUtilsMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -110,7 +109,7 @@ export const createCodeUtilsMcpToolErrorFactory = (message: CodeUtilsMcpToolErro
 export const createCodeUtilsMcpToolRejectedFactory = (message: CodeUtilsMcpToolRejected): PLACEHOLDER => {
     const isValidMessage = codeUtilsMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeUtilsMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeUtilsMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -122,7 +121,7 @@ export const createCodeUtilsMcpToolRejectedFactory = (message: CodeUtilsMcpToolR
 export const createCodeUtilsServiceMessageFactory = (message: CodeUtilsServiceMessage): PLACEHOLDER => {
     const isValidMessage = codeUtilsServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeUtilsServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeUtilsServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -134,7 +133,7 @@ export const createCodeUtilsServiceMessageFactory = (message: CodeUtilsServiceMe
 export const createCodeUtilsMessageFactory = (message: CodeUtilsServiceMessage): PLACEHOLDER => {
     const isValidMessage = codeUtilsServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid CodeUtilsServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid CodeUtilsServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -176,6 +175,6 @@ export const createCodeUtilsFactory = (message: any): PLACEHOLDER => {
         }
     }
 
-    logger.error(`No suitable codeUtils validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable codeUtils validator found for message: ${JSON.stringify(message)}`);
     return message;
 };

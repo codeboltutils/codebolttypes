@@ -7,9 +7,13 @@ import {
     ProblemMatcherMcpToolRejected,
     ProblemMatcherServiceMessage,
     matchProblemResponseSchema,
-    problemMatcherServiceMessageSchema
-} from "../../../messagesSchemas/app-to-ui/problemMatcherSchemas";
-import logger from "../../utils/logger";
+    problemMatcherServiceMessageSchema,
+    problemMatcherMcpToolConfirmationSchema,
+    problemMatcherMcpToolSuccessSchema,
+    problemMatcherMcpToolErrorSchema,
+    problemMatcherMcpToolRejectedSchema
+} from "../../wstypes/app-to-ui-ws/problemMatcherSchemas";
+import { problemMatcherMcpToolExecutingSchema } from "../../wstypes/ui-to-app-ws/problemMatcherSchemas";
 
 /**
  * Comprehensive Factory Validators for ProblemMatcher Service Operations
@@ -22,7 +26,7 @@ import logger from "../../utils/logger";
 export const createMatchProblemResponseFactory = (message: MatchProblemResponse): PLACEHOLDER => {
     const isValidMessage = matchProblemResponseSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid MatchProblemResponse format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid MatchProblemResponse format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -34,7 +38,7 @@ export const createMatchProblemResponseFactory = (message: MatchProblemResponse)
 export const createProblemMatcherMcpToolConfirmationFactory = (message: ProblemMatcherMcpToolConfirmation): PLACEHOLDER => {
     const isValidMessage = problemMatcherMcpToolConfirmationSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProblemMatcherMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProblemMatcherMcpToolConfirmation format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -46,7 +50,7 @@ export const createProblemMatcherMcpToolConfirmationFactory = (message: ProblemM
 export const createProblemMatcherMcpToolExecutingFactory = (message: ProblemMatcherMcpToolExecuting): PLACEHOLDER => {
     const isValidMessage = problemMatcherMcpToolExecutingSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProblemMatcherMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProblemMatcherMcpToolExecuting format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -58,7 +62,7 @@ export const createProblemMatcherMcpToolExecutingFactory = (message: ProblemMatc
 export const createProblemMatcherMcpToolSuccessFactory = (message: ProblemMatcherMcpToolSuccess): PLACEHOLDER => {
     const isValidMessage = problemMatcherMcpToolSuccessSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProblemMatcherMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProblemMatcherMcpToolSuccess format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -70,7 +74,7 @@ export const createProblemMatcherMcpToolSuccessFactory = (message: ProblemMatche
 export const createProblemMatcherMcpToolErrorFactory = (message: ProblemMatcherMcpToolError): PLACEHOLDER => {
     const isValidMessage = problemMatcherMcpToolErrorSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProblemMatcherMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProblemMatcherMcpToolError format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -82,7 +86,7 @@ export const createProblemMatcherMcpToolErrorFactory = (message: ProblemMatcherM
 export const createProblemMatcherMcpToolRejectedFactory = (message: ProblemMatcherMcpToolRejected): PLACEHOLDER => {
     const isValidMessage = problemMatcherMcpToolRejectedSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProblemMatcherMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProblemMatcherMcpToolRejected format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -94,7 +98,7 @@ export const createProblemMatcherMcpToolRejectedFactory = (message: ProblemMatch
 export const createProblemMatcherServiceMessageFactory = (message: ProblemMatcherServiceMessage): PLACEHOLDER => {
     const isValidMessage = problemMatcherServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProblemMatcherServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProblemMatcherServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -106,7 +110,7 @@ export const createProblemMatcherServiceMessageFactory = (message: ProblemMatche
 export const createProblemMatcherMessageFactory = (message: ProblemMatcherServiceMessage): PLACEHOLDER => {
     const isValidMessage = problemMatcherServiceMessageSchema.safeParse(message);
     if (!isValidMessage.success) {
-        logger.error(`Invalid ProblemMatcherServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
+        console.log(`Invalid ProblemMatcherServiceMessage format: ${JSON.stringify(isValidMessage.error)}`);
         return message;
     }
     return isValidMessage.data;
@@ -116,7 +120,7 @@ export const createProblemMatcherMessageFactory = (message: ProblemMatcherServic
  * Comprehensive ProblemMatcher Factory Validator
  * Automatically determines the correct validator based on message structure
  */
-export const createProblemMatcherFactory = (message: any): PLACEHOLDER => {
+export const createProblemMatcherFactory = (message: any): ProblemMatcherServiceMessage => {
     // Try to validate as generic problemMatcher message first
     const genericResult = createProblemMatcherMessageFactory(message);
     if (genericResult) {
@@ -146,6 +150,6 @@ export const createProblemMatcherFactory = (message: any): PLACEHOLDER => {
         }
     }
 
-    logger.error(`No suitable problemMatcher validator found for message: ${JSON.stringify(message)}`);
+    console.log(`No suitable problemMatcher validator found for message: ${JSON.stringify(message)}`);
     return message;
 };
