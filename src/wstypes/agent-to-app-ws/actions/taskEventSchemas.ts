@@ -9,19 +9,11 @@ import { z } from 'zod';
 export const taskEventBaseSchema = z.object({
   type: z.literal('taskEvent'),
   action: z.string(),
-  agentId: z.string().optional(),
-  message: z.object({}).passthrough().optional(),
-  messageId: z.string().optional(),
-  threadId: z.string().optional(),
-  agentInstanceId: z.string().optional(),
-  parentAgentInstanceId: z.string().optional(),
-  parentId: z.string().optional(),
 });
 
-// Task create options schema
+// Task create options schema (for modern addTask)
 const taskCreateOptionsSchema = z.object({
   title: z.string(),
-  agentId: z.string().optional(),
   description: z.string().optional(),
   phase: z.string().optional(),
   category: z.string().optional(),
@@ -39,6 +31,9 @@ const taskUpdateOptionsSchema = z.object({
   priority: z.enum(['low', 'medium', 'high', 'urgent']).optional(),
   tags: z.array(z.string()).optional(),
   status: z.enum(['pending', 'in_progress', 'completed', 'cancelled']).optional(),
+  agentId: z.string().optional(),
+  completed: z.boolean().optional(),
+  task: z.string().optional(), // for legacy updateSimpleTask
 });
 
 // Task filter options schema
@@ -61,14 +56,15 @@ const addSubTaskOptionsSchema = z.object({
 
 const updateSubTaskOptionsSchema = z.object({
   taskId: z.string(),
-  subTaskId: z.string(),
+  subtaskId: z.string(),
   title: z.string().optional(),
   description: z.string().optional(),
   priority: z.enum(['low', 'medium', 'high', 'urgent']).optional(),
   status: z.enum(['pending', 'in_progress', 'completed', 'cancelled']).optional(),
+  completed: z.boolean().optional(),
 });
 
-// Add Task Event Schema
+// Add Task Event Schema (modern)
 export const addTaskEventSchema = taskEventBaseSchema.extend({
   action: z.literal('addTask'),
   agentId: z.string().optional(),
@@ -106,12 +102,9 @@ export const getTasksByCategoryEventSchema = taskEventBaseSchema.extend({
   }),
 });
 
-// Get Tasks By Phase Event Schema
-export const getTasksByPhaseEventSchema = taskEventBaseSchema.extend({
-  action: z.literal('getTasksByPhase'),
-  message: z.object({
-    phase: z.string(),
-  }),
+// Get All Agents Event Schema
+export const getAllAgentsEventSchema = taskEventBaseSchema.extend({
+  action: z.literal('getAllAgents'),
 });
 
 // Update Task Event Schema
@@ -125,15 +118,6 @@ export const deleteTaskEventSchema = taskEventBaseSchema.extend({
   action: z.literal('deleteTask'),
   message: z.object({
     taskId: z.string(),
-  }),
-});
-
-// Mark Task Complete Event Schema
-export const markTaskCompleteEventSchema = taskEventBaseSchema.extend({
-  action: z.literal('markTaskComplete'),
-  message: z.object({
-    taskId: z.string(),
-    completionNote: z.string().optional(),
   }),
 });
 
@@ -154,34 +138,29 @@ export const deleteSubTaskEventSchema = taskEventBaseSchema.extend({
   action: z.literal('deleteSubTask'),
   message: z.object({
     taskId: z.string(),
-    subTaskId: z.string(),
+    subtaskId: z.string(),
   }),
 });
 
-// Get Task Details Event Schema
-export const getTaskDetailsEventSchema = taskEventBaseSchema.extend({
-  action: z.literal('getTaskDetails'),
-  message: z.object({
-    taskId: z.string(),
-  }),
-});
-
-// Import Tasks from Markdown Event Schema
-export const importTasksFromMarkdownEventSchema = taskEventBaseSchema.extend({
-  action: z.literal('importTasksFromMarkdown'),
+// Create Tasks From Markdown Event Schema
+export const createTasksFromMarkdownEventSchema = taskEventBaseSchema.extend({
+  action: z.literal('createTasksFromMarkdown'),
+  agentId: z.string().optional(),
   message: z.object({
     markdown: z.string(),
-    agentId: z.string().optional(),
+    phase: z.string().optional(),
+    category: z.string().optional(),
   }),
 });
 
-// Export Tasks to Markdown Event Schema
+// Export Tasks To Markdown Event Schema
 export const exportTasksToMarkdownEventSchema = taskEventBaseSchema.extend({
   action: z.literal('exportTasksToMarkdown'),
   message: z.object({
     agentId: z.string().optional(),
-    filters: taskFilterOptionsSchema.optional(),
-  }),
+    phase: z.string().optional(),
+    category: z.string().optional(),
+  }).optional(),
 });
 
 // Union of all task event schemas
@@ -191,45 +170,15 @@ export const taskEventSchema = z.union([
   getTasksEventSchema,
   getTasksByAgentEventSchema,
   getTasksByCategoryEventSchema,
-  getTasksByPhaseEventSchema,
+  getAllAgentsEventSchema,
   updateTaskEventSchema,
   deleteTaskEventSchema,
-  markTaskCompleteEventSchema,
   addSubTaskEventSchema,
   updateSubTaskEventSchema,
   deleteSubTaskEventSchema,
-  getTaskDetailsEventSchema,
-  importTasksFromMarkdownEventSchema,
+  createTasksFromMarkdownEventSchema,
   exportTasksToMarkdownEventSchema,
 ]);
-
-// Task and SubTask schemas for responses
-const subTaskSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  description: z.string().optional(),
-  status: z.enum(['pending', 'in_progress', 'completed', 'cancelled']),
-  priority: z.enum(['low', 'medium', 'high', 'urgent']).optional(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
-
-const taskSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  description: z.string().optional(),
-  agentId: z.string(),
-  phase: z.string().optional(),
-  category: z.string().optional(),
-  priority: z.enum(['low', 'medium', 'high', 'urgent']).optional(),
-  status: z.enum(['pending', 'in_progress', 'completed', 'cancelled']),
-  tags: z.array(z.string()).optional(),
-  subTasks: z.array(subTaskSchema).optional(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  completedAt: z.string().optional(),
-});
-
 
 // Inferred TypeScript types for events
 export type TaskEventBase = z.infer<typeof taskEventBaseSchema>;
@@ -244,19 +193,13 @@ export type AddSimpleTaskEvent = z.infer<typeof addSimpleTaskEventSchema>;
 export type GetTasksEvent = z.infer<typeof getTasksEventSchema>;
 export type GetTasksByAgentEvent = z.infer<typeof getTasksByAgentEventSchema>;
 export type GetTasksByCategoryEvent = z.infer<typeof getTasksByCategoryEventSchema>;
-export type GetTasksByPhaseEvent = z.infer<typeof getTasksByPhaseEventSchema>;
+export type GetAllAgentsEvent = z.infer<typeof getAllAgentsEventSchema>;
 export type UpdateTaskEvent = z.infer<typeof updateTaskEventSchema>;
 export type DeleteTaskEvent = z.infer<typeof deleteTaskEventSchema>;
-export type MarkTaskCompleteEvent = z.infer<typeof markTaskCompleteEventSchema>;
 export type AddSubTaskEvent = z.infer<typeof addSubTaskEventSchema>;
 export type UpdateSubTaskEvent = z.infer<typeof updateSubTaskEventSchema>;
 export type DeleteSubTaskEvent = z.infer<typeof deleteSubTaskEventSchema>;
-export type GetTaskDetailsEvent = z.infer<typeof getTaskDetailsEventSchema>;
-export type ImportTasksFromMarkdownEvent = z.infer<typeof importTasksFromMarkdownEventSchema>;
+export type CreateTasksFromMarkdownEvent = z.infer<typeof createTasksFromMarkdownEventSchema>;
 export type ExportTasksToMarkdownEvent = z.infer<typeof exportTasksToMarkdownEventSchema>;
 export type TaskEvent = z.infer<typeof taskEventSchema>;
-
-// Inferred TypeScript types for task data
-export type SubTask = z.infer<typeof subTaskSchema>;
-export type Task = z.infer<typeof taskSchema>;
 

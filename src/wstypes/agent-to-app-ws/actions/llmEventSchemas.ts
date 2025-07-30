@@ -5,7 +5,7 @@ import { z } from 'zod';
  * Based on codeboltjs/src/modules/llm.ts module operations
  */
 
-// Base message schema for LLM operations
+// Base message schema for LLM operations (used in modern inference)
 const messageSchema = z.object({
   role: z.enum(['system', 'user', 'assistant', 'tool']),
   content: z.union([
@@ -44,7 +44,7 @@ const toolSchema = z.object({
   }),
 });
 
-// LLM inference parameters schema
+// LLM inference parameters schema (used in modern inference)
 const llmInferenceParamsSchema = z.object({
   messages: z.array(messageSchema),
   tools: z.array(toolSchema).optional(),
@@ -71,12 +71,6 @@ export const llmEventBaseSchema = z.object({
     prompt: z.union([llmInferenceParamsSchema, z.string()]),
     llmrole: z.string().optional(),
   }),
-  messageId: z.string().optional(),
-  threadId: z.string().optional(),
-  agentInstanceId: z.string().optional(),
-  agentId: z.string().optional(),
-  parentAgentInstanceId: z.string().optional(),
-  parentId: z.string().optional(),
 });
 
 // Modern inference event schema with full OpenAI format
@@ -100,7 +94,6 @@ export const llmEventSchema = z.union([
   inferenceEventSchema,
   legacyInferenceEventSchema,
 ]);
-
 
 // Inferred TypeScript types for LLM operations
 export type Message = z.infer<typeof messageSchema>;

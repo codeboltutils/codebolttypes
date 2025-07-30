@@ -117,7 +117,7 @@ export {
 
 // indexResponses
 export {
-  type Chat,
+  type Chat as IndexChat,
   type GetChatHistoryResponse,
   type ErrorResponse,
   type IndexServiceResponse

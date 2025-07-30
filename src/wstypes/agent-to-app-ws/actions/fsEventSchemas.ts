@@ -10,12 +10,6 @@ export const fsEventBaseSchema = z.object({
   type: z.literal('fsEvent'),
   action: z.string(),
   message: z.object({}).passthrough(),
-  messageId: z.string().optional(),
-  threadId: z.string().optional(),
-  agentInstanceId: z.string().optional(),
-  agentId: z.string().optional(),
-  parentAgentInstanceId: z.string().optional(),
-  parentId: z.string().optional(),
 });
 
 // Create File Event Schema
@@ -69,67 +63,24 @@ export const deleteFolderEventSchema = fsEventBaseSchema.extend({
   action: z.literal('deleteFolder'),
   message: z.object({
     foldername: z.string(),
-    folderPath: z.string(),
+    folderpath: z.string(),
   }),
 });
 
-// Get Files Event Schema
-export const getFilesEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('getFiles'),
+// File List Event Schema
+export const fileListEventSchema = fsEventBaseSchema.extend({
+  action: z.literal('fileList'),
   message: z.object({
     folderPath: z.string(),
+    isRecursive: z.boolean().optional(),
   }),
 });
 
-// Get All Files Event Schema
-export const getAllFilesEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('getAllFiles'),
+// List Code Definition Names Event Schema
+export const listCodeDefinitionNamesEventSchema = fsEventBaseSchema.extend({
+  action: z.literal('listCodeDefinitionNames'),
   message: z.object({
-    folderPath: z.string(),
-  }),
-});
-
-// Get Folders Event Schema
-export const getFoldersEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('getFolders'),
-  message: z.object({
-    folderPath: z.string(),
-  }),
-});
-
-// Copy File Event Schema
-export const copyFileEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('copyFile'),
-  message: z.object({
-    sourceFilePath: z.string(),
-    destinationFilePath: z.string(),
-  }),
-});
-
-// Copy Folder Event Schema
-export const copyFolderEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('copyFolder'),
-  message: z.object({
-    sourceFolderPath: z.string(),
-    destinationFolderPath: z.string(),
-  }),
-});
-
-// Move File Event Schema
-export const moveFileEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('moveFile'),
-  message: z.object({
-    sourceFilePath: z.string(),
-    destinationFilePath: z.string(),
-  }),
-});
-
-// Move Folder Event Schema
-export const moveFolderEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('moveFolder'),
-  message: z.object({
-    sourceFolderPath: z.string(),
-    destinationFolderPath: z.string(),
+    path: z.string(),
   }),
 });
 
@@ -137,40 +88,50 @@ export const moveFolderEventSchema = fsEventBaseSchema.extend({
 export const searchFilesEventSchema = fsEventBaseSchema.extend({
   action: z.literal('searchFiles'),
   message: z.object({
+    path: z.string(),
+    regex: z.string(),
+    filePattern: z.string(),
+  }),
+});
+
+// Write To File Event Schema
+export const writeToFileEventSchema = fsEventBaseSchema.extend({
+  action: z.literal('writeToFile'),
+  message: z.object({
+    relPath: z.string(),
+    newContent: z.string(),
+  }),
+});
+
+// Grep Search Event Schema
+export const grepSearchEventSchema = fsEventBaseSchema.extend({
+  action: z.literal('grep_search'),
+  message: z.object({
+    path: z.string(),
     query: z.string(),
-    folderPath: z.string().optional(),
+    includePattern: z.string().optional(),
+    excludePattern: z.string().optional(),
+    caseSensitive: z.boolean().optional(),
   }),
 });
 
-// Get File Info Event Schema
-export const getFileInfoEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('getFileInfo'),
+// File Search Event Schema
+export const fileSearchEventSchema = fsEventBaseSchema.extend({
+  action: z.literal('file_search'),
   message: z.object({
-    filePath: z.string(),
+    query: z.string(),
   }),
 });
 
-// Get Folder Info Event Schema
-export const getFolderInfoEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('getFolderInfo'),
+// Edit File With Diff Event Schema
+export const editFileWithDiffEventSchema = fsEventBaseSchema.extend({
+  action: z.literal('edit_file_with_diff'),
   message: z.object({
-    folderPath: z.string(),
-  }),
-});
-
-// Watch File Event Schema
-export const watchFileEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('watchFile'),
-  message: z.object({
-    filePath: z.string(),
-  }),
-});
-
-// Unwatch File Event Schema
-export const unwatchFileEventSchema = fsEventBaseSchema.extend({
-  action: z.literal('unwatchFile'),
-  message: z.object({
-    filePath: z.string(),
+    target_file: z.string(),
+    code_edit: z.string(),
+    diffIdentifier: z.string(),
+    prompt: z.string(),
+    applyModel: z.string().optional(),
   }),
 });
 
@@ -182,20 +143,14 @@ export const fsEventSchema = z.union([
   updateFileEventSchema,
   deleteFileEventSchema,
   deleteFolderEventSchema,
-  getFilesEventSchema,
-  getAllFilesEventSchema,
-  getFoldersEventSchema,
-  copyFileEventSchema,
-  copyFolderEventSchema,
-  moveFileEventSchema,
-  moveFolderEventSchema,
+  fileListEventSchema,
+  listCodeDefinitionNamesEventSchema,
   searchFilesEventSchema,
-  getFileInfoEventSchema,
-  getFolderInfoEventSchema,
-  watchFileEventSchema,
-  unwatchFileEventSchema,
+  writeToFileEventSchema,
+  grepSearchEventSchema,
+  fileSearchEventSchema,
+  editFileWithDiffEventSchema,
 ]);
-
 
 // Inferred TypeScript types
 export type FsEventBase = z.infer<typeof fsEventBaseSchema>;
@@ -205,16 +160,11 @@ export type ReadFileEvent = z.infer<typeof readFileEventSchema>;
 export type UpdateFileEvent = z.infer<typeof updateFileEventSchema>;
 export type DeleteFileEvent = z.infer<typeof deleteFileEventSchema>;
 export type DeleteFolderEvent = z.infer<typeof deleteFolderEventSchema>;
-export type GetFilesEvent = z.infer<typeof getFilesEventSchema>;
-export type GetAllFilesEvent = z.infer<typeof getAllFilesEventSchema>;
-export type GetFoldersEvent = z.infer<typeof getFoldersEventSchema>;
-export type CopyFileEvent = z.infer<typeof copyFileEventSchema>;
-export type CopyFolderEvent = z.infer<typeof copyFolderEventSchema>;
-export type MoveFileEvent = z.infer<typeof moveFileEventSchema>;
-export type MoveFolderEvent = z.infer<typeof moveFolderEventSchema>;
+export type FileListEvent = z.infer<typeof fileListEventSchema>;
+export type ListCodeDefinitionNamesEvent = z.infer<typeof listCodeDefinitionNamesEventSchema>;
 export type SearchFilesEvent = z.infer<typeof searchFilesEventSchema>;
-export type GetFileInfoEvent = z.infer<typeof getFileInfoEventSchema>;
-export type GetFolderInfoEvent = z.infer<typeof getFolderInfoEventSchema>;
-export type WatchFileEvent = z.infer<typeof watchFileEventSchema>;
-export type UnwatchFileEvent = z.infer<typeof unwatchFileEventSchema>;
+export type WriteToFileEvent = z.infer<typeof writeToFileEventSchema>;
+export type GrepSearchEvent = z.infer<typeof grepSearchEventSchema>;
+export type FileSearchEvent = z.infer<typeof fileSearchEventSchema>;
+export type EditFileWithDiffEvent = z.infer<typeof editFileWithDiffEventSchema>;
 export type FsEvent = z.infer<typeof fsEventSchema>;

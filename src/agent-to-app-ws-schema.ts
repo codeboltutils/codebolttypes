@@ -14,13 +14,8 @@ export {
   agentEventBaseSchema,
   findAgentEventSchema,
   startAgentEventSchema,
-  stopAgentEventSchema,
   listAgentsEventSchema,
-  getAgentDetailsEventSchema,
-  installAgentEventSchema,
-  uninstallAgentEventSchema,
-  updateAgentEventSchema,
-  configureAgentEventSchema,
+  getAgentsDetailEventSchema,
   agentEventSchema,
 } from './wstypes/agent-to-app-ws/actions/agentEventSchemas';
 
@@ -219,20 +214,17 @@ export {
   getHtmlEventSchema,
   getMarkdownEventSchema,
   getPdfEventSchema,
-  extractTextEventSchema,
+  pdfToTextEventSchema,
   getContentEventSchema,
-  clickEventSchema,
-  typeTextEventSchema,
+  getSnapShotEventSchema,
+  getBrowserInfoEventSchema,
+  extractTextEventSchema,
+  closeEventSchema,
   scrollEventSchema,
-  waitEventSchema,
-  evaluateEventSchema,
-  getElementInfoEventSchema,
-  takeElementScreenshotEventSchema,
-  setViewportEventSchema,
-  reloadPageEventSchema,
-  goBackEventSchema,
-  goForwardEventSchema,
-  closeBrowserEventSchema,
+  typeEventSchema,
+  clickEventSchema,
+  enterEventSchema,
+  searchEventSchema,
   browserEventSchema
 } from './wstypes/agent-to-app-ws/actions/browserEventSchemas';
 
@@ -240,11 +232,13 @@ export {
   chatEventBaseSchema,
   getChatHistoryEventSchema,
   processStoppedEventSchema,
+  processStartedEventSchema,
+  processFinishedEventSchema,
   sendMessageEventSchema,
-  chatSummaryEventSchema,
+  waitforReplyEventSchema,
+  confirmationRequestEventSchema,
   notificationEventSchema,
-  chatEventSchema,
-  chatRequestHandlerSchema
+  chatEventSchema
 } from './wstypes/agent-to-app-ws/actions/chatEventSchemas';
 
 export {
@@ -254,11 +248,7 @@ export {
   crawlerGoToPageEventSchema,
   crawlerScrollEventSchema,
   crawlerClickEventSchema,
-  stopCrawlerEventSchema,
-  crawlerGetPageContentEventSchema,
-  crawlerWaitEventSchema,
-  crawlerExtractDataEventSchema,
-  crawlerEventSchema,
+  crawlerEventSchema
 } from './wstypes/agent-to-app-ws/actions/crawlerEventSchemas';
 
 export {
@@ -266,10 +256,6 @@ export {
   debugEventBaseSchema,
   addLogEventSchema,
   openDebugBrowserEventSchema,
-  getDebugLogsEventSchema,
-  clearDebugLogsEventSchema,
-  setDebugLevelEventSchema,
-  exportDebugLogsEventSchema,
   debugEventSchema
 } from './wstypes/agent-to-app-ws/actions/debugEventSchemas';
 
@@ -281,18 +267,13 @@ export {
   updateFileEventSchema,
   deleteFileEventSchema,
   deleteFolderEventSchema,
-  getFilesEventSchema,
-  getAllFilesEventSchema,
-  getFoldersEventSchema,
-  copyFileEventSchema,
-  copyFolderEventSchema,
-  moveFileEventSchema,
-  moveFolderEventSchema,
+  fileListEventSchema,
+  listCodeDefinitionNamesEventSchema,
   searchFilesEventSchema,
-  getFileInfoEventSchema,
-  getFolderInfoEventSchema,
-  watchFileEventSchema,
-  unwatchFileEventSchema,
+  writeToFileEventSchema,
+  grepSearchEventSchema,
+  fileSearchEventSchema,
+  editFileWithDiffEventSchema,
   fsEventSchema
 } from './wstypes/agent-to-app-ws/actions/fsEventSchemas';
 
@@ -308,13 +289,6 @@ export {
   gitBranchEventSchema,
   gitLogsEventSchema,
   gitDiffEventSchema,
-  gitResetEventSchema,
-  gitStashEventSchema,
-  gitTagEventSchema,
-  gitRemoteEventSchema,
-  gitMergeEventSchema,
-  gitRebaseEventSchema,
-  gitCloneEventSchema,
   gitEventSchema
 } from './wstypes/agent-to-app-ws/actions/gitEventSchemas';
 
@@ -323,9 +297,6 @@ export {
   chatSummaryEventBaseSchema,
   summarizeAllEventSchema,
   summarizeEventSchema,
-  generateSummaryEventSchema,
-  getSummaryEventSchema,
-  clearSummaryEventSchema,
   historyEventSchema
 } from './wstypes/agent-to-app-ws/actions/historyEventSchemas';
 
@@ -346,9 +317,6 @@ export {
   configureToolBoxEventSchema,
   getToolsEventSchema,
   executeToolEventSchema,
-  installToolBoxEventSchema,
-  uninstallToolBoxEventSchema,
-  updateToolBoxEventSchema,
   mcpEventSchema
 } from './wstypes/agent-to-app-ws/actions/mcpEventSchemas';
 
@@ -356,13 +324,6 @@ export {
   memoryEventBaseSchema,
   memorySetEventSchema,
   memoryGetEventSchema,
-  memoryDeleteEventSchema,
-  memoryListKeysEventSchema,
-  memoryClearEventSchema,
-  memoryExistsEventSchema,
-  memoryGetMultipleEventSchema,
-  memorySetMultipleEventSchema,
-  memorySearchEventSchema,
   memoryEventSchema
 } from './wstypes/agent-to-app-ws/actions/memoryEventSchemas';
 
@@ -371,11 +332,8 @@ export {
   getProjectSettingsEventSchema,
   getProjectPathEventSchema,
   getRepoMapEventSchema,
-  runProjectEventSchema,
   getEditorFileStatusEventSchema,
-  setProjectSettingsEventSchema,
-  createProjectEventSchema,
-  deleteProjectEventSchema,
+  runProjectEventSchema,
   projectEventSchema
 } from './wstypes/agent-to-app-ws/actions/projectEventSchemas';
 
@@ -384,9 +342,6 @@ export {
   getApplicationStateEventSchema,
   addToAgentStateEventSchema,
   getAgentStateEventSchema,
-  updateAgentStateEventSchema,
-  deleteAgentStateEventSchema,
-  clearAgentStateEventSchema,
   getProjectStateEventSchema,
   updateProjectStateEventSchema,
   stateEventSchema
@@ -399,15 +354,13 @@ export {
   getTasksEventSchema,
   getTasksByAgentEventSchema,
   getTasksByCategoryEventSchema,
-  getTasksByPhaseEventSchema,
+  getAllAgentsEventSchema,
   updateTaskEventSchema,
   deleteTaskEventSchema,
-  markTaskCompleteEventSchema,
   addSubTaskEventSchema,
   updateSubTaskEventSchema,
   deleteSubTaskEventSchema,
-  getTaskDetailsEventSchema,
-  importTasksFromMarkdownEventSchema,
+  createTasksFromMarkdownEventSchema,
   exportTasksToMarkdownEventSchema,
   taskEventSchema
 } from './wstypes/agent-to-app-ws/actions/taskEventSchemas';
@@ -416,7 +369,6 @@ export {
   terminalEventBaseSchema,
   executeCommandEventSchema,
   executeCommandRunUntilErrorEventSchema,
-  executeCommandRunUntilInterruptEventSchema,
   executeCommandWithStreamEventSchema,
   sendInterruptToTerminalEventSchema,
   terminalEventSchema
@@ -426,19 +378,12 @@ export {
   tokenizerEventBaseSchema,
   addTokenEventSchema,
   getTokenEventSchema,
-  deleteTokenEventSchema,
-  listTokensEventSchema,
-  updateTokenEventSchema,
-  clearTokensEventSchema,
   tokenizerEventSchema
 } from './wstypes/agent-to-app-ws/actions/tokenizerEventSchemas';
 
 export {
   utilsEventBaseSchema,
   editFileAndApplyDiffEventSchema,
-  validateDiffEventSchema,
-  generateDiffEventSchema,
-  applyPatchEventSchema,
   utilsEventSchema
 } from './wstypes/agent-to-app-ws/actions/utilsEventSchemas';
 
@@ -448,15 +393,5 @@ export {
   addVectorItemEventSchema,
   queryVectorItemEventSchema,
   queryVectorItemsEventSchema,
-  updateVectorItemEventSchema,
-  deleteVectorItemEventSchema,
-  clearVectorDatabaseEventSchema,
-  getVectorDatabaseInfoEventSchema,
-  createVectorIndexEventSchema,
   vectordbEventSchema
-} from './wstypes/agent-to-app-ws/actions/vectordbEventSchemas';
-
-// Main Combined Schema
-export {
-  agentToAppEventSchema
-} from './wstypes/agent-to-app-ws/actions/index'; 
+} from './wstypes/agent-to-app-ws/actions/vectordbEventSchemas'; 

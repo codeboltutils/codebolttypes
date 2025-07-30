@@ -11,16 +11,9 @@ export {
   type AgentEventBase,
   type FindAgentEvent,
   type StartAgentEvent,
-  type StopAgentEvent,
   type ListAgentsEvent,
-  type GetAgentDetailsEvent,
-  type InstallAgentEvent,
-  type UninstallAgentEvent,
-  type UpdateAgentEvent,
-  type ConfigureAgentEvent,
+  type GetAgentsDetailEvent,
   type AgentEvent,
-  type Agent,
-  type AgentExecutionResult,
 } from './wstypes/agent-to-app-ws/actions/agentEventSchemas';
 
 // browserEventSchemas
@@ -33,20 +26,17 @@ export {
   type GetHtmlEvent,
   type GetMarkdownEvent,
   type GetPdfEvent,
+  type PdfToTextEvent,
   type ExtractTextEvent,
   type GetContentEvent,
+  type GetSnapShotEvent,
+  type GetBrowserInfoEvent,
+  type CloseEvent,
   type ClickEvent,
-  type TypeTextEvent,
+  type TypeEvent,
   type ScrollEvent,
-  type WaitEvent,
-  type EvaluateEvent,
-  type GetElementInfoEvent,
-  type TakeElementScreenshotEvent,
-  type SetViewportEvent,
-  type ReloadPageEvent,
-  type GoBackEvent,
-  type GoForwardEvent,
-  type CloseBrowserEvent,
+  type EnterEvent,
+  type SearchEvent,
   type BrowserEvent
 } from './wstypes/agent-to-app-ws/actions/browserEventSchemas';
 
@@ -55,14 +45,13 @@ export {
   type ChatEventBase,
   type GetChatHistoryEvent,
   type ProcessStoppedEvent,
+  type ProcessStartedEvent,
+  type ProcessFinishedEvent,
   type SendMessageEvent,
-  type ChatSummaryEvent,
+  type WaitforReplyEvent,
+  type ConfirmationRequestEvent,
   type NotificationEvent,
   type ChatEvent,
-  type ChatMessage,
-  type ChatSummary,
-  type Notification,
-  type ChatRequestHandler,
 } from './wstypes/agent-to-app-ws/actions/chatEventSchemas';
 
 // crawlerEventSchemas
@@ -73,25 +62,16 @@ export {
   type CrawlerGoToPageEvent,
   type CrawlerScrollEvent,
   type CrawlerClickEvent,
-  type StopCrawlerEvent,
-  type CrawlerGetPageContentEvent,
-  type CrawlerWaitEvent,
-  type CrawlerExtractDataEvent,
   type CrawlerEvent,
 } from './wstypes/agent-to-app-ws/actions/crawlerEventSchemas';
 
 // debugEventSchemas
 export {
-  type LogType,
+  type LogType as DebugLogType,
   type DebugEventBase,
   type AddLogEvent,
   type OpenDebugBrowserEvent,
-  type GetDebugLogsEvent,
-  type ClearDebugLogsEvent,
-  type SetDebugLevelEvent,
-  type ExportDebugLogsEvent,
   type DebugEvent,
-  type DebugLogEntry,
 } from './wstypes/agent-to-app-ws/actions/debugEventSchemas';
 
 // fsEventSchemas
@@ -103,18 +83,13 @@ export {
   type UpdateFileEvent,
   type DeleteFileEvent,
   type DeleteFolderEvent,
-  type GetFilesEvent,
-  type GetAllFilesEvent,
-  type GetFoldersEvent,
-  type CopyFileEvent,
-  type CopyFolderEvent,
-  type MoveFileEvent,
-  type MoveFolderEvent,
+  type FileListEvent,
+  type ListCodeDefinitionNamesEvent,
   type SearchFilesEvent,
-  type GetFileInfoEvent,
-  type GetFolderInfoEvent,
-  type WatchFileEvent,
-  type UnwatchFileEvent,
+  type WriteToFileEvent,
+  type GrepSearchEvent,
+  type FileSearchEvent,
+  type EditFileWithDiffEvent,
   type FsEvent
 } from './wstypes/agent-to-app-ws/actions/fsEventSchemas';
 
@@ -131,28 +106,16 @@ export {
   type GitBranchEvent,
   type GitLogsEvent,
   type GitDiffEvent,
-  type GitResetEvent,
-  type GitStashEvent,
-  type GitTagEvent,
-  type GitRemoteEvent,
-  type GitMergeEvent,
-  type GitRebaseEvent,
-  type GitCloneEvent,
   type GitEvent,
 } from './wstypes/agent-to-app-ws/actions/gitEventSchemas';
 
 // historyEventSchemas
 export {
-  type LogType,
+  type LogType as HistoryLogType,
   type ChatSummaryEventBase,
   type SummarizeAllEvent,
   type SummarizeEvent,
-  type GenerateSummaryEvent,
-  type GetSummaryEvent,
-  type ClearSummaryEvent,
   type HistoryEvent,
-  type Message,
-  type Summary,
 } from './wstypes/agent-to-app-ws/actions/historyEventSchemas';
 
 // llmEventSchemas
@@ -177,13 +140,7 @@ export {
   type ConfigureToolBoxEvent,
   type GetToolsEvent,
   type ExecuteToolEvent,
-  type InstallToolBoxEvent,
-  type UninstallToolBoxEvent,
-  type UpdateToolBoxEvent,
   type McpEvent,
-  type ToolBox,
-  type Tool,
-  type ToolExecutionResult,
 } from './wstypes/agent-to-app-ws/actions/mcpEventSchemas';
 
 // memoryEventSchemas
@@ -191,13 +148,6 @@ export {
   type MemoryEventBase,
   type MemorySetEvent,
   type MemoryGetEvent,
-  type MemoryDeleteEvent,
-  type MemoryListKeysEvent,
-  type MemoryClearEvent,
-  type MemoryExistsEvent,
-  type MemoryGetMultipleEvent,
-  type MemorySetMultipleEvent,
-  type MemorySearchEvent,
   type MemoryEvent,
 } from './wstypes/agent-to-app-ws/actions/memoryEventSchemas';
 
@@ -209,12 +159,7 @@ export {
   type GetRepoMapEvent,
   type RunProjectEvent,
   type GetEditorFileStatusEvent,
-  type SetProjectSettingsEvent,
-  type CreateProjectEvent,
-  type DeleteProjectEvent,
   type ProjectEvent,
-  type ProjectSettings,
-  type FileStatus,
 } from './wstypes/agent-to-app-ws/actions/projectEventSchemas';
 
 // stateEventSchemas
@@ -223,15 +168,9 @@ export {
   type GetApplicationStateEvent,
   type AddToAgentStateEvent,
   type GetAgentStateEvent,
-  type UpdateAgentStateEvent,
-  type DeleteAgentStateEvent,
-  type ClearAgentStateEvent,
   type GetProjectStateEvent,
   type UpdateProjectStateEvent,
   type StateEvent,
-  type ApplicationState,
-  type AgentState,
-  type ProjectState,
 } from './wstypes/agent-to-app-ws/actions/stateEventSchemas';
 
 // taskEventSchemas
@@ -247,19 +186,15 @@ export {
   type GetTasksEvent,
   type GetTasksByAgentEvent,
   type GetTasksByCategoryEvent,
-  type GetTasksByPhaseEvent,
+  type GetAllAgentsEvent,
   type UpdateTaskEvent,
   type DeleteTaskEvent,
-  type MarkTaskCompleteEvent,
   type AddSubTaskEvent,
   type UpdateSubTaskEvent,
   type DeleteSubTaskEvent,
-  type GetTaskDetailsEvent,
-  type ImportTasksFromMarkdownEvent,
+  type CreateTasksFromMarkdownEvent,
   type ExportTasksToMarkdownEvent,
   type TaskEvent,
-  type SubTask,
-  type Task,
 } from './wstypes/agent-to-app-ws/actions/taskEventSchemas';
 
 // terminalEventSchemas
@@ -267,7 +202,6 @@ export {
   type TerminalEventBase,
   type ExecuteCommandEvent,
   type ExecuteCommandRunUntilErrorEvent,
-  type ExecuteCommandRunUntilInterruptEvent,
   type ExecuteCommandWithStreamEvent,
   type SendInterruptToTerminalEvent,
   type TerminalEvent,
@@ -278,24 +212,14 @@ export {
   type TokenizerEventBase,
   type AddTokenEvent,
   type GetTokenEvent,
-  type DeleteTokenEvent,
-  type ListTokensEvent,
-  type UpdateTokenEvent,
-  type ClearTokensEvent,
   type TokenizerEvent,
-  type Token,
 } from './wstypes/agent-to-app-ws/actions/tokenizerEventSchemas';
 
 // utilsEventSchemas
 export {
   type UtilsEventBase,
   type EditFileAndApplyDiffEvent,
-  type ValidateDiffEvent,
-  type GenerateDiffEvent,
-  type ApplyPatchEvent,
   type UtilsEvent,
-  type DiffResult,
-  type FileEditResult,
 } from './wstypes/agent-to-app-ws/actions/utilsEventSchemas';
 
 // vectordbEventSchemas
@@ -305,14 +229,7 @@ export {
   type AddVectorItemEvent,
   type QueryVectorItemEvent,
   type QueryVectorItemsEvent,
-  type UpdateVectorItemEvent,
-  type DeleteVectorItemEvent,
-  type ClearVectorDatabaseEvent,
-  type GetVectorDatabaseInfoEvent,
-  type CreateVectorIndexEvent,
   type VectordbEvent,
-  type VectorItem,
-  type VectorSearchResult,
 } from './wstypes/agent-to-app-ws/actions/vectordbEventSchemas';
 
 // agentNotificationSchemas

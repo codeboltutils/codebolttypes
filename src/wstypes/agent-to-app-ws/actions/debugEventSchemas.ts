@@ -13,12 +13,6 @@ export const debugEventBaseSchema = z.object({
   type: z.literal('debugEvent'),
   action: z.string(),
   message: z.object({}).passthrough(),
-  messageId: z.string().optional(),
-  threadId: z.string().optional(),
-  agentInstanceId: z.string().optional(),
-  agentId: z.string().optional(),
-  parentAgentInstanceId: z.string().optional(),
-  parentId: z.string().optional(),
 });
 
 // Add Log Event Schema
@@ -39,65 +33,11 @@ export const openDebugBrowserEventSchema = debugEventBaseSchema.extend({
   }),
 });
 
-// Get Debug Logs Event Schema
-export const getDebugLogsEventSchema = debugEventBaseSchema.extend({
-  action: z.literal('getDebugLogs'),
-  message: z.object({
-    limit: z.number().optional(),
-    type: logTypeSchema.optional(),
-    startTime: z.string().optional(),
-    endTime: z.string().optional(),
-  }),
-});
-
-// Clear Debug Logs Event Schema
-export const clearDebugLogsEventSchema = debugEventBaseSchema.extend({
-  action: z.literal('clearDebugLogs'),
-  message: z.object({
-    type: logTypeSchema.optional(),
-  }),
-});
-
-// Set Debug Level Event Schema
-export const setDebugLevelEventSchema = debugEventBaseSchema.extend({
-  action: z.literal('setDebugLevel'),
-  message: z.object({
-    level: z.enum(['none', 'error', 'warning', 'info', 'debug', 'verbose']),
-  }),
-});
-
-// Export Debug Logs Event Schema
-export const exportDebugLogsEventSchema = debugEventBaseSchema.extend({
-  action: z.literal('exportDebugLogs'),
-  message: z.object({
-    format: z.enum(['json', 'csv', 'txt']),
-    type: logTypeSchema.optional(),
-    startTime: z.string().optional(),
-    endTime: z.string().optional(),
-  }),
-});
-
 // Union of all debug event schemas
 export const debugEventSchema = z.union([
   addLogEventSchema,
   openDebugBrowserEventSchema,
-  getDebugLogsEventSchema,
-  clearDebugLogsEventSchema,
-  setDebugLevelEventSchema,
-  exportDebugLogsEventSchema,
 ]);
-
-// Debug log entry schema for responses
-const debugLogEntrySchema = z.object({
-  id: z.string(),
-  timestamp: z.string(),
-  type: logTypeSchema,
-  message: z.string(),
-  source: z.string().optional(),
-  stackTrace: z.string().optional(),
-  metadata: z.record(z.any()).optional(),
-});
-
 
 // Inferred TypeScript types for log type
 export type LogType = z.infer<typeof logTypeSchema>;
@@ -106,12 +46,5 @@ export type LogType = z.infer<typeof logTypeSchema>;
 export type DebugEventBase = z.infer<typeof debugEventBaseSchema>;
 export type AddLogEvent = z.infer<typeof addLogEventSchema>;
 export type OpenDebugBrowserEvent = z.infer<typeof openDebugBrowserEventSchema>;
-export type GetDebugLogsEvent = z.infer<typeof getDebugLogsEventSchema>;
-export type ClearDebugLogsEvent = z.infer<typeof clearDebugLogsEventSchema>;
-export type SetDebugLevelEvent = z.infer<typeof setDebugLevelEventSchema>;
-export type ExportDebugLogsEvent = z.infer<typeof exportDebugLogsEventSchema>;
 export type DebugEvent = z.infer<typeof debugEventSchema>;
-
-// Inferred TypeScript types for data structures
-export type DebugLogEntry = z.infer<typeof debugLogEntrySchema>;
 

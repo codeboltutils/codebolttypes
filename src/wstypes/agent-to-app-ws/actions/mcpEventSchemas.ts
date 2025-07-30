@@ -9,13 +9,6 @@ import { z } from 'zod';
 export const mcpEventBaseSchema = z.object({
   type: z.literal('codebolttools'),
   action: z.string(),
-  message: z.object({}).passthrough().optional(),
-  messageId: z.string().optional(),
-  threadId: z.string().optional(),
-  agentInstanceId: z.string().optional(),
-  agentId: z.string().optional(),
-  parentAgentInstanceId: z.string().optional(),
-  parentId: z.string().optional(),
 });
 
 // Get Enabled ToolBoxes Event Schema
@@ -36,73 +29,36 @@ export const getAvailableToolBoxesEventSchema = mcpEventBaseSchema.extend({
 // Search Available ToolBoxes Event Schema
 export const searchAvailableToolBoxesEventSchema = mcpEventBaseSchema.extend({
   action: z.literal('searchAvailableToolBoxes'),
-  message: z.object({
-    query: z.string(),
-    limit: z.number().optional(),
-  }),
+  query: z.string(),
 });
 
 // List Tools From ToolBoxes Event Schema
 export const listToolsFromToolBoxesEventSchema = mcpEventBaseSchema.extend({
   action: z.literal('listToolsFromToolBoxes'),
-  message: z.object({
-    toolBoxIds: z.array(z.string()),
-  }),
+  toolBoxes: z.array(z.string()),
 });
 
 // Configure ToolBox Event Schema
 export const configureToolBoxEventSchema = mcpEventBaseSchema.extend({
   action: z.literal('configureToolBox'),
-  message: z.object({
-    toolBoxId: z.string(),
-    configuration: z.record(z.any()),
-    enabled: z.boolean().optional(),
-  }),
+  mcpName: z.string(),
+  config: z.any(),
 });
 
 // Get Tools Event Schema
 export const getToolsEventSchema = mcpEventBaseSchema.extend({
   action: z.literal('getTools'),
-  message: z.object({
-    toolBoxId: z.string().optional(),
-    category: z.string().optional(),
-  }),
+  toolboxes: z.array(z.object({
+    toolbox: z.string(),
+    toolName: z.string(),
+  })),
 });
 
 // Execute Tool Event Schema
 export const executeToolEventSchema = mcpEventBaseSchema.extend({
   action: z.literal('executeTool'),
-  message: z.object({
-    toolId: z.string(),
-    parameters: z.record(z.any()),
-    toolBoxId: z.string(),
-  }),
-});
-
-// Install ToolBox Event Schema
-export const installToolBoxEventSchema = mcpEventBaseSchema.extend({
-  action: z.literal('installToolBox'),
-  message: z.object({
-    toolBoxId: z.string(),
-    source: z.enum(['local', 'remote', 'npm', 'github']),
-    sourceUrl: z.string().optional(),
-  }),
-});
-
-// Uninstall ToolBox Event Schema
-export const uninstallToolBoxEventSchema = mcpEventBaseSchema.extend({
-  action: z.literal('uninstallToolBox'),
-  message: z.object({
-    toolBoxId: z.string(),
-  }),
-});
-
-// Update ToolBox Event Schema
-export const updateToolBoxEventSchema = mcpEventBaseSchema.extend({
-  action: z.literal('updateToolBox'),
-  message: z.object({
-    toolBoxId: z.string(),
-  }),
+  toolName: z.string(),
+  params: z.any(),
 });
 
 // Union of all MCP event schemas
@@ -115,65 +71,7 @@ export const mcpEventSchema = z.union([
   configureToolBoxEventSchema,
   getToolsEventSchema,
   executeToolEventSchema,
-  installToolBoxEventSchema,
-  uninstallToolBoxEventSchema,
-  updateToolBoxEventSchema,
 ]);
-
-// ToolBox schema for responses
-const toolBoxSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  description: z.string(),
-  version: z.string(),
-  author: z.string().optional(),
-  category: z.string().optional(),
-  enabled: z.boolean(),
-  installed: z.boolean(),
-  configuration: z.record(z.any()).optional(),
-  tools: z.array(z.object({
-    id: z.string(),
-    name: z.string(),
-    description: z.string(),
-    parameters: z.record(z.any()),
-    category: z.string().optional(),
-  })).optional(),
-  metadata: z.object({
-    installDate: z.string().optional(),
-    lastUsed: z.string().optional(),
-    usageCount: z.number().optional(),
-    source: z.string().optional(),
-  }).optional(),
-});
-
-// Tool schema for responses
-const toolSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  description: z.string(),
-  parameters: z.record(z.any()),
-  category: z.string().optional(),
-  toolBoxId: z.string(),
-  enabled: z.boolean(),
-  metadata: z.object({
-    lastUsed: z.string().optional(),
-    usageCount: z.number().optional(),
-    executionTime: z.number().optional(),
-  }).optional(),
-});
-
-// Tool execution result schema
-const toolExecutionResultSchema = z.object({
-  success: z.boolean(),
-  result: z.any(),
-  output: z.string().optional(),
-  error: z.string().optional(),
-  executionTime: z.number(),
-  toolId: z.string(),
-  toolBoxId: z.string(),
-  parameters: z.record(z.any()),
-});
-
 
 // Inferred TypeScript types for events
 export type McpEventBase = z.infer<typeof mcpEventBaseSchema>;
@@ -185,13 +83,5 @@ export type ListToolsFromToolBoxesEvent = z.infer<typeof listToolsFromToolBoxesE
 export type ConfigureToolBoxEvent = z.infer<typeof configureToolBoxEventSchema>;
 export type GetToolsEvent = z.infer<typeof getToolsEventSchema>;
 export type ExecuteToolEvent = z.infer<typeof executeToolEventSchema>;
-export type InstallToolBoxEvent = z.infer<typeof installToolBoxEventSchema>;
-export type UninstallToolBoxEvent = z.infer<typeof uninstallToolBoxEventSchema>;
-export type UpdateToolBoxEvent = z.infer<typeof updateToolBoxEventSchema>;
 export type McpEvent = z.infer<typeof mcpEventSchema>;
-
-// Inferred TypeScript types for data structures
-export type ToolBox = z.infer<typeof toolBoxSchema>;
-export type Tool = z.infer<typeof toolSchema>;
-export type ToolExecutionResult = z.infer<typeof toolExecutionResultSchema>;
 
