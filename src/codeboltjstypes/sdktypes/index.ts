@@ -225,40 +225,57 @@ export interface FileSystemModule {
 
   /**
    * Lists files in a directory
-   * @param path - The directory path to list
-   * @param recursive - Whether to list files recursively
+   * @param folderPath - The directory path to list
+   * @param isRecursive - Whether to list files recursively
    */
-  listFile(path: string, recursive?: boolean): Promise<APIResponse<FileEntry[]>>;
+  listFile(folderPath: string, isRecursive?: boolean): Promise<APIResponse<FileEntry[]>>;
 
   /**
-   * Searches for files
-   * @param query - Search query
-   * @param options - Search options
+   * Lists all code definition names in a given path
+   * @param path - The path to search for code definitions
    */
-  searchFiles(query: string, options?: {
-    path?: string;
-    filePattern?: string;
-    caseSensitive?: boolean;
-  }): Promise<APIResponse>;
+  listCodeDefinitionNames(path: string): Promise<APIResponse<string[]>>;
 
   /**
-   * Performs grep search
-   * @param query - Search pattern
-   * @param options - Grep options
+   * Searches files in a given path using a regex pattern
+   * @param path - The path to search within
+   * @param regex - The regex pattern to search for
+   * @param filePattern - The file pattern to match files
    */
-  grepSearch(query: string, options?: {
-    path?: string;
-    includePattern?: string;
-    excludePattern?: string;
-    caseSensitive?: boolean;
-  }): Promise<APIResponse>;
+  searchFiles(path: string, regex: string, filePattern: string): Promise<APIResponse>;
 
   /**
-   * Writes content to a file (alias for updateFile)
-   * @param filePath - The path of the file to write
-   * @param content - The content to write
+   * Writes content to a file
+   * @param relPath - The relative path of the file to write to
+   * @param newContent - The new content to write into the file
    */
-  writeToFile(filePath: string, content: string): Promise<APIResponse>;
+  writeToFile(relPath: string, newContent: string): Promise<APIResponse>;
+
+  /**
+   * Performs a grep search in files
+   * @param path - The path to search within
+   * @param query - The query to search for
+   * @param includePattern - Pattern of files to include
+   * @param excludePattern - Pattern of files to exclude
+   * @param caseSensitive - Whether the search is case sensitive
+   */
+  grepSearch(path: string, query: string, includePattern?: string, excludePattern?: string, caseSensitive?: boolean): Promise<APIResponse>;
+
+  /**
+   * Performs a fuzzy search for files
+   * @param query - The query to search for
+   */
+  fileSearch(query: string): Promise<APIResponse>;
+
+  /**
+   * Edits a file by applying a diff
+   * @param targetFile - The target file to edit
+   * @param codeEdit - The code edit to apply
+   * @param diffIdentifier - The diff identifier
+   * @param prompt - The prompt for the edit
+   * @param applyModel - The model to apply the edit with
+   */
+  editFileWithDiff(targetFile: string, codeEdit: string, diffIdentifier: string, prompt: string, applyModel: string): Promise<APIResponse>;
 }
 
 // ================================
@@ -303,44 +320,56 @@ export interface BrowserModule {
   getPDF(): void;
 
   /**
+   * Converts the PDF content of the current page to text
+   */
+  pdfToText(): void;
+
+  /**
    * Extracts text from the current page
    */
   extractText(): Promise<APIResponse<string>>;
 
   /**
-   * Gets the content of the current page
+   * Retrieves the content of the current page
    */
   getContent(): Promise<APIResponse<string>>;
 
   /**
-   * Clicks on an element
-   * @param selector - Element selector
+   * Clicks on a specified element on the page
+   * @param elementid - The ID of the element to click
    */
-  click(selector: string): Promise<APIResponse>;
+  click(elementid: string): Promise<APIResponse>;
 
   /**
-   * Types text into an element
-   * @param selector - Element selector
-   * @param text - Text to type
+   * Types text into a specified element on the page
+   * @param elementid - The ID of the element to type into
+   * @param text - The text to type
    */
-  type(selector: string, text: string): Promise<APIResponse>;
+  type(elementid: string, text: string): Promise<APIResponse>;
 
   /**
-   * Presses Enter key
+   * Simulates the Enter key press on the current page
    */
   enter(): Promise<APIResponse>;
 
   /**
-   * Scrolls the page
-   * @param direction - Scroll direction
-   * @param amount - Scroll amount
+   * Scrolls the current page in a specified direction by a specified number of pixels
+   * @param direction - The direction to scroll
+   * @param pixels - The number of pixels to scroll
    */
-  scroll(direction: 'up' | 'down' | 'left' | 'right', amount?: number): Promise<APIResponse>;
+  scroll(direction: string, pixels: string): Promise<APIResponse>;
 
   /**
-   * Closes the current page/tab
+   * Closes the current page
    */
-  close(): Promise<APIResponse>;
+  close(): void;
+
+  /**
+   * Performs a search on the current page using a specified query
+   * @param elementid - The ID of the element to perform the search in
+   * @param query - The search query
+   */
+  search(elementid: string, query: string): Promise<APIResponse>;
 
   /**
    * Gets browser information
@@ -391,16 +420,37 @@ export interface ChatModule {
   };
 
   /**
-   * Notifies the server that a process has stopped
-   * @param message - Optional message to send with the notification
+   * Stops the ongoing process
    */
-  processStoped(message?: string): void;
+  stopProcess(): void;
 
   /**
-   * Asks a question and waits for a response
-   * @param question - The question to ask
+   * Indicates that the process has finished
    */
-  askQuestion(question: string): Promise<APIResponse<string>>;
+  processFinished(): void;
+
+  /**
+   * Sends a confirmation request to the server with customizable options
+   * @param confirmationMessage - The confirmation message
+   * @param buttons - Array of button labels (optional)
+   * @param withFeedback - Whether to include feedback option
+   */
+  sendConfirmationRequest(confirmationMessage: string, buttons?: string[], withFeedback?: boolean): Promise<APIResponse<string>>;
+
+  /**
+   * Asks a question (alias for sendConfirmationRequest)
+   * @param question - The question to ask
+   * @param buttons - Array of button labels (optional)
+   * @param withFeedback - Whether to include feedback option
+   */
+  askQuestion(question: string, buttons?: string[], withFeedback?: boolean): Promise<APIResponse<string>>;
+
+  /**
+   * Sends a notification event to the server
+   * @param notificationMessage - The message to be sent in the notification
+   * @param type - The type of notification
+   */
+  sendNotificationEvent(notificationMessage: string, type: 'debug' | 'git' | 'planner' | 'browser' | 'editor' | 'terminal' | 'preview'): void;
 }
 
 // ================================
@@ -409,27 +459,31 @@ export interface ChatModule {
 
 export interface TerminalModule {
   /**
-   * Executes a command in the terminal
-   * @param command - The command to execute
-   * @param options - Execution options
+   * Executes a given command and returns the result
+   * @param command - The command to be executed
+   * @param returnEmptyStringOnSuccess - Whether to return empty string on success
    */
-  execute(command: string, options?: {
-    cwd?: string;
-    env?: Record<string, string>;
-    timeout?: number;
-    executeInMain?: boolean;
-  }): Promise<APIResponse>;
+  executeCommand(command: string, returnEmptyStringOnSuccess?: boolean): Promise<APIResponse>;
 
   /**
-   * Executes a command and returns a stream for real-time output
-   * @param command - The command to execute
-   * @param options - Execution options
+   * Executes a given command and keeps running until an error occurs
+   * @param command - The command to be executed
+   * @param executeInMain - Whether to execute in main thread
    */
-  executeStream(command: string, options?: {
-    cwd?: string;
-    env?: Record<string, string>;
-    executeInMain?: boolean;
-  }): any; // EventEmitter-like object
+  executeCommandRunUntilError(command: string, executeInMain?: boolean): Promise<APIResponse>;
+
+  /**
+   * Sends a manual interrupt signal to the terminal
+   */
+  sendManualInterrupt(): Promise<APIResponse>;
+
+  /**
+   * Executes a given command and streams the output
+   * @param command - The command to be executed
+   * @param executeInMain - Whether to execute in main thread
+   * @returns EventEmitter that streams the output data during command execution
+   */
+  executeCommandWithStream(command: string, executeInMain?: boolean): any; // EventEmitter-like object
 }
 
 // ================================
@@ -438,70 +492,58 @@ export interface TerminalModule {
 
 export interface GitModule {
   /**
-   * Initializes a new Git repository
-   * @param path - The path where to initialize the repository
+   * Initializes a new Git repository at the given path
+   * @param path - The file system path where the Git repository should be initialized
    */
   init(path: string): Promise<APIResponse>;
 
   /**
-   * Adds files to the staging area
-   * @param path - The path of files to add
-   * @param files - Specific files to add (optional)
+   * Pulls the latest changes from the remote repository to the local repository
    */
-  add(path: string, files?: string[]): Promise<APIResponse>;
+  pull(): Promise<APIResponse>;
 
   /**
-   * Commits staged changes
-   * @param path - The repository path
-   * @param message - The commit message
+   * Pushes local repository changes to the remote repository
    */
-  commit(path: string, message: string): Promise<APIResponse>;
+  push(): Promise<APIResponse>;
 
   /**
-   * Pushes changes to remote repository
-   * @param path - The repository path
-   * @param remote - The remote name (default: origin)
-   * @param branch - The branch name (default: current branch)
+   * Retrieves the status of the local repository
    */
-  push(path: string, remote?: string, branch?: string): Promise<APIResponse>;
+  status(): Promise<APIResponse<StatusResult>>;
 
   /**
-   * Pulls changes from remote repository
-   * @param path - The repository path
-   * @param remote - The remote name (default: origin)
-   * @param branch - The branch name (default: current branch)
+   * Adds all changes in the local repository to the staging area
    */
-  pull(path: string, remote?: string, branch?: string): Promise<APIResponse>;
+  addAll(): Promise<APIResponse>;
 
   /**
-   * Gets the status of the repository
-   * @param path - The repository path
+   * Commits the staged changes in the local repository with the given commit message
+   * @param message - The commit message to use for the commit
    */
-  status(path: string): Promise<APIResponse<StatusResult>>;
+  commit(message: string): Promise<APIResponse>;
 
   /**
-   * Creates a new branch
-   * @param path - The repository path
-   * @param branchName - The name of the new branch
+   * Checks out a branch or commit in the local repository
+   * @param branch - The name of the branch or commit to check out
    */
-  branch(path: string, branchName: string): Promise<APIResponse>;
+  checkout(branch: string): Promise<APIResponse>;
 
   /**
-   * Switches to a different branch
-   * @param path - The repository path
-   * @param branchName - The name of the branch to switch to
+   * Creates a new branch in the local repository
+   * @param branch - The name of the new branch to create
    */
-  checkout(path: string, branchName: string): Promise<APIResponse>;
+  branch(branch: string): Promise<APIResponse>;
 
   /**
-   * Retrieves the commit logs
-   * @param path - The repository path
+   * Retrieves the commit logs for the local repository
+   * @param path - The file system path of the local Git repository
    */
   logs(path: string): Promise<APIResponse<CommitSummary[]>>;
 
   /**
-   * Gets the diff of changes for a specific commit
-   * @param commitHash - The hash of the commit
+   * Retrieves the diff of changes for a specific commit in the local repository
+   * @param commitHash - The hash of the commit to retrieve the diff for
    */
   diff(commitHash: string): Promise<APIResponse>;
 }
@@ -512,32 +554,28 @@ export interface GitModule {
 
 export interface LLMModule {
   /**
-   * Performs LLM inference
-   * @param params - Inference parameters
+   * Sends an inference request to the LLM using OpenAI message format with tools support
+   * @param params - The inference parameters
+   * @param llmrole - The role of the LLM to determine which model to use
    */
   inference(params: {
     messages: Message[];
-    tools?: Tool[];
-    tool_choice?: 'auto' | 'none' | 'required' | { type: 'function'; function: { name: string } };
-    llmrole: string;
+    tools?: any[];
+    tool_choice?: string;
+    full?: boolean;
+    llmrole?: string;
     max_tokens?: number;
     temperature?: number;
     stream?: boolean;
-  }): Promise<APIResponse>;
+  }, llmrole?: string): Promise<APIResponse<{ completion: any }>>;
 
   /**
-   * Sends a chat message to LLM
-   * @param options - Chat options
+   * Legacy method for backward compatibility - converts simple string prompt to message format
+   * @deprecated Use the new inference method with proper message format instead
+   * @param message - The input message or prompt to be sent to the LLM
+   * @param llmrole - The role of the LLM to determine which model to use
    */
-  chat(options: {
-    messages: Message[];
-    model?: string;
-    temperature?: number;
-    maxTokens?: number;
-    stream?: boolean;
-    tools?: Tool[];
-    toolChoice?: 'auto' | 'none' | 'required';
-  }): Promise<APIResponse>;
+  legacyInference(message: string, llmrole: string): Promise<APIResponse>;
 }
 
 // ================================
@@ -546,10 +584,10 @@ export interface LLMModule {
 
 export interface TaskModule {
   /**
-   * Creates a new task
-   * @param options - Task creation options
+   * Adds a new task with enhanced parameters
+   * @param params - The task parameters including title, agentId, description, etc.
    */
-  createTask(options: {
+  addTask(params: {
     title: string;
     agentId?: string;
     description?: string;
@@ -560,10 +598,46 @@ export interface TaskModule {
   }): Promise<APIResponse<Task>>;
 
   /**
-   * Updates an existing task
-   * @param options - Task update options
+   * Adds a task using simple string parameter (legacy support)
+   * @param task - The task title
+   * @param agentId - The agent ID (optional, defaults to 'default-agent')
    */
-  updateTask(options: {
+  addSimpleTask(task: string, agentId?: string): Promise<APIResponse<Task>>;
+
+  /**
+   * Retrieves all tasks with optional filtering
+   * @param filters - Optional filters for agentId, category, phase, etc.
+   */
+  getTasks(filters?: {
+    agentId?: string;
+    category?: string;
+    phase?: string;
+    priority?: 'low' | 'medium' | 'high';
+    completed?: boolean;
+  }): Promise<APIResponse<Task[]>>;
+
+  /**
+   * Retrieves tasks for a specific agent
+   * @param agentId - The agent ID
+   */
+  getTasksByAgent(agentId: string): Promise<APIResponse<Task[]>>;
+
+  /**
+   * Retrieves tasks by category
+   * @param category - The category name
+   */
+  getTasksByCategory(category: string): Promise<APIResponse<Task[]>>;
+
+  /**
+   * Retrieves all available agents
+   */
+  getAllAgents(): Promise<APIResponse<any[]>>;
+
+  /**
+   * Updates an existing task
+   * @param params - The task update parameters
+   */
+  updateTask(params: {
     taskId: string;
     title?: string;
     description?: string;
@@ -576,34 +650,29 @@ export interface TaskModule {
   }): Promise<APIResponse<Task>>;
 
   /**
+   * Updates an existing task using legacy string parameter
+   * @param taskId - The task ID
+   * @param task - The updated task information
+   */
+  updateSimpleTask(taskId: string, task: string): Promise<APIResponse<Task>>;
+
+  /**
    * Deletes a task
-   * @param taskId - The ID of the task to delete
+   * @param taskId - The task ID to delete
    */
   deleteTask(taskId: string): Promise<APIResponse>;
 
   /**
    * Gets a task by ID
-   * @param taskId - The ID of the task
+   * @param taskId - The task ID
    */
   getTask(taskId: string): Promise<APIResponse<Task>>;
 
   /**
-   * Gets all tasks with optional filtering
-   * @param filters - Task filters
-   */
-  getTasks(filters?: {
-    agentId?: string;
-    category?: string;
-    phase?: string;
-    priority?: 'low' | 'medium' | 'high';
-    completed?: boolean;
-  }): Promise<APIResponse<Task[]>>;
-
-  /**
    * Adds a subtask to an existing task
-   * @param options - Subtask options
+   * @param params - The subtask parameters
    */
-  addSubTask(options: {
+  addSubTask(params: {
     taskId: string;
     title: string;
     description?: string;
@@ -611,10 +680,10 @@ export interface TaskModule {
   }): Promise<APIResponse<SubTask>>;
 
   /**
-   * Updates a subtask
-   * @param options - Subtask update options
+   * Updates an existing subtask
+   * @param params - The subtask update parameters
    */
-  updateSubTask(options: {
+  updateSubTask(params: {
     taskId: string;
     subtaskId: string;
     title?: string;
@@ -631,10 +700,10 @@ export interface TaskModule {
   deleteSubTask(taskId: string, subtaskId: string): Promise<APIResponse>;
 
   /**
-   * Imports tasks from markdown
-   * @param options - Import options
+   * Creates tasks from markdown content
+   * @param params - The markdown parameters including content, agentId, phase, and category
    */
-  importFromMarkdown(options: {
+  createTasksFromMarkdown(params: {
     markdown: string;
     agentId?: string;
     phase?: string;
@@ -642,14 +711,51 @@ export interface TaskModule {
   }): Promise<APIResponse<Task[]>>;
 
   /**
-   * Exports tasks to markdown
-   * @param options - Export options
+   * Exports tasks to markdown format
+   * @param params - The export parameters including optional phase, agentId, and category filters
    */
-  exportToMarkdown(options?: {
+  exportTasksToMarkdown(params?: {
     phase?: string;
     agentId?: string;
     category?: string;
   }): Promise<APIResponse<string>>;
+
+  /**
+   * Utility function to toggle task completion status
+   * @param taskId - The task ID
+   * @param completed - The new completion status
+   */
+  toggleTaskCompletion(taskId: string, completed: boolean): Promise<APIResponse<Task>>;
+
+  /**
+   * Utility function to toggle subtask completion status
+   * @param taskId - The parent task ID
+   * @param subtaskId - The subtask ID
+   * @param completed - The new completion status
+   */
+  toggleSubTaskCompletion(taskId: string, subtaskId: string, completed: boolean): Promise<APIResponse<Task>>;
+
+  /**
+   * Utility function to set task priority
+   * @param taskId - The task ID
+   * @param priority - The new priority level
+   */
+  setTaskPriority(taskId: string, priority: 'low' | 'medium' | 'high'): Promise<APIResponse<Task>>;
+
+  /**
+   * Utility function to add tags to a task
+   * @param taskId - The task ID
+   * @param tags - The tags to add
+   */
+  addTaskTags(taskId: string, tags: string[]): Promise<APIResponse<Task>>;
+
+  /**
+   * Utility function to create a quick task with minimal parameters
+   * @param title - The task title
+   * @param agentId - The agent ID (optional, defaults to 'default-agent')
+   * @param category - The category (optional)
+   */
+  createQuickTask(title: string, agentId?: string, category?: string): Promise<APIResponse<Task>>;
 }
 
 // ================================
@@ -658,43 +764,33 @@ export interface TaskModule {
 
 export interface VectorDBModule {
   /**
-   * Adds a vector to the database
-   * @param options - Vector add options
+   * Retrieves a vector from the vector database based on the provided key.
+   * @param key - The key of the vector to retrieve.
+   * @returns A promise that resolves with the retrieved vector.
    */
-  add(options: {
-    id: string;
-    vector: number[];
-    metadata?: Record<string, any>;
-    content?: string;
-  }): Promise<APIResponse>;
+  getVector(key: string): Promise<APIResponse<VectorItem>>;
 
   /**
-   * Queries vectors from the database
-   * @param options - Vector query options
+   * Adds a new vector item to the vector database.
+   * @param item - The item to add to the vector.
+   * @returns A promise that resolves when the item is successfully added.
    */
-  query(options: {
-    vector: number[];
-    topK?: number;
-    filter?: Record<string, any>;
-    minScore?: number;
-  }): Promise<APIResponse<VectorItem[]>>;
+  addVectorItem(item: any): Promise<APIResponse>;
 
   /**
-   * Deletes a vector from the database
-   * @param id - The ID of the vector to delete
+   * Queries a vector item from the vector database based on the provided key.
+   * @param key - The key of the vector to query the item from.
+   * @returns A promise that resolves with the queried vector item.
    */
-  delete(id: string): Promise<APIResponse>;
+  queryVectorItem(key: string): Promise<APIResponse<VectorItem>>;
 
   /**
-   * Updates a vector in the database
-   * @param id - The ID of the vector to update
-   * @param options - Update options
+   * Queries multiple vector items from the vector database.
+   * @param items - Array of items to query.
+   * @param dbPath - Path to the database.
+   * @returns A promise that resolves with the queried vector items.
    */
-  update(id: string, options: {
-    vector?: number[];
-    metadata?: Record<string, any>;
-    content?: string;
-  }): Promise<APIResponse>;
+  queryVectorItems(items: any[], dbPath: string): Promise<APIResponse<VectorItem[]>>;
 }
 
 // ================================
