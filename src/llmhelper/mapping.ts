@@ -612,7 +612,7 @@ export const codeboltApiMapping = {
     "websocketReceiveSchema": z.void()
   },
   "chat.waitforReply": {
-    "name": "waitforReply",
+    "name": "waitforReply",-
     "description": "Waits for a reply to a sent message",
     "functionTypings": {} as ChatModule['waitforReply'],
     "websocketSendType": {} as WaitforReplyEvent,
@@ -1746,11 +1746,11 @@ export const codeboltApiMapping = {
   "codeutils.getAllFilesMarkdown": {
     "name": "getAllFilesMarkdown",
     "description": "Gets all files as markdown",
-    "functionTypings": {} as any, // CodeUtilsModule['getAllFilesMarkdown'] - method exists but not in current SDK types
+    "functionTypings": {} as CodeUtilsModule['getAllFilesAMarkdown'] //- method exists but not in current SDK types
     "websocketSendType": null, // CodeUtilsEvent not available in current schema exports
     "websocketReceiveType": {} as { markdown: string },
-    "websocketSendSchema": null, // codeUtilsEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ markdown: z.string() })
+    "websocketSendSchema": GetAllFilesMarkdownEventSchema, // codeUtilsEventBaseSchema not available in current schema exports
+    "websocketReceiveSchema": GetAllFilesMarkdownResponseSchema
   },
   "codeutils.getMatcherListTree": {
     "name": "getMatcherListTree",
