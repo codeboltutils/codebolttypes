@@ -76,11 +76,15 @@ import {
   type ExecuteToolEvent,
   type SummarizeAllEvent,
   type SummarizeEvent,
+  type GetTasksByAgentEvent,
+  type OpenDebugBrowserEvent,
   // Additional FS Event Types
   type FsEvent,
   type ListCodeDefinitionNamesEvent,
   type FileSearchEvent,
   type EditFileWithDiffEvent,
+  ConfirmationRequestEvent,
+  GetProjectSettingsEvent,
   // Additional Browser Event Types - these are not available in current schema exports
 } from '../agent-to-app-ws-types';
 
@@ -137,13 +141,16 @@ import {
   type GetTokenResponse,
   type GetSummarizeAllResponse,
   type GetSummarizeResponse,
+  type GetTasksByAgentResponse, 
   // Additional FS Response Types
   type ListCodeDefinitionNamesSuccessResponse,
   type ListCodeDefinitionNamesErrorResponse,
   type FileSearchSuccessResponse,
   type FileSearchErrorResponse,
   type EditFileAndApplyDiffSuccessResponse,
-  type EditFileAndApplyDiffErrorResponse
+  type EditFileAndApplyDiffErrorResponse,
+  OpenDebugBrowserResponse,
+  GetProjectSettingsResponse
 } from '../app-to-agent-ws-types';
 
 // Import schemas from agent-to-app-ws-schema.ts
@@ -175,6 +182,7 @@ import {
   getBrowserInfoEventSchema,
   getSnapShotEventSchema,
   getChatHistoryEventSchema,
+  confirmationRequestEventSchema,
   sendMessageEventSchema,
   waitforReplyEventSchema,
   processStartedEventSchema,
@@ -221,11 +229,14 @@ import {
   executeToolEventSchema,
   summarizeAllEventSchema,
   summarizeEventSchema,
+  getTasksByAgentEventSchema,
+  openDebugBrowserEventSchema,
   // Additional FS Event Schemas
   fsEventBaseSchema,
   listCodeDefinitionNamesEventSchema,
   fileSearchEventSchema,
   editFileWithDiffEventSchema,
+  getProjectSettingsEventSchema,
   // Additional Browser Event Schemas - these are not available in current schema exports
 } from '../agent-to-app-ws-schema';
 
@@ -282,13 +293,16 @@ import {
   GetTokenResponseSchema,
   GetSummarizeAllResponseSchema,
   GetSummarizeResponseSchema,
+  GetTasksByAgentResponseSchema,
   // Additional FS Response Schemas
   ListCodeDefinitionNamesSuccessResponseSchema,
   ListCodeDefinitionNamesErrorResponseSchema,
   FileSearchSuccessResponseSchema,
   FileSearchErrorResponseSchema,
   EditFileAndApplyDiffSuccessResponseSchema,
-  EditFileAndApplyDiffErrorResponseSchema
+  EditFileAndApplyDiffErrorResponseSchema,
+  OpenDebugBrowserResponseSchema,
+  GetProjectSettingsResponseSchema
 } from '../app-to-agent-ws-schema';
 
 // Import SDK module interfaces for function typings
@@ -1361,22 +1375,22 @@ export const codeboltApiMapping = {
   //   "websocketReceiveType": "string",
   //   "websocketReceiveSchema": "z.string()"
   // },
-  "chat.askQuestionWithChoices": {
-    "name": "askQuestionWithChoices",
-    "description": "Asks a question with multiple choice options",
-    "functionTypings": {} as any, // ChatModule['askQuestionWithChoices'] - method exists but not in current SDK types
-    "websocketSendType": null, // ChatEvent not available as generic type
-    "websocketReceiveType": {} as string,
-    "websocketSendSchema": null, // chatEventBaseSchema not available
-    "websocketReceiveSchema": z.string()
-  },
+  // "chat.askQuestionWithChoices": {
+  //   "name": "askQuestionWithChoices",
+  //   "description": "Asks a question with multiple choice options",
+  //   "functionTypings": {} as any, // ChatModule['askQuestionWithChoices'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // ChatEvent not available as generic type
+  //   "websocketReceiveType": {} as string,
+  //   "websocketSendSchema": null, // chatEventBaseSchema not available
+  //   "websocketReceiveSchema": z.string()
+  // },
   "chat.sendConfirmationRequest": {
     "name": "sendConfirmationRequest",
     "description": "Sends a confirmation request to the user",
-    "functionTypings": {} as any, // ChatModule['sendConfirmationRequest'] - method exists but not in current SDK types
-    "websocketSendType": null, // ChatEvent not available as generic type
+    "functionTypings": {} as ChatModule['sendConfirmationRequest'], 
+    "websocketSendType": {} as ConfirmationRequestEvent,
     "websocketReceiveType": {} as boolean,
-    "websocketSendSchema": null, // chatEventBaseSchema not available
+    "websocketSendSchema": confirmationRequestEventSchema,
     "websocketReceiveSchema": z.boolean()
   },
 
@@ -1475,15 +1489,15 @@ export const codeboltApiMapping = {
   //   "websocketReceiveType": "GitDiffResponse",
   //   "websocketReceiveSchema": "gitDiffResponseSchema"
   // },
-  "git.clone": {
-    "name": "clone",
-    "description": "Clones a git repository",
-    "functionTypings": {} as any, // GitModule['clone'] - method exists but not in current SDK types
-    "websocketSendType": null, // GitCloneEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // gitCloneEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
+  //"git.clone": {
+  //  "name": "clone",
+  //  "description": "Clones a git repository",
+  //  "functionTypings": {} as any, // GitModule['clone'] - method exists but not in current SDK types
+  //  "websocketSendType": null, // GitCloneEvent not available in current schema exports
+  //  "websocketReceiveType": {} as { success: boolean },
+  //  "websocketSendSchema": null, // gitCloneEventSchema not available in current schema exports
+  //  "websocketReceiveSchema": z.object({ success: z.boolean() })
+  //},
 
   // LLM APIs
   // "llm.inference": {
@@ -1495,15 +1509,15 @@ export const codeboltApiMapping = {
   // },
 
   // Terminal API duplicates removed - using earlier definitions
-  "terminal.sendInterruptToTerminal": {
-    "name": "sendInterruptToTerminal",
-    "description": "Sends an interrupt signal to the terminal",
-    "functionTypings": {} as any, // TerminalModule['sendInterruptToTerminal'] - method exists but not in current SDK types
-    "websocketSendType": null, // SendInterruptToTerminalEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // sendInterruptToTerminalEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
+  // "terminal.sendInterruptToTerminal": {
+  //   "name": "sendInterruptToTerminal",
+  //   "description": "Sends an interrupt signal to the terminal",
+  //   "functionTypings": {} as any, // TerminalModule['sendInterruptToTerminal'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // SendInterruptToTerminalEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { success: boolean },
+  //   "websocketSendSchema": null, // sendInterruptToTerminalEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ success: z.boolean() })
+  // },
 
   // Task APIs (duplicates removed - using earlier definitions)
   // "taskplaner.getTasks": {
@@ -1517,10 +1531,10 @@ export const codeboltApiMapping = {
     "name": "getTasksByAgent",
     "description": "Retrieves tasks for a specific agent",
     "functionTypings": {} as TaskModule['getTasksByAgent'],
-    "websocketSendType": null, // GetTasksByAgentEvent not available in current schema exports
-    "websocketReceiveType": {} as { tasks: any[] },
-    "websocketSendSchema": null, // getTasksByAgentEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ tasks: z.array(z.any()) })
+    "websocketSendType": {} as GetTasksByAgentEvent,
+    "websocketReceiveType": {} as GetTasksByAgentResponse,
+    "websocketSendSchema": getTasksByAgentEventSchema, 
+    "websocketReceiveSchema": GetTasksByAgentResponseSchema
   },
   // "taskplaner.updateTask": {
   //   "name": "updateTask",
@@ -1568,15 +1582,15 @@ export const codeboltApiMapping = {
   //   "websocketReceiveType": "MemoryGetResponse",
   //   "websocketReceiveSchema": "memoryGetResponseSchema"
   // },
-  "dbmemory.delete": {
-    "name": "delete",
-    "description": "Deletes a memory entry",
-    "functionTypings": {} as any, // MemoryModule['delete'] - method exists but not in current SDK types
-    "websocketSendType": null, // MemoryDeleteEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // memoryDeleteEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
+  // "dbmemory.delete": {
+  //   "name": "delete",
+  //   "description": "Deletes a memory entry",
+  //   "functionTypings": {} as any, // MemoryModule['delete'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // MemoryDeleteEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { success: boolean },
+  //   "websocketSendSchema": null, // memoryDeleteEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ success: z.boolean() })
+  // },
 
   // State APIs
   // "cbstate.getApplicationState": {
@@ -1616,23 +1630,23 @@ export const codeboltApiMapping = {
   // },
 
   // Debug APIs
-  "debug.addLog": {
-    "name": "addLog",
-    "description": "Adds a debug log entry",
-    "functionTypings": {} as DebugModule['log'],
-    "websocketSendType": {} as AddLogEvent,
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": addLogEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
+  // "debug.addLog": {
+  //   "name": "addLog",
+  //   "description": "Adds a debug log entry",
+  //   "functionTypings": {} as DebugModule['log'],
+  //   "websocketSendType": {} as AddLogEvent,
+  //   "websocketReceiveType": {} as { success: boolean },
+  //   "websocketSendSchema": addLogEventSchema,
+  //   "websocketReceiveSchema": z.object({ success: z.boolean() })
+  // },
   "debug.openDebugBrowser": {
     "name": "openDebugBrowser",
     "description": "Opens a debug browser instance",
-    "functionTypings": {} as any, // DebugModule['openDebugBrowser'] - method exists but not in current SDK types
-    "websocketSendType": null, // OpenDebugBrowserEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // openDebugBrowserEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "functionTypings": {} as DebugModule['openDebugBrowser'],
+    "websocketSendType": {} as OpenDebugBrowserEvent,
+    "websocketReceiveType": {} as OpenDebugBrowserResponse,
+    "websocketSendSchema": openDebugBrowserEventSchema,
+    "websocketReceiveSchema": OpenDebugBrowserResponseSchema
   },
 
   // Tokenizer APIs
@@ -1659,11 +1673,10 @@ export const codeboltApiMapping = {
   "project.getProjectSettings": {
     "name": "getProjectSettings",
     "description": "Gets project settings and configuration",
-    "functionTypings": {} as any, // ProjectModule['getProjectSettings'] - method exists but not in current SDK types
-    "websocketSendType": null, // GetProjectSettingsEvent not available in current schema exports
-    "websocketReceiveType": {} as { settings: any },
-    "websocketSendSchema": null, // getProjectSettingsEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ settings: z.any() })
+    "functionTypings": {} as ProjectModule['getProjectSettings'],
+    "websocketReceiveType": {} as GetProjectSettingsResponse,
+    "websocketSendSchema": getProjectSettingsEventSchema, 
+    "websocketReceiveSchema": GetProjectSettingsResponseSchema
   },
   // "project.getProjectPath": {
   //   "name": "getProjectPath",

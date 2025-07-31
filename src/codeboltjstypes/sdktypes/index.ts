@@ -174,6 +174,21 @@ export interface ASTNode {
   endPosition: { row: number; column: number };
   children: ASTNode[];
 }
+export enum LogType {
+  info = "info",
+  error = "error",
+  warning = "warning"
+}
+
+export interface DebugAddLogResponse {
+  type: 'debugAddLogResponse';
+  succes: true; // Note: keeping the typo as it exists in the source code
+}
+
+export interface OpenDebugBrowserResponse {
+  type: 'openDebugBrowserResponse';
+  succes: true; // Note: keeping the typo as it exists in the source code
+}
 
 // ================================
 // File System Module Types
@@ -983,47 +998,102 @@ export interface MemoryModule {
 
 export interface DebugModule {
   /**
-   * Logs a debug message
-   * @param options - Debug log options
+   * Sends a log message to the debug websocket and waits for a response.
+   * @param log - The log message to send.
+   * @param type - The type of the log message (info, error, warning).
+   * @returns A promise that resolves with the response from the debug event.
    */
-  log(options: {
-    message: string;
-    level?: 'debug' | 'info' | 'warn' | 'error';
-    metadata?: Record<string, any>;
-    component?: string;
-  }): Promise<APIResponse>;
+  debug(log: string, type: LogType): Promise<DebugAddLogResponse>;
 
   /**
-   * Gets debug logs
-   * @param filters - Log filters
+   * Requests to open a debug browser at the specified URL and port.
+   * @param url - The URL where the debug browser should be opened.
+   * @param port - The port on which the debug browser will listen.
+   * @returns A promise that resolves with the response from the open debug browser event.
    */
-  getLogs(filters?: {
-    level?: string;
-    component?: string;
-    limit?: number;
-  }): Promise<APIResponse>;
+  openDebugBrowser(url: string, port: number): Promise<OpenDebugBrowserResponse>;
 }
 
 // ================================
 // Project Module Types
 // ================================
 
+export interface ProjectSettings {
+  user_active_project_path: string;
+  userprofile_llm_settings: string; // JSON string
+  userprofile_default_llm: string; // JSON string
+  projectName?: string;
+  workspaceId?: number;
+  [key: string]: any; // Allow additional project setting properties
+}
+
+export interface GetProjectPathResponse {
+  type: 'getProjectPathResponse';
+  success: true;
+  message: 'Project path retrieved successfully';
+  projectPath: string;
+}
+
+export interface GetProjectSettingsResponse {
+  type: 'getProjectSettingsResponse';
+  success: true;
+  message: 'Project settings retrieved successfully';
+  projectSettings: ProjectSettings;
+}
+
+export interface GetRepoMapResponse {
+  type: 'getRepoMapResponse';
+  success: true;
+  message: 'Project repomap retrieved successfully';
+  repoMap: string;
+}
+
+export interface GetEditorFileStatusResponseSuccess {
+  type: 'getEditorFileStatusResponse';
+  success: true;
+  message: string;
+  editorStatus: string;
+}
+
+export interface GetEditorFileStatusResponseError {
+  type: 'getEditorFileStatusResponse';
+  success: false;
+  message: string;
+  editorStatus: string;
+}
+
+export type GetEditorFileStatusResponse = GetEditorFileStatusResponseSuccess | GetEditorFileStatusResponseError;
+
 export interface ProjectModule {
   /**
-   * Gets project information
+   * Retrieves the project settings from the server.
+   * @returns A promise that resolves with the project settings response.
    */
-  getProjectPath(): Promise<APIResponse<{ projectPath: string }>>;
+  getProjectSettings(): Promise<GetProjectSettingsResponse>;
 
   /**
-   * Gets project details
+   * Retrieves the path of the current project.
+   * @returns A promise that resolves with the project path response.
    */
-  getProjectInfo(): Promise<APIResponse>;
+  getProjectPath(): Promise<GetProjectPathResponse>;
 
   /**
-   * Updates project configuration
-   * @param config - Project configuration
+   * Gets the repository map for the project.
+   * @param message - Message containing repo map parameters.
+   * @returns A promise that resolves with the repo map response.
    */
-  updateConfig(config: Record<string, any>): Promise<APIResponse>;
+  getRepoMap(message: any): Promise<GetRepoMapResponse>;
+
+  /**
+   * Runs the project (fire and forget - no response expected).
+   */
+  runProject(): void;
+
+  /**
+   * Gets the editor file status.
+   * @returns A promise that resolves with the editor file status response.
+   */
+  getEditorFileStatus(): Promise<GetEditorFileStatusResponse>;
 }
 
 // ================================
