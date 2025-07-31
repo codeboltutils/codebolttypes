@@ -557,6 +557,24 @@ export const codeboltApiMapping = {
     "websocketSendSchema": getSnapShotEventSchema,
     "websocketReceiveSchema": z.object({ snapshot: z.any() })
   },
+  "browser.pdfToText": {
+    "name": "pdfToText",
+    "description": "Converts the PDF content of the current page to text",
+    "functionTypings": {} as BrowserModule['pdfToText'],
+    "websocketSendType": {} as any, // PdfToTextEvent not available
+    "websocketReceiveType": {} as { success: boolean },
+    "websocketSendSchema": z.any(),
+    "websocketReceiveSchema": z.object({ success: z.boolean() })
+  },
+  "browser.search": {
+    "name": "search",
+    "description": "Performs a search on the current page using a specified query",
+    "functionTypings": {} as BrowserModule['search'],
+    "websocketSendType": {} as any, // SearchEvent not available
+    "websocketReceiveType": {} as { success: boolean },
+    "websocketSendSchema": z.any(),
+    "websocketReceiveSchema": z.object({ success: z.boolean() })
+  },
 
   // Chat APIs
   "chat.getChatHistory": {
@@ -595,13 +613,22 @@ export const codeboltApiMapping = {
     "websocketSendSchema": processStartedEventSchema,
     "websocketReceiveSchema": z.object({ stopProcess: z.function() })
   },
-  "chat.processStoped": {
-    "name": "processStoped",
-    "description": "Notifies the server that a process has stopped",
-    "functionTypings": {} as ChatModule['processStoped'],
+  "chat.stopProcess": {
+    "name": "stopProcess",
+    "description": "Stops the ongoing process",
+    "functionTypings": {} as ChatModule['stopProcess'],
     "websocketSendType": {} as ProcessStoppedEvent,
     "websocketReceiveType": {} as unknown as void,
     "websocketSendSchema": processStoppedEventSchema,
+    "websocketReceiveSchema": z.void()
+  },
+  "chat.processFinished": {
+    "name": "processFinished",
+    "description": "Indicates that the process has finished",
+    "functionTypings": {} as ChatModule['processFinished'],
+    "websocketSendType": {} as any, // ProcessFinishedEvent not available
+    "websocketReceiveType": {} as unknown as void,
+    "websocketSendSchema": z.any(),
     "websocketReceiveSchema": z.void()
   },
   "chat.askQuestion": {
@@ -662,10 +689,10 @@ export const codeboltApiMapping = {
     "websocketSendSchema": gitInitEventSchema,
     "websocketReceiveSchema": GitInitResponseSchema
   },
-  "git.add": {
-    "name": "add",
-    "description": "Adds files to the staging area",
-    "functionTypings": {} as GitModule['add'],
+  "git.addAll": {
+    "name": "addAll",
+    "description": "Adds all changes in the local repository to the staging area",
+    "functionTypings": {} as GitModule['addAll'],
     "websocketSendType": {} as GitAddEvent,
     "websocketReceiveType": {} as GitAddResponse,
     "websocketSendSchema": gitAddEventSchema,
@@ -754,30 +781,48 @@ export const codeboltApiMapping = {
     "websocketSendSchema": inferenceEventSchema,
     "websocketReceiveSchema": z.object({ response: z.any() })
   },
-  "llm.chat": {
-    "name": "chat",
-    "description": "Sends a chat message to LLM",
-    "functionTypings": {} as LLMModule['chat'],
-    "websocketSendType": null, // No specific ChatEvent for LLM, uses InferenceEvent
+  "llm.legacyInference": {
+    "name": "legacyInference",
+    "description": "Legacy method for backward compatibility - converts simple string prompt to message format",
+    "functionTypings": {} as LLMModule['legacyInference'],
+    "websocketSendType": {} as InferenceEvent,
     "websocketReceiveType": {} as { response: any },
-    "websocketSendSchema": null, // No specific chatEventSchema for LLM
+    "websocketSendSchema": inferenceEventSchema,
     "websocketReceiveSchema": z.object({ response: z.any() })
   },
 
   // Terminal APIs
-  "terminal.execute": {
-    "name": "execute",
-    "description": "Executes a command in the terminal",
-    "functionTypings": {} as TerminalModule['execute'],
+  "terminal.executeCommand": {
+    "name": "executeCommand",
+    "description": "Executes a given command and returns the result",
+    "functionTypings": {} as TerminalModule['executeCommand'],
     "websocketSendType": {} as ExecuteCommandEvent,
     "websocketReceiveType": {} as { output: string },
     "websocketSendSchema": executeCommandEventSchema,
     "websocketReceiveSchema": z.object({ output: z.string() })
   },
-  "terminal.executeStream": {
-    "name": "executeStream",
-    "description": "Executes a command and returns a stream for real-time output",
-    "functionTypings": {} as TerminalModule['executeStream'],
+  "terminal.executeCommandRunUntilError": {
+    "name": "executeCommandRunUntilError",
+    "description": "Executes a given command and keeps running until an error occurs",
+    "functionTypings": {} as TerminalModule['executeCommandRunUntilError'],
+    "websocketSendType": {} as any, // ExecuteCommandRunUntilErrorEvent not available
+    "websocketReceiveType": {} as { output: string },
+    "websocketSendSchema": z.any(),
+    "websocketReceiveSchema": z.object({ output: z.string() })
+  },
+  "terminal.sendManualInterrupt": {
+    "name": "sendManualInterrupt", 
+    "description": "Sends a manual interrupt signal to the terminal",
+    "functionTypings": {} as TerminalModule['sendManualInterrupt'],
+    "websocketSendType": {} as any, // SendManualInterruptEvent not available
+    "websocketReceiveType": {} as { success: boolean },
+    "websocketSendSchema": z.any(),
+    "websocketReceiveSchema": z.object({ success: z.boolean() })
+  },
+  "terminal.executeCommandWithStream": {
+    "name": "executeCommandWithStream",
+    "description": "Executes a given command and streams the output",
+    "functionTypings": {} as TerminalModule['executeCommandWithStream'],
     "websocketSendType": {} as ExecuteCommandWithStreamEvent,
     "websocketReceiveType": {} as any,
     "websocketSendSchema": executeCommandWithStreamEventSchema,
@@ -785,10 +830,19 @@ export const codeboltApiMapping = {
   },
 
   // Task APIs
-  "taskplaner.createTask": {
-    "name": "createTask",
-    "description": "Creates a new task",
-    "functionTypings": {} as TaskModule['createTask'],
+  "taskplaner.addTask": {
+    "name": "addTask",
+    "description": "Adds a new task with enhanced parameters",
+    "functionTypings": {} as TaskModule['addTask'],
+    "websocketSendType": {} as AddTaskEvent,
+    "websocketReceiveType": {} as AddTaskResponse,
+    "websocketSendSchema": addTaskEventSchema,
+    "websocketReceiveSchema": AddTaskResponseSchema
+  },
+  "taskplaner.addSimpleTask": {
+    "name": "addSimpleTask", 
+    "description": "Adds a task using simple string parameter (legacy support)",
+    "functionTypings": {} as TaskModule['addSimpleTask'],
     "websocketSendType": {} as AddTaskEvent,
     "websocketReceiveType": {} as AddTaskResponse,
     "websocketSendSchema": addTaskEventSchema,
@@ -841,23 +895,41 @@ export const codeboltApiMapping = {
   },
 
   // Vector Database APIs
-  "vectordb.add": {
-    "name": "add",
-    "description": "Adds a vector to the database",
-    "functionTypings": {} as VectorDBModule['add'],
+  "vectordb.addVectorItem": {
+    "name": "addVectorItem",
+    "description": "Adds a vector item to the database",
+    "functionTypings": {} as VectorDBModule['addVectorItem'],
     "websocketSendType": {} as AddVectorItemEvent,
     "websocketReceiveType": {} as AddVectorItemResponse,
     "websocketSendSchema": addVectorItemEventSchema,
     "websocketReceiveSchema": AddVectorItemResponseSchema
   },
-  "vectordb.query": {
-    "name": "query",
-    "description": "Queries vectors from the database",
-    "functionTypings": {} as VectorDBModule['query'],
+  "vectordb.getVector": {
+    "name": "getVector",
+    "description": "Retrieves a vector from the vector database based on the provided key",
+    "functionTypings": {} as VectorDBModule['getVector'],
+    "websocketSendType": {} as any, // GetVectorEvent not available
+    "websocketReceiveType": {} as any, // GetVectorResponse not available
+    "websocketSendSchema": z.any(),
+    "websocketReceiveSchema": z.any()
+  },
+  "vectordb.queryVectorItem": {
+    "name": "queryVectorItem",
+    "description": "Queries a vector item from the database based on the provided key",
+    "functionTypings": {} as VectorDBModule['queryVectorItem'],
     "websocketSendType": {} as QueryVectorItemEvent,
     "websocketReceiveType": {} as QueryVectorItemResponse,
     "websocketSendSchema": queryVectorItemEventSchema,
     "websocketReceiveSchema": QueryVectorItemResponseSchema
+  },
+  "vectordb.queryVectorItems": {
+    "name": "queryVectorItems",
+    "description": "Queries multiple vector items from the database",
+    "functionTypings": {} as VectorDBModule['queryVectorItems'],
+    "websocketSendType": {} as any, // QueryVectorItemsEvent not available  
+    "websocketReceiveType": {} as any, // QueryVectorItemsResponse not available
+    "websocketSendSchema": z.any(),
+    "websocketReceiveSchema": z.any()
   },
 
   // Memory APIs  
@@ -1367,15 +1439,7 @@ export const codeboltApiMapping = {
   //   "websocketReceiveType": "GitStatusResponse",
   //   "websocketReceiveSchema": "gitStatusResponseSchema"
   // },
-  "git.addAll": {
-    "name": "addAll",
-    "description": "Adds all changes to the git staging area",
-    "functionTypings": {} as GitModule['add'],
-    "websocketSendType": {} as GitAddEvent,
-    "websocketReceiveType": {} as GitAddResponse,
-    "websocketSendSchema": gitAddEventSchema,
-    "websocketReceiveSchema": GitAddResponseSchema
-  },
+
   // "git.commit": {
   //   "name": "commit",
   //   "websocketSendType": "GitCommitEvent",
@@ -1429,53 +1493,8 @@ export const codeboltApiMapping = {
   //   "websocketReceiveType": "LLMResponse",
   //   "websocketReceiveSchema": "llmResponseSchema"
   // },
-  "llm.legacyInference": {
-    "name": "legacyInference",
-    "description": "Performs legacy LLM inference",
-    "functionTypings": {} as LLMModule['inference'],
-    "websocketSendType": null, // LegacyInferenceEvent not available in current schema exports
-    "websocketReceiveType": {} as { response: any },
-    "websocketSendSchema": null, // legacyInferenceEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ response: z.any() })
-  },
 
-  // Terminal APIs
-  "terminal.executeCommand": {
-    "name": "executeCommand",
-    "description": "Executes a command in the terminal",
-    "functionTypings": {} as TerminalModule['execute'],
-    "websocketSendType": {} as ExecuteCommandEvent,
-    "websocketReceiveType": {} as { output: string },
-    "websocketSendSchema": executeCommandEventSchema,
-    "websocketReceiveSchema": z.object({ output: z.string() })
-  },
-  "terminal.executeCommandRunUntilError": {
-    "name": "executeCommandRunUntilError",
-    "description": "Executes a command until an error occurs",
-    "functionTypings": {} as any, // TerminalModule['executeCommandRunUntilError'] - method exists but not in current SDK types
-    "websocketSendType": null, // ExecuteCommandRunUntilErrorEvent not available in current schema exports
-    "websocketReceiveType": {} as { output: string },
-    "websocketSendSchema": null, // executeCommandRunUntilErrorEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ output: z.string() })
-  },
-  "terminal.executeCommandRunUntilInterrupt": {
-    "name": "executeCommandRunUntilInterrupt",
-    "description": "Executes a command until interrupted",
-    "functionTypings": {} as any, // TerminalModule['executeCommandRunUntilInterrupt'] - method exists but not in current SDK types
-    "websocketSendType": null, // ExecuteCommandRunUntilInterruptEvent not available in current schema exports
-    "websocketReceiveType": {} as { output: string },
-    "websocketSendSchema": null, // executeCommandRunUntilInterruptEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ output: z.string() })
-  },
-  "terminal.executeCommandWithStream": {
-    "name": "executeCommandWithStream",
-    "description": "Executes a command with streaming output",
-    "functionTypings": {} as TerminalModule['executeStream'],
-    "websocketSendType": {} as ExecuteCommandWithStreamEvent,
-    "websocketReceiveType": {} as any,
-    "websocketSendSchema": executeCommandWithStreamEventSchema,
-    "websocketReceiveSchema": z.any()
-  },
+  // Terminal API duplicates removed - using earlier definitions
   "terminal.sendInterruptToTerminal": {
     "name": "sendInterruptToTerminal",
     "description": "Sends an interrupt signal to the terminal",
@@ -1486,25 +1505,7 @@ export const codeboltApiMapping = {
     "websocketReceiveSchema": z.object({ success: z.boolean() })
   },
 
-  // Task APIs
-  "taskplaner.addTask": {
-    "name": "addTask",
-    "description": "Adds a new task",
-    "functionTypings": {} as TaskModule['createTask'],
-    "websocketSendType": {} as AddTaskEvent,
-    "websocketReceiveType": {} as AddTaskResponse,
-    "websocketSendSchema": addTaskEventSchema,
-    "websocketReceiveSchema": AddTaskResponseSchema
-  },
-  "taskplaner.addSimpleTask": {
-    "name": "addSimpleTask",
-    "description": "Adds a simple task",
-    "functionTypings": {} as any, // TaskModule['addSimpleTask'] - method exists but not in current SDK types
-    "websocketSendType": null, // AddSimpleTaskEvent not available in current schema exports
-    "websocketReceiveType": {} as AddTaskResponse,
-    "websocketSendSchema": null, // addSimpleTaskEventSchema not available in current schema exports
-    "websocketReceiveSchema": AddTaskResponseSchema
-  },
+  // Task APIs (duplicates removed - using earlier definitions)
   // "taskplaner.getTasks": {
   //   "name": "getTasks",
   //   "websocketSendType": "GetTasksEvent", 
@@ -1514,8 +1515,8 @@ export const codeboltApiMapping = {
   // },
   "taskplaner.getTasksByAgent": {
     "name": "getTasksByAgent",
-    "description": "Gets tasks assigned to a specific agent",
-    "functionTypings": {} as any, // TaskModule['getTasksByAgent'] - method exists but not in current SDK types
+    "description": "Retrieves tasks for a specific agent",
+    "functionTypings": {} as TaskModule['getTasksByAgent'],
     "websocketSendType": null, // GetTasksByAgentEvent not available in current schema exports
     "websocketReceiveType": {} as { tasks: any[] },
     "websocketSendSchema": null, // getTasksByAgentEventSchema not available in current schema exports
@@ -1550,34 +1551,7 @@ export const codeboltApiMapping = {
   //   "websocketReceiveSchema": "updateSubTaskResponseSchema"
   // },
 
-  // Vector Database APIs
-  "vectordb.addVectorItem": {
-    "name": "addVectorItem",
-    "description": "Adds a vector item to the database",
-    "functionTypings": {} as VectorDBModule['add'],
-    "websocketSendType": {} as AddVectorItemEvent,
-    "websocketReceiveType": {} as AddVectorItemResponse,
-    "websocketSendSchema": addVectorItemEventSchema,
-    "websocketReceiveSchema": AddVectorItemResponseSchema
-  },
-  "vectordb.getVector": {
-    "name": "getVector",
-    "description": "Gets a vector from the database",
-    "functionTypings": {} as any, // VectorDBModule['getVector'] - method exists but not in current SDK types
-    "websocketSendType": null, // GetVectorEvent not available in current schema exports
-    "websocketReceiveType": {} as { vector: any },
-    "websocketSendSchema": null, // getVectorEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ vector: z.any() })
-  },
-  "vectordb.queryVectorItem": {
-    "name": "queryVectorItem",
-    "description": "Queries vector items from the database",
-    "functionTypings": {} as VectorDBModule['query'],
-    "websocketSendType": {} as QueryVectorItemEvent,
-    "websocketReceiveType": {} as QueryVectorItemResponse,
-    "websocketSendSchema": queryVectorItemEventSchema,
-    "websocketReceiveSchema": QueryVectorItemResponseSchema
-  },
+  // Vector Database APIs (duplicates removed - using earlier definitions)
 
   // Memory APIs
   // "dbmemory.set": {
