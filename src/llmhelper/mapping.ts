@@ -242,6 +242,235 @@ import {
   // Additional Browser Event Schemas - these are not available in current schema exports
 } from '../agent-to-app-ws-schema';
 
+// Import Code Utils Event Schemas
+import {
+  GetAllFilesMarkdownEventSchema
+} from '../wstypes/agent-to-app-ws/actions/codeUtilsEventSchemas';
+
+// Import notification schemas
+import {
+  // FS Notifications
+  fileCreateRequestNotificationSchema,
+  fileCreateResponseNotificationSchema,
+  folderCreateRequestNotificationSchema,
+  folderCreateResponseNotificationSchema,
+  fileReadRequestNotificationSchema,
+  fileReadResponseNotificationSchema,
+  fileEditRequestNotificationSchema,
+  fileEditResponseNotificationSchema,
+  fileDeleteRequestNotificationSchema,
+  fileDeleteResponseNotificationSchema,
+  folderDeleteRequestNotificationSchema,
+  folderDeleteResponseNotificationSchema,
+  listDirectoryRequestNotificationSchema,
+  listDirectoryResponseNotificationSchema,
+  writeToFileRequestNotificationSchema,
+  writeToFileResponseNotificationSchema,
+  // Git Notifications
+  gitInitRequestNotificationSchema,
+  gitInitResponseNotificationSchema,
+  gitPullRequestNotificationSchema,
+  gitPullResponseNotificationSchema,
+  gitPushRequestNotificationSchema,
+  gitPushResponseNotificationSchema,
+  gitStatusRequestNotificationSchema,
+  gitStatusResponseNotificationSchema,
+  gitAddRequestNotificationSchema,
+  gitAddResponseNotificationSchema,
+  gitCommitRequestNotificationSchema,
+  gitCommitResponseNotificationSchema,
+  gitCheckoutRequestNotificationSchema,
+  gitCheckoutResponseNotificationSchema,
+  gitBranchRequestNotificationSchema,
+  gitBranchResponseNotificationSchema,
+  gitLogsRequestNotificationSchema,
+  gitLogsResponseNotificationSchema,
+  gitDiffRequestNotificationSchema,
+  gitDiffResponseNotificationSchema,
+  // Browser Notifications
+  webFetchRequestNotificationSchema,
+  webFetchResponseNotificationSchema,
+  webSearchRequestNotificationSchema,
+  webSearchResponseNotificationSchema,
+  // Chat Notifications
+  userMessageRequestNotificationSchema,
+  agentTextResponseNotificationSchema,
+  getChatHistoryRequestNotificationSchema,
+  getChatHistoryResultNotificationSchema,
+  // Terminal Notifications
+  commandExecutionRequestNotificationSchema,
+  commandExecutionResponseNotificationSchema,
+  // LLM Notifications
+  llmRequestNotificationSchema,
+  llmResponseNotificationSchema,
+  llmGetTokenCountRequestNotificationSchema,
+  llmGetTokenCountResponseNotificationSchema,
+  // Memory Notifications
+  addMemoryRequestNotificationSchema,
+  addMemoryResultNotificationSchema,
+  getMemoryRequestNotificationSchema,
+  getMemoryResultNotificationSchema,
+  // MCP Notifications
+  getEnabledMCPServersRequestNotificationSchema,
+  getEnabledMCPServersResultNotificationSchema,
+  listToolsFromMCPServersRequestNotificationSchema,
+  listToolsFromMCPServersResultNotificationSchema,
+  getToolsRequestNotificationSchema,
+  getToolsResultNotificationSchema,
+  executeToolRequestNotificationSchema,
+  executeToolResultNotificationSchema,
+  // Agent Notifications
+  startSubagentTaskRequestNotificationSchema,
+  startSubagentTaskResponseNotificationSchema,
+  subagentTaskCompletedNotificationSchema,
+  // Crawler Notifications
+  crawlerSearchRequestNotificationSchema,
+  crawlerSearchResponseNotificationSchema,
+  crawlerStartRequestNotificationSchema,
+  crawlerStartResponseNotificationSchema,
+  // Search Notifications
+  searchInitRequestSchema,
+  searchRequestSchema,
+  getFirstLinkRequestSchema,
+  codebaseSearchRequestSchema,
+  searchInitResultSchema,
+  searchResultSchema,
+  getFirstLinkResultSchema,
+  codebaseSearchResultSchema,
+  // History Notifications
+  summarizePreviousConversationRequestNotificationSchema,
+  summarizePreviousConversationResultNotificationSchema,
+  summarizeCurrentMessageRequestNotificationSchema,
+  summarizeCurrentMessageResultNotificationSchema,
+  // Code Utils Notifications
+  grepSearchRequestNotificationSchema,
+  grepSearchResponseNotificationSchema,
+  globSearchRequestNotificationSchema,
+  globSearchResponseNotificationSchema,
+  // Todo Notifications
+  addTodoRequestNotificationSchema,
+  addTodoResponseNotificationSchema,
+  getTodoRequestNotificationSchema,
+  getTodoTasksResponseNotificationSchema,
+  editTodoTaskRequestNotificationSchema,
+  editTodoTaskResponseNotificationSchema,
+  // System Notifications
+  agentInitNotificationSchema,
+  agentCompletionNotificationSchema
+} from '../agent-to-app-ws-schema';
+
+// Import notification types
+import {
+  // FS Notification Types
+  type FileCreateRequestNotification,
+  type FileCreateResponseNotification,
+  type FolderCreateRequestNotification,
+  type FolderCreateResponseNotification,
+  type FileReadRequestNotification,
+  type FileReadResponseNotification,
+  type FileEditRequestNotification,
+  type FileEditResponseNotification,
+  type FileDeleteRequestNotification,
+  type FileDeleteResponseNotification,
+  type FolderDeleteRequestNotification,
+  type FolderDeleteResponseNotification,
+  type ListDirectoryRequestNotification,
+  type ListDirectoryResponseNotification,
+  type WriteToFileRequestNotification,
+  type WriteToFileResponseNotification,
+  // Git Notification Types
+  type GitInitRequestNotification,
+  type GitInitResponseNotification,
+  type GitPullRequestNotification,
+  type GitPullResponseNotification,
+  type GitPushRequestNotification,
+  type GitPushResponseNotification,
+  type GitStatusRequestNotification,
+  type GitStatusResponseNotification,
+  type GitAddRequestNotification,
+  type GitAddResponseNotification,
+  type GitCommitRequestNotification,
+  type GitCommitResponseNotification,
+  type GitCheckoutRequestNotification,
+  type GitCheckoutResponseNotification,
+  type GitBranchRequestNotification,
+  type GitBranchResponseNotification,
+  type GitLogsRequestNotification,
+  type GitLogsResponseNotification,
+  type GitDiffRequestNotification,
+  type GitDiffResponseNotification,
+  // Browser Notification Types
+  type WebFetchRequestNotification,
+  type WebFetchResponseNotification,
+  type WebSearchRequestNotification,
+  type WebSearchResponseNotification,
+  // Chat Notification Types
+  type UserMessageRequestNotification,
+  type AgentTextResponseNotification,
+  type GetChatHistoryRequestNotification,
+  type GetChatHistoryResultNotification,
+  // Terminal Notification Types
+  type CommandExecutionRequestNotification,
+  type CommandExecutionResponseNotification,
+  // LLM Notification Types
+  type LlmRequestNotification,
+  type LlmResponseNotification,
+  type LlmGetTokenCountRequestNotification,
+  type LlmGetTokenCountResponseNotification,
+  // Memory Notification Types
+  type AddMemoryRequestNotification,
+  type AddMemoryResultNotification,
+  type GetMemoryRequestNotification,
+  type GetMemoryResultNotification,
+  // MCP Notification Types
+  type GetEnabledMCPServersRequestNotification,
+  type GetEnabledMCPServersResultNotification,
+  type ListToolsFromMCPServersRequestNotification,
+  type ListToolsFromMCPServersResultNotification,
+  type GetToolsRequestNotification,
+  type GetToolsResultNotification,
+  type ExecuteToolRequestNotification,
+  type ExecuteToolResultNotification,
+  // Agent Notification Types
+  type StartSubagentTaskRequestNotification,
+  type StartSubagentTaskResponseNotification,
+  type SubagentTaskCompletedNotification,
+  // Crawler Notification Types
+  type CrawlerSearchRequestNotification,
+  type CrawlerSearchResponseNotification,
+  type CrawlerStartRequestNotification,
+  type CrawlerStartResponseNotification,
+  // Search Notification Types
+  type SearchInitRequest,
+  type SearchRequest,
+  type GetFirstLinkRequest,
+  type CodebaseSearchRequest,
+  type SearchInitResult,
+  type SearchResult,
+  type GetFirstLinkResult,
+  type CodebaseSearchResult,
+  // History Notification Types
+  type SummarizePreviousConversationRequestNotification,
+  type SummarizePreviousConversationResultNotification,
+  type SummarizeCurrentMessageRequestNotification,
+  type SummarizeCurrentMessageResultNotification,
+  // Code Utils Notification Types
+  type GrepSearchRequestNotification,
+  type GrepSearchResponseNotification,
+  type GlobSearchRequestNotification,
+  type GlobSearchResponseNotification,
+  // Todo Notification Types
+  type AddTodoRequestNotification,
+  type AddTodoResponseNotification,
+  type GetTodoRequestNotification,
+  type GetTodoTasksResponseNotification,
+  type EditTodoTaskRequestNotification,
+  type EditTodoTaskResponseNotification,
+  // System Notification Types
+  type AgentInitNotification,
+  type AgentCompletionNotification
+} from '../agent-to-app-ws-types';
+
 // Import response schemas from app-to-agent-ws-schema.ts
 import {
   CreateFileSuccessResponseSchema,
@@ -304,7 +533,8 @@ import {
   EditFileAndApplyDiffSuccessResponseSchema,
   EditFileAndApplyDiffErrorResponseSchema,
   OpenDebugBrowserResponseSchema,
-  GetProjectSettingsResponseSchema
+  GetProjectSettingsResponseSchema,
+  GetAllFilesMarkdownResponseSchema
 } from '../app-to-agent-ws-schema';
 
 // Import SDK module interfaces for function typings
@@ -344,7 +574,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as CreateFileEvent,
     "websocketReceiveType": {} as CreateFileSuccessResponse | CreateFileErrorResponse,
     "websocketSendSchema": createFileEventSchema,
-    "websocketReceiveSchema": z.union([CreateFileSuccessResponseSchema, CreateFileErrorResponseSchema])
+    "websocketReceiveSchema": z.union([CreateFileSuccessResponseSchema, CreateFileErrorResponseSchema]),
+    "notificationSchemas": [fileCreateRequestNotificationSchema, fileCreateResponseNotificationSchema],
+    "notificationTypes": [{} as FileCreateRequestNotification, {} as FileCreateResponseNotification]
   },
   "fs.createFolder": {
     "name": "createFolder",
@@ -353,7 +585,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as CreateFolderEvent,
     "websocketReceiveType": {} as CreateFolderSuccessResponse | CreateFolderErrorResponse,
     "websocketSendSchema": createFolderEventSchema,
-    "websocketReceiveSchema": z.union([CreateFolderSuccessResponseSchema, CreateFolderErrorResponseSchema])
+    "websocketReceiveSchema": z.union([CreateFolderSuccessResponseSchema, CreateFolderErrorResponseSchema]),
+    "notificationSchemas": [folderCreateRequestNotificationSchema, folderCreateResponseNotificationSchema],
+    "notificationTypes": [{} as FolderCreateRequestNotification, {} as FolderCreateResponseNotification]
   },
   "fs.readFile": {
     "name": "readFile",
@@ -362,7 +596,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ReadFileEvent,
     "websocketReceiveType": {} as ReadFileSuccessResponse | ReadFileSuccessResultResponse,
     "websocketSendSchema": readFileEventSchema,
-    "websocketReceiveSchema": z.union([ReadFileSuccessResponseSchema, ReadFileSuccessResultResponseSchema])
+    "websocketReceiveSchema": z.union([ReadFileSuccessResponseSchema, ReadFileSuccessResultResponseSchema]),
+    "notificationSchemas": [fileReadRequestNotificationSchema, fileReadResponseNotificationSchema],
+    "notificationTypes": [{} as FileReadRequestNotification, {} as FileReadResponseNotification]
   },
   "fs.updateFile": {
     "name": "updateFile",
@@ -371,7 +607,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as UpdateFileEvent,
     "websocketReceiveType": {} as UpdateFileSuccessResponse | UpdateFileErrorResponse,
     "websocketSendSchema": updateFileEventSchema,
-    "websocketReceiveSchema": z.union([UpdateFileSuccessResponseSchema, UpdateFileErrorResponseSchema])
+    "websocketReceiveSchema": z.union([UpdateFileSuccessResponseSchema, UpdateFileErrorResponseSchema]),
+    "notificationSchemas": [fileEditRequestNotificationSchema, fileEditResponseNotificationSchema],
+    "notificationTypes": [{} as FileEditRequestNotification, {} as FileEditResponseNotification]
   },
   "fs.deleteFile": {
     "name": "deleteFile",
@@ -380,7 +618,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as DeleteFileEvent,
     "websocketReceiveType": {} as DeleteFileSuccessResponse | DeleteFileErrorResponse,
     "websocketSendSchema": deleteFileEventSchema,
-    "websocketReceiveSchema": z.union([DeleteFileSuccessResponseSchema, DeleteFileErrorResponseSchema])
+    "websocketReceiveSchema": z.union([DeleteFileSuccessResponseSchema, DeleteFileErrorResponseSchema]),
+    "notificationSchemas": [fileDeleteRequestNotificationSchema, fileDeleteResponseNotificationSchema],
+    "notificationTypes": [{} as FileDeleteRequestNotification, {} as FileDeleteResponseNotification]
   },
   "fs.deleteFolder": {
     "name": "deleteFolder",
@@ -389,7 +629,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as DeleteFolderEvent,
     "websocketReceiveType": {} as DeleteFolderSuccessResponse | DeleteFolderErrorResponse,
     "websocketSendSchema": deleteFolderEventSchema,
-    "websocketReceiveSchema": z.union([DeleteFolderSuccessResponseSchema, DeleteFolderErrorResponseSchema])
+    "websocketReceiveSchema": z.union([DeleteFolderSuccessResponseSchema, DeleteFolderErrorResponseSchema]),
+    "notificationSchemas": [folderDeleteRequestNotificationSchema, folderDeleteResponseNotificationSchema],
+    "notificationTypes": [{} as FolderDeleteRequestNotification, {} as FolderDeleteResponseNotification]
   },
   "fs.listFile": {
     "name": "listFile",
@@ -398,7 +640,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as FileListEvent,
     "websocketReceiveType": {} as FileListSuccessResponse | FileListErrorResponse,
     "websocketSendSchema": fileListEventSchema,
-    "websocketReceiveSchema": z.union([FileListSuccessResponseSchema, FileListErrorResponseSchema])
+    "websocketReceiveSchema": z.union([FileListSuccessResponseSchema, FileListErrorResponseSchema]),
+    "notificationSchemas": [listDirectoryRequestNotificationSchema, listDirectoryResponseNotificationSchema],
+    "notificationTypes": [{} as ListDirectoryRequestNotification, {} as ListDirectoryResponseNotification]
   },
   "fs.searchFiles": {
     "name": "searchFiles",
@@ -407,7 +651,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as SearchFilesEvent,
     "websocketReceiveType": {} as SearchFilesSuccessResponse | SearchFilesErrorResponse,
     "websocketSendSchema": searchFilesEventSchema,
-    "websocketReceiveSchema": z.union([SearchFilesSuccessResponseSchema, SearchFilesErrorResponseSchema])
+    "websocketReceiveSchema": z.union([SearchFilesSuccessResponseSchema, SearchFilesErrorResponseSchema]),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "fs.writeToFile": {
     "name": "writeToFile",
@@ -416,7 +662,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as WriteToFileEvent,
     "websocketReceiveType": {} as WriteToFileSuccessResponse | WriteToFileErrorResponse,
     "websocketSendSchema": writeToFileEventSchema,
-    "websocketReceiveSchema": z.union([WriteToFileSuccessResponseSchema, WriteToFileErrorResponseSchema])
+    "websocketReceiveSchema": z.union([WriteToFileSuccessResponseSchema, WriteToFileErrorResponseSchema]),
+    "notificationSchemas": [writeToFileRequestNotificationSchema, writeToFileResponseNotificationSchema],
+    "notificationTypes": [{} as WriteToFileRequestNotification, {} as WriteToFileResponseNotification]
   },
   "fs.grepSearch": {
     "name": "grepSearch",
@@ -425,7 +673,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GrepSearchEvent,
     "websocketReceiveType": {} as GrepSearchSuccessResponse | GrepSearchErrorResponse,
     "websocketSendSchema": grepSearchEventSchema,
-    "websocketReceiveSchema": z.union([GrepSearchSuccessResponseSchema, GrepSearchErrorResponseSchema])
+    "websocketReceiveSchema": z.union([GrepSearchSuccessResponseSchema, GrepSearchErrorResponseSchema]),
+    "notificationSchemas": [grepSearchRequestNotificationSchema, grepSearchResponseNotificationSchema],
+    "notificationTypes": [{} as GrepSearchRequestNotification, {} as GrepSearchResponseNotification]
   },
 
   // Browser APIs
@@ -436,7 +686,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as NewPageEvent,
     "websocketReceiveType": {} as NewPageResponse,
     "websocketSendSchema": newPageEventSchema,
-    "websocketReceiveSchema": NewPageResponseSchema
+    "websocketReceiveSchema": NewPageResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.getUrl": {
     "name": "getUrl",
@@ -445,7 +697,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetUrlEvent,
     "websocketReceiveType": {} as { url: string },
     "websocketSendSchema": getUrlEventSchema,
-    "websocketReceiveSchema": z.object({ url: z.string() })
+    "websocketReceiveSchema": z.object({ url: z.string() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.goToPage": {
     "name": "goToPage",
@@ -454,7 +708,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GoToPageEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": goToPageEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.screenshot": {
     "name": "screenshot",
@@ -463,7 +719,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ScreenshotEvent,
     "websocketReceiveType": {} as { screenshot: string },
     "websocketSendSchema": screenshotEventSchema,
-    "websocketReceiveSchema": z.object({ screenshot: z.string() })
+    "websocketReceiveSchema": z.object({ screenshot: z.string() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.getHTML": {
     "name": "getHTML",
@@ -472,7 +730,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetHtmlEvent,
     "websocketReceiveType": {} as { html: string },
     "websocketSendSchema": getHtmlEventSchema,
-    "websocketReceiveSchema": z.object({ html: z.string() })
+    "websocketReceiveSchema": z.object({ html: z.string() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.getMarkdown": {
     "name": "getMarkdown",
@@ -481,7 +741,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetMarkdownEvent,
     "websocketReceiveType": {} as { markdown: string },
     "websocketSendSchema": getMarkdownEventSchema,
-    "websocketReceiveSchema": z.object({ markdown: z.string() })
+    "websocketReceiveSchema": z.object({ markdown: z.string() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.getPDF": {
     "name": "getPDF",
@@ -490,7 +752,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetPdfEvent,
     "websocketReceiveType": {} as unknown as void,
     "websocketSendSchema": getPdfEventSchema,
-    "websocketReceiveSchema": z.void()
+    "websocketReceiveSchema": z.void(),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.extractText": {
     "name": "extractText",
@@ -499,7 +763,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ExtractTextEvent,
     "websocketReceiveType": {} as { text: string },
     "websocketSendSchema": extractTextEventSchema,
-    "websocketReceiveSchema": z.object({ text: z.string() })
+    "websocketReceiveSchema": z.object({ text: z.string() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.getContent": {
     "name": "getContent",
@@ -508,7 +774,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetContentEvent,
     "websocketReceiveType": {} as { content: string },
     "websocketSendSchema": getContentEventSchema,
-    "websocketReceiveSchema": z.object({ content: z.string() })
+    "websocketReceiveSchema": z.object({ content: z.string() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.click": {
     "name": "click",
@@ -517,7 +785,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ClickEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": clickEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.type": {
     "name": "type",
@@ -526,7 +796,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as TypeEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": typeEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.scroll": {
     "name": "scroll",
@@ -535,7 +807,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ScrollEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": scrollEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.enter": {
     "name": "enter",
@@ -544,7 +818,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as EnterEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": enterEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.close": {
     "name": "close",
@@ -553,7 +829,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as CloseEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": closeEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.getBrowserInfo": {
     "name": "getBrowserInfo",
@@ -562,7 +840,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetBrowserInfoEvent,
     "websocketReceiveType": {} as { info: any },
     "websocketSendSchema": getBrowserInfoEventSchema,
-    "websocketReceiveSchema": z.object({ info: z.any() })
+    "websocketReceiveSchema": z.object({ info: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.getSnapShot": {
     "name": "getSnapShot",
@@ -571,7 +851,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetSnapShotEvent,
     "websocketReceiveType": {} as { snapshot: any },
     "websocketSendSchema": getSnapShotEventSchema,
-    "websocketReceiveSchema": z.object({ snapshot: z.any() })
+    "websocketReceiveSchema": z.object({ snapshot: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.pdfToText": {
     "name": "pdfToText",
@@ -580,7 +862,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as any, // PdfToTextEvent not available
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "browser.search": {
     "name": "search",
@@ -589,7 +873,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as SearchEvent, // SearchEvent not available
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": searchEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Chat APIs
@@ -600,7 +886,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetChatHistoryEvent,
     "websocketReceiveType": {} as GetChatHistoryResponse,
     "websocketSendSchema": getChatHistoryEventSchema,
-    "websocketReceiveSchema": GetChatHistoryResponseSchema
+    "websocketReceiveSchema": GetChatHistoryResponseSchema,
+    "notificationSchemas": [getChatHistoryRequestNotificationSchema, getChatHistoryResultNotificationSchema],
+    "notificationTypes": [{} as GetChatHistoryRequestNotification, {} as GetChatHistoryResultNotification]
   },
   "chat.sendMessage": {
     "name": "sendMessage",
@@ -609,7 +897,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as SendMessageEvent,
     "websocketReceiveType": {} as unknown as void,
     "websocketSendSchema": sendMessageEventSchema,
-    "websocketReceiveSchema": z.void()
+    "websocketReceiveSchema": z.void(),
+    "notificationSchemas": [userMessageRequestNotificationSchema, agentTextResponseNotificationSchema],
+    "notificationTypes": [{} as UserMessageRequestNotification, {} as AgentTextResponseNotification]
   },
   "chat.waitforReply": {
     "name": "waitforReply",
@@ -618,7 +908,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as WaitforReplyEvent,
     "websocketReceiveType": {} as { reply: string },
     "websocketSendSchema": waitforReplyEventSchema,
-    "websocketReceiveSchema": z.object({ reply: z.string() })
+    "websocketReceiveSchema": z.object({ reply: z.string() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "chat.processStarted": {
     "name": "processStarted",
@@ -627,7 +919,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ProcessStartedEvent,
     "websocketReceiveType": {} as { stopProcess: () => void },
     "websocketSendSchema": processStartedEventSchema,
-    "websocketReceiveSchema": z.object({ stopProcess: z.function() })
+    "websocketReceiveSchema": z.object({ stopProcess: z.function() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "chat.stopProcess": {
     "name": "stopProcess",
@@ -636,7 +930,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ProcessStoppedEvent,
     "websocketReceiveType": {} as unknown as void,
     "websocketSendSchema": processStoppedEventSchema,
-    "websocketReceiveSchema": z.void()
+    "websocketReceiveSchema": z.void(),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "chat.processFinished": {
     "name": "processFinished",
@@ -645,7 +941,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as any, // ProcessFinishedEvent not available
     "websocketReceiveType": {} as unknown as void,
     "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.void()
+    "websocketReceiveSchema": z.void(),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "chat.askQuestion": {
     "name": "askQuestion",
@@ -654,7 +952,9 @@ export const codeboltApiMapping = {
     "websocketSendType": null, // AskQuestionEvent does not exist
     "websocketReceiveType": {} as { answer: string },
     "websocketSendSchema": null, // askQuestionEventSchema does not exist
-    "websocketReceiveSchema": z.object({ answer: z.string() })
+    "websocketReceiveSchema": z.object({ answer: z.string() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Agent APIs
@@ -665,7 +965,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as FindAgentEvent,
     "websocketReceiveType": {} as FindAgentByTaskResponse,
     "websocketSendSchema": findAgentEventSchema,
-    "websocketReceiveSchema": FindAgentByTaskResponseSchema
+    "websocketReceiveSchema": FindAgentByTaskResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "agent.startAgent": {
     "name": "startAgent",
@@ -674,7 +976,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as StartAgentEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": startAgentEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "agent.getAgentsList": {
     "name": "getAgentsList",
@@ -683,7 +987,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ListAgentsEvent,
     "websocketReceiveType": {} as ListAgentsResponse,
     "websocketSendSchema": listAgentsEventSchema,
-    "websocketReceiveSchema": ListAgentsResponseSchema
+    "websocketReceiveSchema": ListAgentsResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "agent.getAgentsDetail": {
     "name": "getAgentsDetail",
@@ -692,7 +998,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetAgentsDetailEvent,
     "websocketReceiveType": {} as AgentsDetailResponse,
     "websocketSendSchema": getAgentsDetailEventSchema,
-    "websocketReceiveSchema": AgentsDetailResponseSchema
+    "websocketReceiveSchema": AgentsDetailResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Git APIs
@@ -703,7 +1011,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitInitEvent,
     "websocketReceiveType": {} as GitInitResponse,
     "websocketSendSchema": gitInitEventSchema,
-    "websocketReceiveSchema": GitInitResponseSchema
+    "websocketReceiveSchema": GitInitResponseSchema,
+    "notificationSchemas": [gitInitRequestNotificationSchema, gitInitResponseNotificationSchema],
+    "notificationTypes": [{} as GitInitRequestNotification, {} as GitInitResponseNotification]
   },
   "git.addAll": {
     "name": "addAll",
@@ -712,7 +1022,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitAddEvent,
     "websocketReceiveType": {} as GitAddResponse,
     "websocketSendSchema": gitAddEventSchema,
-    "websocketReceiveSchema": GitAddResponseSchema
+    "websocketReceiveSchema": GitAddResponseSchema,
+    "notificationSchemas": [gitAddRequestNotificationSchema, gitAddResponseNotificationSchema],
+    "notificationTypes": [{} as GitAddRequestNotification, {} as GitAddResponseNotification]
   },
   "git.commit": {
     "name": "commit",
@@ -721,7 +1033,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitCommitEvent,
     "websocketReceiveType": {} as GitCommitResponse,
     "websocketSendSchema": gitCommitEventSchema,
-    "websocketReceiveSchema": GitCommitResponseSchema
+    "websocketReceiveSchema": GitCommitResponseSchema,
+    "notificationSchemas": [gitCommitRequestNotificationSchema, gitCommitResponseNotificationSchema],
+    "notificationTypes": [{} as GitCommitRequestNotification, {} as GitCommitResponseNotification]
   },
   "git.push": {
     "name": "push",
@@ -730,7 +1044,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitPushEvent,
     "websocketReceiveType": {} as GitPushResponse,
     "websocketSendSchema": gitPushEventSchema,
-    "websocketReceiveSchema": GitPushResponseSchema
+    "websocketReceiveSchema": GitPushResponseSchema,
+    "notificationSchemas": [gitPushRequestNotificationSchema, gitPushResponseNotificationSchema],
+    "notificationTypes": [{} as GitPushRequestNotification, {} as GitPushResponseNotification]
   },
   "git.pull": {
     "name": "pull",
@@ -739,7 +1055,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitPullEvent,
     "websocketReceiveType": {} as GitPullResponse,
     "websocketSendSchema": gitPullEventSchema,
-    "websocketReceiveSchema": GitPullResponseSchema
+    "websocketReceiveSchema": GitPullResponseSchema,
+    "notificationSchemas": [gitPullRequestNotificationSchema, gitPullResponseNotificationSchema],
+    "notificationTypes": [{} as GitPullRequestNotification, {} as GitPullResponseNotification]
   },
   "git.status": {
     "name": "status",
@@ -748,7 +1066,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitStatusEvent,
     "websocketReceiveType": {} as GitStatusResponse,
     "websocketSendSchema": gitStatusEventSchema,
-    "websocketReceiveSchema": GitStatusResponseSchema
+    "websocketReceiveSchema": GitStatusResponseSchema,
+    "notificationSchemas": [gitStatusRequestNotificationSchema, gitStatusResponseNotificationSchema],
+    "notificationTypes": [{} as GitStatusRequestNotification, {} as GitStatusResponseNotification]
   },
   "git.checkout": {
     "name": "checkout",
@@ -757,7 +1077,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitCheckoutEvent,
     "websocketReceiveType": {} as GitCheckoutResponse,
     "websocketSendSchema": gitCheckoutEventSchema,
-    "websocketReceiveSchema": GitCheckoutResponseSchema
+    "websocketReceiveSchema": GitCheckoutResponseSchema,
+    "notificationSchemas": [gitCheckoutRequestNotificationSchema, gitCheckoutResponseNotificationSchema],
+    "notificationTypes": [{} as GitCheckoutRequestNotification, {} as GitCheckoutResponseNotification]
   },
   "git.branch": {
     "name": "branch",
@@ -766,7 +1088,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitBranchEvent,
     "websocketReceiveType": {} as GitBranchResponse,
     "websocketSendSchema": gitBranchEventSchema,
-    "websocketReceiveSchema": GitBranchResponseSchema
+    "websocketReceiveSchema": GitBranchResponseSchema,
+    "notificationSchemas": [gitBranchRequestNotificationSchema, gitBranchResponseNotificationSchema],
+    "notificationTypes": [{} as GitBranchRequestNotification, {} as GitBranchResponseNotification]
   },
   "git.logs": {
     "name": "logs",
@@ -775,7 +1099,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitLogsEvent,
     "websocketReceiveType": {} as GitLogsResponse,
     "websocketSendSchema": gitLogsEventSchema,
-    "websocketReceiveSchema": GitLogsResponseSchema
+    "websocketReceiveSchema": GitLogsResponseSchema,
+    "notificationSchemas": [gitLogsRequestNotificationSchema, gitLogsResponseNotificationSchema],
+    "notificationTypes": [{} as GitLogsRequestNotification, {} as GitLogsResponseNotification]
   },
   "git.diff": {
     "name": "diff",
@@ -784,7 +1110,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GitDiffEvent,
     "websocketReceiveType": {} as GitDiffResponse,
     "websocketSendSchema": gitDiffEventSchema,
-    "websocketReceiveSchema": GitDiffResponseSchema
+    "websocketReceiveSchema": GitDiffResponseSchema,
+    "notificationSchemas": [gitDiffRequestNotificationSchema, gitDiffResponseNotificationSchema],
+    "notificationTypes": [{} as GitDiffRequestNotification, {} as GitDiffResponseNotification]
   },
 
   // LLM APIs
@@ -795,7 +1123,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as InferenceEvent,
     "websocketReceiveType": {} as { response: any },
     "websocketSendSchema": inferenceEventSchema,
-    "websocketReceiveSchema": z.object({ response: z.any() })
+    "websocketReceiveSchema": z.object({ response: z.any() }),
+    "notificationSchemas": [llmRequestNotificationSchema, llmResponseNotificationSchema],
+    "notificationTypes": [{} as LlmRequestNotification, {} as LlmResponseNotification]
   },
   "llm.legacyInference": {
     "name": "legacyInference",
@@ -804,7 +1134,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as InferenceEvent,
     "websocketReceiveType": {} as { response: any },
     "websocketSendSchema": inferenceEventSchema,
-    "websocketReceiveSchema": z.object({ response: z.any() })
+    "websocketReceiveSchema": z.object({ response: z.any() }),
+    "notificationSchemas": [llmRequestNotificationSchema, llmResponseNotificationSchema],
+    "notificationTypes": [{} as LlmRequestNotification, {} as LlmResponseNotification]
   },
 
   // Terminal APIs
@@ -815,7 +1147,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ExecuteCommandEvent,
     "websocketReceiveType": {} as { output: string },
     "websocketSendSchema": executeCommandEventSchema,
-    "websocketReceiveSchema": z.object({ output: z.string() })
+    "websocketReceiveSchema": z.object({ output: z.string() }),
+    "notificationSchemas": [commandExecutionRequestNotificationSchema, commandExecutionResponseNotificationSchema],
+    "notificationTypes": [{} as CommandExecutionRequestNotification, {} as CommandExecutionResponseNotification]
   },
   "terminal.executeCommandRunUntilError": {
     "name": "executeCommandRunUntilError",
@@ -824,7 +1158,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as any, // ExecuteCommandRunUntilErrorEvent not available
     "websocketReceiveType": {} as { output: string },
     "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.object({ output: z.string() })
+    "websocketReceiveSchema": z.object({ output: z.string() }),
+    "notificationSchemas": [commandExecutionRequestNotificationSchema, commandExecutionResponseNotificationSchema],
+    "notificationTypes": [{} as CommandExecutionRequestNotification, {} as CommandExecutionResponseNotification]
   },
   "terminal.sendManualInterrupt": {
     "name": "sendManualInterrupt", 
@@ -833,7 +1169,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as any, // SendManualInterruptEvent not available
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "terminal.executeCommandWithStream": {
     "name": "executeCommandWithStream",
@@ -842,7 +1180,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ExecuteCommandWithStreamEvent,
     "websocketReceiveType": {} as any,
     "websocketSendSchema": executeCommandWithStreamEventSchema,
-    "websocketReceiveSchema": z.any()
+    "websocketReceiveSchema": z.any(),
+    "notificationSchemas": [commandExecutionRequestNotificationSchema, commandExecutionResponseNotificationSchema],
+    "notificationTypes": [{} as CommandExecutionRequestNotification, {} as CommandExecutionResponseNotification]
   },
 
   // Task APIs
@@ -853,7 +1193,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as AddTaskEvent,
     "websocketReceiveType": {} as AddTaskResponse,
     "websocketSendSchema": addTaskEventSchema,
-    "websocketReceiveSchema": AddTaskResponseSchema
+    "websocketReceiveSchema": AddTaskResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "taskplaner.addSimpleTask": {
     "name": "addSimpleTask", 
@@ -862,7 +1204,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as AddTaskEvent,
     "websocketReceiveType": {} as AddTaskResponse,
     "websocketSendSchema": addTaskEventSchema,
-    "websocketReceiveSchema": AddTaskResponseSchema
+    "websocketReceiveSchema": AddTaskResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "taskplaner.getTasks": {
     "name": "getTasks",
@@ -871,7 +1215,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetTasksEvent,
     "websocketReceiveType": {} as GetTasksResponse,
     "websocketSendSchema": getTasksEventSchema,
-    "websocketReceiveSchema": GetTasksResponseSchema
+    "websocketReceiveSchema": GetTasksResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "taskplaner.updateTask": {
     "name": "updateTask",
@@ -880,7 +1226,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as UpdateTaskEvent,
     "websocketReceiveType": {} as UpdateTasksResponse,
     "websocketSendSchema": updateTaskEventSchema,
-    "websocketReceiveSchema": UpdateTasksResponseSchema
+    "websocketReceiveSchema": UpdateTasksResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "taskplaner.deleteTask": {
     "name": "deleteTask",
@@ -889,7 +1237,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as DeleteTaskEvent,
     "websocketReceiveType": {} as DeleteTaskResponse,
     "websocketSendSchema": deleteTaskEventSchema,
-    "websocketReceiveSchema": DeleteTaskResponseSchema
+    "websocketReceiveSchema": DeleteTaskResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "taskplaner.addSubTask": {
     "name": "addSubTask",
@@ -898,7 +1248,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as AddSubTaskEvent,
     "websocketReceiveType": {} as AddSubTaskResponse,
     "websocketSendSchema": addSubTaskEventSchema,
-    "websocketReceiveSchema": AddSubTaskResponseSchema
+    "websocketReceiveSchema": AddSubTaskResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "taskplaner.updateSubTask": {
     "name": "updateSubTask",
@@ -907,7 +1259,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as UpdateSubTaskEvent,
     "websocketReceiveType": {} as UpdateSubTaskResponse,
     "websocketSendSchema": updateSubTaskEventSchema,
-    "websocketReceiveSchema": UpdateSubTaskResponseSchema
+    "websocketReceiveSchema": UpdateSubTaskResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Vector Database APIs
@@ -918,7 +1272,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as AddVectorItemEvent,
     "websocketReceiveType": {} as AddVectorItemResponse,
     "websocketSendSchema": addVectorItemEventSchema,
-    "websocketReceiveSchema": AddVectorItemResponseSchema
+    "websocketReceiveSchema": AddVectorItemResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "vectordb.getVector": {
     "name": "getVector",
@@ -927,7 +1283,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as any, // GetVectorEvent not available
     "websocketReceiveType": {} as any, // GetVectorResponse not available
     "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.any()
+    "websocketReceiveSchema": z.any(),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "vectordb.queryVectorItem": {
     "name": "queryVectorItem",
@@ -936,7 +1294,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as QueryVectorItemEvent,
     "websocketReceiveType": {} as QueryVectorItemResponse,
     "websocketSendSchema": queryVectorItemEventSchema,
-    "websocketReceiveSchema": QueryVectorItemResponseSchema
+    "websocketReceiveSchema": QueryVectorItemResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "vectordb.queryVectorItems": {
     "name": "queryVectorItems",
@@ -945,7 +1305,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as any, // QueryVectorItemsEvent not available  
     "websocketReceiveType": {} as any, // QueryVectorItemsResponse not available
     "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.any()
+    "websocketReceiveSchema": z.any(),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Memory APIs  
@@ -956,7 +1318,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as MemorySetEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": memorySetEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "dbmemory.get": {
     "name": "get",
@@ -965,7 +1329,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as MemoryGetEvent,
     "websocketReceiveType": {} as { value: any },
     "websocketSendSchema": memoryGetEventSchema,
-    "websocketReceiveSchema": z.object({ value: z.any() })
+    "websocketReceiveSchema": z.object({ value: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // State APIs
@@ -976,7 +1342,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetApplicationStateEvent,
     "websocketReceiveType": {} as { state: any },
     "websocketSendSchema": getApplicationStateEventSchema,
-    "websocketReceiveSchema": z.object({ state: z.any() })
+    "websocketReceiveSchema": z.object({ state: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "cbstate.addToAgentState": {
     "name": "addToAgentState",
@@ -985,7 +1353,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as AddToAgentStateEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": addToAgentStateEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "cbstate.getAgentState": {
     "name": "getAgentState",
@@ -994,7 +1364,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetAgentStateEvent,
     "websocketReceiveType": {} as { state: any },
     "websocketSendSchema": getAgentStateEventSchema,
-    "websocketReceiveSchema": z.object({ state: z.any() })
+    "websocketReceiveSchema": z.object({ state: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "cbstate.getProjectState": {
     "name": "getProjectState",
@@ -1003,7 +1375,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetProjectStateEvent,
     "websocketReceiveType": {} as { state: any },
     "websocketSendSchema": getProjectStateEventSchema,
-    "websocketReceiveSchema": z.object({ state: z.any() })
+    "websocketReceiveSchema": z.object({ state: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "cbstate.updateProjectState": {
     "name": "updateProjectState",
@@ -1012,18 +1386,22 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as UpdateProjectStateEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": updateProjectStateEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Debug APIs
   "debug.log": {
     "name": "log",
     "description": "Logs a debug message",
-    "functionTypings": {} as DebugModule['log'],
+    "functionTypings": {} as any, // DebugModule['log'] - method exists but property name differs
     "websocketSendType": {} as AddLogEvent,
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": addLogEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Tokenizer APIs
@@ -1034,7 +1412,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as AddTokenEvent,
     "websocketReceiveType": {} as AddTokenResponse,
     "websocketSendSchema": addTokenEventSchema,
-    "websocketReceiveSchema": AddTokenResponseSchema
+    "websocketReceiveSchema": AddTokenResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "tokenizer.countTokens": {
     "name": "countTokens",
@@ -1043,7 +1423,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetTokenEvent,
     "websocketReceiveType": {} as GetTokenResponse,
     "websocketSendSchema": getTokenEventSchema,
-    "websocketReceiveSchema": GetTokenResponseSchema
+    "websocketReceiveSchema": GetTokenResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Project APIs
@@ -1054,7 +1436,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetProjectPathEvent,
     "websocketReceiveType": {} as GetProjectPathResponse,
     "websocketSendSchema": getProjectPathEventSchema,
-    "websocketReceiveSchema": GetProjectPathResponseSchema
+    "websocketReceiveSchema": GetProjectPathResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Crawler APIs
@@ -1065,7 +1449,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as StartCrawlerEvent,
     "websocketReceiveType": {} as CrawlerResponse,
     "websocketSendSchema": startCrawlerEventSchema,
-    "websocketReceiveSchema": CrawlerResponseSchema
+    "websocketReceiveSchema": CrawlerResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // MCP APIs
@@ -1076,7 +1462,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetEnabledToolBoxesEvent,
     "websocketReceiveType": {} as GetEnabledToolBoxesResponse,
     "websocketSendSchema": getEnabledToolBoxesEventSchema,
-    "websocketReceiveSchema": GetEnabledToolBoxesResponseSchema
+    "websocketReceiveSchema": GetEnabledToolBoxesResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "mcp.getTools": {
     "name": "getTools",
@@ -1085,7 +1473,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetToolsEvent,
     "websocketReceiveType": {} as GetToolsResponse,
     "websocketSendSchema": getToolsEventSchema,
-    "websocketReceiveSchema": GetToolsResponseSchema
+    "websocketReceiveSchema": GetToolsResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "mcp.executeTool": {
     "name": "executeTool",
@@ -1094,7 +1484,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ExecuteToolEvent,
     "websocketReceiveType": {} as { result: any },
     "websocketSendSchema": executeToolEventSchema,
-    "websocketReceiveSchema": z.object({ result: z.any() })
+    "websocketReceiveSchema": z.object({ result: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Chat Summary APIs
@@ -1105,7 +1497,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as SummarizeAllEvent,
     "websocketReceiveType": {} as GetSummarizeAllResponse,
     "websocketSendSchema": summarizeAllEventSchema,
-    "websocketReceiveSchema": GetSummarizeAllResponseSchema
+    "websocketReceiveSchema": GetSummarizeAllResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "chatSummary.summarize": {
     "name": "summarize",
@@ -1114,7 +1508,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as SummarizeEvent,
     "websocketReceiveType": {} as GetSummarizeResponse,
     "websocketSendSchema": summarizeEventSchema,
-    "websocketReceiveSchema": GetSummarizeResponseSchema
+    "websocketReceiveSchema": GetSummarizeResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "fs.listCodeDefinitionNames": {
     "name": "listCodeDefinitionNames",
@@ -1123,7 +1519,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ListCodeDefinitionNamesEvent,
     "websocketReceiveType": {} as ListCodeDefinitionNamesSuccessResponse | ListCodeDefinitionNamesErrorResponse,
     "websocketSendSchema": listCodeDefinitionNamesEventSchema,
-    "websocketReceiveSchema": z.union([ListCodeDefinitionNamesSuccessResponseSchema, ListCodeDefinitionNamesErrorResponseSchema])
+    "websocketReceiveSchema": z.union([ListCodeDefinitionNamesSuccessResponseSchema, ListCodeDefinitionNamesErrorResponseSchema]),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   // "fs.searchFiles": {
   //   "name": "searchFiles",
@@ -1153,7 +1551,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as FileSearchEvent,
     "websocketReceiveType": {} as FileSearchSuccessResponse | FileSearchErrorResponse,
     "websocketSendSchema": fileSearchEventSchema,
-    "websocketReceiveSchema": z.union([FileSearchSuccessResponseSchema, FileSearchErrorResponseSchema])
+    "websocketReceiveSchema": z.union([FileSearchSuccessResponseSchema, FileSearchErrorResponseSchema]),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "fs.editFileAndApplyDiff": {
     "name": "editFileAndApplyDiff",
@@ -1162,7 +1562,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as EditFileWithDiffEvent,
     "websocketReceiveType": {} as EditFileAndApplyDiffSuccessResponse | EditFileAndApplyDiffErrorResponse,
     "websocketSendSchema": editFileWithDiffEventSchema,
-    "websocketReceiveSchema": z.union([EditFileAndApplyDiffSuccessResponseSchema, EditFileAndApplyDiffErrorResponseSchema])
+    "websocketReceiveSchema": z.union([EditFileAndApplyDiffSuccessResponseSchema, EditFileAndApplyDiffErrorResponseSchema]),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Browser APIs
@@ -1393,7 +1795,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as ConfirmationRequestEvent,
     "websocketReceiveType": {} as boolean,
     "websocketSendSchema": confirmationRequestEventSchema,
-    "websocketReceiveSchema": z.boolean()
+    "websocketReceiveSchema": z.boolean(),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Agent APIs
@@ -1536,7 +1940,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetTasksByAgentEvent,
     "websocketReceiveType": {} as GetTasksByAgentResponse,
     "websocketSendSchema": getTasksByAgentEventSchema, 
-    "websocketReceiveSchema": GetTasksByAgentResponseSchema
+    "websocketReceiveSchema": GetTasksByAgentResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   // "taskplaner.updateTask": {
   //   "name": "updateTask",
@@ -1648,7 +2054,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as OpenDebugBrowserEvent,
     "websocketReceiveType": {} as OpenDebugBrowserResponse,
     "websocketSendSchema": openDebugBrowserEventSchema,
-    "websocketReceiveSchema": OpenDebugBrowserResponseSchema
+    "websocketReceiveSchema": OpenDebugBrowserResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Tokenizer APIs
@@ -1659,7 +2067,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as AddTokenEvent,
     "websocketReceiveType": {} as AddTokenResponse,
     "websocketSendSchema": addTokenEventSchema,
-    "websocketReceiveSchema": AddTokenResponseSchema
+    "websocketReceiveSchema": AddTokenResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "tokenizer.getToken": {
     "name": "getToken",
@@ -1668,7 +2078,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetTokenEvent,
     "websocketReceiveType": {} as GetTokenResponse,
     "websocketSendSchema": getTokenEventSchema,
-    "websocketReceiveSchema": GetTokenResponseSchema
+    "websocketReceiveSchema": GetTokenResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Project APIs
@@ -1678,7 +2090,9 @@ export const codeboltApiMapping = {
     "functionTypings": {} as ProjectModule['getProjectSettings'],
     "websocketReceiveType": {} as GetProjectSettingsResponse,
     "websocketSendSchema": getProjectSettingsEventSchema, 
-    "websocketReceiveSchema": GetProjectSettingsResponseSchema
+    "websocketReceiveSchema": GetProjectSettingsResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   // "project.getProjectPath": {
   //   "name": "getProjectPath",
@@ -1694,7 +2108,9 @@ export const codeboltApiMapping = {
     "websocketSendType": null, // GetRepoMapEvent not available in current schema exports
     "websocketReceiveType": {} as { repoMap: any },
     "websocketSendSchema": null, // getRepoMapEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ repoMap: z.any() })
+    "websocketReceiveSchema": z.object({ repoMap: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Crawler APIs
@@ -1705,7 +2121,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as StartCrawlerEvent,
     "websocketReceiveType": {} as CrawlerResponse,
     "websocketSendSchema": startCrawlerEventSchema,
-    "websocketReceiveSchema": CrawlerResponseSchema
+    "websocketReceiveSchema": CrawlerResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "crawler.crawlerGoToPage": {
     "name": "crawlerGoToPage",
@@ -1714,7 +2132,9 @@ export const codeboltApiMapping = {
     "websocketSendType": null, // CrawlerGoToPageEvent not available in current schema exports
     "websocketReceiveType": {} as CrawlerResponse,
     "websocketSendSchema": null, // crawlerGoToPageEventSchema not available in current schema exports
-    "websocketReceiveSchema": CrawlerResponseSchema
+    "websocketReceiveSchema": CrawlerResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // MCP APIs
@@ -1725,7 +2145,9 @@ export const codeboltApiMapping = {
     "websocketSendType": {} as GetEnabledToolBoxesEvent,
     "websocketReceiveType": {} as GetEnabledToolBoxesResponse,
     "websocketSendSchema": getEnabledToolBoxesEventSchema,
-    "websocketReceiveSchema": GetEnabledToolBoxesResponseSchema
+    "websocketReceiveSchema": GetEnabledToolBoxesResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   // "mcp.getTools": {
   //   "name": "getTools",
@@ -1746,11 +2168,13 @@ export const codeboltApiMapping = {
   "codeutils.getAllFilesMarkdown": {
     "name": "getAllFilesMarkdown",
     "description": "Gets all files as markdown",
-    "functionTypings": {} as CodeUtilsModule['getAllFilesAMarkdown'] //- method exists but not in current SDK types
+    "functionTypings": {} as any, // CodeUtilsModule['getAllFilesAMarkdown'] - method exists but not in current SDK types
     "websocketSendType": null, // CodeUtilsEvent not available in current schema exports
     "websocketReceiveType": {} as { markdown: string },
     "websocketSendSchema": GetAllFilesMarkdownEventSchema, // codeUtilsEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": GetAllFilesMarkdownResponseSchema
+    "websocketReceiveSchema": GetAllFilesMarkdownResponseSchema,
+    "notificationSchemas": [grepSearchRequestNotificationSchema, grepSearchResponseNotificationSchema],
+    "notificationTypes": [{} as GrepSearchRequestNotification, {} as GrepSearchResponseNotification]
   },
   "codeutils.getMatcherListTree": {
     "name": "getMatcherListTree",
@@ -1759,7 +2183,9 @@ export const codeboltApiMapping = {
     "websocketSendType": null, // CodeUtilsEvent not available in current schema exports
     "websocketReceiveType": {} as { tree: any },
     "websocketSendSchema": null, // codeUtilsEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ tree: z.any() })
+    "websocketReceiveSchema": z.object({ tree: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
   "codeutils.getMatchDetail": {
     "name": "getMatchDetail",
@@ -1768,7 +2194,9 @@ export const codeboltApiMapping = {
     "websocketSendType": null, // CodeUtilsEvent not available in current schema exports
     "websocketReceiveType": {} as { detail: any },
     "websocketSendSchema": null, // codeUtilsEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ detail: z.any() })
+    "websocketReceiveSchema": z.object({ detail: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Code Parsers APIs
@@ -1779,7 +2207,9 @@ export const codeboltApiMapping = {
     "websocketSendType": null, // JSTreeParserEvent not available in current schema exports
     "websocketReceiveType": {} as { tree: any },
     "websocketSendSchema": null, // jsTreeParserEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ tree: z.any() })
+    "websocketReceiveSchema": z.object({ tree: z.any() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Utils APIs
@@ -1790,7 +2220,9 @@ export const codeboltApiMapping = {
     "websocketSendType": null, // EditFileAndApplyDiffEvent for utils not same as fs version
     "websocketReceiveType": {} as { success: boolean },
     "websocketSendSchema": null, // editFileAndApplyDiffEventSchema for utils not available
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
+    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "notificationSchemas": [],
+    "notificationTypes": []
   },
 
   // Chat Summary APIs
