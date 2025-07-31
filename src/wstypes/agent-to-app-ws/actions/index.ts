@@ -24,6 +24,7 @@ export * as AgentEvents from './agentEventSchemas';
 export * as TokenizerEvents from './tokenizerEventSchemas';
 export * as HistoryEvents from './historyEventSchemas';
 export * as UtilsEvents from './utilsEventSchemas';
+export * as CodeUtilsEvents from './codeUtilsEventSchemas';
 
 
 
@@ -47,6 +48,7 @@ import { agentEventSchema } from './agentEventSchemas';
 import { tokenizerEventSchema } from './tokenizerEventSchemas';
 import { historyEventSchema } from './historyEventSchemas';
 import { utilsEventSchema } from './utilsEventSchemas';
+import { codeUtilsEventSchema } from './codeUtilsEventSchemas';
 
 
 // Master union of all agent-to-app events
@@ -68,7 +70,8 @@ export const agentToAppEventSchema = z.union([
   agentEventSchema,
   tokenizerEventSchema,
   historyEventSchema,
-  utilsEventSchema
+  utilsEventSchema,
+  codeUtilsEventSchema
 ]);
 
 // Inferred type for all agent-to-app events

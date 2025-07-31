@@ -85,6 +85,7 @@ import {
   type EditFileWithDiffEvent,
   ConfirmationRequestEvent,
   GetProjectSettingsEvent,
+  SearchEvent,
   // Additional Browser Event Types - these are not available in current schema exports
 } from '../agent-to-app-ws-types';
 
@@ -237,6 +238,7 @@ import {
   fileSearchEventSchema,
   editFileWithDiffEventSchema,
   getProjectSettingsEventSchema,
+  searchEventSchema,
   // Additional Browser Event Schemas - these are not available in current schema exports
 } from '../agent-to-app-ws-schema';
 
@@ -584,9 +586,9 @@ export const codeboltApiMapping = {
     "name": "search",
     "description": "Performs a search on the current page using a specified query",
     "functionTypings": {} as BrowserModule['search'],
-    "websocketSendType": {} as any, // SearchEvent not available
+    "websocketSendType": {} as SearchEvent, // SearchEvent not available
     "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": z.any(),
+    "websocketSendSchema": searchEventSchema,
     "websocketReceiveSchema": z.object({ success: z.boolean() })
   },
 
@@ -1248,96 +1250,96 @@ export const codeboltApiMapping = {
   //   "websocketReceiveType": "BrowserActionResponseData",
   //   "websocketReceiveSchema": "browserActionResponseDataSchema"
   // },
-  "browser.wait": {
-    "name": "wait",
-    "description": "Waits for a specified duration or condition",
-    "functionTypings": {} as any, // BrowserModule['wait'] - method exists but not in current SDK types
-    "websocketSendType": null, // WaitEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // waitEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
-  "browser.evaluate": {
-    "name": "evaluate",
-    "description": "Evaluates JavaScript code in the browser context",
-    "functionTypings": {} as any, // BrowserModule['evaluate'] - method exists but not in current SDK types
-    "websocketSendType": null, // EvaluateEvent not available in current schema exports
-    "websocketReceiveType": {} as { result: any },
-    "websocketSendSchema": null, // evaluateEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ result: z.any() })
-  },
-  "browser.getElementInfo": {
-    "name": "getElementInfo",
-    "description": "Gets information about a browser element",
-    "functionTypings": {} as any, // BrowserModule['getElementInfo'] - method exists but not in current SDK types
-    "websocketSendType": null, // GetElementInfoEvent not available in current schema exports
-    "websocketReceiveType": {} as { info: any },
-    "websocketSendSchema": null, // getElementInfoEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ info: z.any() })
-  },
-  "browser.takeElementScreenshot": {
-    "name": "takeElementScreenshot",
-    "description": "Takes a screenshot of a specific element",
-    "functionTypings": {} as any, // BrowserModule['takeElementScreenshot'] - method exists but not in current SDK types
-    "websocketSendType": null, // TakeElementScreenshotEvent not available in current schema exports
-    "websocketReceiveType": {} as { screenshot: string },
-    "websocketSendSchema": null, // takeElementScreenshotEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ screenshot: z.string() })
-  },
-  "browser.setViewport": {
-    "name": "setViewport",
-    "description": "Sets the browser viewport size",
-    "functionTypings": {} as any, // BrowserModule['setViewport'] - method exists but not in current SDK types
-    "websocketSendType": null, // SetViewportEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // setViewportEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
-  "browser.reloadPage": {
-    "name": "reloadPage",
-    "description": "Reloads the current browser page",
-    "functionTypings": {} as any, // BrowserModule['reloadPage'] - method exists but not in current SDK types
-    "websocketSendType": null, // ReloadPageEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // reloadPageEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
-  "browser.goBack": {
-    "name": "goBack",
-    "description": "Navigates back in browser history",
-    "functionTypings": {} as any, // BrowserModule['goBack'] - method exists but not in current SDK types
-    "websocketSendType": null, // GoBackEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // goBackEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
-  "browser.goForward": {
-    "name": "goForward",
-    "description": "Navigates forward in browser history",
-    "functionTypings": {} as any, // BrowserModule['goForward'] - method exists but not in current SDK types
-    "websocketSendType": null, // GoForwardEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // goForwardEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
-  "browser.closeBrowser": {
-    "name": "closeBrowser",
-    "description": "Closes the browser",
-    "functionTypings": {} as any, // BrowserModule['closeBrowser'] - method exists but not in current SDK types
-    "websocketSendType": null, // CloseBrowserEvent not available in current schema exports
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // closeBrowserEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ success: z.boolean() })
-  },
-  "browser.getSnapshot": {
-    "name": "getSnapshot",
-    "description": "Gets a snapshot of the current page",
-    "functionTypings": {} as BrowserModule['getSnapShot'],
-    "websocketSendType": null, // BrowserEvent not available in current schema exports
-    "websocketReceiveType": {} as { snapshot: any },
-    "websocketSendSchema": null, // browserEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ snapshot: z.any() })
-  },
+  // "browser.wait": {
+  //   "name": "wait",
+  //   "description": "Waits for a specified duration or condition",
+  //   "functionTypings": {} as any, // BrowserModule['wait'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // WaitEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { success: boolean },
+  //   "websocketSendSchema": null, // waitEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ success: z.boolean() })
+  // },
+  // "browser.evaluate": {
+  //   "name": "evaluate",
+  //   "description": "Evaluates JavaScript code in the browser context",
+  //   "functionTypings": {} as any, // BrowserModule['evaluate'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // EvaluateEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { result: any },
+  //   "websocketSendSchema": null, // evaluateEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ result: z.any() })
+  // },
+  // "browser.getElementInfo": {
+  //   "name": "getElementInfo",
+  //   "description": "Gets information about a browser element",
+  //   "functionTypings": {} as any, // BrowserModule['getElementInfo'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // GetElementInfoEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { info: any },
+  //   "websocketSendSchema": null, // getElementInfoEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ info: z.any() })
+  // },
+  // "browser.takeElementScreenshot": {
+  //   "name": "takeElementScreenshot",
+  //   "description": "Takes a screenshot of a specific element",
+  //   "functionTypings": {} as any, // BrowserModule['takeElementScreenshot'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // TakeElementScreenshotEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { screenshot: string },
+  //   "websocketSendSchema": null, // takeElementScreenshotEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ screenshot: z.string() })
+  // },
+  // "browser.setViewport": {
+  //   "name": "setViewport",
+  //   "description": "Sets the browser viewport size",
+  //   "functionTypings": {} as any, // BrowserModule['setViewport'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // SetViewportEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { success: boolean },
+  //   "websocketSendSchema": null, // setViewportEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ success: z.boolean() })
+  // },
+  // "browser.reloadPage": {
+  //   "name": "reloadPage",
+  //   "description": "Reloads the current browser page",
+  //   "functionTypings": {} as any, // BrowserModule['reloadPage'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // ReloadPageEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { success: boolean },
+  //   "websocketSendSchema": null, // reloadPageEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ success: z.boolean() })
+  // },
+  // "browser.goBack": {
+  //   "name": "goBack",
+  //   "description": "Navigates back in browser history",
+  //   "functionTypings": {} as any, // BrowserModule['goBack'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // GoBackEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { success: boolean },
+  //   "websocketSendSchema": null, // goBackEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ success: z.boolean() })
+  // },
+  // "browser.goForward": {
+  //   "name": "goForward",
+  //   "description": "Navigates forward in browser history",
+  //   "functionTypings": {} as any, // BrowserModule['goForward'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // GoForwardEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { success: boolean },
+  //   "websocketSendSchema": null, // goForwardEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ success: z.boolean() })
+  // },
+  // "browser.closeBrowser": {
+  //   "name": "closeBrowser",
+  //   "description": "Closes the browser",
+  //   "functionTypings": {} as any, // BrowserModule['closeBrowser'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // CloseBrowserEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { success: boolean },
+  //   "websocketSendSchema": null, // closeBrowserEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ success: z.boolean() })
+  // },
+  // "browser.getSnapshot": {
+  //   "name": "getSnapshot",
+  //   "description": "Gets a snapshot of the current page",
+  //   "functionTypings": {} as BrowserModule['getSnapShot'],
+  //   "websocketSendType": null, // BrowserEvent not available in current schema exports
+  //   "websocketReceiveType": {} as { snapshot: any },
+  //   "websocketSendSchema": null, // browserEventBaseSchema not available in current schema exports
+  //   "websocketReceiveSchema": z.object({ snapshot: z.any() })
+  // },
 
   // Chat APIs
   // "chat.getChatHistory": {

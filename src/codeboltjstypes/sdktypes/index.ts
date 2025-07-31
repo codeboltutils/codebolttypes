@@ -841,38 +841,72 @@ export interface AgentModule {
 // Code Utils Module Types
 // ================================
 
+// Import response types from existing schemas
+import type { 
+  GetAllFilesMarkdownResponse,
+  CodeUtilsMatchProblemResponse,
+  GetMatcherListTreeResponse,
+  GetMatchDetailResponse 
+} from '../../wstypes/app-to-agent-ws/codeUtilsServiceResponses';
+
+export interface JSTreeStructureItem {
+  type: string;
+  name: string;
+  startLine: number;
+  endLine: number;
+  startColumn: number;
+  endColumn: number;
+  nodeType: string;
+}
+
+export interface JSTreeResponse {
+  event: 'getJsTreeResponse';
+  payload?: {
+    filePath: string;
+    structure: JSTreeStructureItem[];
+  };
+  error?: string;
+}
+
 export interface CodeUtilsModule {
   /**
-   * Analyzes code for issues and metrics
-   * @param options - Analysis options
+   * Retrieves a JavaScript tree structure for a given file path.
+   * @param filePath - The path of the file to retrieve the JS tree for.
+   * @returns A promise that resolves with the JS tree response.
    */
-  analyzeCode(options: {
-    path: string;
-    language?: string;
-    rules?: string[];
-  }): Promise<APIResponse>;
+  getJsTree(filePath?: string): Promise<JSTreeResponse>;
 
   /**
-   * Parses code and returns AST
-   * @param options - Parse options
+   * Retrieves all files as Markdown.
+   * @returns A promise that resolves with the Markdown content of all files.
    */
-  parseCode(options: {
-    input: string;
-    language: string;
-    isFilePath?: boolean;
-  }): Promise<APIResponse<ASTNode>>;
+  getAllFilesAsMarkDown(): Promise<GetAllFilesMarkdownResponse>;
 
   /**
-   * Gets code definitions
-   * @param path - File or directory path
+   * Performs a matching operation based on the provided matcher definition and problem patterns.
+   * @param matcherDefinition - The definition of the matcher (name, pattern, language, etc.).
+   * @param problemPatterns - The patterns to match against (regex patterns with severity levels).
+   * @param problems - Optional list of pre-existing problems to include.
+   * @returns A promise that resolves with the matching problem response.
    */
-  getCodeDefinitions(path: string): Promise<APIResponse>;
+  performMatch(
+    matcherDefinition: object, 
+    problemPatterns: any[], 
+    problems?: any[]
+  ): Promise<CodeUtilsMatchProblemResponse>;
 
   /**
-   * Lists code definition names
-   * @param path - File or directory path
+   * Retrieves the list of matchers.
+   * @returns A promise that resolves with the list of matchers response.
    */
-  listCodeDefinitionNames(path: string): Promise<APIResponse<string[]>>;
+  getMatcherList(): Promise<GetMatcherListTreeResponse>;
+
+  /**
+   * Retrieves details of a match.
+   * @param matcher - The matcher to retrieve details for (by name or identifier).
+   * @returns A promise that resolves with the match detail response.
+   */
+  matchDetail(matcher: string): Promise<GetMatchDetailResponse>;
 }
 
 // ================================
@@ -1375,11 +1409,38 @@ export interface TokenizerModule {
   countTokens(text: string): Promise<APIResponse<number>>;
 }
 
+export interface EditFileAndApplyDiffSuccessResponse {
+  type: 'editFileAndApplyDiffResponse';
+  success: true;
+  result: unknown;
+}
+
+export interface EditFileAndApplyDiffErrorResponse {
+  type: 'editFileAndApplyDiffResponse';
+  success: false;
+  message: 'Failed to edit file and apply diff';
+  result: string;
+}
+
+export type EditFileAndApplyDiffResponse = EditFileAndApplyDiffSuccessResponse | EditFileAndApplyDiffErrorResponse;
+
 export interface UtilsModule {
   /**
-   * General utility functions
+   * Edits a file and applies a diff with AI assistance.
+   * @param filePath - The path to the file to edit.
+   * @param diff - The diff to apply.
+   * @param diffIdentifier - The identifier for the diff.
+   * @param prompt - The prompt for the AI model.
+   * @param applyModel - Optional model to use for applying the diff.
+   * @returns A promise that resolves with the edit response.
    */
-  [key: string]: any;
+  editFileAndApplyDiff(
+    filePath: string,
+    diff: string,
+    diffIdentifier: string,
+    prompt: string,
+    applyModel?: string
+  ): Promise<EditFileAndApplyDiffResponse>;
 }
 
 // ================================
