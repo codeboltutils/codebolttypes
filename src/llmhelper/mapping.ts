@@ -612,7 +612,7 @@ export const codeboltApiMapping = {
     "websocketReceiveSchema": z.void()
   },
   "chat.waitforReply": {
-    "name": "waitforReply",-
+    "name": "waitforReply",
     "description": "Waits for a reply to a sent message",
     "functionTypings": {} as ChatModule['waitforReply'],
     "websocketSendType": {} as WaitforReplyEvent,
