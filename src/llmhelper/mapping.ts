@@ -949,9 +949,9 @@ export const codeboltApiMapping = {
     "name": "askQuestion",
     "description": "Asks a question and waits for a response",
     "functionTypings": {} as ChatModule['askQuestion'],
-    "websocketSendType": null, // AskQuestionEvent does not exist
+    "websocketSendType": {} as ConfirmationRequestEvent,
     "websocketReceiveType": {} as { answer: string },
-    "websocketSendSchema": null, // askQuestionEventSchema does not exist
+    "websocketSendSchema": confirmationRequestEventSchema,
     "websocketReceiveSchema": z.object({ answer: z.string() }),
     "notificationSchemas": [],
     "notificationTypes": []

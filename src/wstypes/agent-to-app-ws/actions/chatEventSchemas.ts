@@ -58,6 +58,7 @@ export const notificationEventSchema = chatEventBaseSchema.extend({
   eventType: z.enum(['debug', 'git', 'planner', 'browser', 'editor', 'terminal', 'preview']),
 });
 
+
 // Union of all chat event schemas
 export const chatEventSchema = z.union([
   getChatHistoryEventSchema,
