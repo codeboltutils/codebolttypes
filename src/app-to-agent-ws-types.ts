@@ -3,214 +3,158 @@
  * TypeScript types exported from their original source files
  */
 
-// agentServiceResponses
-export {
-  type AgentServiceErrorResponse,
-  type FindAgentByTaskResponse,
-  type ListAgentsResponse,
-  type AgentsDetailResponseSuccess,
-  type AgentsDetailResponseError,
-  type AgentsDetailResponse,
-  type AgentServiceResponse
-} from './wstypes/app-to-agent-ws/agentServiceResponses';
+// Re-export types from their original source files
+export type {
+  // Browser service responses
+  BrowserActionResponseData,
+  NewPageResponse,
+  ScrollResponse,
+  TypeResponse,
+  ClickResponse,
+  EnterResponse,
+  SearchResponse,
+  GetUrlResponse,
+  GoToPageResponse,
+  ScreenshotResponse,
+  HtmlReceived,
+  GetMarkdownResponse,
+  GetContentResponse,
+  GetSnapShotResponse,
+  GetBrowserInfoResponse,
+  ExtractTextResponse,
+  BrowserServiceResponse,
 
-// appServiceResponses
-export {
-  type LLMConfig,
-  type AgentState,
-  type AppState,
-  type Chat,
-  type ProjectStateFile,
-  type ProjectState,
-  type FullState,
-  type GetAppStateResponse,
-  type GetProjectStateResponse,
-  type UpdateProjectStateResponse,
-  type AppServiceResponse
-} from './wstypes/app-to-agent-ws/appServiceResponses';
-
-// browserServiceResponses
-export {
-  type NewPageResponse,
-  type BrowserErrorResponse,
-  type BrowserServiceResponse
-} from './wstypes/app-to-agent-ws/browserServiceResponses';
-
-// chatHistoryServiceResponses
-export {
-  type Message,
-  type GetSummarizeAllResponse,
-  type GetSummarizeResponse,
-  type ChatHistoryServiceResponse
-} from './wstypes/app-to-agent-ws/chatHistoryServiceResponses';
-
-// codeUtilsServiceResponses
-export {
-  type GetAllFilesMarkdownResponse,
-  type CodeUtilsMatchProblemResponse,
-  type GetMatcherListTreeResponse,
-  type GetMatchDetailResponse,
-  type CodeUtilsServiceResponse
-} from './wstypes/app-to-agent-ws/codeUtilsServiceResponses';
-
-// crawlerServiceResponses
-export {
-  type CrawlerResponse,
-  type CrawlerServiceResponse
-} from './wstypes/app-to-agent-ws/crawlerServiceResponses';
-
-// debugServiceResponses
-export {
-  type DebugAddLogResponse,
-  type OpenDebugBrowserResponse,
-  type DebugServiceResponse
-} from './wstypes/app-to-agent-ws/debugServiceResponses';
-
-// fsServiceResponses
-export {
-  type CreateFileSuccessResponse,
-  type CreateFileErrorResponse,
-  type CreateFolderSuccessResponse,
-  type CreateFolderErrorResponse,
-  type ReadFileSuccessResponse,
-  type ReadFileSuccessResultResponse,
-  type FileListSuccessResponse,
-  type FileListErrorResponse,
-  type UpdateFileSuccessResponse,
-  type UpdateFileErrorResponse,
-  type DeleteFileSuccessResponse,
-  type DeleteFileErrorResponse,
-  type DeleteFolderSuccessResponse,
-  type DeleteFolderErrorResponse,
-  type ListCodeDefinitionNamesSuccessResponse,
-  type ListCodeDefinitionNamesErrorResponse,
-  type SearchFilesSuccessResponse,
-  type SearchFilesErrorResponse,
-  type GrepSearchSuccessResponse,
-  type GrepSearchErrorResponse,
-  type FileSearchSuccessResponse,
-  type FileSearchErrorResponse,
-  type WriteToFileSuccessResponse,
-  type WriteToFileErrorResponse,
-  type EditFileAndApplyDiffSuccessResponse,
-  type EditFileAndApplyDiffErrorResponse,
-  type FsServiceErrorResponse,
-  type FsServiceResponse
-} from './wstypes/app-to-agent-ws/fsServiceResponses';
-
-// gitServiceResponses
-export {
-  type GitInitResponse,
-  type GitAddResponse,
-  type GitCommitResponse,
-  type GitPushResponse,
-  type GitPullResponse,
-  type GitCheckoutResponse,
-  type GitBranchResponse,
-  type GitLogsResponse,
-  type GitDiffResponse,
-  type GitStatusResponse,
-  type GitCloneResponse,
-  type GitErrorResponse,
-  type GitServiceResponse
-} from './wstypes/app-to-agent-ws/gitServiceResponses';
-
-// indexResponses
-export {
-  type Chat as IndexChat,
-  type GetChatHistoryResponse,
-  type ErrorResponse,
-  type IndexServiceResponse
+  // Chat service responses
+  ChatHistoryResponse,
+  WaitForReplyResponse,
+  ConfirmationResponse,
+  FeedbackResponse,
+  GetSummarizeAllResponse,
+  GetSummarizeResponse,
+  ChatHistoryServiceResponse,
+  // Terminal service responses
+  CommandOutputResponse,
+  CommandErrorResponse,
+  CommandFinishResponse,
+  TerminalInterruptResponse,
+  TerminalServiceResponse,
+  // Project service responses
+  GetProjectSettingsResponse,
+  GetProjectPathResponse,
+  GetRepoMapResponse,
+  GetEditorFileStatusResponse,
+  ProjectServiceResponse,
+  // Task service responses
+  TaskResponse,
+  AddTaskResponse,
+  GetTasksResponse,
+  UpdateTasksResponse,
+  DeleteTaskResponse,
+  AddSubTaskResponse,
+  UpdateSubTaskResponse,
+  GetTasksByAgentResponse,
+  TaskServiceResponse,
+  // LLM service responses
+  LLMResponse,
+  LLMServiceResponse,
+  // State service responses
+  GetAppStateResponse,
+  AddToAgentStateResponse,
+  GetAgentStateResponse,
+  GetProjectStateResponse,
+  UpdateProjectStateResponse,
+  StateServiceResponse,
+  // VectorDB service responses
+  GetVectorResponse,
+  AddVectorItemResponse,
+  QueryVectorItemResponse,
+  QueryVectorItemsResponse,
+  VectorDBServiceResponse,
+  // Utils service responses
+  EditFileAndApplyDiffResponse,
+  UtilsServiceResponse,
+  // Tokenizer service responses
+  AddTokenResponse,
+  GetTokenResponse,
+  TokenizerServiceResponse,
+  // MCP service responses
+  GetEnabledToolBoxesResponse,
+  GetLocalToolBoxesResponse,
+  GetAvailableToolBoxesResponse,
+  SearchAvailableToolBoxesResponse,
+  ListToolsFromToolBoxesResponse,
+  ConfigureToolBoxResponse,
+  GetToolsResponse,
+  ExecuteToolResponse,
+  MCPServiceResponse,
+  // Debug service responses
+  DebugAddLogResponse,
+  OpenDebugBrowserResponse,
+  GetDebugLogsResponse,
+  DebugServiceResponse,
+  // DB Memory service responses
+  MemorySetResponse,
+  MemoryGetResponse,
+  DBMemoryServiceResponse,
+  // Code Utils service responses
+  GetJsTreeResponse,
+  GetAllFilesAsMarkdownResponse,
+  MatchProblemResponse,
+  GetMatcherListTreeResponse,
+  GetMatchDetailResponse,
+  CodeUtilsServiceResponse,
+  // Crawler service responses
+  CrawlerServiceResponse,
+  // FS service responses
+  CreateFileSuccessResponse,
+  CreateFileErrorResponse,
+  CreateFolderSuccessResponse,
+  CreateFolderErrorResponse,
+  ReadFileSuccessResponse,
+  ReadFileSuccessResultResponse,
+  UpdateFileSuccessResponse,
+  UpdateFileErrorResponse,
+  DeleteFileSuccessResponse,
+  DeleteFileErrorResponse,
+  DeleteFolderSuccessResponse,
+  DeleteFolderErrorResponse,
+  FileListSuccessResponse,
+  FileListErrorResponse,
+  SearchFilesSuccessResponse,
+  SearchFilesErrorResponse,
+  WriteToFileSuccessResponse,
+  WriteToFileErrorResponse,
+  GrepSearchSuccessResponse,
+  GrepSearchErrorResponse,
+  ListCodeDefinitionNamesSuccessResponse,
+  ListCodeDefinitionNamesErrorResponse,
+  FileSearchSuccessResponse,
+  FileSearchErrorResponse,
+  EditFileAndApplyDiffSuccessResponse,
+  EditFileAndApplyDiffErrorResponse,
+  FsServiceResponse,
+  // Git service responses
+  GitInitResponse,
+  GitPullResponse,
+  GitPushResponse,
+  GitStatusResponse,
+  GitAddResponse,
+  GitCommitResponse,
+  GitCheckoutResponse,
+  GitBranchResponse,
+  GitLogsResponse,
+  GitDiffResponse,
+  GitServiceResponse,
+  // Agent service responses
+  FindAgentByTaskResponse,
+  ListAgentsResponse,
+  AgentsDetailResponse,
+  AgentServiceResponse,
+  // Index service responses
+  GetChatHistoryResponse,
+  ErrorResponse,
+  IndexServiceResponse,
+  // Additional missing types
+  CrawlResponse
 } from './wstypes/app-to-agent-ws/indexResponses';
-
-// jsTreeParserServiceResponses
-export {
-  type GetTreeResponse,
-  type JSTreeParserServiceResponse
-} from './wstypes/app-to-agent-ws/jsTreeParserServiceResponses';
-
-// mcpServiceResponses
-export {
-  type MCPServer,
-  type MCPTool,
-  type GetEnabledToolBoxesResponse,
-  type GetAvailableToolBoxesResponse,
-  type GetLocalToolBoxesResponse,
-  type SearchAvailableToolBoxesResponse,
-  type ListToolsFromToolBoxesResponse,
-  type ListToolsFromToolBoxesErrorResponse,
-  type ConfigureToolBoxResponse,
-  type ConfigureToolBoxErrorResponse,
-  type GetToolsResponse,
-  type ExecuteToolResponseArray,
-  type ExecuteToolResponseError,
-  type ExecuteToolResponseDirect,
-  type GetMcpToolsResponse,
-  type GetMcpListResponse,
-  type GetAllMCPToolsResponse,
-  type GetEnabledMCPSResponse,
-  type ConfigureMCPToolResponse,
-  type ConfigureMCPToolErrorResponse,
-  type MCPErrorResponse,
-  type MCPServiceResponse
-} from './wstypes/app-to-agent-ws/mcpServiceResponses';
-
-// problemMatcherServiceResponses
-export {
-  type MatchProblemResponse,
-  type ProblemMatcherServiceResponse
-} from './wstypes/app-to-agent-ws/problemMatcherServiceResponses';
-
-// projectServiceResponses
-export {
-  type GetProjectPathResponse,
-  type GetProjectSettingsResponse,
-  type GetRepoMapResponse,
-  type GetEditorFileStatusResponseSuccess,
-  type GetEditorFileStatusResponseError,
-  type GetEditorFileStatusResponse,
-  type ProjectServiceResponse
-} from './wstypes/app-to-agent-ws/projectServiceResponses';
-
-// stateServiceResponses
-export {
-  type GetAgentStateResponse,
-  type AddToAgentStateResponse,
-  type StateServiceResponse
-} from './wstypes/app-to-agent-ws/stateServiceResponses';
-
-// taskServiceResponses
-export {
-  type SubTask,
-  type Task,
-  type AddTaskResponse,
-  type GetTasksResponse,
-  type UpdateTasksResponse,
-  type AddSubTaskResponse,
-  type UpdateSubTaskResponse,
-  type DeleteTaskResponse,
-  type GetTasksByAgentResponse,
-  type GetTasksByCategoryResponse,
-  type GetAllAgentsResponse,
-  type CreateTasksFromMarkdownResponse,
-  type ExportTasksToMarkdownResponse,
-  type TaskErrorResponse,
-  type TaskServiceResponse
-} from './wstypes/app-to-agent-ws/taskServiceResponses';
-
-// tokenizerServiceResponses
-export {
-  type AddTokenResponse,
-  type GetTokenResponse,
-  type TokenizerErrorResponse,
-  type TokenizerServiceResponse
-} from './wstypes/app-to-agent-ws/tokenizerServiceResponses';
-
-// vectordbServiceResponses
-export {
-  type AddVectorItemResponse,
-  type GetVectorResponse,
-  type QueryVectorItemResponse,
-  type VectordbServiceResponse
-} from './wstypes/app-to-agent-ws/vectordbServiceResponses';
 

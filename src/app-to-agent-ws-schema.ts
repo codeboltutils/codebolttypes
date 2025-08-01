@@ -3,220 +3,153 @@
  * Zod schemas for app-to-agent communication
  */
 
-// agentServiceResponses
+// Re-export schemas from their original source files
 export {
-  AgentServiceErrorResponseSchema,
-  FindAgentByTaskResponseSchema,
-  ListAgentsResponseSchema,
-  AgentsDetailResponseSuccessSchema,
-  AgentsDetailResponseErrorSchema,
-  AgentsDetailResponseSchema,
-  AgentServiceResponseSchema,
-  agentServiceResponseSchema
-} from './wstypes/app-to-agent-ws/agentServiceResponses';
-
-// appServiceResponses
-export {
+  // Browser service response schemas
+  BrowserActionResponseDataSchema,
+  NewPageResponseSchema,
+  ScrollResponseSchema,
+  TypeResponseSchema,
+  ClickResponseSchema,
+  EnterResponseSchema,
+  SearchResponseSchema,
+  GetUrlResponseSchema,
+  GoToPageResponseSchema,
+  ScreenshotResponseSchema,
+  HtmlReceivedSchema,
+  GetMarkdownResponseSchema,
+  GetContentResponseSchema,
+  GetSnapShotResponseSchema,
+  GetBrowserInfoResponseSchema,
+  ExtractTextResponseSchema,
+  BrowserServiceResponseSchema,
+  // Chat service response schemas
+  ChatHistoryResponseSchema,
+  WaitForReplyResponseSchema,
+  ConfirmationResponseSchema,
+  FeedbackResponseSchema,
+  // Terminal service response schemas
+  CommandOutputResponseSchema,
+  CommandErrorResponseSchema,
+  CommandFinishResponseSchema,
+  TerminalInterruptResponseSchema,
+  TerminalServiceResponseSchema,
+  // Project service response schemas
+  GetProjectSettingsResponseSchema,
+  GetProjectPathResponseSchema,
+  GetRepoMapResponseSchema,
+  GetEditorFileStatusResponseSchema,
+  ProjectServiceResponseSchema,
+  // Task service response schemas
+  TaskResponseSchema,
+  AddTaskResponseSchema,
+  GetTasksResponseSchema,
+  UpdateTasksResponseSchema,
+  DeleteTaskResponseSchema,
+  AddSubTaskResponseSchema,
+  UpdateSubTaskResponseSchema,
+  GetTasksByAgentResponseSchema,
+  TaskServiceResponseSchema,
+  // LLM service response schemas
+  LLMResponseSchema,
+  LLMServiceResponseSchema,
+  // State service response schemas
   GetAppStateResponseSchema,
+  AddToAgentStateResponseSchema,
+  GetAgentStateResponseSchema,
   GetProjectStateResponseSchema,
   UpdateProjectStateResponseSchema,
-  AppServiceResponseSchema,
-  appServiceResponseSchema
-} from './wstypes/app-to-agent-ws/appServiceResponses';
-
-// browserServiceResponses
-export {
-  NewPageResponseSchema,
-  BrowserErrorResponseSchema,
-  BrowserServiceResponseSchema,
-  browserServiceResponseSchema
-} from './wstypes/app-to-agent-ws/browserServiceResponses';
-
-// chatHistoryServiceResponses
-export {
-  GetSummarizeAllResponseSchema,
-  GetSummarizeResponseSchema,
-  ChatHistoryServiceResponseSchema,
-  chatHistoryServiceResponseSchema
-} from './wstypes/app-to-agent-ws/chatHistoryServiceResponses';
-
-// codeUtilsServiceResponses
-export {
-  GetAllFilesMarkdownResponseSchema,
-  CodeUtilsMatchProblemResponseSchema,
+  StateServiceResponseSchema,
+  // VectorDB service response schemas
+  GetVectorResponseSchema,
+  AddVectorItemResponseSchema,
+  QueryVectorItemResponseSchema,
+  QueryVectorItemsResponseSchema,
+  VectorDBServiceResponseSchema,
+  // Utils service response schemas
+  EditFileAndApplyDiffResponseSchema,
+  UtilsServiceResponseSchema,
+  // Tokenizer service response schemas
+  AddTokenResponseSchema,
+  GetTokenResponseSchema,
+  TokenizerServiceResponseSchema,
+  // MCP service response schemas
+  GetEnabledToolBoxesResponseSchema,
+  GetLocalToolBoxesResponseSchema,
+  GetAvailableToolBoxesResponseSchema,
+  SearchAvailableToolBoxesResponseSchema,
+  ListToolsFromToolBoxesResponseSchema,
+  ConfigureToolBoxResponseSchema,
+  GetToolsResponseSchema,
+  ExecuteToolResponseSchema,
+  MCPServiceResponseSchema,
+  // Debug service response schemas
+  DebugAddLogResponseSchema,
+  OpenDebugBrowserResponseSchema,
+  GetDebugLogsResponseSchema,
+  DebugServiceResponseSchema,
+  // DB Memory service response schemas
+  MemorySetResponseSchema,
+  MemoryGetResponseSchema,
+  DBMemoryServiceResponseSchema,
+  // Code Utils service response schemas
+  GetJsTreeResponseSchema,
+  GetAllFilesAsMarkdownResponseSchema,
+  MatchProblemResponseSchema,
   GetMatcherListTreeResponseSchema,
   GetMatchDetailResponseSchema,
   CodeUtilsServiceResponseSchema,
-  codeUtilsServiceResponseSchema
-} from './wstypes/app-to-agent-ws/codeUtilsServiceResponses';
-
-// crawlerServiceResponses
-export {
-  CrawlerResponseSchema,
+  // Crawler service response schemas
+  CrawlResponseSchema,
   CrawlerServiceResponseSchema,
-  crawlerServiceResponseSchema
-} from './wstypes/app-to-agent-ws/crawlerServiceResponses';
-
-// debugServiceResponses
-export {
-  DebugAddLogResponseSchema,
-  OpenDebugBrowserResponseSchema,
-  DebugServiceResponseSchema,
-  debugServiceResponseSchema
-} from './wstypes/app-to-agent-ws/debugServiceResponses';
-
-// fsServiceResponses
-export {
+  // FS service response schemas
   CreateFileSuccessResponseSchema,
   CreateFileErrorResponseSchema,
   CreateFolderSuccessResponseSchema,
   CreateFolderErrorResponseSchema,
   ReadFileSuccessResponseSchema,
   ReadFileSuccessResultResponseSchema,
-  ReadFileErrorResponseSchema,
-  FileListSuccessResponseSchema,
-  FileListSuccessResultResponseSchema,
-  FileListErrorResponseSchema,
   UpdateFileSuccessResponseSchema,
   UpdateFileErrorResponseSchema,
   DeleteFileSuccessResponseSchema,
   DeleteFileErrorResponseSchema,
   DeleteFolderSuccessResponseSchema,
   DeleteFolderErrorResponseSchema,
-  ListCodeDefinitionNamesSuccessResponseSchema,
-  ListCodeDefinitionNamesErrorResponseSchema,
+  FileListSuccessResponseSchema,
+  FileListErrorResponseSchema,
   SearchFilesSuccessResponseSchema,
   SearchFilesErrorResponseSchema,
-  GrepSearchSuccessResponseSchema,
-  GrepSearchErrorResponseSchema,
-  FileSearchSuccessResponseSchema,
-  FileSearchErrorResponseSchema,
   WriteToFileSuccessResponseSchema,
   WriteToFileErrorResponseSchema,
+  GrepSearchSuccessResponseSchema,
+  GrepSearchErrorResponseSchema,
+  ListCodeDefinitionNamesSuccessResponseSchema,
+  ListCodeDefinitionNamesErrorResponseSchema,
+  FileSearchSuccessResponseSchema,
+  FileSearchErrorResponseSchema,
   EditFileAndApplyDiffSuccessResponseSchema,
   EditFileAndApplyDiffErrorResponseSchema,
-  FsServiceErrorResponseSchema,
   FsServiceResponseSchema,
-  fsServiceResponseSchema
-} from './wstypes/app-to-agent-ws/fsServiceResponses';
-
-// gitServiceResponses
-export {
+  // Git service response schemas
   GitInitResponseSchema,
+  GitPullResponseSchema,
+  GitPushResponseSchema,
+  GitStatusResponseSchema,
   GitAddResponseSchema,
   GitCommitResponseSchema,
-  GitPushResponseSchema,
-  GitPullResponseSchema,
   GitCheckoutResponseSchema,
   GitBranchResponseSchema,
   GitLogsResponseSchema,
   GitDiffResponseSchema,
-  GitStatusResponseSchema,
-  GitCloneResponseSchema,
-  GitErrorResponseSchema,
   GitServiceResponseSchema,
-  gitServiceResponseSchema
-} from './wstypes/app-to-agent-ws/gitServiceResponses';
+  // Agent service response schemas
+  FindAgentByTaskResponseSchema,
+  ListAgentsResponseSchema,
+  AgentsDetailResponseSchema,
+  TaskCompletionResponseSchema,
+  AgentServiceErrorResponseSchema,
+  AgentServiceResponseSchema,
+  GetSummarizeAllResponseSchema,
+  GetSummarizeResponseSchema,
 
-// jsTreeParserServiceResponses
-export {
-  GetTreeResponseSchema,
-  JSTreeParserServiceResponseSchema,
-  jsTreeParserServiceResponseSchema
-} from './wstypes/app-to-agent-ws/jsTreeParserServiceResponses';
-
-// mcpServiceResponses
-export {
-  GetEnabledToolBoxesResponseSchema,
-  GetAvailableToolBoxesResponseSchema,
-  GetLocalToolBoxesResponseSchema,
-  SearchAvailableToolBoxesResponseSchema,
-  ListToolsFromToolBoxesResponseSchema,
-  ListToolsFromToolBoxesErrorResponseSchema,
-  ConfigureToolBoxResponseSchema,
-  ConfigureToolBoxErrorResponseSchema,
-  GetToolsResponseSchema,
-  ExecuteToolResponseArraySchema,
-  ExecuteToolResponseErrorSchema,
-  ExecuteToolResponseDirectSchema,
-  GetMcpToolsResponseSchema,
-  GetMcpListResponseSchema,
-  GetAllMCPToolsResponseSchema,
-  GetEnabledMCPSResponseSchema,
-  ConfigureMCPToolResponseSchema,
-  ConfigureMCPToolErrorResponseSchema,
-  MCPErrorResponseSchema,
-  MCPServiceResponseSchema,
-  mcpServiceResponseSchema
-} from './wstypes/app-to-agent-ws/mcpServiceResponses';
-
-// problemMatcherServiceResponses
-export {
-  MatchProblemResponseSchema,
-  ProblemMatcherServiceResponseSchema,
-  problemMatcherServiceResponseSchema
-} from './wstypes/app-to-agent-ws/problemMatcherServiceResponses';
-
-// projectServiceResponses
-export {
-  GetProjectPathResponseSchema,
-  GetProjectSettingsResponseSchema,
-  GetRepoMapResponseSchema,
-  GetEditorFileStatusResponseSuccessSchema,
-  GetEditorFileStatusResponseErrorSchema,
-  GetEditorFileStatusResponseSchema,
-  ProjectServiceResponseSchema,
-  projectServiceResponseSchema
-} from './wstypes/app-to-agent-ws/projectServiceResponses';
-
-// stateServiceResponses
-export {
-  GetAgentStateResponseSchema,
-  AddToAgentStateResponseSchema,
-  StateServiceResponseSchema,
-  stateServiceResponseSchema
-} from './wstypes/app-to-agent-ws/stateServiceResponses';
-
-// taskServiceResponses
-export {
-  AddTaskResponseSchema,
-  GetTasksResponseSchema,
-  UpdateTasksResponseSchema,
-  AddSubTaskResponseSchema,
-  UpdateSubTaskResponseSchema,
-  DeleteTaskResponseSchema,
-  GetTasksByAgentResponseSchema,
-  GetTasksByCategoryResponseSchema,
-  GetAllAgentsResponseSchema,
-  CreateTasksFromMarkdownResponseSchema,
-  ExportTasksToMarkdownResponseSchema,
-  TaskErrorResponseSchema,
-  TaskServiceResponseSchema,
-  taskServiceResponseSchema
-} from './wstypes/app-to-agent-ws/taskServiceResponses';
-
-// tokenizerServiceResponses
-export {
-  AddTokenResponseSchema,
-  GetTokenResponseSchema,
-  TokenizerErrorResponseSchema,
-  TokenizerServiceResponseSchema,
-  tokenizerServiceResponseSchema
-} from './wstypes/app-to-agent-ws/tokenizerServiceResponses';
-
-// vectordbServiceResponses
-export {
-  AddVectorItemResponseSchema,
-  GetVectorResponseSchema,
-  QueryVectorItemResponseSchema,
-  VectordbServiceResponseSchema,
-  vectordbServiceResponseSchema
-} from './wstypes/app-to-agent-ws/vectordbServiceResponses';
-
-// indexResponses
-export {
-  GetChatHistoryResponseSchema,
-  ErrorResponseSchema,
-  IndexServiceResponseSchema,
-  indexServiceResponseSchema
 } from './wstypes/app-to-agent-ws/indexResponses'; 

@@ -2,69 +2,84 @@ import { z } from 'zod';
 
 /**
  * Code Utils Service Response Schemas
- * Messages sent from code utils CLI service back to agents
+ * Messages sent from codeutils CLI service back to agents
  */
 
-// Get all files markdown response schema
-export const GetAllFilesMarkdownResponseSchema = z.object({
-    type: z.literal('getAllFilesMarkdownResponse'),
-    markdown: z.string() // Markdown content is a string
+// Get JS tree response schema
+export const GetJsTreeResponseSchema = z.object({
+  type: z.literal('getJsTreeResponse'),
+  filePath: z.string().optional(),
+  structure: z.array(z.object({
+    type: z.string(),
+    name: z.string(),
+    startLine: z.number(),
+    endLine: z.number(),
+    startColumn: z.number(),
+    endColumn: z.number(),
+    nodeType: z.string()
+  })).optional(),
+  success: z.boolean().optional(),
+  message: z.string().optional(),
+  data: z.any().optional(),
+  error: z.string().optional()
 });
 
-// Problem matcher result structure
-const ProblemMatchResultSchema = z.object({
-    file: z.string().optional(),
-    line: z.number().optional(),
-    column: z.number().optional(),
-    message: z.string().optional(),
-    severity: z.string().optional(),
-    code: z.string().optional()
-}).passthrough(); // Allow additional problem properties
+// Get all files as markdown response schema
+export const GetAllFilesAsMarkdownResponseSchema = z.object({
+  type: z.literal('getAllFilesAsMarkdownResponse'),
+  markdown: z.string().optional(),
+  success: z.boolean().optional(),
+  message: z.string().optional(),
+  data: z.any().optional(),
+  error: z.string().optional()
+});
 
-// Matcher list item structure
-const MatcherListItemSchema = z.object({
-    name: z.string(),
-    description: z.string().optional(),
-    patterns: z.array(z.string()).optional()
-}).passthrough(); // Allow additional matcher properties
-
-// Match problem response schema (reused from problem matcher)
-export const CodeUtilsMatchProblemResponseSchema = z.object({
-    type: z.literal('matchProblemResponse'),
-    payload: z.array(ProblemMatchResultSchema)
+// Match problem response schema
+export const MatchProblemResponseSchema = z.object({
+  type: z.literal('matchProblemResponse'),
+  matches: z.array(z.any()).optional(),
+  success: z.boolean().optional(),
+  message: z.string().optional(),
+  data: z.any().optional(),
+  error: z.string().optional()
 });
 
 // Get matcher list tree response schema
 export const GetMatcherListTreeResponseSchema = z.object({
-    type: z.literal('getMatcherListTreeResponse'),
-    payload: z.array(MatcherListItemSchema)
+  type: z.literal('getMatcherListTreeResponse'),
+  tree: z.any().optional(),
+  success: z.boolean().optional(),
+  message: z.string().optional(),
+  data: z.any().optional(),
+  error: z.string().optional()
 });
 
 // Get match detail response schema
 export const GetMatchDetailResponseSchema = z.object({
-    type: z.literal('getMatchDetailResponse'),
-    payload: z.object({
-        name: z.string(),
-        description: z.string().optional(),
-        patterns: z.array(z.string()),
-        examples: z.array(z.string()).optional()
-    }).passthrough() // Allow additional match detail properties
+  type: z.literal('getMatchDetailResponse'),
+  detail: z.any().optional(),
+  success: z.boolean().optional(),
+  message: z.string().optional(),
+  data: z.any().optional(),
+  error: z.string().optional()
 });
 
-// Union of all code utils service response schemas
+// Union of all codeutils service response schemas
 export const CodeUtilsServiceResponseSchema = z.union([
-    GetAllFilesMarkdownResponseSchema,
-    CodeUtilsMatchProblemResponseSchema,
-    GetMatcherListTreeResponseSchema,
-    GetMatchDetailResponseSchema
+  GetJsTreeResponseSchema,
+  GetAllFilesAsMarkdownResponseSchema,
+  MatchProblemResponseSchema,
+  GetMatcherListTreeResponseSchema,
+  GetMatchDetailResponseSchema
 ]);
 
 // Export with the expected name for the index file
 export const codeUtilsServiceResponseSchema = CodeUtilsServiceResponseSchema;
 
 // Type exports
-export type GetAllFilesMarkdownResponse = z.infer<typeof GetAllFilesMarkdownResponseSchema>;
-export type CodeUtilsMatchProblemResponse = z.infer<typeof CodeUtilsMatchProblemResponseSchema>;
+export type GetJsTreeResponse = z.infer<typeof GetJsTreeResponseSchema>;
+export type GetAllFilesAsMarkdownResponse = z.infer<typeof GetAllFilesAsMarkdownResponseSchema>;
+export type MatchProblemResponse = z.infer<typeof MatchProblemResponseSchema>;
 export type GetMatcherListTreeResponse = z.infer<typeof GetMatcherListTreeResponseSchema>;
 export type GetMatchDetailResponse = z.infer<typeof GetMatchDetailResponseSchema>;
 export type CodeUtilsServiceResponse = z.infer<typeof CodeUtilsServiceResponseSchema>; 

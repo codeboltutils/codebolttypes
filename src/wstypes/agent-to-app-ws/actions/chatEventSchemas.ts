@@ -36,6 +36,11 @@ export const sendMessageEventSchema = chatEventBaseSchema.extend({
   message: z.string(),
   payload: z.any().optional(),
 });
+export const WaitforReplyResponse = chatEventBaseSchema.extend({
+  type: z.literal('sendMessage'),
+  message: z.string(),
+  payload: z.any().optional(),
+});
 
 // Wait for Reply Event Schema
 export const waitforReplyEventSchema = chatEventBaseSchema.extend({
