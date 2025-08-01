@@ -19,6 +19,15 @@ export {
   agentEventSchema,
 } from './wstypes/agent-to-app-ws/actions/agentEventSchemas';
 
+// Code Utils Event Schemas
+export {
+  GetAllFilesMarkdownEventSchema,
+  PerformMatchEventSchema,
+  GetMatcherListEventSchema,
+  GetMatchDetailEventSchema,
+  codeUtilsEventSchema,
+} from './wstypes/agent-to-app-ws/actions/codeUtilsEventSchemas';
+
 // Notification Schemas
 export {
   agentNotificationBaseSchema,

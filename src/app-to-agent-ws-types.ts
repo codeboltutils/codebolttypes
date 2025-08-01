@@ -149,6 +149,7 @@ export type {
   FindAgentByTaskResponse,
   ListAgentsResponse,
   AgentsDetailResponse,
+  TaskCompletionResponse,
   AgentServiceResponse,
   // Index service responses
   GetChatHistoryResponse,
