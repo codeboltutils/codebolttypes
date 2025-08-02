@@ -8,6 +8,7 @@ import { z } from 'zod';
 // Git init response schema
 export const GitInitResponseSchema = z.object({
   type: z.literal('gitInitResponse'),
+  messageId: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -17,6 +18,7 @@ export const GitInitResponseSchema = z.object({
 // Git pull response schema
 export const GitPullResponseSchema = z.object({
   type: z.literal('PullResponse'),
+  messageId: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -26,6 +28,7 @@ export const GitPullResponseSchema = z.object({
 // Git push response schema
 export const GitPushResponseSchema = z.object({
   type: z.literal('PushResponse'),
+  messageId: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -35,6 +38,7 @@ export const GitPushResponseSchema = z.object({
 // Git status response schema
 export const GitStatusResponseSchema = z.object({
   type: z.literal('gitStatusResponse'),
+  messageId: z.string().optional(),
   status: z.any().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -45,6 +49,7 @@ export const GitStatusResponseSchema = z.object({
 // Git add response schema
 export const GitAddResponseSchema = z.object({
   type: z.literal('AddResponse'),
+  messageId: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -54,6 +59,7 @@ export const GitAddResponseSchema = z.object({
 // Git commit response schema
 export const GitCommitResponseSchema = z.object({
   type: z.literal('gitCommitResponse'),
+  messageId: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -63,6 +69,7 @@ export const GitCommitResponseSchema = z.object({
 // Git checkout response schema
 export const GitCheckoutResponseSchema = z.object({
   type: z.literal('gitCheckoutResponse'),
+  messageId: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -72,6 +79,7 @@ export const GitCheckoutResponseSchema = z.object({
 // Git branch response schema
 export const GitBranchResponseSchema = z.object({
   type: z.literal('gitBranchResponse'),
+  messageId: z.string().optional(),
   branches: z.array(z.string()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -82,6 +90,7 @@ export const GitBranchResponseSchema = z.object({
 // Git logs response schema
 export const GitLogsResponseSchema = z.object({
   type: z.literal('gitLogsResponse'),
+  messageId: z.string().optional(),
   logs: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -92,6 +101,7 @@ export const GitLogsResponseSchema = z.object({
 // Git diff response schema
 export const GitDiffResponseSchema = z.object({
   type: z.literal('gitDiffResponse'),
+  messageId: z.string().optional(),
   diff: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),

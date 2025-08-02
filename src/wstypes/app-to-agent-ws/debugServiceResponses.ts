@@ -8,6 +8,7 @@ import { z } from 'zod';
 // Debug add log response schema
 export const DebugAddLogResponseSchema = z.object({
   type: z.literal('debugAddLogResponse'),
+  messageId: z.string().optional(),
   logId: z.string().optional(),
   timestamp: z.string().optional(),
   success: z.boolean().optional(),
@@ -19,6 +20,7 @@ export const DebugAddLogResponseSchema = z.object({
 // Open debug browser response schema
 export const OpenDebugBrowserResponseSchema = z.object({
   type: z.literal('openDebugBrowserResponse'),
+  messageId: z.string().optional(),
   url: z.string().optional(),
   port: z.number().optional(),
   success: z.boolean().optional(),
@@ -30,6 +32,7 @@ export const OpenDebugBrowserResponseSchema = z.object({
 // Get debug logs response schema
 export const GetDebugLogsResponseSchema = z.object({
   type: z.literal('debugGetLogsResponse'),
+  messageId: z.string().optional(),
   logs: z.array(z.object({
     id: z.string(),
     message: z.string(),

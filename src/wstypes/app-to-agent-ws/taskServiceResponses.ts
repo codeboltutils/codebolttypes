@@ -16,6 +16,7 @@ export const TaskResponseSchema = z.object({
     z.literal('updateSubTaskResponse'),
     z.literal('getTasksByAgentResponse')
   ]),
+  messageId: z.string().optional(),
   task: z.any().optional(),
   tasks: z.array(z.any()).optional(),
   data: z.any().optional(),

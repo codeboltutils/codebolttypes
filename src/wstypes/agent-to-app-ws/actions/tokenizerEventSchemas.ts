@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const tokenizerEventBaseSchema = z.object({
   type: z.literal('tokenizerEvent'),
   action: z.string(),
+  messageId: z.string().optional(),
   message: z.object({
     item: z.string(),
   }),

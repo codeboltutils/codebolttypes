@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const crawlerEventBaseSchema = z.object({
   type: z.literal('crawlerEvent'),
   action: z.string(),
+  messageId: z.string().optional(),
 });
 
 // Start Crawler Event Schema

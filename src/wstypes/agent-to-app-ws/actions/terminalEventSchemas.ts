@@ -8,6 +8,7 @@ import { z } from 'zod';
 // Base terminal message schema
 export const terminalEventBaseSchema = z.object({
   type: z.string(),
+  messageId: z.string().optional(),
 });
 
 // Execute Command Event Schema

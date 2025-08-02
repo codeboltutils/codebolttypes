@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const memoryEventBaseSchema = z.object({
   type: z.literal('memoryEvent'),
   action: z.string(),
+  messageId: z.string().optional(),
 });
 
 // Memory Set Event Schema

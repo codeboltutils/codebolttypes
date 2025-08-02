@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const fsEventBaseSchema = z.object({
   type: z.literal('fsEvent'),
   action: z.string(),
+  messageId: z.string().optional(),
   message: z.object({}).passthrough(),
 });
 

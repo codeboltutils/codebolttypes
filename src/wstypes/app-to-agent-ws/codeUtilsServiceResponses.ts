@@ -8,6 +8,7 @@ import { z } from 'zod';
 // Get JS tree response schema
 export const GetJsTreeResponseSchema = z.object({
   type: z.literal('getJsTreeResponse'),
+  messageId: z.string().optional(),
   filePath: z.string().optional(),
   structure: z.array(z.object({
     type: z.string(),
@@ -27,6 +28,7 @@ export const GetJsTreeResponseSchema = z.object({
 // Get all files as markdown response schema
 export const GetAllFilesAsMarkdownResponseSchema = z.object({
   type: z.literal('getAllFilesAsMarkdownResponse'),
+  messageId: z.string().optional(),
   markdown: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -37,6 +39,7 @@ export const GetAllFilesAsMarkdownResponseSchema = z.object({
 // Match problem response schema
 export const MatchProblemResponseSchema = z.object({
   type: z.literal('matchProblemResponse'),
+  messageId: z.string().optional(),
   matches: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -47,6 +50,7 @@ export const MatchProblemResponseSchema = z.object({
 // Get matcher list tree response schema
 export const GetMatcherListTreeResponseSchema = z.object({
   type: z.literal('getMatcherListTreeResponse'),
+  messageId: z.string().optional(),
   tree: z.any().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -57,6 +61,7 @@ export const GetMatcherListTreeResponseSchema = z.object({
 // Get match detail response schema
 export const GetMatchDetailResponseSchema = z.object({
   type: z.literal('getMatchDetailResponse'),
+  messageId: z.string().optional(),
   detail: z.any().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),

@@ -8,6 +8,7 @@ import { z } from 'zod';
 // Crawl response schema
 export const CrawlResponseSchema = z.object({
   type: z.literal('crawlResponse'),
+  messageId: z.string().optional(),
   action: z.string().optional(),
   result: z.any().optional(),
   success: z.boolean().optional(),

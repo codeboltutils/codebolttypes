@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const vectordbEventBaseSchema = z.object({
   type: z.literal('vectordbEvent'),
   action: z.string(),
+  messageId: z.string().optional(),
   message: z.object({}).passthrough(),
 });
 

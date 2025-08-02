@@ -18,6 +18,7 @@ export const filterUsingSchema = z.enum(['use_ai', 'use_vector_db', 'use_both'])
 export const agentEventBaseSchema = z.object({
   type: z.literal('agentEvent'),
   action: z.string(),
+  messageId: z.string().optional(),
 });
 
 // Find Agent Event Schema

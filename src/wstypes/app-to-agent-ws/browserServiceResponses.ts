@@ -28,6 +28,7 @@ export const BrowserActionResponseDataSchema = z.object({
     z.literal('searchResponse'),
     z.literal('getUrlResponse')
   ]),
+  messageId: z.string().optional(),
   payload: z.object({
     action: z.string().optional(),
     success: z.boolean().optional(),
@@ -91,6 +92,7 @@ export const SearchResponseSchema = BrowserActionResponseDataSchema.extend({
 // Get URL response schema - matches UrlResponse from codeboltjs
 export const GetUrlResponseSchema = z.object({
   type: z.literal('getUrlResponse'),
+  messageId: z.string().optional(),
   url: z.string().optional(),
   currentUrl: z.string().optional(),
   success: z.boolean().optional(),

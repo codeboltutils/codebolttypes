@@ -8,6 +8,7 @@ import { z } from 'zod';
 // Base chat message schema
 export const chatEventBaseSchema = z.object({
   type: z.string(),
+  messageId: z.string().optional(),
 });
 
 // Get Chat History Event Schema

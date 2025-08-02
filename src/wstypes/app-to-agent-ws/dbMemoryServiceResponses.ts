@@ -8,6 +8,7 @@ import { z } from 'zod';
 // Memory set response schema
 export const MemorySetResponseSchema = z.object({
   type: z.literal('memorySetResponse'),
+  messageId: z.string().optional(),
   key: z.string().optional(),
   value: z.any().optional(),
   success: z.boolean().optional(),
@@ -19,6 +20,7 @@ export const MemorySetResponseSchema = z.object({
 // Memory get response schema
 export const MemoryGetResponseSchema = z.object({
   type: z.literal('memoryGetResponse'),
+  messageId: z.string().optional(),
   key: z.string().optional(),
   value: z.any().optional(),
   success: z.boolean().optional(),

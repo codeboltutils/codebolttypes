@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const browserEventBaseSchema = z.object({
   type: z.literal('browserEvent'),
   action: z.string(),
+  messageId: z.string().optional(),
 });
 
 // New Page Event Schema
