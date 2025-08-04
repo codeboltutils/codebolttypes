@@ -15,7 +15,7 @@ const MessageSchema = z.object({
 // Returns ChatMessage[] from getChatHistory()
 export const ChatHistoryResponseSchema = z.object({
     type: z.literal('getChatHistoryResponse'),
-    messageId: z.string(),
+    requestId: z.string(),
     messages: z.array(z.object({
         id: z.string().optional(),
         content: z.string(),
@@ -36,7 +36,7 @@ export const ChatHistoryResponseSchema = z.object({
 // Returns UserMessage from waitforReply()
 export const WaitForReplyResponseSchema = z.object({
     type: z.literal('waitFormessageResponse'),
-    messageId: z.string(),
+    requestId: z.string(),
     message: z.object({
         type: z.literal('messageResponse'),
         userMessage: z.string(),
@@ -61,7 +61,7 @@ export const WaitForReplyResponseSchema = z.object({
         controlFiles: z.array(z.any()),
         feedbackMessage: z.string(),
         terminalMessage: z.string(),
-        messageId: z.string(),
+        requestId: z.string(),
         threadId: z.string(),
         templateType: z.string(),
         processId: z.string(),
@@ -76,7 +76,7 @@ export const WaitForReplyResponseSchema = z.object({
         text: z.string(),
         [z.string()]: z.any()
     }),
-    messageId: z.string(),
+    requestId: z.string(),
     timestamp: z.string()
 });
 
@@ -84,7 +84,7 @@ export const WaitForReplyResponseSchema = z.object({
 // Returns string from sendConfirmationRequest() and askQuestion()
 export const ConfirmationResponseSchema = z.object({
     type: z.literal('confirmationResponse'),
-    messageId: z.string(),
+    requestId: z.string(),
     answer: z.string(),
     success: z.boolean().optional(),
     message: z.string().optional(),
@@ -96,7 +96,7 @@ export const ConfirmationResponseSchema = z.object({
 // Alternative response for confirmation requests with feedback
 export const FeedbackResponseSchema = z.object({
     type: z.literal('feedbackResponse'),
-    messageId: z.string(),
+    requestId: z.string(),
     feedback: z.string(),
     success: z.boolean().optional(),
     message: z.string().optional(),

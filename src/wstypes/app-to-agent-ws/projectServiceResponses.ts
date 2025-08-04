@@ -8,7 +8,7 @@ import { z } from 'zod';
 // Get project settings response schema
 export const GetProjectSettingsResponseSchema = z.object({
   type: z.literal('getProjectSettingsResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   projectSettings: z.record(z.any()).optional(),
   data: z.record(z.any()).optional(),
   success: z.boolean().optional(),
@@ -19,7 +19,7 @@ export const GetProjectSettingsResponseSchema = z.object({
 // Get project path response schema
 export const GetProjectPathResponseSchema = z.object({
   type: z.literal('getProjectPathResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   projectPath: z.string().optional(),
   projectName: z.string().optional(),
   success: z.boolean().optional(),
@@ -31,7 +31,7 @@ export const GetProjectPathResponseSchema = z.object({
 // Get repo map response schema
 export const GetRepoMapResponseSchema = z.object({
   type: z.literal('getRepoMapResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   repoMap: z.any().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -42,7 +42,7 @@ export const GetRepoMapResponseSchema = z.object({
 // Get editor file status response schema
 export const GetEditorFileStatusResponseSchema = z.object({
   type: z.literal('getEditorFileStatusResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   status: z.any().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),

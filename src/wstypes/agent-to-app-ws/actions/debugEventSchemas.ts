@@ -12,7 +12,7 @@ export const logTypeSchema = z.enum(['info', 'error', 'warning']);
 export const debugEventBaseSchema = z.object({
   type: z.literal('debugEvent'),
   action: z.string(),
-  messageId: z.string(),
+  requestId: z.string(),
   message: z.object({}).passthrough(),
 });
 

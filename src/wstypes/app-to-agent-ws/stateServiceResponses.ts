@@ -8,7 +8,7 @@ import { z } from 'zod';
 // Get application state response schema
 export const GetAppStateResponseSchema = z.object({
   type: z.literal('getAppStateResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   state: z.record(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -19,7 +19,7 @@ export const GetAppStateResponseSchema = z.object({
 // Add to agent state response schema
 export const AddToAgentStateResponseSchema = z.object({
   type: z.literal('addToAgentStateResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   payload: z.object({
     success: z.boolean()
   }).optional(),
@@ -32,7 +32,7 @@ export const AddToAgentStateResponseSchema = z.object({
 // Get agent state response schema
 export const GetAgentStateResponseSchema = z.object({
   type: z.literal('getAgentStateResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   payload: z.record(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -43,7 +43,7 @@ export const GetAgentStateResponseSchema = z.object({
 // Get project state response schema
 export const GetProjectStateResponseSchema = z.object({
   type: z.literal('getProjectStateResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   projectState: z.record(z.any()).optional(),
   data: z.record(z.any()).optional(),
   success: z.boolean().optional(),
@@ -54,7 +54,7 @@ export const GetProjectStateResponseSchema = z.object({
 // Update project state response schema
 export const UpdateProjectStateResponseSchema = z.object({
   type: z.literal('updateProjectStateResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   state: z.record(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),

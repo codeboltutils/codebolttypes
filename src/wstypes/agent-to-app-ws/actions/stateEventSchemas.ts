@@ -9,7 +9,7 @@ import { z } from 'zod';
 export const stateEventBaseSchema = z.object({
   type: z.string(),
   action: z.string(),
-  messageId: z.string(),
+  requestId: z.string(),
 });
 
 // Get Application State Event Schema

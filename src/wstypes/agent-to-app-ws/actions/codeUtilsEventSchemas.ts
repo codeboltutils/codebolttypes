@@ -9,14 +9,14 @@ import { z } from 'zod';
 export const GetAllFilesMarkdownEventSchema = z.object({
     type: z.literal('codeEvent'),
     action: z.literal('getAllFilesMarkdown'),
-    messageId: z.string()
+    requestId: z.string()
 });
 
 // Perform match event schema
 export const PerformMatchEventSchema = z.object({
     type: z.literal('codeEvent'),
     action: z.literal('performMatch'),
-    messageId: z.string(),
+    requestId: z.string(),
     payload: z.object({
         matcherDefinition: z.record(z.any()), // Object with matcher definition
         problemPatterns: z.array(z.any()), // Array of problem patterns
@@ -28,14 +28,14 @@ export const PerformMatchEventSchema = z.object({
 export const GetMatcherListEventSchema = z.object({
     type: z.literal('codeEvent'),
     action: z.literal('getMatcherList'),
-    messageId: z.string()
+    requestId: z.string()
 });
 
 // Get match detail event schema
 export const GetMatchDetailEventSchema = z.object({
     type: z.literal('codeEvent'),
     action: z.literal('getMatchDetail'),
-    messageId: z.string(),
+    requestId: z.string(),
     payload: z.object({
         matcher: z.string() // Matcher name or identifier
     })

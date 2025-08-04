@@ -8,7 +8,7 @@ import { z } from 'zod';
 // Find agent by task response schema
 export const FindAgentByTaskResponseSchema = z.object({
   type: z.literal('findAgentByTaskResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   agents: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -19,7 +19,7 @@ export const FindAgentByTaskResponseSchema = z.object({
 // List agents response schema
 export const ListAgentsResponseSchema = z.object({
   type: z.literal('listAgentsResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   agents: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -30,7 +30,7 @@ export const ListAgentsResponseSchema = z.object({
 // Agents detail response schema
 export const AgentsDetailResponseSchema = z.object({
   type: z.literal('agentsDetailResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   agents: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -41,7 +41,7 @@ export const AgentsDetailResponseSchema = z.object({
 // Task completion response schema
 export const TaskCompletionResponseSchema = z.object({
   type: z.literal('taskCompletionResponse'),
-  messageId: z.string(),
+  requestId: z.string(),
   taskId: z.string().optional(),
   status: z.string().optional(),
   success: z.boolean().optional(),
@@ -53,7 +53,7 @@ export const TaskCompletionResponseSchema = z.object({
 // Agent service error response schema
 export const AgentServiceErrorResponseSchema = z.object({
   type: z.literal('error'),
-  messageId: z.string(),
+  requestId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),

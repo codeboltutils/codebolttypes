@@ -8,7 +8,7 @@ import { z } from 'zod';
 // Command output response schema
 export const CommandOutputResponseSchema = z.object({
   type: z.literal('commandOutput'),
-  messageId: z.string(),
+  requestId: z.string(),
   output: z.string().optional(),
   stdout: z.string().optional(),
   stderr: z.string().optional(),
@@ -21,7 +21,7 @@ export const CommandOutputResponseSchema = z.object({
 // Command error response schema
 export const CommandErrorResponseSchema = z.object({
   type: z.literal('commandError'),
-  messageId: z.string(),
+  requestId: z.string(),
   error: z.string(),
   exitCode: z.number().optional(),
   stderr: z.string().optional(),
@@ -33,7 +33,7 @@ export const CommandErrorResponseSchema = z.object({
 // Command finish response schema
 export const CommandFinishResponseSchema = z.object({
   type: z.literal('commandFinish'),
-  messageId: z.string(),
+  requestId: z.string(),
   exitCode: z.number(),
   stdout: z.string().optional(),
   stderr: z.string().optional(),
@@ -46,7 +46,7 @@ export const CommandFinishResponseSchema = z.object({
 // Terminal interrupt response schema
 export const TerminalInterruptResponseSchema = z.object({
   type: z.literal('terminalInterrupted'),
-  messageId: z.string(),
+  requestId: z.string(),
   success: z.boolean(),
   message: z.string().optional(),
   data: z.any().optional(),
