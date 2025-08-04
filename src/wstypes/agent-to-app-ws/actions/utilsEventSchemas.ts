@@ -9,7 +9,7 @@ import { z } from 'zod';
 export const utilsEventBaseSchema = z.object({
   type: z.literal('fsEvent'),
   action: z.string(),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   message: z.object({}).passthrough(),
 });
 

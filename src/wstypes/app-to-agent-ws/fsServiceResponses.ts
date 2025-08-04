@@ -8,7 +8,7 @@ import { z } from 'zod';
 // Create file success response schema
 export const CreateFileSuccessResponseSchema = z.object({
   type: z.literal('createFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -18,7 +18,7 @@ export const CreateFileSuccessResponseSchema = z.object({
 // Create file error response schema
 export const CreateFileErrorResponseSchema = z.object({
   type: z.literal('createFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -28,7 +28,7 @@ export const CreateFileErrorResponseSchema = z.object({
 // Create folder success response schema
 export const CreateFolderSuccessResponseSchema = z.object({
   type: z.literal('createFolderResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -38,7 +38,7 @@ export const CreateFolderSuccessResponseSchema = z.object({
 // Create folder error response schema
 export const CreateFolderErrorResponseSchema = z.object({
   type: z.literal('createFolderResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -48,7 +48,7 @@ export const CreateFolderErrorResponseSchema = z.object({
 // Read file success response schema
 export const ReadFileSuccessResponseSchema = z.object({
   type: z.literal('readFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   content: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -59,7 +59,7 @@ export const ReadFileSuccessResponseSchema = z.object({
 // Read file success result response schema
 export const ReadFileSuccessResultResponseSchema = z.object({
   type: z.literal('readFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   content: z.string().optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -70,7 +70,7 @@ export const ReadFileSuccessResultResponseSchema = z.object({
 // Update file success response schema
 export const UpdateFileSuccessResponseSchema = z.object({
   type: z.literal('updateFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -80,7 +80,7 @@ export const UpdateFileSuccessResponseSchema = z.object({
 // Update file error response schema
 export const UpdateFileErrorResponseSchema = z.object({
   type: z.literal('updateFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -90,7 +90,7 @@ export const UpdateFileErrorResponseSchema = z.object({
 // Delete file success response schema
 export const DeleteFileSuccessResponseSchema = z.object({
   type: z.literal('deleteFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -100,7 +100,7 @@ export const DeleteFileSuccessResponseSchema = z.object({
 // Delete file error response schema
 export const DeleteFileErrorResponseSchema = z.object({
   type: z.literal('deleteFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -110,7 +110,7 @@ export const DeleteFileErrorResponseSchema = z.object({
 // Delete folder success response schema
 export const DeleteFolderSuccessResponseSchema = z.object({
   type: z.literal('deleteFolderResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -120,7 +120,7 @@ export const DeleteFolderSuccessResponseSchema = z.object({
 // Delete folder error response schema
 export const DeleteFolderErrorResponseSchema = z.object({
   type: z.literal('deleteFolderResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -130,7 +130,7 @@ export const DeleteFolderErrorResponseSchema = z.object({
 // File list success response schema
 export const FileListSuccessResponseSchema = z.object({
   type: z.literal('fileListResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   files: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -141,7 +141,7 @@ export const FileListSuccessResponseSchema = z.object({
 // File list error response schema
 export const FileListErrorResponseSchema = z.object({
   type: z.literal('fileListResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -151,7 +151,7 @@ export const FileListErrorResponseSchema = z.object({
 // Search files success response schema
 export const SearchFilesSuccessResponseSchema = z.object({
   type: z.literal('searchFilesResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   files: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -162,7 +162,7 @@ export const SearchFilesSuccessResponseSchema = z.object({
 // Search files error response schema
 export const SearchFilesErrorResponseSchema = z.object({
   type: z.literal('searchFilesResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -172,7 +172,7 @@ export const SearchFilesErrorResponseSchema = z.object({
 // Write to file success response schema
 export const WriteToFileSuccessResponseSchema = z.object({
   type: z.literal('writeToFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -182,7 +182,7 @@ export const WriteToFileSuccessResponseSchema = z.object({
 // Write to file error response schema
 export const WriteToFileErrorResponseSchema = z.object({
   type: z.literal('writeToFileResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -192,7 +192,7 @@ export const WriteToFileErrorResponseSchema = z.object({
 // Grep search success response schema
 export const GrepSearchSuccessResponseSchema = z.object({
   type: z.literal('grepSearchResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   results: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -203,7 +203,7 @@ export const GrepSearchSuccessResponseSchema = z.object({
 // Grep search error response schema
 export const GrepSearchErrorResponseSchema = z.object({
   type: z.literal('grepSearchResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -213,7 +213,7 @@ export const GrepSearchErrorResponseSchema = z.object({
 // List code definition names success response schema
 export const ListCodeDefinitionNamesSuccessResponseSchema = z.object({
   type: z.literal('listCodeDefinitionNamesResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   definitions: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -224,7 +224,7 @@ export const ListCodeDefinitionNamesSuccessResponseSchema = z.object({
 // List code definition names error response schema
 export const ListCodeDefinitionNamesErrorResponseSchema = z.object({
   type: z.literal('listCodeDefinitionNamesResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -234,7 +234,7 @@ export const ListCodeDefinitionNamesErrorResponseSchema = z.object({
 // File search success response schema
 export const FileSearchSuccessResponseSchema = z.object({
   type: z.literal('fileSearchResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   files: z.array(z.any()).optional(),
   success: z.boolean().optional(),
   message: z.string().optional(),
@@ -245,7 +245,7 @@ export const FileSearchSuccessResponseSchema = z.object({
 // File search error response schema
 export const FileSearchErrorResponseSchema = z.object({
   type: z.literal('fileSearchResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -255,7 +255,7 @@ export const FileSearchErrorResponseSchema = z.object({
 // Edit file and apply diff success response schema
 export const EditFileAndApplyDiffSuccessResponseSchema = z.object({
   type: z.literal('editFileAndApplyDiffResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),
@@ -265,7 +265,7 @@ export const EditFileAndApplyDiffSuccessResponseSchema = z.object({
 // Edit file and apply diff error response schema
 export const EditFileAndApplyDiffErrorResponseSchema = z.object({
   type: z.literal('editFileAndApplyDiffResponse'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   success: z.boolean().optional(),
   message: z.string().optional(),
   data: z.any().optional(),

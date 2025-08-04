@@ -12,7 +12,7 @@ export const logTypeSchema = z.enum(['info', 'error', 'warning']);
 export const chatSummaryEventBaseSchema = z.object({
   type: z.literal('chatSummaryEvent'),
   action: z.string(),
-  messageId: z.string().optional(),
+  messageId: z.string(),
 });
 
 // Summarize All Event Schema

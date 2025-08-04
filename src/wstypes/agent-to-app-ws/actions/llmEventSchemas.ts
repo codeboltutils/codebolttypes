@@ -67,7 +67,7 @@ const llmInferenceParamsSchema = z.object({
 // Base LLM event schema
 export const llmEventBaseSchema = z.object({
   type: z.literal('inference'),
-  messageId: z.string().optional(),
+  messageId: z.string(),
   message: z.object({
     prompt: z.union([llmInferenceParamsSchema, z.string()]),
     llmrole: z.string().optional(),
