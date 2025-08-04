@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const projectEventBaseSchema = z.object({
   type: z.literal('settingEvent'),
   action: z.string(),
+  requestId: z.string(),
 });
 
 // Get Project Settings Event Schema
@@ -35,6 +36,7 @@ export const getEditorFileStatusEventSchema = projectEventBaseSchema.extend({
 // Run Project Event Schema (different type)
 export const runProjectEventSchema = z.object({
   type: z.literal('runProject'),
+  requestId: z.string(),
 });
 
 // Union of all project event schemas

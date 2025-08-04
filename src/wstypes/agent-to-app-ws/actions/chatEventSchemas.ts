@@ -8,6 +8,7 @@ import { z } from 'zod';
 // Base chat message schema
 export const chatEventBaseSchema = z.object({
   type: z.string(),
+  requestId: z.string()
 });
 
 // Get Chat History Event Schema
@@ -32,6 +33,11 @@ export const processFinishedEventSchema = chatEventBaseSchema.extend({
 
 // Send Message Event Schema
 export const sendMessageEventSchema = chatEventBaseSchema.extend({
+  type: z.literal('sendMessage'),
+  message: z.string(),
+  payload: z.any().optional(),
+});
+export const WaitforReplyResponse = chatEventBaseSchema.extend({
   type: z.literal('sendMessage'),
   message: z.string(),
   payload: z.any().optional(),

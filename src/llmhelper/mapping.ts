@@ -34,6 +34,7 @@ import {
   type WaitforReplyEvent,
   type ProcessStartedEvent,
   type ProcessStoppedEvent,
+  type ProcessFinishedEvent,
   type FindAgentEvent,
   type StartAgentEvent,
   type ListAgentsEvent,
@@ -51,6 +52,8 @@ import {
   type InferenceEvent,
   type ExecuteCommandEvent,
   type ExecuteCommandWithStreamEvent,
+  type ExecuteCommandRunUntilErrorEvent,
+  type SendInterruptToTerminalEvent,
   type AddTaskEvent,
   type GetTasksEvent,
   type UpdateTaskEvent,
@@ -59,6 +62,8 @@ import {
   type UpdateSubTaskEvent,
   type AddVectorItemEvent,
   type QueryVectorItemEvent,
+  type GetVectorEvent,
+  type QueryVectorItemsEvent,
   type MemorySetEvent,
   type MemoryGetEvent,
   type GetApplicationStateEvent,
@@ -84,8 +89,10 @@ import {
   type FileSearchEvent,
   type EditFileWithDiffEvent,
   ConfirmationRequestEvent,
+  NotificationEvent,
   GetProjectSettingsEvent,
   SearchEvent,
+  PdfToTextEvent,
   // Additional Browser Event Types - these are not available in current schema exports
 } from '../agent-to-app-ws-types';
 
@@ -112,6 +119,21 @@ import {
   type GrepSearchSuccessResponse,
   type GrepSearchErrorResponse,
   type NewPageResponse,
+  type ScrollResponse,
+  type TypeResponse,
+  type ClickResponse,
+  type EnterResponse,
+  type SearchResponse,
+  type BrowserActionResponseData,
+  type GetUrlResponse,
+  type GoToPageResponse,
+  type ScreenshotResponse,
+  type HtmlReceived,
+  type GetMarkdownResponse,
+  type GetContentResponse,
+  type GetSnapShotResponse,
+  type GetBrowserInfoResponse,
+  type ExtractTextResponse,
   type GetChatHistoryResponse,
   type FindAgentByTaskResponse,
   type ListAgentsResponse,
@@ -126,23 +148,19 @@ import {
   type GitBranchResponse,
   type GitLogsResponse,
   type GitDiffResponse,
-  type AddTaskResponse,
-  type GetTasksResponse,
-  type UpdateTasksResponse,
-  type DeleteTaskResponse,
-  type AddSubTaskResponse,
-  type UpdateSubTaskResponse,
-  type AddVectorItemResponse,
-  type QueryVectorItemResponse,
-  type GetProjectPathResponse,
-  type CrawlerResponse,
+  // type CrawlResponse,
   type GetEnabledToolBoxesResponse,
   type GetToolsResponse,
   type AddTokenResponse,
   type GetTokenResponse,
+  type ChatHistoryResponse,
+  type WaitForReplyResponse,
+  type ConfirmationResponse,
+  type FeedbackResponse,
   type GetSummarizeAllResponse,
   type GetSummarizeResponse,
   type GetTasksByAgentResponse, 
+  type TaskCompletionResponse,
   // Additional FS Response Types
   type ListCodeDefinitionNamesSuccessResponse,
   type ListCodeDefinitionNamesErrorResponse,
@@ -151,8 +169,86 @@ import {
   type EditFileAndApplyDiffSuccessResponse,
   type EditFileAndApplyDiffErrorResponse,
   OpenDebugBrowserResponse,
-  GetProjectSettingsResponse
+  GetProjectSettingsResponse,
+  // Terminal service responses
+  type CommandOutputResponse,
+  type CommandErrorResponse,
+  type CommandFinishResponse,
+  type TerminalInterruptResponse,
+  type TerminalServiceResponse,
+  // Project service responses
+  type GetProjectPathResponse,
+  type GetRepoMapResponse,
+  type GetEditorFileStatusResponse,
+  type ProjectServiceResponse,
+  // Task service responses
+  type TaskResponse,
+  type AddTaskResponse,
+  type GetTasksResponse,
+  type UpdateTasksResponse,
+  type DeleteTaskResponse,
+  type AddSubTaskResponse,
+  type UpdateSubTaskResponse,
+  type TaskServiceResponse,
+  // LLM service responses
+  type LLMResponse,
+  type LLMServiceResponse,
+  // State service responses
+  type GetAppStateResponse,
+  type AddToAgentStateResponse,
+  type GetAgentStateResponse,
+  type GetProjectStateResponse,
+  type UpdateProjectStateResponse,
+  type StateServiceResponse,
+  // VectorDB service responses
+  type GetVectorResponse,
+  type AddVectorItemResponse,
+  type QueryVectorItemResponse,
+  type QueryVectorItemsResponse,
+  type VectorDBServiceResponse,
+  // Utils service responses
+  type UtilsServiceResponse,
+  type EditFileAndApplyDiffResponse,
+  // Tokenizer service responses
+  type TokenizerServiceResponse,
+  // MCP service responses
+  type GetLocalToolBoxesResponse,
+  type GetAvailableToolBoxesResponse,
+  type SearchAvailableToolBoxesResponse,
+  type ListToolsFromToolBoxesResponse,
+  type ConfigureToolBoxResponse,
+  type ExecuteToolResponse,
+  type MCPServiceResponse,
+  // Debug service responses
+  type DebugAddLogResponse,
+  type GetDebugLogsResponse,
+  type DebugServiceResponse,
+  // DB Memory service responses
+  type MemorySetResponse,
+  type MemoryGetResponse,
+  type DBMemoryServiceResponse,
+  // Code Utils service responses
+  type GetJsTreeResponse,
+  type GetAllFilesAsMarkdownResponse,
+  type MatchProblemResponse,
+  type GetMatcherListTreeResponse,
+  type GetMatchDetailResponse,
+  type CodeUtilsServiceResponse,
+
+
+  // Crawler service responses
+  type CrawlResponse,
+  type CrawlerServiceResponse
 } from '../app-to-agent-ws-types';
+
+// Import agent-to-app event types
+import {
+  type GetAllFilesMarkdownEvent,
+  type PerformMatchEvent,
+  type GetMatcherListEvent,
+  type GetMatchDetailEvent,
+  type CodeUtilsEvent,
+} from '../agent-to-app-ws-types';
 
 // Import schemas from agent-to-app-ws-schema.ts
 import {
@@ -188,6 +284,7 @@ import {
   waitforReplyEventSchema,
   processStartedEventSchema,
   processStoppedEventSchema,
+  processFinishedEventSchema,
   findAgentEventSchema,
   startAgentEventSchema,
   listAgentsEventSchema,
@@ -205,6 +302,8 @@ import {
   inferenceEventSchema,
   executeCommandEventSchema,
   executeCommandWithStreamEventSchema,
+  executeCommandRunUntilErrorEventSchema,
+  sendInterruptToTerminalEventSchema,
   addTaskEventSchema,
   getTasksEventSchema,
   updateTaskEventSchema,
@@ -213,6 +312,8 @@ import {
   updateSubTaskEventSchema,
   addVectorItemEventSchema,
   queryVectorItemEventSchema,
+  getVectorEventSchema,
+  queryVectorItemsEventSchema,
   memorySetEventSchema,
   memoryGetEventSchema,
   getApplicationStateEventSchema,
@@ -238,13 +339,19 @@ import {
   fileSearchEventSchema,
   editFileWithDiffEventSchema,
   getProjectSettingsEventSchema,
+  notificationEventSchema,
   searchEventSchema,
+  pdfToTextEventSchema,
   // Additional Browser Event Schemas - these are not available in current schema exports
 } from '../agent-to-app-ws-schema';
 
 // Import Code Utils Event Schemas
 import {
-  GetAllFilesMarkdownEventSchema
+  GetAllFilesMarkdownEventSchema,
+  PerformMatchEventSchema,
+  GetMatcherListEventSchema,
+  GetMatchDetailEventSchema,
+  codeUtilsEventSchema
 } from '../wstypes/agent-to-app-ws/actions/codeUtilsEventSchemas';
 
 // Import notification schemas
@@ -493,8 +600,22 @@ import {
   WriteToFileErrorResponseSchema,
   GrepSearchSuccessResponseSchema,
   GrepSearchErrorResponseSchema,
+  BrowserActionResponseDataSchema,
   NewPageResponseSchema,
-  GetChatHistoryResponseSchema,
+  ScrollResponseSchema,
+  TypeResponseSchema,
+  ClickResponseSchema,
+  EnterResponseSchema,
+  SearchResponseSchema,
+  GetUrlResponseSchema,
+  GoToPageResponseSchema,
+  ScreenshotResponseSchema,
+  HtmlReceivedSchema,
+  GetMarkdownResponseSchema,
+  GetContentResponseSchema,
+  GetSnapShotResponseSchema,
+  GetBrowserInfoResponseSchema,
+  ExtractTextResponseSchema,
   FindAgentByTaskResponseSchema,
   ListAgentsResponseSchema,
   AgentsDetailResponseSchema,
@@ -508,22 +629,14 @@ import {
   GitBranchResponseSchema,
   GitLogsResponseSchema,
   GitDiffResponseSchema,
-  AddTaskResponseSchema,
-  GetTasksResponseSchema,
-  UpdateTasksResponseSchema,
-  DeleteTaskResponseSchema,
-  AddSubTaskResponseSchema,
-  UpdateSubTaskResponseSchema,
-  AddVectorItemResponseSchema,
-  QueryVectorItemResponseSchema,
-  GetProjectPathResponseSchema,
-  CrawlerResponseSchema,
   GetEnabledToolBoxesResponseSchema,
   GetToolsResponseSchema,
   AddTokenResponseSchema,
   GetTokenResponseSchema,
-  GetSummarizeAllResponseSchema,
-  GetSummarizeResponseSchema,
+  ChatHistoryResponseSchema,
+  WaitForReplyResponseSchema,
+  ConfirmationResponseSchema,
+  FeedbackResponseSchema,
   GetTasksByAgentResponseSchema,
   // Additional FS Response Schemas
   ListCodeDefinitionNamesSuccessResponseSchema,
@@ -534,8 +647,80 @@ import {
   EditFileAndApplyDiffErrorResponseSchema,
   OpenDebugBrowserResponseSchema,
   GetProjectSettingsResponseSchema,
-  GetAllFilesMarkdownResponseSchema
+  GetAllFilesAsMarkdownResponseSchema,
+  // Terminal service response schemas
+  CommandOutputResponseSchema,
+  CommandErrorResponseSchema,
+  CommandFinishResponseSchema,
+  TerminalInterruptResponseSchema,
+  TerminalServiceResponseSchema,
+  // Project service response schemas
+  GetProjectPathResponseSchema,
+  GetRepoMapResponseSchema,
+  GetEditorFileStatusResponseSchema,
+  ProjectServiceResponseSchema,
+  // Task service response schemas
+  TaskResponseSchema,
+  AddTaskResponseSchema,
+  GetTasksResponseSchema,
+  UpdateTasksResponseSchema,
+  DeleteTaskResponseSchema,
+  AddSubTaskResponseSchema,
+  UpdateSubTaskResponseSchema,
+  TaskServiceResponseSchema,
+  // LLM service response schemas
+  LLMResponseSchema,
+  LLMServiceResponseSchema,
+  // State service response schemas
+  GetAppStateResponseSchema,
+  AddToAgentStateResponseSchema,
+  GetAgentStateResponseSchema,
+  GetProjectStateResponseSchema,
+  UpdateProjectStateResponseSchema,
+  StateServiceResponseSchema,
+  // VectorDB service response schemas
+  GetVectorResponseSchema,
+  AddVectorItemResponseSchema,
+  QueryVectorItemResponseSchema,
+  QueryVectorItemsResponseSchema,
+  VectorDBServiceResponseSchema,
+  // Utils service response schemas
+  UtilsServiceResponseSchema,
+  EditFileAndApplyDiffResponseSchema,
+  // Tokenizer service response schemas
+  TokenizerServiceResponseSchema,
+  // MCP service response schemas
+  GetLocalToolBoxesResponseSchema,
+  GetAvailableToolBoxesResponseSchema,
+  SearchAvailableToolBoxesResponseSchema,
+  ListToolsFromToolBoxesResponseSchema,
+  ConfigureToolBoxResponseSchema,
+  ExecuteToolResponseSchema,
+  MCPServiceResponseSchema,
+  // Debug service response schemas
+  DebugAddLogResponseSchema,
+  GetDebugLogsResponseSchema,
+  DebugServiceResponseSchema,
+  // DB Memory service response schemas
+  MemorySetResponseSchema,
+  MemoryGetResponseSchema,
+  DBMemoryServiceResponseSchema,
+  // Code Utils service response schemas
+  GetJsTreeResponseSchema,
+  MatchProblemResponseSchema,
+  GetMatcherListTreeResponseSchema,
+  GetMatchDetailResponseSchema,
+  CodeUtilsServiceResponseSchema,
+
+  // Crawler service response schemas
+  CrawlResponseSchema,
+  CrawlerServiceResponseSchema,
+  GetSummarizeAllResponseSchema,
+  GetSummarizeResponseSchema,
+  TaskCompletionResponseSchema,
 } from '../app-to-agent-ws-schema';
+
+
 
 // Import SDK module interfaces for function typings
 import {
@@ -684,9 +869,9 @@ export const codeboltApiMapping = {
     "description": "Opens a new browser page or tab",
     "functionTypings": {} as BrowserModule['newPage'],
     "websocketSendType": {} as NewPageEvent,
-    "websocketReceiveType": {} as NewPageResponse,
+    "websocketReceiveType": {} as BrowserActionResponseData,
     "websocketSendSchema": newPageEventSchema,
-    "websocketReceiveSchema": NewPageResponseSchema,
+    "websocketReceiveSchema": BrowserActionResponseDataSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -695,9 +880,9 @@ export const codeboltApiMapping = {
     "description": "Retrieves the current URL of the browser's active page",
     "functionTypings": {} as BrowserModule['getUrl'],
     "websocketSendType": {} as GetUrlEvent,
-    "websocketReceiveType": {} as { url: string },
+    "websocketReceiveType": {} as GetUrlResponse,
     "websocketSendSchema": getUrlEventSchema,
-    "websocketReceiveSchema": z.object({ url: z.string() }),
+    "websocketReceiveSchema": GetUrlResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -706,9 +891,9 @@ export const codeboltApiMapping = {
     "description": "Navigates to a specified URL",
     "functionTypings": {} as BrowserModule['goToPage'],
     "websocketSendType": {} as GoToPageEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as GoToPageResponse,
     "websocketSendSchema": goToPageEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": GoToPageResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -717,9 +902,9 @@ export const codeboltApiMapping = {
     "description": "Takes a screenshot of the current page",
     "functionTypings": {} as BrowserModule['screenshot'],
     "websocketSendType": {} as ScreenshotEvent,
-    "websocketReceiveType": {} as { screenshot: string },
+    "websocketReceiveType": {} as ScreenshotResponse,
     "websocketSendSchema": screenshotEventSchema,
-    "websocketReceiveSchema": z.object({ screenshot: z.string() }),
+    "websocketReceiveSchema": ScreenshotResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -728,9 +913,9 @@ export const codeboltApiMapping = {
     "description": "Retrieves the HTML content of the current page",
     "functionTypings": {} as BrowserModule['getHTML'],
     "websocketSendType": {} as GetHtmlEvent,
-    "websocketReceiveType": {} as { html: string },
+    "websocketReceiveType": {} as HtmlReceived,
     "websocketSendSchema": getHtmlEventSchema,
-    "websocketReceiveSchema": z.object({ html: z.string() }),
+    "websocketReceiveSchema": HtmlReceivedSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -739,9 +924,9 @@ export const codeboltApiMapping = {
     "description": "Retrieves the Markdown content of the current page",
     "functionTypings": {} as BrowserModule['getMarkdown'],
     "websocketSendType": {} as GetMarkdownEvent,
-    "websocketReceiveType": {} as { markdown: string },
+    "websocketReceiveType": {} as GetMarkdownResponse,
     "websocketSendSchema": getMarkdownEventSchema,
-    "websocketReceiveSchema": z.object({ markdown: z.string() }),
+    "websocketReceiveSchema": GetMarkdownResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -761,9 +946,9 @@ export const codeboltApiMapping = {
     "description": "Extracts text content from the current page",
     "functionTypings": {} as BrowserModule['extractText'],
     "websocketSendType": {} as ExtractTextEvent,
-    "websocketReceiveType": {} as { text: string },
+    "websocketReceiveType": {} as ExtractTextResponse,
     "websocketSendSchema": extractTextEventSchema,
-    "websocketReceiveSchema": z.object({ text: z.string() }),
+    "websocketReceiveSchema": ExtractTextResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -772,9 +957,9 @@ export const codeboltApiMapping = {
     "description": "Gets the content of the current page",
     "functionTypings": {} as BrowserModule['getContent'],
     "websocketSendType": {} as GetContentEvent,
-    "websocketReceiveType": {} as { content: string },
+    "websocketReceiveType": {} as GetContentResponse,
     "websocketSendSchema": getContentEventSchema,
-    "websocketReceiveSchema": z.object({ content: z.string() }),
+    "websocketReceiveSchema": GetContentResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -783,9 +968,9 @@ export const codeboltApiMapping = {
     "description": "Clicks on an element in the browser",
     "functionTypings": {} as BrowserModule['click'],
     "websocketSendType": {} as ClickEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as BrowserActionResponseData,
     "websocketSendSchema": clickEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": BrowserActionResponseDataSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -794,9 +979,9 @@ export const codeboltApiMapping = {
     "description": "Types text into an element",
     "functionTypings": {} as BrowserModule['type'],
     "websocketSendType": {} as TypeEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as BrowserActionResponseData,
     "websocketSendSchema": typeEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": BrowserActionResponseDataSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -805,9 +990,9 @@ export const codeboltApiMapping = {
     "description": "Scrolls the page in the specified direction",
     "functionTypings": {} as BrowserModule['scroll'],
     "websocketSendType": {} as ScrollEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as BrowserActionResponseData,
     "websocketSendSchema": scrollEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": BrowserActionResponseDataSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -816,9 +1001,9 @@ export const codeboltApiMapping = {
     "description": "Presses the Enter key",
     "functionTypings": {} as BrowserModule['enter'],
     "websocketSendType": {} as EnterEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as BrowserActionResponseData,
     "websocketSendSchema": enterEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": BrowserActionResponseDataSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -827,9 +1012,9 @@ export const codeboltApiMapping = {
     "description": "Closes the current page/tab",
     "functionTypings": {} as BrowserModule['close'],
     "websocketSendType": {} as CloseEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as unknown as void,
     "websocketSendSchema": closeEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": z.void(),
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -838,9 +1023,9 @@ export const codeboltApiMapping = {
     "description": "Gets information about the browser",
     "functionTypings": {} as BrowserModule['getBrowserInfo'],
     "websocketSendType": {} as GetBrowserInfoEvent,
-    "websocketReceiveType": {} as { info: any },
+    "websocketReceiveType": {} as GetBrowserInfoResponse,
     "websocketSendSchema": getBrowserInfoEventSchema,
-    "websocketReceiveSchema": z.object({ info: z.any() }),
+    "websocketReceiveSchema": GetBrowserInfoResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -849,9 +1034,9 @@ export const codeboltApiMapping = {
     "description": "Takes a snapshot of the page",
     "functionTypings": {} as BrowserModule['getSnapShot'],
     "websocketSendType": {} as GetSnapShotEvent,
-    "websocketReceiveType": {} as { snapshot: any },
+    "websocketReceiveType": {} as GetSnapShotResponse,
     "websocketSendSchema": getSnapShotEventSchema,
-    "websocketReceiveSchema": z.object({ snapshot: z.any() }),
+    "websocketReceiveSchema": GetSnapShotResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -859,10 +1044,10 @@ export const codeboltApiMapping = {
     "name": "pdfToText",
     "description": "Converts the PDF content of the current page to text",
     "functionTypings": {} as BrowserModule['pdfToText'],
-    "websocketSendType": {} as any, // PdfToTextEvent not available
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketSendType": {} as PdfToTextEvent,
+    "websocketReceiveType": {} as unknown as void,
+    "websocketSendSchema": pdfToTextEventSchema,
+    "websocketReceiveSchema": z.void(),
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -871,9 +1056,9 @@ export const codeboltApiMapping = {
     "description": "Performs a search on the current page using a specified query",
     "functionTypings": {} as BrowserModule['search'],
     "websocketSendType": {} as SearchEvent, // SearchEvent not available
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as BrowserActionResponseData,
     "websocketSendSchema": searchEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": BrowserActionResponseDataSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -884,9 +1069,9 @@ export const codeboltApiMapping = {
     "description": "Retrieves the chat history from the server",
     "functionTypings": {} as ChatModule['getChatHistory'],
     "websocketSendType": {} as GetChatHistoryEvent,
-    "websocketReceiveType": {} as GetChatHistoryResponse,
+    "websocketReceiveType": {} as ChatHistoryResponse,
     "websocketSendSchema": getChatHistoryEventSchema,
-    "websocketReceiveSchema": GetChatHistoryResponseSchema,
+    "websocketReceiveSchema": ChatHistoryResponseSchema,
     "notificationSchemas": [getChatHistoryRequestNotificationSchema, getChatHistoryResultNotificationSchema],
     "notificationTypes": [{} as GetChatHistoryRequestNotification, {} as GetChatHistoryResultNotification]
   },
@@ -906,9 +1091,9 @@ export const codeboltApiMapping = {
     "description": "Waits for a reply to a sent message",
     "functionTypings": {} as ChatModule['waitforReply'],
     "websocketSendType": {} as WaitforReplyEvent,
-    "websocketReceiveType": {} as { reply: string },
+    "websocketReceiveType": {} as WaitForReplyResponse,
     "websocketSendSchema": waitforReplyEventSchema,
-    "websocketReceiveSchema": z.object({ reply: z.string() }),
+    "websocketReceiveSchema": WaitForReplyResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -917,9 +1102,9 @@ export const codeboltApiMapping = {
     "description": "Notifies the server that a process has started",
     "functionTypings": {} as ChatModule['processStarted'],
     "websocketSendType": {} as ProcessStartedEvent,
-    "websocketReceiveType": {} as { stopProcess: () => void },
+    "websocketReceiveType": {} as unknown as void,
     "websocketSendSchema": processStartedEventSchema,
-    "websocketReceiveSchema": z.object({ stopProcess: z.function() }),
+    "websocketReceiveSchema": z.void(),
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -938,9 +1123,9 @@ export const codeboltApiMapping = {
     "name": "processFinished",
     "description": "Indicates that the process has finished",
     "functionTypings": {} as ChatModule['processFinished'],
-    "websocketSendType": {} as any, // ProcessFinishedEvent not available
+    "websocketSendType": {} as ProcessFinishedEvent,
     "websocketReceiveType": {} as unknown as void,
-    "websocketSendSchema": z.any(),
+    "websocketSendSchema": processFinishedEventSchema,
     "websocketReceiveSchema": z.void(),
     "notificationSchemas": [],
     "notificationTypes": []
@@ -950,9 +1135,20 @@ export const codeboltApiMapping = {
     "description": "Asks a question and waits for a response",
     "functionTypings": {} as ChatModule['askQuestion'],
     "websocketSendType": {} as ConfirmationRequestEvent,
-    "websocketReceiveType": {} as { answer: string },
+    "websocketReceiveType": {} as ConfirmationResponse,
     "websocketSendSchema": confirmationRequestEventSchema,
-    "websocketReceiveSchema": z.object({ answer: z.string() }),
+    "websocketReceiveSchema": ConfirmationResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
+  },
+  "chat.sendNotificationEvent": {
+    "name": "sendNotificationEvent",
+    "description": "Sends a notification event to the server",
+    "functionTypings": {} as ChatModule['sendNotificationEvent'],
+    "websocketSendType": {} as NotificationEvent,
+    "websocketReceiveType": {} as unknown as void,
+    "websocketSendSchema": notificationEventSchema,
+    "websocketReceiveSchema": z.void(),
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -974,9 +1170,9 @@ export const codeboltApiMapping = {
     "description": "Starts an agent",
     "functionTypings": {} as AgentModule['startAgent'],
     "websocketSendType": {} as StartAgentEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as TaskCompletionResponse,
     "websocketSendSchema": startAgentEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": TaskCompletionResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1121,9 +1317,9 @@ export const codeboltApiMapping = {
     "description": "Performs LLM inference",
     "functionTypings": {} as LLMModule['inference'],
     "websocketSendType": {} as InferenceEvent,
-    "websocketReceiveType": {} as { response: any },
+    "websocketReceiveType": {} as LLMResponse,
     "websocketSendSchema": inferenceEventSchema,
-    "websocketReceiveSchema": z.object({ response: z.any() }),
+    "websocketReceiveSchema": LLMResponseSchema,
     "notificationSchemas": [llmRequestNotificationSchema, llmResponseNotificationSchema],
     "notificationTypes": [{} as LlmRequestNotification, {} as LlmResponseNotification]
   },
@@ -1132,9 +1328,9 @@ export const codeboltApiMapping = {
     "description": "Legacy method for backward compatibility - converts simple string prompt to message format",
     "functionTypings": {} as LLMModule['legacyInference'],
     "websocketSendType": {} as InferenceEvent,
-    "websocketReceiveType": {} as { response: any },
+    "websocketReceiveType": {} as LLMResponse,
     "websocketSendSchema": inferenceEventSchema,
-    "websocketReceiveSchema": z.object({ response: z.any() }),
+    "websocketReceiveSchema": LLMResponseSchema,
     "notificationSchemas": [llmRequestNotificationSchema, llmResponseNotificationSchema],
     "notificationTypes": [{} as LlmRequestNotification, {} as LlmResponseNotification]
   },
@@ -1145,9 +1341,9 @@ export const codeboltApiMapping = {
     "description": "Executes a given command and returns the result",
     "functionTypings": {} as TerminalModule['executeCommand'],
     "websocketSendType": {} as ExecuteCommandEvent,
-    "websocketReceiveType": {} as { output: string },
+    "websocketReceiveType": {} as CommandOutputResponse | CommandErrorResponse,
     "websocketSendSchema": executeCommandEventSchema,
-    "websocketReceiveSchema": z.object({ output: z.string() }),
+    "websocketReceiveSchema": z.union([CommandOutputResponseSchema, CommandErrorResponseSchema]),
     "notificationSchemas": [commandExecutionRequestNotificationSchema, commandExecutionResponseNotificationSchema],
     "notificationTypes": [{} as CommandExecutionRequestNotification, {} as CommandExecutionResponseNotification]
   },
@@ -1155,10 +1351,10 @@ export const codeboltApiMapping = {
     "name": "executeCommandRunUntilError",
     "description": "Executes a given command and keeps running until an error occurs",
     "functionTypings": {} as TerminalModule['executeCommandRunUntilError'],
-    "websocketSendType": {} as any, // ExecuteCommandRunUntilErrorEvent not available
-    "websocketReceiveType": {} as { output: string },
-    "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.object({ output: z.string() }),
+    "websocketSendType": {} as ExecuteCommandRunUntilErrorEvent,
+    "websocketReceiveType": {} as CommandErrorResponse,
+    "websocketSendSchema": executeCommandRunUntilErrorEventSchema,
+    "websocketReceiveSchema": CommandErrorResponseSchema,
     "notificationSchemas": [commandExecutionRequestNotificationSchema, commandExecutionResponseNotificationSchema],
     "notificationTypes": [{} as CommandExecutionRequestNotification, {} as CommandExecutionResponseNotification]
   },
@@ -1166,10 +1362,10 @@ export const codeboltApiMapping = {
     "name": "sendManualInterrupt", 
     "description": "Sends a manual interrupt signal to the terminal",
     "functionTypings": {} as TerminalModule['sendManualInterrupt'],
-    "websocketSendType": {} as any, // SendManualInterruptEvent not available
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketSendType": {} as SendInterruptToTerminalEvent,
+    "websocketReceiveType": {} as TerminalInterruptResponse,
+    "websocketSendSchema": sendInterruptToTerminalEventSchema,
+    "websocketReceiveSchema": TerminalInterruptResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1178,9 +1374,9 @@ export const codeboltApiMapping = {
     "description": "Executes a given command and streams the output",
     "functionTypings": {} as TerminalModule['executeCommandWithStream'],
     "websocketSendType": {} as ExecuteCommandWithStreamEvent,
-    "websocketReceiveType": {} as any,
+    "websocketReceiveType": {} as CommandOutputResponse | CommandErrorResponse | CommandFinishResponse,
     "websocketSendSchema": executeCommandWithStreamEventSchema,
-    "websocketReceiveSchema": z.any(),
+    "websocketReceiveSchema": z.union([CommandOutputResponseSchema, CommandErrorResponseSchema, CommandFinishResponseSchema]),
     "notificationSchemas": [commandExecutionRequestNotificationSchema, commandExecutionResponseNotificationSchema],
     "notificationTypes": [{} as CommandExecutionRequestNotification, {} as CommandExecutionResponseNotification]
   },
@@ -1280,10 +1476,10 @@ export const codeboltApiMapping = {
     "name": "getVector",
     "description": "Retrieves a vector from the vector database based on the provided key",
     "functionTypings": {} as VectorDBModule['getVector'],
-    "websocketSendType": {} as any, // GetVectorEvent not available
-    "websocketReceiveType": {} as any, // GetVectorResponse not available
-    "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.any(),
+    "websocketSendType": {} as GetVectorEvent,
+    "websocketReceiveType": {} as GetVectorResponse,
+    "websocketSendSchema": getVectorEventSchema,
+    "websocketReceiveSchema": GetVectorResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1302,10 +1498,10 @@ export const codeboltApiMapping = {
     "name": "queryVectorItems",
     "description": "Queries multiple vector items from the database",
     "functionTypings": {} as VectorDBModule['queryVectorItems'],
-    "websocketSendType": {} as any, // QueryVectorItemsEvent not available  
-    "websocketReceiveType": {} as any, // QueryVectorItemsResponse not available
-    "websocketSendSchema": z.any(),
-    "websocketReceiveSchema": z.any(),
+    "websocketSendType": {} as QueryVectorItemsEvent,
+    "websocketReceiveType": {} as QueryVectorItemsResponse,
+    "websocketSendSchema": queryVectorItemsEventSchema,
+    "websocketReceiveSchema": QueryVectorItemsResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1316,9 +1512,9 @@ export const codeboltApiMapping = {
     "description": "Sets a memory value",
     "functionTypings": {} as MemoryModule['set'],
     "websocketSendType": {} as MemorySetEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as MemorySetResponse,
     "websocketSendSchema": memorySetEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": MemorySetResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1327,9 +1523,9 @@ export const codeboltApiMapping = {
     "description": "Gets a memory value",
     "functionTypings": {} as MemoryModule['get'],
     "websocketSendType": {} as MemoryGetEvent,
-    "websocketReceiveType": {} as { value: any },
+    "websocketReceiveType": {} as MemoryGetResponse,
     "websocketSendSchema": memoryGetEventSchema,
-    "websocketReceiveSchema": z.object({ value: z.any() }),
+    "websocketReceiveSchema": MemoryGetResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1340,9 +1536,9 @@ export const codeboltApiMapping = {
     "description": "Gets application state",
     "functionTypings": {} as StateModule['getState'],
     "websocketSendType": {} as GetApplicationStateEvent,
-    "websocketReceiveType": {} as { state: any },
+    "websocketReceiveType": {} as GetAppStateResponse,
     "websocketSendSchema": getApplicationStateEventSchema,
-    "websocketReceiveSchema": z.object({ state: z.any() }),
+    "websocketReceiveSchema": GetAppStateResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1351,9 +1547,9 @@ export const codeboltApiMapping = {
     "description": "Adds to agent state",
     "functionTypings": {} as StateModule['addToAgentState'],
     "websocketSendType": {} as AddToAgentStateEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as AddToAgentStateResponse,
     "websocketSendSchema": addToAgentStateEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": AddToAgentStateResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1362,9 +1558,9 @@ export const codeboltApiMapping = {
     "description": "Gets agent state",
     "functionTypings": {} as StateModule['getAgentState'],
     "websocketSendType": {} as GetAgentStateEvent,
-    "websocketReceiveType": {} as { state: any },
+    "websocketReceiveType": {} as GetAgentStateResponse,
     "websocketSendSchema": getAgentStateEventSchema,
-    "websocketReceiveSchema": z.object({ state: z.any() }),
+    "websocketReceiveSchema": GetAgentStateResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1373,9 +1569,9 @@ export const codeboltApiMapping = {
     "description": "Gets project state",
     "functionTypings": {} as StateModule['getProjectState'],
     "websocketSendType": {} as GetProjectStateEvent,
-    "websocketReceiveType": {} as { state: any },
+    "websocketReceiveType": {} as GetProjectStateResponse,
     "websocketSendSchema": getProjectStateEventSchema,
-    "websocketReceiveSchema": z.object({ state: z.any() }),
+    "websocketReceiveSchema": GetProjectStateResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1384,9 +1580,9 @@ export const codeboltApiMapping = {
     "description": "Updates project state",
     "functionTypings": {} as StateModule['updateProjectState'],
     "websocketSendType": {} as UpdateProjectStateEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as UpdateProjectStateResponse,
     "websocketSendSchema": updateProjectStateEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": UpdateProjectStateResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1397,9 +1593,9 @@ export const codeboltApiMapping = {
     "description": "Logs a debug message",
     "functionTypings": {} as any, // DebugModule['log'] - method exists but property name differs
     "websocketSendType": {} as AddLogEvent,
-    "websocketReceiveType": {} as { success: boolean },
+    "websocketReceiveType": {} as DebugAddLogResponse,
     "websocketSendSchema": addLogEventSchema,
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
+    "websocketReceiveSchema": DebugAddLogResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1442,17 +1638,17 @@ export const codeboltApiMapping = {
   },
 
   // Crawler APIs
-  "crawler.crawl": {
-    "name": "crawl",
-    "description": "Crawls a website",
-    "functionTypings": {} as CrawlerModule['crawl'],
-    "websocketSendType": {} as StartCrawlerEvent,
-    "websocketReceiveType": {} as CrawlerResponse,
-    "websocketSendSchema": startCrawlerEventSchema,
-    "websocketReceiveSchema": CrawlerResponseSchema,
-    "notificationSchemas": [],
-    "notificationTypes": []
-  },
+  // "crawler.crawl": {
+  //   "name": "crawl",
+  //   "description": "Crawls a website",
+  //   "functionTypings": {} as CrawlerModule['crawl'],
+  //   "websocketSendType": {} as StartCrawlerEvent,
+  //   "websocketReceiveType": {} as CrawlerResponse,
+  //   "websocketSendSchema": startCrawlerEventSchema,
+  //   "websocketReceiveSchema": CrawlerResponseSchema,
+  //   "notificationSchemas": [],
+  //   "notificationTypes": []
+  // },
 
   // MCP APIs
   "mcp.listMcpFromServers": {
@@ -1482,9 +1678,9 @@ export const codeboltApiMapping = {
     "description": "Executes an MCP tool",
     "functionTypings": {} as MCPModule['executeTool'],
     "websocketSendType": {} as ExecuteToolEvent,
-    "websocketReceiveType": {} as { result: any },
+    "websocketReceiveType": {} as ExecuteToolResponse,
     "websocketSendSchema": executeToolEventSchema,
-    "websocketReceiveSchema": z.object({ result: z.any() }),
+    "websocketReceiveSchema": ExecuteToolResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -1793,9 +1989,9 @@ export const codeboltApiMapping = {
     "description": "Sends a confirmation request to the user",
     "functionTypings": {} as ChatModule['sendConfirmationRequest'], 
     "websocketSendType": {} as ConfirmationRequestEvent,
-    "websocketReceiveType": {} as boolean,
+    "websocketReceiveType": {} as ConfirmationResponse,
     "websocketSendSchema": confirmationRequestEventSchema,
-    "websocketReceiveSchema": z.boolean(),
+    "websocketReceiveSchema": ConfirmationResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
@@ -2106,36 +2302,36 @@ export const codeboltApiMapping = {
     "description": "Gets a map of the repository structure",
     "functionTypings": {} as any, // ProjectModule['getRepoMap'] - method exists but not in current SDK types
     "websocketSendType": null, // GetRepoMapEvent not available in current schema exports
-    "websocketReceiveType": {} as { repoMap: any },
+    "websocketReceiveType": {} as GetRepoMapResponse,
     "websocketSendSchema": null, // getRepoMapEventSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ repoMap: z.any() }),
+    "websocketReceiveSchema": GetRepoMapResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
 
   // Crawler APIs
-  "crawler.startCrawler": {
-    "name": "startCrawler",
-    "description": "Starts a web crawler",
-    "functionTypings": {} as CrawlerModule['crawl'],
-    "websocketSendType": {} as StartCrawlerEvent,
-    "websocketReceiveType": {} as CrawlerResponse,
-    "websocketSendSchema": startCrawlerEventSchema,
-    "websocketReceiveSchema": CrawlerResponseSchema,
-    "notificationSchemas": [],
-    "notificationTypes": []
-  },
-  "crawler.crawlerGoToPage": {
-    "name": "crawlerGoToPage",
-    "description": "Navigates crawler to a specific page",
-    "functionTypings": {} as any, // CrawlerModule['crawlerGoToPage'] - method exists but not in current SDK types
-    "websocketSendType": null, // CrawlerGoToPageEvent not available in current schema exports
-    "websocketReceiveType": {} as CrawlerResponse,
-    "websocketSendSchema": null, // crawlerGoToPageEventSchema not available in current schema exports
-    "websocketReceiveSchema": CrawlerResponseSchema,
-    "notificationSchemas": [],
-    "notificationTypes": []
-  },
+  // "crawler.startCrawler": {
+  //   "name": "startCrawler",
+  //   "description": "Starts a web crawler",
+  //   "functionTypings": {} as CrawlerModule['crawl'],
+  //   "websocketSendType": {} as StartCrawlerEvent,
+  //   "websocketReceiveType": {} as CrawlerResponse,
+  //   "websocketSendSchema": startCrawlerEventSchema,
+  //   "websocketReceiveSchema": CrawlerResponseSchema,
+  //   "notificationSchemas": [],
+  //   "notificationTypes": []
+  // },
+  // "crawler.crawlerGoToPage": {
+  //   "name": "crawlerGoToPage",
+  //   "description": "Navigates crawler to a specific page",
+  //   "functionTypings": {} as any, // CrawlerModule['crawlerGoToPage'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // CrawlerGoToPageEvent not available in current schema exports
+  //   "websocketReceiveType": {} as CrawlerResponse,
+  //   "websocketSendSchema": null, // crawlerGoToPageEventSchema not available in current schema exports
+  //   "websocketReceiveSchema": CrawlerResponseSchema,
+  //   "notificationSchemas": [],
+  //   "notificationTypes": []
+  // },
 
   // MCP APIs
   "mcp.getEnabledToolBoxes": {
@@ -2165,65 +2361,87 @@ export const codeboltApiMapping = {
   // },
 
   // Code Utils APIs
-  "codeutils.getAllFilesMarkdown": {
-    "name": "getAllFilesMarkdown",
+  "codeutils.getAllFilesAsMarkDown": {
+    "name": "getAllFilesAsMarkDown",
     "description": "Gets all files as markdown",
-    "functionTypings": {} as any, // CodeUtilsModule['getAllFilesAMarkdown'] - method exists but not in current SDK types
-    "websocketSendType": null, // CodeUtilsEvent not available in current schema exports
-    "websocketReceiveType": {} as { markdown: string },
-    "websocketSendSchema": GetAllFilesMarkdownEventSchema, // codeUtilsEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": GetAllFilesMarkdownResponseSchema,
+    "functionTypings": {} as CodeUtilsModule['getAllFilesAsMarkDown'],
+    "websocketSendType": {} as GetAllFilesMarkdownEvent,
+    "websocketReceiveType": {} as GetAllFilesAsMarkdownResponse,
+    "websocketSendSchema": GetAllFilesMarkdownEventSchema,
+    "websocketReceiveSchema": GetAllFilesAsMarkdownResponseSchema,
     "notificationSchemas": [grepSearchRequestNotificationSchema, grepSearchResponseNotificationSchema],
     "notificationTypes": [{} as GrepSearchRequestNotification, {} as GrepSearchResponseNotification]
   },
-  "codeutils.getMatcherListTree": {
-    "name": "getMatcherListTree",
+  "codeutils.getMatcherList": {
+    "name": "getMatcherList",
     "description": "Gets matcher list tree structure",
-    "functionTypings": {} as any, // CodeUtilsModule['getMatcherListTree'] - method exists but not in current SDK types
-    "websocketSendType": null, // CodeUtilsEvent not available in current schema exports
-    "websocketReceiveType": {} as { tree: any },
-    "websocketSendSchema": null, // codeUtilsEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ tree: z.any() }),
+    "functionTypings": {} as CodeUtilsModule['getMatcherList'],
+    "websocketSendType": {} as GetMatcherListEvent,
+    "websocketReceiveType": {} as GetMatcherListTreeResponse,
+    "websocketSendSchema": GetMatcherListEventSchema,
+    "websocketReceiveSchema": GetMatcherListTreeResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
-  "codeutils.getMatchDetail": {
-    "name": "getMatchDetail",
+  "codeutils.matchDetail": {
+    "name": "matchDetail",
     "description": "Gets details of a specific match",
-    "functionTypings": {} as any, // CodeUtilsModule['getMatchDetail'] - method exists but not in current SDK types
-    "websocketSendType": null, // CodeUtilsEvent not available in current schema exports
-    "websocketReceiveType": {} as { detail: any },
-    "websocketSendSchema": null, // codeUtilsEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ detail: z.any() }),
+    "functionTypings": {} as CodeUtilsModule['matchDetail'],
+    "websocketSendType": {} as GetMatchDetailEvent,
+    "websocketReceiveType": {} as GetMatchDetailResponse,
+    "websocketSendSchema": GetMatchDetailEventSchema,
+    "websocketReceiveSchema": GetMatchDetailResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
+  },
+  "codeutils.performMatch": {
+    "name": "performMatch",
+    "description": "Performs a matching operation based on the provided matcher definition and problem patterns",
+    "functionTypings": {} as CodeUtilsModule['performMatch'],
+    "websocketSendType": {} as PerformMatchEvent,
+    "websocketReceiveType": {} as MatchProblemResponse,
+    "websocketSendSchema": PerformMatchEventSchema,
+    "websocketReceiveSchema": MatchProblemResponseSchema,
+    "notificationSchemas": [],
+    "notificationTypes": []
+  },
+  "codeutils.getJsTree": {
+    "name": "getJsTree",
+    "description": "Retrieves a JavaScript tree structure for a given file path",
+    "functionTypings": {} as CodeUtilsModule['getJsTree'],
+    "websocketSendType": null, // This function doesn't use WebSocket, it processes locally
+    "websocketReceiveType": {} as GetJsTreeResponse,
+    "websocketSendSchema": null, // This function doesn't use WebSocket, it processes locally
+    "websocketReceiveSchema": GetJsTreeResponseSchema,
     "notificationSchemas": [],
     "notificationTypes": []
   },
 
   // Code Parsers APIs
-  "codeparsers.getJSTree": {
-    "name": "getJSTree",
-    "description": "Gets JavaScript AST tree",
-    "functionTypings": {} as any, // CodeParsersModule['getJSTree'] - method exists but not in current SDK types
-    "websocketSendType": null, // JSTreeParserEvent not available in current schema exports
-    "websocketReceiveType": {} as { tree: any },
-    "websocketSendSchema": null, // jsTreeParserEventBaseSchema not available in current schema exports
-    "websocketReceiveSchema": z.object({ tree: z.any() }),
-    "notificationSchemas": [],
-    "notificationTypes": []
-  },
+  // "codeparsers.getJSTree": {
+  //   "name": "getJSTree",
+  //   "description": "Gets JavaScript AST tree",
+  //   "functionTypings": {} as any, // CodeParsersModule['getJSTree'] - method exists but not in current SDK types
+  //   "websocketSendType": null, // JSTreeParserEvent not available in current schema exports
+  //   "websocketReceiveType": {} as GetJsTreeResponse,
+  //   "websocketSendSchema": null, // jsTreeParserEventBaseSchema not available in current schema exports
+  //   "websocketReceiveSchema": GetJsTreeResponseSchema,
+  //   "notificationSchemas": [],
+  //   "notificationTypes": []
+  // },
 
   // Utils APIs
-  "utils.editFileAndApplyDiff": {
-    "name": "editFileAndApplyDiff",
-    "description": "Edits a file and applies diff changes",
-    "functionTypings": {} as any, // Utils module method - exists but not in current SDK types
-    "websocketSendType": null, // EditFileAndApplyDiffEvent for utils not same as fs version
-    "websocketReceiveType": {} as { success: boolean },
-    "websocketSendSchema": null, // editFileAndApplyDiffEventSchema for utils not available
-    "websocketReceiveSchema": z.object({ success: z.boolean() }),
-    "notificationSchemas": [],
-    "notificationTypes": []
-  },
+  // "utils.editFileAndApplyDiff": {
+  //   "name": "editFileAndApplyDiff",
+  //   "description": "Edits a file and applies diff changes",
+  //   "functionTypings": {} as any, // Utils module method - exists but not in current SDK types
+  //   "websocketSendType": null, // EditFileAndApplyDiffEvent for utils not same as fs version
+  //   "websocketReceiveType": {} as EditFileAndApplyDiffResponse,
+  //   "websocketSendSchema": null, // editFileAndApplyDiffEventSchema for utils not available
+  //   "websocketReceiveSchema": EditFileAndApplyDiffResponseSchema,
+  //   "notificationSchemas": [],
+  //   "notificationTypes": []
+  // },
 
   // Chat Summary APIs
   // "chatSummary.summarizeAll": {

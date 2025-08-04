@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const mcpEventBaseSchema = z.object({
   type: z.literal('codebolttools'),
   action: z.string(),
+  requestId: z.string(),
 });
 
 // Get Enabled ToolBoxes Event Schema

@@ -207,6 +207,15 @@ export {
   type TerminalEvent,
 } from './wstypes/agent-to-app-ws/actions/terminalEventSchemas';
 
+// codeUtilsEventSchemas
+export {
+  type GetAllFilesMarkdownEvent,
+  type PerformMatchEvent,
+  type GetMatcherListEvent,
+  type GetMatchDetailEvent,
+  type CodeUtilsEvent,
+} from './wstypes/agent-to-app-ws/actions/codeUtilsEventSchemas';
+
 // tokenizerEventSchemas
 export {
   type TokenizerEventBase,
@@ -407,6 +416,16 @@ export {
   type AgentCompletionNotification,
   type SystemNotification
 } from './wstypes/agent-to-app-ws/notification/systemNotificationSchemas';
+
+// terminalEventSchemas
+export {
+  type TerminalEventBase,
+  type ExecuteCommandEvent,
+  type ExecuteCommandRunUntilErrorEvent,
+  type ExecuteCommandWithStreamEvent,
+  type SendInterruptToTerminalEvent,
+  type TerminalEvent,
+} from './wstypes/agent-to-app-ws/actions/terminalEventSchemas';
 
 // terminalNotificationSchemas
 export {

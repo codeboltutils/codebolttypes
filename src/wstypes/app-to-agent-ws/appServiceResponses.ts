@@ -26,7 +26,7 @@ const AppStateSchema = z.object({
 // Chat message schema (basic structure)
 const ChatSchema = z.object({
     type: z.string(),
-    messageId: z.string(),
+    requestId: z.string(),
     messageHistory: z.array(z.unknown()).optional()
 }).passthrough(); // Allow additional properties
 

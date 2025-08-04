@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const taskEventBaseSchema = z.object({
   type: z.literal('taskEvent'),
   action: z.string(),
+  requestId: z.string(),
 });
 
 // Task create options schema (for modern addTask)

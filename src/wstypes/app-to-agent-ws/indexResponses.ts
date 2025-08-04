@@ -1,3 +1,24 @@
+// Re-export all service response schemas and types
+export * from './browserServiceResponses';
+export * from './chatHistoryServiceResponses';
+export * from './terminalServiceResponses';
+export * from './projectServiceResponses';
+export * from './taskServiceResponses';
+export * from './llmServiceResponses';
+export * from './stateServiceResponses';
+export * from './vectordbServiceResponses';
+export * from './utilsServiceResponses';
+export * from './tokenizerServiceResponses';
+export * from './mcpServiceResponses';
+export * from './debugServiceResponses';
+export * from './dbMemoryServiceResponses';
+export * from './codeUtilsServiceResponses';
+export * from './crawlerServiceResponses';
+export * from './fsServiceResponses';
+export * from './gitServiceResponses';
+export * from './agentServiceResponses';
+
+// Original index service response schemas
 import { z } from 'zod';
 
 /**
@@ -8,7 +29,7 @@ import { z } from 'zod';
 // Chat message schema (basic structure for chat history)
 const ChatSchema = z.object({
     type: z.string(),
-    messageId: z.string(),
+    requestId: z.string(),
     messageHistory: z.array(z.unknown()).optional()
 }).passthrough(); // Allow additional properties
 

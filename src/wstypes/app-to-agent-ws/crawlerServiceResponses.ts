@@ -5,21 +5,26 @@ import { z } from 'zod';
  * Messages sent from crawler CLI service back to agents
  */
 
-// Crawler response schema
-export const CrawlerResponseSchema = z.object({
-    type: z.literal('crawlerResponse'),
-    data: z.union([
-        z.string(), // Most common case - message string
-        z.object({}).passthrough() // Object response for complex results
-    ])
+// Crawl response schema
+export const CrawlResponseSchema = z.object({
+  type: z.literal('crawlResponse'),
+  requestId: z.string(),
+  action: z.string().optional(),
+  result: z.any().optional(),
+  success: z.boolean().optional(),
+  message: z.string().optional(),
+  data: z.any().optional(),
+  error: z.string().optional()
 });
 
 // Union of all crawler service response schemas
-export const CrawlerServiceResponseSchema = CrawlerResponseSchema;
+export const CrawlerServiceResponseSchema = z.union([
+  CrawlResponseSchema
+]);
 
 // Export with the expected name for the index file
 export const crawlerServiceResponseSchema = CrawlerServiceResponseSchema;
 
 // Type exports
-export type CrawlerResponse = z.infer<typeof CrawlerResponseSchema>;
+export type CrawlResponse = z.infer<typeof CrawlResponseSchema>;
 export type CrawlerServiceResponse = z.infer<typeof CrawlerServiceResponseSchema>; 

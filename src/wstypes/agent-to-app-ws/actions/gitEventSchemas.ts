@@ -9,6 +9,7 @@ import { z } from 'zod';
 export const gitEventBaseSchema = z.object({
   type: z.literal('gitEvent'),
   action: z.string(),
+  requestId: z.string(),
 });
 
 // Git Init Event Schema
